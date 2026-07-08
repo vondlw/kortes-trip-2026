@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>Kortes 2026 — Japan & Vietnam</title>
+<style>
+:root{
+  --bg:#0b1220;--bg2:#0f172a;--panel:#151f36;--panel2:#1c2841;--panel3:#243252;
+  --ink:#f1f5f9;--ink2:#cbd5e1;--muted:#94a3b8;--border:#28344e;--border2:#334166;
+  --accent:#f97316;--accent2:#fb923c;
+  --ok:#10b981;--paid:#059669;--planned:#3b82f6;--warn:#f59e0b;--danger:#ef4444;
+  --jp-a:#dc2626;--jp-b:#f43f5e;
+  --vn-a:#eab308;--vn-b:#f59e0b;
+  --tokyo:#8b5cf6;--hakone:#06b6d4;--kyoto:#ec4899;--osaka:#f97316;
+  --hanoi:#ef4444;--danang:#14b8a6;--hcmc:#eab308;
+  --radius:14px;--radius-lg:20px;
+  --shadow:0 4px 20px rgba(0,0,0,.4);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",system-ui,sans-serif;
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+  color:var(--ink);min-height:100vh;padding-bottom:80px;
+}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
+a{color:inherit;text-decoration:none}
+
+/* TOP NAV (desktop) */
+.topnav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(20px);background:rgba(11,18,32,.85);
+  border-bottom:1px solid var(--border);
+}
+.topnav-inner{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.3px}
+.brand-mark{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--jp-b));
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  box-shadow:0 4px 12px rgba(249,115,22,.35);
+}
+.brand-txt{font-size:15px}
+.brand-sub{font-size:11px;color:var(--muted);font-weight:400}
+.topnav-tabs{display:none;gap:4px}
+.topnav-tabs button{padding:8px 14px;border-radius:8px;color:var(--muted);font-weight:600;font-size:13px;transition:all .15s}
+.topnav-tabs button:hover{color:var(--ink);background:var(--panel)}
+.topnav-tabs button.active{color:var(--ink);background:var(--panel2)}
+@media(min-width:900px){.topnav-tabs{display:flex}}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:20px}
+@media(max-width:600px){.container{padding:16px 14px}}
+
+/* HERO */
+.hero{
+  background:
+    radial-gradient(ellipse at top right,rgba(249,115,22,.15),transparent 60%),
+    radial-gradient(ellipse at bottom left,rgba(139,92,246,.12),transparent 60%),
+    linear-gradient(135deg,var(--panel),var(--panel2));
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;margin-bottom:20px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.hero-title{font-size:26px;font-weight:800;letter-spacing:-.8px;line-height:1.15;margin:0 0 4px}
+.hero-title .accent{background:linear-gradient(90deg,var(--accent),var(--jp-b));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-meta{color:var(--ink2);font-size:14px;margin-bottom:16px}
+.hero-family{display:inline-flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.hero-family span{background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;font-size:12px;color:var(--ink2);border:1px solid var(--border2)}
+
+/* ROUTE */
+.route{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.route-stop{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;
+  background:rgba(255,255,255,.05);border:1px solid var(--border2);
+  white-space:nowrap;
+}
+.route-stop.jp{background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(244,63,94,.1));border-color:rgba(244,63,94,.4);color:#fca5a5}
+.route-stop.vn{background:linear-gradient(135deg,rgba(234,179,8,.15),rgba(245,158,11,.1));border-color:rgba(234,179,8,.4);color:#fcd34d}
+.route-stop.ams{background:rgba(255,255,255,.08);color:var(--muted)}
+.route-arrow{color:var(--muted);font-size:12px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+@media(min-width:600px){.kpis{grid-template-columns:repeat(6,1fr)}}
+.kpi{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.kpi-val{font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1}
+.kpi-val.ok{color:var(--ok)}
+.kpi-val.warn{color:var(--warn)}
+.kpi-val.danger{color:var(--danger)}
+.kpi-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-weight:600}
+
+/* SECTIONS */
+.section{margin:28px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;gap:10px}
+.section-title{font-size:20px;font-weight:800;letter-spacing:-.5px;margin:0}
+.section-sub{font-size:12px;color:var(--muted)}
+
+/* ACTIONS */
+.actions{display:grid;gap:10px}
+@media(min-width:768px){.actions{grid-template-columns:repeat(2,1fr)}}
+.action{
+  background:linear-gradient(135deg,var(--panel),var(--panel2));
+  border:1px solid var(--border);border-left:3px solid var(--warn);
+  border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;
+  transition:transform .15s,border-color .15s;
+}
+.action:hover{transform:translateY(-1px);border-left-color:var(--accent)}
+.action.hi{border-left-color:var(--danger)}
+.action-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(245,158,11,.15);color:var(--warn);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;
+}
+.action.hi .action-icon{background:rgba(239,68,68,.15);color:var(--danger)}
+.action-body{flex:1;min-width:0}
+.action-title{font-weight:700;font-size:14px;margin-bottom:2px}
+.action-meta{font-size:12px;color:var(--muted);line-height:1.4}
+.action-cta{
+  background:var(--panel3);color:var(--ink);padding:6px 12px;border-radius:8px;
+  font-size:12px;font-weight:600;white-space:nowrap;border:1px solid var(--border2);
+}
+.action-cta:hover{background:var(--accent);border-color:var(--accent)}
+
+/* TIMELINE */
+.timeline-wrap{position:relative;margin:16px -14px 20px;padding:0 14px}
+@media(min-width:600px){.timeline-wrap{margin-left:0;margin-right:0;padding:0}}
+.timeline{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.timeline::-webkit-scrollbar{height:4px}
+.timeline::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.tl-day{
+  flex:0 0 auto;scroll-snap-align:start;
+  background:var(--panel);border:1px solid var(--border);border-radius:12px;
+  padding:8px 10px;min-width:56px;text-align:center;cursor:pointer;transition:all .15s;
+}
+.tl-day:hover{border-color:var(--border2);background:var(--panel2)}
+.tl-day.today{border-color:var(--accent);background:rgba(249,115,22,.1)}
+.tl-day.has-anchor{border-color:var(--ok)}
+.tl-day.has-decision{border-color:var(--warn)}
+.tl-wd{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.tl-num{font-size:16px;font-weight:800;line-height:1.1;margin-top:2px}
+.tl-city{font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.tl-dot{width:5px;height:5px;border-radius:50%;margin:3px auto 0}
+.tl-dot.a{background:var(--ok)}
+.tl-dot.d{background:var(--warn)}
+
+/* DAY CARDS */
+.day-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);
+  margin-bottom:14px;overflow:hidden;transition:border-color .15s;
+  scroll-margin-top:80px;
+}
+.day-card:hover{border-color:var(--border2)}
+.day-header{
+  padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  border-bottom:1px solid var(--border);position:relative;
+}
+.day-header::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tokyo);
+}
+.day-card.tokyo .day-header::before{background:var(--tokyo)}
+.day-card.hakone .day-header::before{background:var(--hakone)}
+.day-card.kyoto .day-header::before{background:var(--kyoto)}
+.day-card.osaka .day-header::before{background:var(--osaka)}
+.day-card.hanoi .day-header::before{background:var(--hanoi)}
+.day-card.danang .day-header::before{background:var(--danang)}
+.day-card.hcmc .day-header::before{background:var(--hcmc)}
+.day-card.air .day-header::before{background:var(--muted)}
+
+.day-h-left{display:flex;gap:12px;align-items:center;flex:1;min-width:0}
+.day-date{
+  min-width:52px;text-align:center;
+  padding:6px 8px;background:var(--panel3);border-radius:10px;
+}
+.day-date-wd{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.day-date-num{font-size:22px;font-weight:800;letter-spacing:-1px;line-height:1;margin:2px 0}
+.day-date-mo{font-size:9px;color:var(--muted);text-transform:uppercase}
+.day-h-info{flex:1;min-width:0}
+.day-city{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.day-city .badge-holiday{background:rgba(220,38,38,.15);color:var(--jp-b);font-size:10px;padding:2px 6px;border-radius:6px;margin-left:6px;font-weight:600;letter-spacing:0}
+.day-hotel{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-concept{font-size:12px;color:var(--ink2);margin-top:4px}
+
+.day-h-right{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.intensity{
+  font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;
+  padding:3px 8px;border-radius:12px;background:var(--panel3);color:var(--muted);
+}
+.intensity.low{background:rgba(16,185,129,.15);color:#6ee7b7}
+.intensity.medium{background:rgba(59,130,246,.15);color:#93c5fd}
+.intensity.high{background:rgba(245,158,11,.15);color:#fcd34d}
+
+.day-slots{padding:12px 16px;display:grid;gap:10px}
+@media(min-width:600px){.day-slots{grid-template-columns:repeat(3,1fr)}}
+.slot{background:var(--panel2);border-radius:10px;padding:10px 12px;border:1px solid var(--border)}
+.slot-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:4px}
+.slot-body{font-size:13px;line-height:1.4}
+.slot-body b{color:var(--ink)}
+.slot.fixed{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.05));border-color:rgba(16,185,129,.3)}
+.slot.fixed .slot-lbl{color:#6ee7b7}
+.slot.decision{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.03));border-color:rgba(245,158,11,.3)}
+.slot.decision .slot-lbl{color:#fcd34d}
+.slot.candidate{opacity:.85}
+
+.chip{
+  display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;
+  letter-spacing:.3px;text-transform:uppercase;margin-right:4px;margin-top:4px;
+}
+.chip-confirmed{background:var(--ok);color:#052e13}
+.chip-paid{background:var(--paid);color:#fff}
+.chip-planned{background:var(--planned);color:#fff}
+.chip-candidate{background:var(--panel3);color:var(--muted);border:1px solid var(--border2)}
+.chip-open{background:var(--warn);color:#3d1c00}
+.chip-book{background:var(--danger);color:#fff}
+
+.day-more{
+  padding:10px 16px 14px;border-top:1px solid var(--border);display:none;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.15));
+}
+.day-card.open .day-more{display:block}
+.day-more-toggle{
+  padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:12px;font-weight:600;
+  cursor:pointer;transition:color .15s;
+}
+.day-more-toggle:hover{color:var(--ink)}
+.day-more-toggle .arr{display:inline-block;transition:transform .2s;margin-left:4px}
+.day-card.open .day-more-toggle .arr{transform:rotate(180deg)}
+.detail-row{display:grid;gap:8px;margin-top:8px}
+@media(min-width:600px){.detail-row{grid-template-columns:1fr 1fr}}
+.detail-box{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:12px;border:1px solid var(--border)}
+.detail-box b{color:var(--ink);display:block;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.warn-box{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#fecaca}
+.info-box{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.3);color:#bfdbfe}
+.opp-box{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3);color:#ddd6fe}
+
+/* DESTINATION CARDS */
+.dests{display:grid;gap:12px}
+@media(min-width:600px){.dests{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.dests{grid-template-columns:repeat(3,1fr)}}
+.dest-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:16px;position:relative;overflow:hidden;transition:transform .15s;
+}
+.dest-card:hover{transform:translateY(-2px)}
+.dest-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:60px;
+  background:linear-gradient(135deg,var(--dc,var(--tokyo)),transparent);
+  opacity:.2;pointer-events:none;
+}
+.dest-h{display:flex;justify-content:space-between;align-items:baseline;position:relative;margin-bottom:10px}
+.dest-name{font-size:18px;font-weight:800;letter-spacing:-.5px}
+.dest-nights{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.dest-dates{font-size:12px;color:var(--ink2);margin-bottom:12px}
+.dest-hotel{font-size:12px;color:var(--muted);padding:8px 10px;background:var(--panel2);border-radius:8px;margin-bottom:10px}
+.dest-hotel b{display:block;color:var(--ink);font-size:12px}
+.dest-section{margin-top:10px}
+.dest-section-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dest-list{font-size:12px;line-height:1.5}
+
+/* DECISIONS */
+.decisions-grid{display:grid;gap:12px}
+@media(min-width:768px){.decisions-grid{grid-template-columns:repeat(2,1fr)}}
+.dec-card{
+  background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--warn);
+  border-radius:var(--radius);padding:14px 16px;
+}
+.dec-q{font-weight:700;font-size:14px;margin-bottom:2px;line-height:1.35}
+.dec-meta{font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;gap:10px;flex-wrap:wrap}
+.dec-meta span{display:inline-flex;align-items:center;gap:4px}
+.dec-opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.dec-opt{
+  padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;
+  background:var(--panel2);border:1px solid var(--border2);color:var(--ink2);
+  cursor:pointer;transition:all .15s;
+}
+.dec-opt:hover{border-color:var(--border2);background:var(--panel3)}
+.dec-opt.rec{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(59,130,246,.1));border-color:rgba(139,92,246,.4);color:#ddd6fe}
+.dec-opt.rec::before{content:'★ ';color:#c4b5fd}
+.dec-why{font-size:12px;color:var(--muted);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.dec-actions{display:flex;gap:6px;margin-top:10px}
+.dec-btn{padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;border:1px solid var(--border2)}
+.dec-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.dec-btn.ghost{color:var(--muted)}
+
+/* FOOD */
+.food-city{margin-bottom:20px}
+.food-city-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.food-city-name{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.food-city-count{font-size:11px;color:var(--muted)}
+.rests{display:grid;gap:10px}
+@media(min-width:600px){.rests{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.rests{grid-template-columns:repeat(3,1fr)}}
+.rest{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:12px 14px;transition:border-color .15s;
+}
+.rest:hover{border-color:var(--border2)}
+.rest-name{font-weight:700;font-size:14px;letter-spacing:-.2px}
+.rest-meta{color:var(--muted);font-size:11px;margin:4px 0 6px;display:flex;flex-wrap:wrap;gap:6px}
+.rest-meta span{display:inline-flex;align-items:center}
+.rest-meta .price{font-weight:700;color:var(--ink2)}
+.rest-tag{
+  display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;margin-right:4px;
+}
+.rest-tag.book{background:rgba(245,158,11,.15);color:#fcd34d}
+.rest-tag.walk{background:rgba(16,185,129,.15);color:#6ee7b7}
+.rest-why{font-size:12px;color:var(--ink2);line-height:1.4;margin-top:6px}
+
+/* LOGISTICS */
+.log-grid{display:grid;gap:16px}
+@media(min-width:768px){.log-grid{grid-template-columns:1fr 1fr}}
+.log-list{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.log-h{padding:12px 16px;background:var(--panel2);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.log-item{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.log-item:last-child{border-bottom:none}
+.log-main{flex:1;min-width:0}
+.log-primary{font-weight:700;font-size:13px;letter-spacing:-.2px}
+.log-secondary{font-size:11px;color:var(--muted);margin-top:2px}
+.log-right{text-align:right;font-size:11px;color:var(--muted);white-space:nowrap}
+.log-right b{color:var(--ink);font-size:12px;display:block}
+
+/* BOTTOM NAV */
+.botnav{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(11,18,32,.92);backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  display:grid;grid-template-columns:repeat(5,1fr);
+}
+@media(min-width:900px){.botnav{display:none}}
+.botnav button{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:8px 4px;color:var(--muted);font-size:10px;font-weight:600;
+  border-radius:8px;letter-spacing:.3px;transition:color .15s;
+}
+.botnav button.active{color:var(--accent)}
+.botnav button:hover{color:var(--ink)}
+.botnav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* VIEWS */
+.view{display:none}
+.view.active{display:block}
+
+/* SCROLL */
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">
+      <div class="brand-mark">✈</div>
+      <div>
+        <div class="brand-txt">Japan · Vietnam 2026</div>
+        <div class="brand-sub">17 Jul – 7 Aug · Family of 4</div>
+      </div>
+    </div>
+    <div class="topnav-tabs">
+      <button data-view="today" class="active">Today</button>
+      <button data-view="trip">Trip</button>
+      <button data-view="decisions">Decisions</button>
+      <button data-view="food">Food</button>
+      <button data-view="more">More</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- TODAY / OVERVIEW VIEW -->
+<div class="view active" id="v-today">
+  <div class="hero">
+    <h1 class="hero-title"><span class="accent">Japan &amp; Vietnam</span><br>Summer 2026</h1>
+    <div class="hero-meta">17 July – 7 August · 22 days across 7 cities</div>
+    <div class="hero-family">
+      <span>Henk Jan</span><span>Jersica</span><span>Oscar · 15</span><span>Lucas · 17</span>
+    </div>
+    <div class="route" id="route"></div>
+    <div class="kpis" id="kpis"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2 class="section-title">Book soon</h2>
+      <div class="section-sub" id="actionsCount"></div>
+    </div>
+    <div class="actions" id="actions"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2 class="section-title">Trip timeline</h2>
+      <div class="section-sub">Tap a day to jump</div>
+    </div>
+    <div class="timeline-wrap"><div class="timeline" id="timeline"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2 class="section-title">Destinations</h2>
+      <div class="section-sub">7 cities</div>
+    </div>
+    <div class="dests" id="destinations"></div>
+  </div>
+</div>
+
+<!-- TRIP / DAYS VIEW -->
+<div class="view" id="v-trip">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Day by day</h2>
+      <div class="section-sub">22 days</div>
+    </div>
+    <div class="timeline-wrap"><div class="timeline" id="timeline2"></div></div>
+    <div id="days"></div>
+  </div>
+</div>
+
+<!-- DECISIONS VIEW -->
+<div class="view" id="v-decisions">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">To decide</h2>
+      <div class="section-sub" id="decCount"></div>
+    </div>
+    <div class="decisions-grid" id="decisions"></div>
+  </div>
+</div>
+
+<!-- FOOD VIEW -->
+<div class="view" id="v-food">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Where to eat</h2>
+      <div class="section-sub">Curated by destination</div>
+    </div>
+    <div id="food"></div>
+  </div>
+</div>
+
+<!-- MORE / LOGISTICS -->
+<div class="view" id="v-more">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head"><h2 class="section-title">Flights &amp; hotels</h2></div>
+    <div class="log-grid">
+      <div class="log-list">
+        <div class="log-h">Flights <span style="color:var(--ok);font-size:11px">All confirmed</span></div>
+        <div id="flights"></div>
+      </div>
+      <div class="log-list">
+        <div class="log-h">Hotels <span style="color:var(--ok);font-size:11px">All booked</span></div>
+        <div id="hotels"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<nav class="botnav">
+  <button data-view="today" class="active">
+    <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7 2 2v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Today
+  </button>
+  <button data-view="trip">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    Trip
+  </button>
+  <button data-view="decisions">
+    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    Decide
+  </button>
+  <button data-view="food">
+    <svg viewBox="0 0 24 24"><path d="M4 3v18M4 12h6M10 3v18M20 3v18M18 3v9a3 3 0 0 0 3-3V3"/></svg>
+    Food
+  </button>
+  <button data-view="more">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    More
+  </button>
+</nav>
+
+<script>
+const CITY_KEY={'Tokyo':'tokyo','Hakone':'hakone','Kyoto':'kyoto','Osaka':'osaka','Hanoi':'hanoi','Da Nang':'danang','HCMC':'hcmc','Da Nang/Hoi An':'danang','Kyoto (Nara day)':'kyoto','Hanoi/Da Nang':'hanoi','Hanoi (day trip)':'hanoi','Osaka (day trip)':'osaka','Amsterdam/Air':'air','Air→Amsterdam':'air'};
+const CITY_LABEL={'Tokyo':'Tokyo','Hakone':'Hakone','Kyoto':'Kyoto','Osaka':'Osaka','Hanoi':'Hanoi','Da Nang':'Da Nang','HCMC':'Ho Chi Minh City','Da Nang/Hoi An':'Da Nang & Hoi An','Kyoto (Nara day)':'Nara Day-Trip','Hanoi/Da Nang':'Hanoi → Da Nang','Hanoi (day trip)':'Hanoi Excursion'};
+const DEST_META={
+  Tokyo:{color:'--tokyo',dates:'18-23 Jul',hotel:'Nishitetsu Inn Shinjuku',fits:['teamLab Planets ★','Asakusa Sumo Club ★','Shibuya + Harajuku','Odaiba tech + gaming','Akihabara arcades']},
+  Hakone:{color:'--hakone',dates:'23-24 Jul',hotel:'Itsuki private house',fits:['Round Course loop','Private rock-bath (booked)','Lake Ashi + pirate boat','Owakudani black eggs']},
+  Kyoto:{color:'--kyoto',dates:'24-28 Jul',hotel:'Hotel Resol Shijo Muromachi',fits:['Fushimi Inari at dawn','Gion Matsuri arrival day','Nara deer day-trip','Kamo-river yuka dining','Arashiyama bamboo']},
+  Osaka:{color:'--osaka',dates:'28-30 Jul',hotel:'&Here OSAKA NAMBA',fits:['Dotonbori food crawl','Nintendo Osaka + Umeda','Kaiyukan aquarium','Den Den Town']},
+  Hanoi:{color:'--hanoi',dates:'30 Jul-2 Aug',hotel:'The Oriental Jade',fits:['Old Quarter walk','Ninh Binh or Ha Long','Train Street coffee','Water Puppet Show']},
+  'Da Nang / Hoi An':{color:'--danang',dates:'2-5 Aug',hotel:'HAIAN Beach Hotel & Spa',fits:['My Khe Beach','Hoi An lanterns','Marble Mountains + My Son','Dragon Bridge (Sun only)']},
+  'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 Aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
+};
+
+fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
+  document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Cannot load data</h1><div class="hero-meta">Open both files from the same folder.</div></div>';
+});
+
+function render(D){
+  // ROUTE
+  const routeStops=[{n:'Amsterdam',cls:'ams'},{n:'Tokyo',cls:'jp'},{n:'Hakone',cls:'jp'},{n:'Kyoto',cls:'jp'},{n:'Osaka',cls:'jp'},{n:'Hanoi',cls:'vn'},{n:'Da Nang',cls:'vn'},{n:'HCMC',cls:'vn'},{n:'Amsterdam',cls:'ams'}];
+  document.getElementById('route').innerHTML=routeStops.map((s,i)=>
+    `<span class="route-stop ${s.cls}">${s.n}</span>${i<routeStops.length-1?'<span class="route-arrow">→</span>':''}`
+  ).join('');
+
+  // KPIs
+  const totalAnchors = D.anchors.length;
+  const planned = D.days.filter(d=>d.status==='PLANNED'||(d.anchors||[]).length).length;
+  const kpis=[
+    {v:D.trip.days,l:'Days',c:''},
+    {v:D.hotels.length,l:'Hotels',c:'ok'},
+    {v:D.flights.length,l:'Flights',c:'ok'},
+    {v:totalAnchors,l:'Booked',c:'ok'},
+    {v:D.decisions.length,l:'To decide',c:'warn'},
+    {v:D.urgent_actions.length,l:'Book soon',c:'danger'}
+  ];
+  document.getElementById('kpis').innerHTML=kpis.map(k=>
+    `<div class="kpi"><div class="kpi-val ${k.c}">${k.v}</div><div class="kpi-lbl">${k.l}</div></div>`
+  ).join('');
+
+  // ACTIONS
+  document.getElementById('actionsCount').textContent = D.urgent_actions.length+' actions';
+  const iconMap={'U-03':'🚄','U-12':'🧳','U-11':'📋','A-06':'👤','U-06':'⛵','U-07':'⛰','U-08':'🎯','U-10':'💺'};
+  document.getElementById('actions').innerHTML = D.urgent_actions.map(a=>{
+    const hi = a.urgency==='HIGH'||a.urgency==='CRITICAL-ACTION'?'hi':'';
+    return `<div class="action ${hi}">
+      <div class="action-icon">${iconMap[a.id]||'⚡'}</div>
+      <div class="action-body">
+        <div class="action-title">${a.item}</div>
+        <div class="action-meta">${a.urgency} · Deadline: ${a.deadline}${a.note?' · '+a.note:''}</div>
+      </div>
+      <button class="action-cta">Do it</button>
+    </div>`;
+  }).join('');
+
+  // TIMELINE (mini + full)
+  const monthMap={'2026-07':'Jul','2026-08':'Aug'};
+  const tlHtml = D.days.map(day=>{
+    const key = CITY_KEY[day.dest]||'air';
+    const wd = day.weekday.slice(0,3);
+    const dayNum = day.date.split('-')[2];
+    const cityShort = (CITY_LABEL[day.dest]||day.dest).split(' ')[0].slice(0,6);
+    const hasA = (day.anchors||[]).length>0;
+    const hasD = (day.decisions||[]).length>0;
+    return `<div class="tl-day ${hasA?'has-anchor':''} ${hasD?'has-decision':''}" onclick="jumpToDay(${day.d})">
+      <div class="tl-wd">${wd}</div>
+      <div class="tl-num">${dayNum}</div>
+      <div class="tl-city">${cityShort}</div>
+      ${hasA?'<div class="tl-dot a"></div>':hasD?'<div class="tl-dot d"></div>':''}
+    </div>`;
+  }).join('');
+  document.getElementById('timeline').innerHTML = tlHtml;
+  document.getElementById('timeline2').innerHTML = tlHtml;
+
+  // DAYS
+  document.getElementById('days').innerHTML = D.days.map(day=>renderDay(day)).join('');
+
+  // DESTINATIONS
+  document.getElementById('destinations').innerHTML = Object.entries(DEST_META).map(([name,m])=>{
+    const nights = D.hotels.find(h=>h.city===name||(name==='Da Nang / Hoi An'&&h.city==='Da Nang')||(name==='Ho Chi Minh City'&&h.city==='HCMC'))?.nights||0;
+    const hotel = D.hotels.find(h=>h.city===name||(name==='Da Nang / Hoi An'&&h.city==='Da Nang')||(name==='Ho Chi Minh City'&&h.city==='HCMC'));
+    return `<div class="dest-card" style="--dc:var(${m.color})">
+      <div class="dest-h">
+        <div class="dest-name">${name}</div>
+        <div class="dest-nights">${nights} night${nights===1?'':'s'}</div>
+      </div>
+      <div class="dest-dates">${m.dates}</div>
+      ${hotel?`<div class="dest-hotel"><b>${hotel.name}</b>${hotel.in} → ${hotel.out}</div>`:''}
+      <div class="dest-section">
+        <div class="dest-section-lbl">Strongest experiences</div>
+        <div class="dest-list">${m.fits.map(f=>`• ${f}`).join('<br>')}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // DECISIONS
+  document.getElementById('decCount').textContent = D.decisions.length+' open';
+  document.getElementById('decisions').innerHTML = D.decisions.map(d=>{
+    const opts = (d.options||[]).map(o=>{
+      const isRec = o===d.recommendation||(d.recommendation.startsWith(o.split(' ')[0])&&o!==d.recommendation);
+      const exactRec = o===d.recommendation||d.recommendation.includes(o);
+      return `<button class="dec-opt ${exactRec?'rec':''}">${o}</button>`;
+    }).join('');
+    return `<div class="dec-card">
+      <div class="dec-q">${d.q}</div>
+      <div class="dec-meta">
+        <span>⏰ ${d.deadline}</span>
+        <span>Confidence: ${d.confidence}</span>
+      </div>
+      <div class="dec-opts">${opts}</div>
+      <div class="dec-why"><b style="color:var(--ink);font-weight:700">Recommended:</b> ${d.recommendation}<br>${d.why}</div>
+      <div class="dec-actions">
+        <button class="dec-btn primary">Compare</button>
+        <button class="dec-btn ghost">Decide later</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // FOOD
+  document.getElementById('food').innerHTML = Object.entries(D.restaurants).map(([city,list])=>`
+    <div class="food-city">
+      <div class="food-city-h">
+        <div class="food-city-name">${city}</div>
+        <div class="food-city-count">${list.length} places</div>
+      </div>
+      <div class="rests">${list.map(r=>{
+        const bookTag = (r.reservation||'').includes('yes')?'<span class="rest-tag book">Book</span>':'';
+        const walkTag = (r.reservation==='no'||r.reservation==='queue'||r.reservation==='walk-in')?'<span class="rest-tag walk">Walk in</span>':'';
+        return `<div class="rest">
+          <div class="rest-name">${bookTag}${walkTag}${r.name}</div>
+          <div class="rest-meta">
+            <span>${r.cuisine}</span>
+            <span>·</span><span>${r.area}</span>
+            <span>·</span><span class="price">${r.price}</span>
+            <span>·</span><span>${r.best}</span>
+          </div>
+          <div class="rest-why">${r.why}</div>
+        </div>`;
+      }).join('')}</div>
+    </div>
+  `).join('');
+
+  // LOGISTICS
+  document.getElementById('flights').innerHTML = D.flights.map(f=>`
+    <div class="log-item">
+      <div class="log-main">
+        <div class="log-primary">${f.route}</div>
+        <div class="log-secondary">${f.flight} · Ref ${f.ref}</div>
+      </div>
+      <div class="log-right">
+        <b>${f.dep} → ${f.arr}</b>
+        ${f.date}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('hotels').innerHTML = D.hotels.map(h=>`
+    <div class="log-item">
+      <div class="log-main">
+        <div class="log-primary">${h.city}</div>
+        <div class="log-secondary">${h.name}</div>
+      </div>
+      <div class="log-right">
+        <b>${h.nights} night${h.nights===1?'':'s'}</b>
+        ${h.in} → ${h.out}
+      </div>
+    </div>
+  `).join('');
+
+  // NAV
+  document.querySelectorAll('[data-view]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const v = btn.dataset.view;
+      document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+      document.getElementById('v-'+v).classList.add('active');
+      document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+}
+
+function renderDay(day){
+  const key = CITY_KEY[day.dest]||'air';
+  const cityLabel = CITY_LABEL[day.dest]||day.dest;
+  const holiday = day.weekday.includes('🎌')?'<span class="badge-holiday">Marine Day</span>':'';
+  const wdClean = day.weekday.replace(/🎌.*/,'').trim();
+  const [y,mo,dn]=day.date.split('-');
+  const moLabel={'07':'Jul','08':'Aug'}[mo];
+
+  const anchorInfo = (day.anchors||[]).map(a=>`<span class="chip chip-paid">${a}</span>`).join('');
+  const decisionInfo = (day.decisions||[]).map(a=>`<span class="chip chip-open">${a}</span>`).join('');
+  const intensity = day.intensity?`<div class="intensity ${day.intensity.split(' ')[0]}">${day.intensity}</div>`:'';
+
+  const pa = day.planA;
+  let morning='<em style="color:var(--muted)">Open</em>',afternoon='<em style="color:var(--muted)">Open</em>',evening='<em style="color:var(--muted)">Open</em>';
+  let mSlotClass='',aSlotClass='',eSlotClass='';
+  if(pa && typeof pa==='object'){
+    if(pa.morning||pa.late_morning) morning = [pa.morning,pa.late_morning].filter(Boolean).join('<br>');
+    if(pa.afternoon||pa.late_afternoon) afternoon = [pa.afternoon,pa.late_afternoon].filter(Boolean).join('<br>');
+    if(pa.evening) evening = pa.evening;
+    if(pa.fixed){ afternoon = '<b>'+pa.fixed+'</b>'+(pa.afternoon?'<br>'+pa.afternoon:''); aSlotClass='fixed'; }
+    if(pa.transfer) morning = (morning==='<em style="color:var(--muted)">Open</em>'?'':morning+'<br>')+pa.transfer;
+  } else if(typeof pa==='string'){
+    morning = pa;
+  }
+  if(day.travel && morning==='<em style="color:var(--muted)">Open</em>') morning = day.travel;
+
+  const hasDec = (day.decisions||[]).length>0;
+  if(hasDec && afternoon==='<em style="color:var(--muted)">Open</em>'){aSlotClass='decision';afternoon='Open decision — see Decisions tab';}
+
+  // Details
+  const pb = day.planB;
+  let planBHtml = '';
+  if(pb){
+    if(typeof pb==='object'){
+      const parts=[];
+      if(pb.theme) parts.push(`<b>${pb.theme}</b>`);
+      ['morning','afternoon','evening','concept','note','addition'].forEach(k=>{ if(pb[k]) parts.push(pb[k]); });
+      planBHtml = parts.join('<br>');
+    } else planBHtml = pb;
+  }
+  const swaps = (day.swaps||[]).length?day.swaps.join(' · '):'';
+  const warn = day.warning||day.heat_warning;
+  const info = day.weather_risk;
+  const opp = day.opportunity;
+  const teen = day.teen_fit;
+  const cluster = day.cluster;
+
+  const hasMore = planBHtml||swaps||warn||info||opp||teen||cluster;
+
+  return `<div class="day-card ${key}" id="day-${day.d}">
+    <div class="day-header">
+      <div class="day-h-left">
+        <div class="day-date">
+          <div class="day-date-wd">${wdClean.slice(0,3)}</div>
+          <div class="day-date-num">${parseInt(dn)}</div>
+          <div class="day-date-mo">${moLabel}</div>
+        </div>
+        <div class="day-h-info">
+          <div class="day-city">${cityLabel}${holiday}</div>
+          ${day.hotel&&day.hotel!=='Air'?`<div class="day-hotel">${day.hotel}</div>`:''}
+          <div class="day-concept">${day.concept}</div>
+          <div>${anchorInfo}${decisionInfo}</div>
+        </div>
+      </div>
+      <div class="day-h-right">${intensity}</div>
+    </div>
+    <div class="day-slots">
+      <div class="slot ${mSlotClass}"><div class="slot-lbl">Morning</div><div class="slot-body">${morning}</div></div>
+      <div class="slot ${aSlotClass}"><div class="slot-lbl">Afternoon</div><div class="slot-body">${afternoon}</div></div>
+      <div class="slot ${eSlotClass}"><div class="slot-lbl">Evening</div><div class="slot-body">${evening}</div></div>
+    </div>
+    ${hasMore?`
+    <div class="day-more-toggle" onclick="this.parentElement.classList.toggle('open')">
+      View details<span class="arr">▾</span>
+    </div>
+    <div class="day-more">
+      <div class="detail-row">
+        ${planBHtml?`<div class="detail-box"><b>Plan B</b>${planBHtml}</div>`:''}
+        ${swaps?`<div class="detail-box"><b>Optional swaps</b>${swaps}</div>`:''}
+        ${cluster?`<div class="detail-box"><b>Geographic cluster</b>${cluster}</div>`:''}
+        ${warn?`<div class="detail-box warn-box"><b>⚠ Watch out</b>${warn}</div>`:''}
+        ${info?`<div class="detail-box info-box"><b>Weather</b>${info}</div>`:''}
+        ${opp?`<div class="detail-box opp-box"><b>Opportunity</b>${opp}</div>`:''}
+        ${teen?`<div class="detail-box info-box"><b>Teen fit</b>${teen}</div>`:''}
+      </div>
+    </div>`:''}
+  </div>`;
+}
+
+function jumpToDay(d){
+  document.querySelectorAll('[data-view]').forEach(b=>{
+    if(b.dataset.view==='trip') b.click();
+  });
+  setTimeout(()=>{
+    const el = document.getElementById('day-'+d);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('open');}
+  },200);
+}
+</script>
+</body>
+</html>
