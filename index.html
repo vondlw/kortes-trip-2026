@@ -438,6 +438,53 @@ html{scroll-behavior:smooth}
 .gaps{margin-top:14px;padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;font-size:12px}
 .gaps summary{cursor:pointer;color:var(--muted);font-weight:600}
 .gaps ul{margin:8px 0 0;padding-left:18px;color:var(--ink2)}
+
+/* HOTEL DETAIL CARDS */
+.hotel-detail{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:16px;overflow:hidden}
+.hotel-hero{padding:16px;background:linear-gradient(135deg,var(--panel2),var(--panel3));border-bottom:1px solid var(--border);position:relative}
+.hotel-hero::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--hc,var(--tokyo))}
+.hotel-hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.hotel-city-tag{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.hotel-name{font-size:17px;font-weight:800;letter-spacing:-.3px;margin-top:2px;line-height:1.2}
+.hotel-type-tag{font-size:11px;color:var(--ink2);margin-top:4px}
+.hotel-nights-big{background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:8px 12px;text-align:center;min-width:70px}
+.hotel-nights-big b{display:block;font-size:20px;font-weight:900;line-height:1}
+.hotel-nights-big span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.hotel-dates{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:12px}
+.hotel-date-box{background:rgba(255,255,255,.05);padding:6px 10px;border-radius:8px;color:var(--ink2)}
+.hotel-date-box b{color:var(--ink);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700;margin-bottom:1px}
+.hotel-section{padding:14px 16px;border-bottom:1px solid var(--border)}
+.hotel-section:last-child{border-bottom:none}
+.hotel-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.hotel-desc{font-size:13px;line-height:1.55;color:var(--ink2)}
+.hotel-family{font-size:13px;line-height:1.55;color:var(--ink2);background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:8px;padding:10px 12px}
+.hotel-addr{font-size:13px;color:var(--ink2);line-height:1.4}
+.hotel-map-link{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-size:12px;font-weight:600;margin-top:6px}
+.hotel-map-link:hover{color:var(--accent2)}
+.hotel-transport-item{display:flex;gap:10px;padding:6px 0;font-size:12px;line-height:1.4;color:var(--ink2);border-bottom:1px dashed var(--border)}
+.hotel-transport-item:last-child{border-bottom:none}
+.hotel-transport-icon{width:26px;height:26px;background:var(--panel2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.hotel-transport-info b{color:var(--ink);font-size:12px;display:block}
+.hotel-station{padding:6px 0;font-size:12px;line-height:1.4;border-bottom:1px dashed var(--border);color:var(--ink2)}
+.hotel-station:last-child{border-bottom:none}
+.hotel-station b{color:var(--ink)}
+.hotel-station .walk{color:var(--accent);font-weight:700}
+.hotel-nearby-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+.hotel-nearby-item{background:var(--panel2);padding:8px 10px;border-radius:8px;font-size:12px;color:var(--ink2);border:1px solid var(--border)}
+.hotel-nearby-item b{color:var(--ink);display:block;font-size:12px}
+.hotel-nearby-item .dist{color:var(--muted);font-size:11px;margin-top:2px}
+.hotel-fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;font-size:12px}
+.hotel-fact{background:var(--panel2);padding:8px 10px;border-radius:6px;color:var(--ink2)}
+.hotel-fact b{color:var(--ink);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700;margin-bottom:2px}
+.hotel-warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:10px 12px;font-size:12px;color:#fcd34d;line-height:1.5}
+.hotel-warn ul{margin:6px 0 0;padding-left:18px}
+.hotel-warn li{margin:3px 0}
+.hotel-sources{font-size:10px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border);margin-top:10px}
+.hotel-sources b{color:var(--ink2)}
+.coord-badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;margin-left:6px}
+.coord-badge.VERIFIED{background:rgba(16,185,129,.15);color:#6ee7b7}
+.coord-badge.APPROXIMATE{background:rgba(245,158,11,.15);color:#fcd34d}
+.coord-badge.MISSING{background:rgba(239,68,68,.15);color:#fca5a5}
 </style>
 </head>
 <body>
@@ -455,7 +502,7 @@ html{scroll-behavior:smooth}
       <button data-view="today" class="active">Overzicht</button>
       <button data-view="trip">Dagplanning</button>
       <button data-view="flights">Vluchten</button>
-      <button data-view="stays">Verblijven</button>
+      <button data-view="stays">Hotels</button>
       <button data-view="decisions">Beslissingen</button>
       <button data-view="food">Restaurants</button>
       <button data-view="essentials">Reisbenodigdheden</button>
@@ -553,7 +600,7 @@ html{scroll-behavior:smooth}
 <div class="view" id="v-stays">
   <div class="section" style="margin-top:8px">
     <div class="section-head">
-      <h2 class="section-title">Verblijven</h2>
+      <h2 class="section-title">Hotels</h2>
       <div class="section-sub">7 hotels · Alle bevestigd</div>
     </div>
     <div id="staysList"></div>
@@ -935,19 +982,113 @@ function renderFlights(D){
 }
 
 function renderStays(D){
-  document.getElementById('staysList').innerHTML=D.hotels.map(h=>`
-    <div class="stay-card">
-      <div style="flex:1;min-width:0">
-        <div class="stay-city">${h.city}</div>
-        <div class="stay-name">${h.name}</div>
-        <div class="stay-room">${h.room||''}${h.breakfast?' · met ontbijt':''}</div>
+  const CITY_COLOR={'Tokyo':'--tokyo','Hakone':'--hakone','Kyoto':'--kyoto','Osaka':'--osaka','Hanoi':'--hanoi','Da Nang':'--danang','Ho Chi Minh City':'--hcmc','HCMC':'--hcmc'};
+  document.getElementById('staysList').innerHTML=D.hotels.map(h=>{
+    const color = CITY_COLOR[h.city]||'--tokyo';
+    const addr = h.address||'—';
+    const mapQuery = encodeURIComponent(h.name+' '+(h.address||h.city));
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+    const coordBadge = h.coord_status?`<span class="coord-badge ${h.coord_status.split(' ')[0]}">${h.coord_status.split(' ')[0]}</span>`:'';
+
+    const desc = h.description?`<div class="hotel-section">
+      <div class="hotel-section-title">📖 Beschrijving</div>
+      <div class="hotel-desc">${h.description}</div>
+    </div>`:'';
+
+    const family = h.family_fit?`<div class="hotel-section">
+      <div class="hotel-section-title">👨‍👩‍👦‍👦 Gezins-fit</div>
+      <div class="hotel-family">${h.family_fit}</div>
+    </div>`:'';
+
+    const addrSection = `<div class="hotel-section">
+      <div class="hotel-section-title">📍 Adres ${coordBadge}</div>
+      <div class="hotel-addr">${addr}</div>
+      <a class="hotel-map-link" href="${mapUrl}" target="_blank" rel="noopener">Bekijk op Google Maps →</a>
+    </div>`;
+
+    const stations = (h.stations&&h.stations.length)?`<div class="hotel-section">
+      <div class="hotel-section-title">🚉 Stations & lopen</div>
+      ${h.stations.map(s=>`<div class="hotel-station">
+        <b>${s.name}</b>${s.line?' · '+s.line:''}${s.exit?' · '+s.exit:''}
+        ${s.walk_min?` · <span class="walk">${s.walk_min} min lopen</span>`:''}
+        ${s.note?`<div style="color:var(--muted);margin-top:2px">${s.note}</div>`:''}
+      </div>`).join('')}
+    </div>`:'';
+
+    const transport = (h.transport&&h.transport.length)?`<div class="hotel-section">
+      <div class="hotel-section-title">✈️ Transport & vervoer</div>
+      ${h.transport.map(t=>{
+        const iconMap={'Airport':'✈','Trein':'🚆','Bus':'🚌','Fiets':'🚲'};
+        const icon=iconMap[t.type]||'🚗';
+        return `<div class="hotel-transport-item">
+          <div class="hotel-transport-icon">${icon}</div>
+          <div class="hotel-transport-info">
+            <b>${t.type}${t.from?' vanaf '+t.from:''}</b>${t.options||''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`:'';
+
+    const nearby = (h.nearby&&h.nearby.length)?`<div class="hotel-section">
+      <div class="hotel-section-title">🗺️ In de buurt</div>
+      <div class="hotel-nearby-grid">${h.nearby.map(n=>{
+        let dist='';
+        if(n.walk_min) dist=`🚶 ${n.walk_min} min lopen`;
+        else if(n.drive_min) dist=`🚗 ${n.drive_min} min rijden${n.distance_km?' · '+n.distance_km+' km':''}`;
+        else if(n.note) dist=n.note;
+        return `<div class="hotel-nearby-item">
+          <b>${n.name}</b>
+          ${dist?`<div class="dist">${dist}</div>`:''}
+        </div>`;
+      }).join('')}</div>
+    </div>`:'';
+
+    const facts = `<div class="hotel-section">
+      <div class="hotel-section-title">ℹ️ Praktisch</div>
+      <div class="hotel-fact-grid">
+        <div class="hotel-fact"><b>Check-in</b>${h.check_in||'—'}</div>
+        <div class="hotel-fact"><b>Check-out</b>${h.check_out||'—'}</div>
+        <div class="hotel-fact"><b>Kamer</b>${h.room||'—'}</div>
+        <div class="hotel-fact"><b>Ontbijt</b>${h.breakfast?'Inbegrepen':(h.breakfast===false?'Niet inbegrepen':'—')}</div>
+        <div class="hotel-fact"><b>Wifi</b>${h.wifi||'—'}</div>
+        <div class="hotel-fact"><b>€/nacht</b>€${(h.eur_per_night||0).toFixed(2)}</div>
       </div>
-      <div style="text-align:right">
-        <div class="stay-nights-badge"><b>${h.nights}</b>${h.nights===1?'nacht':'nachten'}</div>
-        <div class="stay-dates" style="margin-top:6px">${h.in} → ${h.out}</div>
+    </div>`;
+
+    const warnings = (h.known_issues&&h.known_issues.length)?`<div class="hotel-section">
+      <div class="hotel-section-title">⚠️ Let op</div>
+      <div class="hotel-warn"><ul>${h.known_issues.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    </div>`:'';
+
+    const sources = h.sources?`<div class="hotel-section"><div class="hotel-sources"><b>Bronnen:</b> ${h.sources.join(' · ')} · <b>Geraadpleegd:</b> ${h.accessed||'—'}</div></div>`:'';
+
+    return `<div class="hotel-detail" style="--hc:var(${color})">
+      <div class="hotel-hero" style="--hc:var(${color})">
+        <div class="hotel-hero-top">
+          <div style="flex:1;min-width:0">
+            <div class="hotel-city-tag">${h.city}</div>
+            <div class="hotel-name">${h.name}</div>
+            ${h.hotel_type?`<div class="hotel-type-tag">${h.hotel_type}</div>`:''}
+          </div>
+          <div class="hotel-nights-big"><b>${h.nights}</b><span>${h.nights===1?'nacht':'nachten'}</span></div>
+        </div>
+        <div class="hotel-dates">
+          <div class="hotel-date-box"><b>Check-in</b>${h.in}</div>
+          <div class="hotel-date-box"><b>Check-out</b>${h.out}</div>
+          <div class="hotel-date-box"><b>Kamer</b>${h.room||'—'}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+      ${desc}
+      ${addrSection}
+      ${family}
+      ${transport}
+      ${stations}
+      ${nearby}
+      ${facts}
+      ${warnings}
+      ${sources}
+    </div>`;
+  }).join('');
 }
 
 function renderEssentials(D){

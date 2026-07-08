@@ -27,15 +27,181 @@
    "in": "2026-07-18",
    "out": "2026-07-23",
    "nights": 5,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "7-23-2 Nishishinjuku, Shinjuku-ku, Tokyo 160-0023",
+   "coordinates": {
+    "lat": 35.6929,
+    "lng": 139.6926,
+    "source": "well-known address"
+   },
+   "hotel_type": "Business hotel (3★)",
+   "check_in": "15:00",
+   "check_out": "10:00",
+   "stations": [
+    {
+     "name": "Nishi-Shinjuku Station",
+     "line": "Tokyo Metro Marunouchi Line",
+     "exit": "Exit 1",
+     "walk_min": 2
+    },
+    {
+     "name": "Shinjuku Station",
+     "line": "JR (Yamanote a.o.)",
+     "exit": "West Exit",
+     "walk_min": 8
+    }
+   ],
+   "transport": [
+    {
+     "type": "Airport",
+     "from": "Narita (NRT)",
+     "options": "N'EX naar Shinjuku (~85 min) OF Airport Limousine bus tot \"Hilton Tokyo\" (~6 min lopen)"
+    },
+    {
+     "type": "Airport",
+     "from": "Haneda (HND)",
+     "options": "Airport Limousine bus of trein (~40 min)"
+    }
+   ],
+   "description": "Modern Japans business-hotel in Nishi-Shinjuku, 300 kamers over 15 verdiepingen. Basis maar comfortabel, met kamers die ruimer zijn dan gemiddeld voor Tokyo. Perfect als thuisbasis voor 5 nachten: rustige straat, twee stations vlakbij, alles binnen loopafstand. Ontbijtbuffet Il Chianti-stijl in kelder + Saint Marc Cafe op begane grond.",
+   "family_fit": "Twin-kamers ruim genoeg voor 2 pers. + koffers. Twee kamers naast elkaar mogelijk. Gratis wifi, wasserij in gebouw, luggage-lockers gratis, 24u receptie met Engelstalig personeel. Non-smoking kamers goedkoper.",
+   "nearby": [
+    {
+     "name": "Shinjuku Central Park",
+     "walk_min": 8
+    },
+    {
+     "name": "Tokyo Metropolitan Gov. gratis observatorium",
+     "walk_min": 10
+    },
+    {
+     "name": "Kabukicho nachtleven",
+     "walk_min": 12
+    },
+    {
+     "name": "Samurai Museum (Shinjuku-vestiging)",
+     "walk_min": 13
+    },
+    {
+     "name": "Isetan Department Store",
+     "walk_min": 15
+    },
+    {
+     "name": "Meiji-jingu (bos + schrijn)",
+     "walk_min": 25
+    },
+    {
+     "name": "Shinjuku Gyoen park",
+     "walk_min": 25
+    }
+   ],
+   "known_issues": [
+    "Sommige kamers klein — vraag ruimere twin bij check-in",
+    "Roken/niet-roken kamers apart geprijsd"
+   ],
+   "wifi": "Gratis in hele hotel",
+   "sources": [
+    "tokyotouristinfo.com (Tokyo Metropolitan Gov.)",
+    "booking.com",
+    "inn-shinjuku.nishitetsu-hotels.com"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "VERIFIED"
   },
   {
    "city": "Hakone",
-   "name": "Itsuki (rockbath house)",
+   "name": "Shirayunoyado Yamadaya Hakone Gora",
    "in": "2026-07-23",
    "out": "2026-07-24",
    "nights": 1,
-   "status": "CONFIRMED"
+   "room": "2 kamers, 4 volw.",
+   "eur_night": 365.0,
+   "breakfast": true,
+   "status": "CONFIRMED",
+   "meal_plan": "HALF BOARD (diner + ontbijt inbegrepen, in-room)",
+   "payment_status": "NIET PAID — Betaling bij accommodatie (geen aanbetaling)",
+   "cancellation": "Gratis annulering tot 20 juli 2026",
+   "address": "1320-907 Gora, Hakone-machi, Ashigarashimo-gun, Kanagawa 250-0408",
+   "coordinates": {
+    "lat": 35.2503,
+    "lng": 139.0407,
+    "source": "Gora onsen district, Hakone"
+   },
+   "coord_status": "APPROXIMATE",
+   "hotel_type": "Traditioneel ryokan (3★)",
+   "check_in": "15:00–18:00",
+   "check_out": "10:00",
+   "stations": [
+    {
+     "name": "Sōunzan Station",
+     "line": "Hakone Tozan Cable Car (top)",
+     "walk_min": 4,
+     "note": "~250 m; eindpunt kabellift + startpunt Ropeway"
+    },
+    {
+     "name": "Gōra Station",
+     "line": "Hakone Tozan Railway",
+     "note": "Gratis hotel-shuttle 15:00–18:00, ~7 min rijden (bellen vanaf Gora)"
+    }
+   ],
+   "transport": [
+    {
+     "type": "Trein",
+     "from": "Shinjuku (aankomst)",
+     "options": "Romancecar Shinjuku → Hakone-Yumoto (~85 min) → Tozan Railway → Gōra (~40 min) → Cable Car → Sōunzan (~10 min) → 4 min lopen"
+    },
+    {
+     "type": "Trein",
+     "from": "Odawara (vertrek)",
+     "options": "Yamadaya-shuttle → Gōra Station → Tozan Railway → Hakone-Yumoto (~40 min) → Odawara (~15 min)"
+    }
+   ],
+   "description": "Klein traditioneel ryokan (17 kamers) in Gora Onsen, hoog in de Hakone-bergen. Wit-getinte sulfaat-onsen, 5 baden waaronder buitenbaden en 1 privé-Kashikiri (tegen meerprijs). Diner en ontbijt worden in de kamer geserveerd — seizoensgebonden kaiseki-stijl, verse lokale ingrediënten. Retro-authentieke sfeer, warme Engelstalige staff. Uitzicht op de omringende bergen vanuit de kamers.",
+   "family_fit": "Ryokan-ervaring is het reisdoel zelf: private/kamer-diner + onsen na de Round-Course-dag. 5 onsen-baden = geen wachtrij. Voor Oscar+Lucas (15/17): Kashikiri privé-bad boekt onbekendheid met public-onsen-etiquette weg. Ligging (4 min van Sōunzan) betekent dat je na de Ropeway-dag direct in het ryokan aankomt — geen laat transfer meer.",
+   "nearby": [
+    {
+     "name": "Sōunzan Station (Cable Car + Ropeway)",
+     "walk_min": 4
+    },
+    {
+     "name": "Ōwakudani (vulkanisch dal + zwarte eieren)",
+     "note": "1 ropeway-halte, ~8 min"
+    },
+    {
+     "name": "Tōgendai / Lake Ashi",
+     "note": "Ropeway naar Tōgendai (~25 min totaal)"
+    },
+    {
+     "name": "Hakone Open-Air Museum",
+     "drive_min": 10
+    },
+    {
+     "name": "Gora Park",
+     "walk_min": 15
+    },
+    {
+     "name": "Hakone Botanical Garden of Wetlands",
+     "note": "~3 km"
+    }
+   ],
+   "known_issues": [
+    "**Late aankomst = missen diner**: check-in sluit 18:00, diner-serveertijd verifiëren bij hotel",
+    "Alleen Japans ontbijt/diner (geen westerse optie)",
+    "Kinderen 13+ = volwassen tarief (Oscar/Lucas telt)",
+    "Free shuttle vanaf Gōra alleen tussen 15:00–18:00",
+    "Non-smoking, geen huisdieren",
+    "Betaling: sommige bronnen zeggen cash only — verifieer bij aankomst",
+    "Publiek vervoer in de buurt na 18:00 beperkt"
+   ],
+   "wifi": "Gratis in publieke ruimtes",
+   "sources": [
+    "livejapan.com",
+    "booking.com/hotel/jp/yamadaya.html",
+    "selected-ryokan.com",
+    "tripoffice.com",
+    "ryokantravel.com"
+   ],
+   "accessed": "2026-07-08"
   },
   {
    "city": "Kyoto",
@@ -43,7 +209,86 @@
    "in": "2026-07-24",
    "out": "2026-07-28",
    "nights": 4,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "554 Sannocho, Muromachi-dori Takatsujiagaru, Shimogyo-ku, Kyoto 600-8424",
+   "coordinates": {
+    "lat": 35.0,
+    "lng": 135.7605,
+    "source": "central Downtown Kyoto"
+   },
+   "hotel_type": "Boutique business-hotel (3★)",
+   "check_in": "15:00",
+   "check_out": "11:00",
+   "stations": [
+    {
+     "name": "Shijo Station",
+     "line": "Karasuma Subway Line",
+     "exit": "Exit 6",
+     "walk_min": 2
+    },
+    {
+     "name": "Karasuma Station",
+     "line": "Hankyu Kyoto Line",
+     "exit": "Exit 26",
+     "walk_min": 4
+    }
+   ],
+   "transport": [
+    {
+     "type": "Trein",
+     "from": "Kyoto Station",
+     "options": "Karasuma Subway Line 2 stops → Shijo Station → 2 min lopen"
+    },
+    {
+     "type": "Bus",
+     "from": "KIX Airport Limousine",
+     "options": "Tot \"Shijo Karasuma\" → 8 min lopen"
+    }
+   ],
+   "description": "Japans-modern boutique-hotel in het hart van Downtown Kyoto. Tatami-kamers met NASA-ontwikkelde geheugenmatrassen, schoenen-uit beleid, onderaardse living-lobby met aroma. Ontbijtbuffet Il Chianti (~30 gerechten). Bijzonder: Kyoto-stijl matcha-set op de kamer. Ligt IN het Gion Matsuri-festivalgebied.",
+   "family_fit": "Ruimere Japanse kamers dan gemiddeld, tatami-vloer + moderne bedden. Twee twin-kamers naast elkaar mogelijk. Wasserij + strijkservice in huis. Bagage-forwardservice beschikbaar bij receptie voor Osaka-transfer.",
+   "nearby": [
+    {
+     "name": "Nishiki Market",
+     "walk_min": 5
+    },
+    {
+     "name": "Kawaramachi shopping",
+     "walk_min": 7
+    },
+    {
+     "name": "Pontocho Alley + Kamo-rivier",
+     "walk_min": 10
+    },
+    {
+     "name": "Gion district + Yasaka Schrijn",
+     "walk_min": 15
+    },
+    {
+     "name": "Nintendo Kyoto (Takashimaya)",
+     "walk_min": 10
+    },
+    {
+     "name": "Manga Museum",
+     "walk_min": 10
+    },
+    {
+     "name": "Kyoto Station",
+     "walk_min": 20,
+     "note": "ook Karasuma Line 2 stops"
+    }
+   ],
+   "known_issues": [
+    "Op 24 juli: Gion Matsuri Ato-parade LOOPT LANGS het hotel — straatafsluitingen rond Karasuma/Shijo/Oike, taxi's kunnen niet voorrijden"
+   ],
+   "wifi": "Gratis in hele hotel",
+   "sources": [
+    "en.www.resol-hotel.jp (officieel)",
+    "insidekyoto.com",
+    "booking.com"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "APPROXIMATE"
   },
   {
    "city": "Osaka",
@@ -51,7 +296,94 @@
    "in": "2026-07-28",
    "out": "2026-07-30",
    "nights": 2,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "7-9 Sennichimae, Namba, Chuo-ku, Osaka-shi 542-0075",
+   "coordinates": {
+    "lat": 34.6634,
+    "lng": 135.5028,
+    "source": "central Namba, near Kuromon Market"
+   },
+   "hotel_type": "Apartment-hotel (4★, geopend april 2025)",
+   "check_in": "15:00",
+   "check_out": "11:00",
+   "stations": [
+    {
+     "name": "Nankai Namba Station",
+     "line": "Nankai Line",
+     "exit": "South Exit",
+     "walk_min": 3
+    },
+    {
+     "name": "Namba Station",
+     "line": "Osaka Metro Midosuji/Sennichimae/Yotsubashi",
+     "exit": "Exit E9",
+     "walk_min": 6
+    },
+    {
+     "name": "Daikokucho Station",
+     "line": "Metro",
+     "walk_min": 10
+    }
+   ],
+   "transport": [
+    {
+     "type": "Airport",
+     "from": "KIX (Kansai)",
+     "options": "Nankai Rapi:t Limited Express 40 min naar Nankai Namba → 3 min lopen"
+    },
+    {
+     "type": "Airport",
+     "from": "ITM (Itami)",
+     "options": "Airport Limousine bus tot \"Namba Sta\" (~25-35 min) → 9 min lopen"
+    }
+   ],
+   "description": "Nieuw apartment-hotel (86-89 kamers) in \"Ura Namba\" achterstraatjes-thema. Dubbelgebouw met \"hideout\" receptie + gastenverblijf. Kamers gedecoreerd in \"Enjoy\" of \"Relax\" concept — beide met tatami-esthetiek maar moderne comfort. Dakterras met uitzicht op Osaka + Tsutenkaku toren, NAMbar op begane grond.",
+   "family_fit": "Speciaal gemaakt voor families: bunk-bed familiekamers (tieners krijgen boven-etage), simpele kitchenette, eethoek in kamer — ideale layout voor Oscar+Lucas. Waarschuwing uit reviews: dunne muren, licht slaper geeft aan meer kans op geluidshinder.",
+   "nearby": [
+    {
+     "name": "Kuromon Ichiba Markt",
+     "walk_min": 5,
+     "note": "ontbijt/lunch"
+    },
+    {
+     "name": "Dotonbori",
+     "walk_min": 15
+    },
+    {
+     "name": "Den Den Town (elektronica/anime)",
+     "walk_min": 10
+    },
+    {
+     "name": "Nipponbashi Park",
+     "walk_min": 5
+    },
+    {
+     "name": "Round1 Sennichimae",
+     "walk_min": 10
+    },
+    {
+     "name": "Namba Parks shopping",
+     "walk_min": 7
+    },
+    {
+     "name": "Shinsaibashi",
+     "walk_min": 18
+    }
+   ],
+   "known_issues": [
+    "Geluidsisolatie: dunne muren/plafonds volgens meerdere reviews",
+    "Zeer druk gebied tijdens toerismeseizoen",
+    "Geen airportshuttle — publiek vervoer nodig"
+   ],
+   "wifi": "Gratis in hele hotel",
+   "sources": [
+    "andherehotels-osakanamba.com (officieel)",
+    "insideosaka.com",
+    "booking.com",
+    "tripadvisor.com"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "APPROXIMATE"
   },
   {
    "city": "Hanoi",
@@ -59,7 +391,80 @@
    "in": "2026-07-30",
    "out": "2026-08-02",
    "nights": 3,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "92-94 Hang Trong Street, Hoan Kiem District, Hanoi 10000",
+   "coordinates": {
+    "lat": 21.0283,
+    "lng": 105.8501,
+    "source": "near Hoan Kiem Lake"
+   },
+   "hotel_type": "Boutique luxury (5★)",
+   "check_in": "14:00",
+   "check_out": "12:00",
+   "stations": [
+    {
+     "name": "Metro Hanoi",
+     "walk_min": null,
+     "note": "Metro-lijn nog niet toereikend — gebruik Grab/taxi"
+    }
+   ],
+   "transport": [
+    {
+     "type": "Airport",
+     "from": "Noi Bai (HAN)",
+     "options": "Grab/taxi ~40 min, ~$15 (~350k VND) OF hotel airport-shuttle (met toeslag)"
+    }
+   ],
+   "description": "#1 gerankt hotel op TripAdvisor Hanoi (van 1.130). 120 kamers met uitzicht over Hoan Kiem Meer, Hanoi Cathedral en Old Quarter. Rooftop infinity zwembad + sky bar (12e verdieping) met panoramisch uitzicht = grote hit. Full-service spa, buffet-ontbijt zeer geprezen. Egyptisch katoen beddengoed, pillow-menu.",
+   "family_fit": "Family-friendly reputatie, connecting rooms mogelijk (Pearl/Emerald), gratis welkomstdrankjes (jasmijnthee), attente staff die namen onthouden. Zeer geschikt voor gezin: 2 twin-kamers naast elkaar of familiesuite. Uitstekend ontbijtbuffet is teens-friendly (variety).",
+   "nearby": [
+    {
+     "name": "St. Joseph's Cathedral",
+     "walk_min": 2
+    },
+    {
+     "name": "Hoan Kiem Lake",
+     "walk_min": 5
+    },
+    {
+     "name": "Old Quarter walk",
+     "walk_min": 5
+    },
+    {
+     "name": "Water Puppet Theatre (Thang Long)",
+     "walk_min": 7
+    },
+    {
+     "name": "Old Town Night Market",
+     "walk_min": 7
+    },
+    {
+     "name": "Hoa Lo Prison Museum",
+     "walk_min": 10
+    },
+    {
+     "name": "Vietnam Military History Museum",
+     "walk_min": 15
+    },
+    {
+     "name": "Train Street",
+     "walk_min": 10
+    }
+   ],
+   "known_issues": [
+    "Straatgeluid mogelijk in kamers aan voorzijde — vraag rustigere kamer",
+    "Minimum leeftijd check-in = 16 (kinderen geregistreerd onder ouder)",
+    "Betaalde ontbijt (~600k VND pp, ~€22) — check of inbegrepen in jouw tarief"
+   ],
+   "wifi": "Gratis in hele hotel",
+   "sources": [
+    "theorientaljadehotel.com (officieel)",
+    "tripadvisor.com (#1 Hanoi)",
+    "kayak.com",
+    "travelocity.com"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "APPROXIMATE"
   },
   {
    "city": "Da Nang",
@@ -67,7 +472,77 @@
    "in": "2026-08-02",
    "out": "2026-08-05",
    "nights": 3,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "278 Vo Nguyen Giap, My An Ward, Ngu Hanh Son District, Da Nang",
+   "coordinates": {
+    "lat": 16.0403,
+    "lng": 108.247,
+    "source": "My Khe Beach strip"
+   },
+   "hotel_type": "Beachfront resort (4★)",
+   "check_in": "14:00",
+   "check_out": "11:30",
+   "stations": [],
+   "transport": [
+    {
+     "type": "Airport",
+     "from": "Da Nang (DAD)",
+     "options": "Grab/taxi ~13 min, ~$5-8 (~150k VND); hotel-shuttle op verzoek"
+    },
+    {
+     "type": "Fiets",
+     "options": "Gratis fietsen voor gasten"
+    }
+   ],
+   "description": "21-verdiepingen strandhotel direct aan My Khe Beach (Vo Nguyen Giap kustweg). 214-220 kamers, ontworpen in antieke architectuur + moderne stijl. Rooftop infinity zwembad, spa op 16e verdieping (Hanatural Therapy), Cá Gỗ Vietnamees restaurant, poolbar. Ontbijt met panoramisch zeezicht via glasramen. Anders dan verwacht: NIET direct aan strand maar aan overzijde van kustweg (nog steeds ~1 min lopen).",
+   "family_fit": "Gezinsvriendelijk: gratis kinderbedjes, kinderprijs ontbijt (250k VND vs 350k volwassenen), speeltuin, rollaway beds beschikbaar (550k VND/dag). Meerdere kamertypes waaronder suites en family bunk. Gratis fietsen voor kust-verkenning. Zeer geprezen door families op Kayak/Expedia.",
+   "nearby": [
+    {
+     "name": "My Khe Beach",
+     "walk_min": 1,
+     "note": "oversteken kustweg"
+    },
+    {
+     "name": "Marble Mountains (Ngu Hanh Son)",
+     "drive_min": 15
+    },
+    {
+     "name": "Dragon Bridge",
+     "drive_min": 10,
+     "distance_km": 3.5
+    },
+    {
+     "name": "Han River",
+     "drive_min": 6
+    },
+    {
+     "name": "Cham Museum",
+     "drive_min": 10
+    },
+    {
+     "name": "Da Nang centrum",
+     "drive_min": 10
+    },
+    {
+     "name": "Hoi An Ancient Town",
+     "drive_min": 30,
+     "distance_km": 30
+    }
+   ],
+   "known_issues": [
+    "Boek kamer met zeezicht-balkon expliciet (niet standaard)",
+    "Ontbijt betaald tenzij tarief inclusief",
+    "Restaurant Cá Gỗ is Vietnamees; poolbar-drankjes zijn duurder"
+   ],
+   "wifi": "Gratis in hele hotel",
+   "sources": [
+    "haianbeachhotelspa.com (officieel)",
+    "kayak.com",
+    "expedia.com",
+    "tripadvisor.com"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "APPROXIMATE"
   },
   {
    "city": "HCMC",
@@ -75,7 +550,65 @@
    "in": "2026-08-05",
    "out": "2026-08-07",
    "nights": 2,
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "address": "Rivergate Residence, 151-155 Ben Van Don, Ward 6, District 4, Ho Chi Minh City",
+   "coordinates": {
+    "lat": 10.7643,
+    "lng": 106.7047,
+    "source": "Rivergate complex Ben Van Don"
+   },
+   "hotel_type": "Serviced apartment (particulier verhuurd)",
+   "check_in": "14:00 (typisch, verifieer bij eigenaar)",
+   "check_out": "12:00 (typisch)",
+   "stations": [],
+   "transport": [
+    {
+     "type": "Airport",
+     "from": "Tan Son Nhat (SGN)",
+     "options": "Grab/taxi ~35 min, ~$8-10 (~250k VND)"
+    }
+   ],
+   "description": "Particulier verhuurd 1-appartement in het Rivergate Residence-complex, direct aan Ben Nghe kanaal, District 4 grenzend aan District 1. Complex heeft zwembad + gym + supermarkt op de begane grond. Als volledig appartement biedt het meer ruimte en privacy dan een hotelkamer — inclusief eigen keuken en woonruimte voor het gezin.",
+   "family_fit": "Ideaal voor korte 2-nachtenstop: gezinsprivacy, eigen keuken (ontbijt maken), meer ruimte per persoon dan hotelkamer. Nachtvertrek 6→7 aug niet lastig — koffers pakken in eigen appartement. Contact met de eigenaar/beheerder essentieel voor check-in details.",
+   "nearby": [
+    {
+     "name": "Ben Thanh Market",
+     "drive_min": 10
+    },
+    {
+     "name": "Nguyen Hue Walking Street",
+     "drive_min": 8
+    },
+    {
+     "name": "Reunification Palace",
+     "drive_min": 12
+    },
+    {
+     "name": "War Remnants Museum",
+     "drive_min": 12
+    },
+    {
+     "name": "Rooftop bars District 1",
+     "drive_min": 10
+    },
+    {
+     "name": "Ben Nghe kanaal + parks",
+     "walk_min": 5
+    }
+   ],
+   "known_issues": [
+    "Particuliere verhuur: check-in tijd + procedure per eigenaar",
+    "Coordinatie voor nachttransfer 7 aug ~23:00 zelf regelen",
+    "Geen 24u receptie zoals hotel — vraag WhatsApp/telefoonnummer beheerder",
+    "Details verifiëren bij boeker (geen officiële hotelwebsite)"
+   ],
+   "wifi": "Verifieer bij eigenaar",
+   "sources": [
+    "Boeking Booking.com (particuliere verhuurder)",
+    "Rivergate Residence complex-informatie"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "APPROXIMATE (complex-adres)"
   }
  ],
  "flights": [
@@ -134,6 +667,40 @@
    "journey": "OUTBOUND",
    "verified": "Betaaloverzicht VW-11380148",
    "ref_masked": "VW-••••148"
+  },
+  {
+   "seg": 100,
+   "flight": "HAKONE 5",
+   "airline": "Odakyu Electric Railway",
+   "airline_code": "ODK",
+   "type": "romancecar",
+   "dep": "11:00",
+   "arr": "12:25",
+   "date": "2026-07-23",
+   "arr_date": "2026-07-23",
+   "dep_iata": "SJK",
+   "arr_iata": "HYM",
+   "dep_city": "Shinjuku",
+   "arr_city": "Hakone-Yumoto",
+   "dep_airport": "Shinjuku Station (Odakyu)",
+   "arr_airport": "Hakone-Yumoto Station",
+   "duration": "1u 25m",
+   "rolling_stock": "EXE10",
+   "baggage": "Handbagage + rolkoffers naast/tussen zetels; grote koffers achteraan de wagon",
+   "checkin": "Boarding via IC-kaart (Suica) OF papieren ticket. Bewijs van Romancecar-toeslag (JPY 4.600) via app/print",
+   "seats": [
+    "Car 04, Zetel 11C",
+    "Car 04, Zetel 11D",
+    "Car 04, Zetel 12C",
+    "Car 04, Zetel 12D"
+   ],
+   "ref": "00•30",
+   "ref_masked": "00•30",
+   "status": "CONFIRMED",
+   "verified": "Odakyu boekingsscreenshot",
+   "route": "SJK-HYM",
+   "journey": "HAKONE_ARRIVAL",
+   "note": "JPY 4.600 = Romancecar-toeslag (~¥1.150 pp) — basistarief Odakyu Shinjuku→Hakone-Yumoto (¥1.270 pp × 4 ≈ ¥5.080) NIET inbegrepen; te betalen via IC-kaart bij poortje óf gedekt door Hakone Freepass. FARE STRUCTURE = VERIFY."
   },
   {
    "date": "2026-07-30",
@@ -284,6 +851,60 @@
    "journey": "RETURN",
    "verified": "E-ticket VW-11380221",
    "ref_masked": "VW-••••221"
+  },
+  {
+   "seg": 101,
+   "flight": "HIKARI641",
+   "airline": "JR Central (Tokaido Shinkansen)",
+   "airline_code": "JR",
+   "dep": "12:07",
+   "arr": "13:14",
+   "date": "2026-07-24",
+   "arr_date": "2026-07-24",
+   "dep_iata": "ODA",
+   "arr_iata": "NGO",
+   "duration": "1u 07m",
+   "dep_city": "Odawara",
+   "arr_city": "Nagoya",
+   "dep_airport": "Odawara Station",
+   "arr_airport": "Nagoya Station",
+   "baggage": "Handbagage; 3 grote koffers = registreren via SmartEX (\"oversized\" bagage-reservering aanbevolen)",
+   "checkin": "SmartEX-app QR-code + IC-kaart (Suica); geen fysiek ticket nodig",
+   "seats": "Gereserveerde stoelen (4 pers.) via SmartEX",
+   "ref": "SmartEX-boeking",
+   "ref_masked": "SmartEX",
+   "status": "CONFIRMED",
+   "verified": "SmartEX-boeking (bevestigd + betaald)",
+   "route": "ODA-NGO",
+   "journey": "HAKONE_SHINKANSEN",
+   "type": "shinkansen"
+  },
+  {
+   "seg": 102,
+   "flight": "NOZOMI379",
+   "airline": "JR Central (Tokaido Shinkansen)",
+   "airline_code": "JR",
+   "dep": "13:17",
+   "arr": "13:51",
+   "date": "2026-07-24",
+   "arr_date": "2026-07-24",
+   "dep_iata": "NGO",
+   "arr_iata": "KYO",
+   "duration": "0u 34m",
+   "dep_city": "Nagoya",
+   "arr_city": "Kyoto",
+   "dep_airport": "Nagoya Station",
+   "arr_airport": "Kyoto Station",
+   "baggage": "Idem HIKARI 641",
+   "checkin": "Zelfde SmartEX-boeking (aansluiting)",
+   "seats": "Gereserveerde stoelen (4 pers.)",
+   "ref": "SmartEX-boeking",
+   "ref_masked": "SmartEX",
+   "status": "CONFIRMED",
+   "verified": "SmartEX-boeking (bevestigd + betaald)",
+   "route": "NGO-KYO",
+   "journey": "HAKONE_SHINKANSEN",
+   "type": "shinkansen"
   }
  ],
  "anchors": [
@@ -307,10 +928,10 @@
  "urgent_actions": [
   {
    "id": "U-03",
-   "item": "Shinkansen Odawara→Kyoto (24 jul) + Romancecar (23 jul) — 4 stoelen naast elkaar",
-   "urgency": "HOOG",
+   "item": "Romancecar Shinjuku→Hakone GEBOEKT ✓ + Shinkansen Odawara→Kyoto GEBOEKT ✓",
+   "urgency": "GESLOTEN",
    "deadline": "deze week",
-   "note": "Boek deze week via SmartEX/EMot; zomervakantie = drukte"
+   "note": "Beide 23-24 juli rail-transfers zijn nu CONFIRMED+PAID. Alleen basistarief Odakyu-lijn (~¥5.080) nog open — via IC-kaart of Hakone Freepass."
   },
   {
    "id": "U-12",
@@ -478,7 +1099,8 @@
    "planA": "Landen, hotel, slapen",
    "status": "CONFIRMED logistics",
    "intensity": "laag",
-   "cluster": "Shinjuku"
+   "cluster": "Shinjuku",
+   "hotel_ref": "Nishitetsu Inn Shinjuku"
   },
   {
    "d": 2,
@@ -592,40 +1214,51 @@
    "date": "2026-07-23",
    "weekday": "do",
    "dest": "Hakone",
-   "hotel": "Itsuki (private rockbath)",
+   "hotel": "Shirayunoyado Yamadaya Hakone Gora",
    "travel": "Romancecar Shinjuku→Hakone ~09:00",
-   "concept": "Hakone Round Course",
+   "concept": "Middag-aankomst Hakone (12:25) → Sōunzan Ropeway → ryokan-diner",
    "planA": {
-    "morning": "Shinkuku→Odawara Romancecar → Hakone-Yumoto → Tozan-treintje Gora",
-    "afternoon": "Kabelbaan Sōunzan → kabelbaan Owakudani (zwarte eieren) → piratenboot Ashimeer → Hakone-schrijn drijvende torii",
-    "evening": "Check-in Itsuki, privé-rotsbad, kaiseki-diner"
+    "theme": "Bagage mee naar Yamadaya, dan Ropeway naar Ōwakudani",
+    "morning": "~10:30 uitchecken Nishitetsu Inn; naar Shinjuku Odakyu-terminal",
+    "fixed": "**11:00 Romancecar HAKONE 5 Shinjuku → 12:25 Hakone-Yumoto** (Car 04 zetels 11C/11D/12C/12D, BEVESTIGD+BETAALD)",
+    "late_morning": "12:25 aankomst Hakone-Yumoto; snelle bento/eki-lunch bij station (~30 min)",
+    "transfer": "~13:00 Tozan Railway naar Gōra (~40 min bergtreintje) → Cable Car Gōra→Sōunzan (~10 min) → 4 min lopen naar Yamadaya; bagage bij receptie afgeven (~14:00)",
+    "afternoon": "~14:15 terug naar Sōunzan Station → **Hakone Ropeway Sōunzan → Ōwakudani** (~8 min): vulkanisch dal, kuroshu (zwarte eieren), zwaveldampen; ~1u ter plekke",
+    "late_afternoon": "~15:45 Ropeway terug naar Sōunzan → 4 min lopen → **officiële check-in Yamadaya ~16:00-16:15**; onsen-tijd (5 baden)",
+    "evening": "**In-room kaiseki-diner** (~18:00-19:30); avond-onsen"
    },
    "planB": {
-    "theme": "Rustig: Open-Air Museum + Gora",
-    "note": "als weer de kabelbaan sluit"
+    "theme": "Ropeway uit dienst (wind/onderhoud) OF vertraging",
+    "concept": "Tozan-bus vanaf Gōra/Sōunzan naar Hakone Open-Air Museum (~15 min) → indoor + buiten kunstpark → terug voor check-in 16:00-17:00"
    },
    "swaps": [
-    "Yunessun waterpark (overslaan — te veel tijd voor 1 nacht)"
+    "Lake Ashi / Tōgendai = SKIP (niet haalbaar met 12:25 aankomst + 18:00 diner-anker)",
+    "Bagage-forwarding Hakone-Yumoto → Yamadaya = niet aanbevolen: cutoff ~12:00-12:30 op de dag zelf, 12:25 arrival is te laat"
    ],
    "intensity": "gemiddeld",
-   "cluster": "Hakone loop",
-   "weather_risk": "Kabelbaan windgevoelig; Fuji-zicht onwaarschijnlijk in juli",
-   "urgency": "Buy Hakone Freepass at Shinjuku"
+   "cluster": "Hakone (Gora/Sōunzan/Ōwakudani)",
+   "weather_risk": "Ropeway sluit bij harde wind (>15 m/s); check dagelijkse status. Bij sluiting: Plan B Open-Air Museum.",
+   "urgency": "Buy Hakone Freepass at Shinjuku",
+   "hotel_ref": "Shirayunoyado Yamadaya Hakone Gora",
+   "warning": "Bagage-strategie: 4 rolkoffers meenemen via Tozan bergtreintje. Middagen zijn rustiger dus ruimte is er, maar smalle treinbanken. Alternatief coin-lockers Hakone-Yumoto zijn beperkt in aantal en grote maat vaak vol.",
+   "opportunity": "Ryokan-ervaring zelf is de trekpleister: 5 onsen-baden + in-room kaiseki. Ropeway is bonus, geen must."
   },
   {
    "d": 7,
    "date": "2026-07-24",
    "weekday": "vr",
    "dest": "Kyoto",
-   "hotel": "Hotel Resol Shijo Muromachi",
+   "hotel": "→ Hotel Resol Kyoto Shijo Muromachi",
    "travel": "Hakone→Odawara→Shinkansen Hikari→Kyoto",
-   "concept": "Gion Matsuri Ato-parade aankomstdag 🎌",
+   "concept": "Ontbijt ryokan → Shinkansen naar Kyoto (Ato-parade optioneel)",
    "planA": {
-    "morning": "Zeer vroeg Hakone (~08:15) → Kyoto ~11:00",
-    "transfer": "Bagage in Kyoto Station-lockers OF vooraf via takkyubin verstuurd (besluit 22 jul)",
-    "late_morning": "Staart van Ato-parade 11:00-11:50 bij hotel",
-    "afternoon": "Hotel check-in 15:00 (bagage eerder droppen), rust",
-    "evening": "Mikoshi-terugkeer naar Yasaka + Gion-wandeling ~17:00-20:00"
+    "theme": "Ontspannen ochtend, Shinkansen 12:07 vanuit Odawara",
+    "morning": "In-room ontbijt Yamadaya (typisch 07:30–08:30); inpakken, laatste onsen-dip",
+    "transfer": "~09:15–09:30 uitchecken; free shuttle Yamadaya → Gōra Station (~7 min) OF lopen naar Sōunzan + cable car → Gōra",
+    "late_morning": "~09:45 Tozan Railway Gōra → Hakone-Yumoto (~40 min) → transfer Hakone-Yumoto → Odawara (~15 min via Odakyu of Hakone Tozan) → **aankomst Odawara ~11:00–11:15**",
+    "fixed": "**12:07 HIKARI 641 Odawara → Nagoya 13:14** (SmartEX BEVESTIGD+BETAALD); Nagoya-overstap **3 min bewust gekozen**; **13:17 NOZOMI 379 Nagoya → Kyoto 13:51**",
+    "afternoon": "~13:51 aankomst Kyoto Station; Karasuma-lijn 2 haltes naar Shijo → Hotel Resol (2 min lopen). Op 24 juli = Gion Matsuri Ato-parade voormiddag (staart evt. nog te zien tot ~11:50 — maar door Shinkansen-timing waarschijnlijk gemist)",
+    "evening": "Mikoshi-terugkeer Yasaka-schrijn + Gion-wandeling ~17:00–20:00 (zie Gion Matsuri-notitie)"
    },
    "planB": {
     "theme": "Parade overslaan, ontspannen aankomen",
@@ -635,9 +1268,11 @@
    "decisions": [
     "Luggage: takkyubin or lockers (U-12)"
    ],
-   "intensity": "hoog (reis+festival)",
-   "cluster": "Centrum Kyoto",
-   "opportunity": "Zeldzaam festival op transferdag, hotel LIGT in festivalzone"
+   "intensity": "hoog (reisdag)",
+   "cluster": "Hakone → Kyoto (Shinkansen)",
+   "opportunity": "Zeldzaam festival op transferdag, hotel LIGT in festivalzone",
+   "hotel_ref": "Hotel Resol Kyoto Shijo Muromachi",
+   "warning": "**Nagoya-overstap is 3 min** (bewust gekozen bij SmartEX): geen bufferruimte. Elke vertraging Hakone→Odawara is direct risico. Vertrek Yamadaya uiterlijk 09:30 zodat er ~55 min buffer bij Odawara is."
   },
   {
    "d": 8,
@@ -723,7 +1358,8 @@
     "Round1 Sennichimae laat"
    ],
    "intensity": "gemiddeld",
-   "cluster": "Namba"
+   "cluster": "Namba",
+   "hotel_ref": "&Here OSAKA NAMBA"
   },
   {
    "d": 12,
@@ -765,7 +1401,8 @@
     "evening": "Hoan Kiem meer wandeling + Old Quarter street food (bun cha)"
    },
    "intensity": "laag",
-   "cluster": "Old Quarter"
+   "cluster": "Old Quarter",
+   "hotel_ref": "The Oriental Jade"
   },
   {
    "d": 14,
@@ -835,7 +1472,8 @@
    "planB": {
     "theme": "Dragon Bridge overslaan",
     "note": "15 min show; reisdagmoeheid; kun je ook op andere avonden vanuit rijdende auto zien"
-   }
+   },
+   "hotel_ref": "HAIAN Beach Hotel & Spa"
   },
   {
    "d": 17,
@@ -906,7 +1544,8 @@
     "evening": "Ben Thanh-gebied, Nguyen Hue wandelstraat, rooftop bar"
    },
    "intensity": "gemiddeld",
-   "cluster": "D1"
+   "cluster": "D1",
+   "hotel_ref": "Citizen Apartment, Rivergate"
   },
   {
    "d": 20,
@@ -1366,6 +2005,18 @@
    "note": "Overnacht deels aan boord; landing Tokyo Narita zaterdagavond 20:55"
   },
   {
+   "id": "HAKONE_ARRIVAL",
+   "label": "Shinjuku → Hakone (Romancecar)",
+   "route": "SJK → HYM",
+   "flights": [
+    "HAKONE 5"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false,
+   "note": "Romancecar-toeslag betaald; basistarief Odakyu-lijn nog te dekken via IC-kaart of Hakone Freepass. Aankomst 12:25 = 23 juli middag start pas na 12:25."
+  },
+  {
    "id": "HANOI",
    "label": "Osaka → Hanoi",
    "route": "KIX → HAN",
@@ -1410,6 +2061,19 @@
    "connection_time": "4u 35m in PVG",
    "overnight": true,
    "note": "Nachtvlucht vertrek SGN vr 7 aug 02:35; landing AMS zelfde dag 18:30"
+  },
+  {
+   "id": "HAKONE_SHINKANSEN",
+   "label": "Odawara → Kyoto (Shinkansen)",
+   "route": "ODA → NGO → KYO",
+   "flights": [
+    "HIKARI641",
+    "NOZOMI379"
+   ],
+   "transfer_airport": "Nagoya (NGO)",
+   "connection_time": "3 min (bewust snel)",
+   "overnight": false,
+   "note": "SmartEX bevestigd + betaald. Overstap 3 min = geen buffer voor upstream-vertraging."
   }
  ],
  "essentials": {
@@ -1934,5 +2598,136 @@
   "Outbound-vluchttijden AMS→PVG en PVG→NRT komen uit workbook (niet uit primair betalingsdocument)",
   "MU282/MU771 vluchtduur = indicatief",
   "MU282/MU771 stoelen nog niet toegewezen"
+ ],
+ "_history_hotels": [
+  {
+   "city": "Hakone",
+   "name": "Itsuki (rockbath house) — GEANNULEERD, vervangen door Yamadaya (CL-034)",
+   "in": "2026-07-23",
+   "out": "2026-07-24",
+   "nights": 1,
+   "status": "CANCELLED / REPLACED",
+   "address": "Hakone-machi, Kanagawa (specifiek adres bij boeker/check-in details)",
+   "coordinates": null,
+   "hotel_type": "Privé-huis / vakantiehuis met privé-onsen",
+   "check_in": "15:00 (typisch)",
+   "check_out": "10:00 (typisch)",
+   "stations": [
+    {
+     "name": "Hakone-Yumoto Station",
+     "line": "Odakyu Hakone Tozan Line",
+     "walk_min": null,
+     "note": "Verbinding vanaf Yumoto via bus/taxi — details bij aankomst"
+    }
+   ],
+   "transport": [
+    {
+     "type": "Trein",
+     "from": "Shinjuku",
+     "options": "Odakyu Romancecar rechtstreeks naar Hakone-Yumoto (~80 min) — reserveer stoelen"
+    }
+   ],
+   "description": "Volledig privé-huis met eigen rotsbad-onsen (岩風呂), 1 nacht overnachting exclusief geboekt door gezin. Geen deelnemende gasten, geen public onsen-schroom — ideaal voor tieners. Traditionele Japanse setting.",
+   "family_fit": "Perfecte match voor Hakone-Round-Course-dag: aankomst na volledige loop, avond in eigen huis met privé-onsen, ontspannen — een van de sterkste ervaringen van hele reis (PROV-score 4.42).",
+   "nearby": [
+    {
+     "name": "Hakone Round Course-loop",
+     "note": "gebonden aan Hakone-Yumoto Station"
+    }
+   ],
+   "known_issues": [
+    "Fuji-zicht juli-augustus doorgaans slecht (heiig/bewolkt)",
+    "Ropeway kan sluiten bij harde wind — Plan B: Tozan-bus + Open-Air Museum"
+   ],
+   "wifi": "Onbekend — verifieer bij aankomst",
+   "sources": [
+    "Boeking Booking.com",
+    "SoT-referentie"
+   ],
+   "accessed": "2026-07-08",
+   "coord_status": "MISSING (privé-eigenaar, geen publieke coordinaten)",
+   "payment_status": "n.v.t."
+  }
+ ],
+ "transfers_local": [
+  {
+   "id": "LT-01",
+   "label": "Shinjuku → Hakone (23 jul heen)",
+   "type": "PLANNED",
+   "mode": "Odakyu Romancecar (Shinjuku → Hakone-Yumoto ~85 min) + Tozan Railway (~40 min) + Cable Car (~10 min)",
+   "note": "Romancecar-stoelen boeken via EMot-app (U-03)."
+  },
+  {
+   "id": "LT-02",
+   "label": "Yamadaya → Odawara (24 jul retour)",
+   "type": "PLANNED",
+   "mode": "Shuttle Yamadaya → Gōra + Tozan Railway → Hakone-Yumoto + Odakyu/Tozan → Odawara (~90 min)",
+   "note": "Vertrek Yamadaya uiterlijk 09:30 voor 55 min buffer op 12:07 Shinkansen."
+  }
+ ],
+ "budget_notes": [
+  {
+   "category": "Accommodatie Hakone",
+   "old": "EUR 330 (Itsuki, alleen kamer)",
+   "new": "EUR 365 (Yamadaya, HALFPENSION incl. diner + ontbijt voor 4)",
+   "delta": "+ EUR 35",
+   "note": "Netto voordeliger dan lijkt: 4× diner + 4× ontbijt inbegrepen (waarde ~€120-180). Vermijd dubbeltelling: geen apart food-budget voor 23 jul avond of 24 jul ontbijt inplannen."
+  }
+ ],
+ "verify_items": [
+  {
+   "id": "V-YMD-01",
+   "item": "Yamadaya: exacte diner-serveertijd + laatste aankomst-deadline",
+   "urgency": "MED",
+   "deadline": "~1 week vooraf per e-mail"
+  },
+  {
+   "id": "V-YMD-02",
+   "item": "Yamadaya: mogelijkheid vroege bagage-drop (~11:30)",
+   "urgency": "MED",
+   "deadline": "~1 week vooraf"
+  },
+  {
+   "id": "V-YMD-03",
+   "item": "Ropeway Sōunzan operating status/onderhoud voor 23 jul",
+   "urgency": "LOW",
+   "deadline": "~3 dagen vooraf"
+  },
+  {
+   "id": "V-YMD-04",
+   "item": "Betaalmethode Yamadaya (bepaalde bronnen: cash only)",
+   "urgency": "LOW",
+   "deadline": "vóór check-in"
+  },
+  {
+   "id": "V-YMD-05",
+   "item": "Basistarief Odakyu Shinjuku→Hakone-Yumoto (~¥5.080 voor 4): via IC-kaart tik-in/uit OF Hakone Freepass (~¥6.100 pp = totaal ~¥24.400 maar dekt ook Tozan/Cable Car/Ropeway/retour Odawara-lijn) — bereken best-value",
+   "urgency": "MED",
+   "deadline": "vóór 23 jul"
+  },
+  {
+   "id": "V-YMD-06",
+   "item": "Same-day bagage-forwarding Hakone-Yumoto → Yamadaya: cutoff is doorgaans ~12:00-12:30, aankomst 12:25 = RISKY. Verifieer of skip.",
+   "urgency": "LOW",
+   "deadline": "ter plekke"
+  }
+ ],
+ "change_history": [
+  {
+   "id": "CL-034",
+   "date": "2026-07-08",
+   "change": "HAKONE HOTEL VERVANGEN: Itsuki → Shirayunoyado Yamadaya Hakone Gora",
+   "reason": "Nieuwe boeking (opgegeven door HJ)",
+   "impact": "23-24 juli herplan; ryokan-ervaring nu centraal; nieuw = HALF BOARD (incl. diner+ontbijt); ligging 4 min v/d Sōunzan (Ropeway direct bereikbaar); budget +€35 maar meals inbegrepen",
+   "preserved": "Oude Itsuki-record bewaard in _history_hotels als CANCELLED"
+  },
+  {
+   "id": "CL-035",
+   "date": "2026-07-08",
+   "change": "Romancecar HAKONE 5 GEBOEKT+BETAALD",
+   "reason": "Nieuwe boeking (opgegeven door HJ)",
+   "impact": "23 juli aankomst-anker = 12:25 Hakone-Yumoto (later dan eerder aanname); dagplan herzien: alleen Ropeway+Ōwakudani haalbaar vóór diner-anker; Lake Ashi vervalt; bagage-forwarding same-day niet betrouwbaar (cutoff ~12:00-12:30)",
+   "preserved": "Alle eerdere planningsvarianten in _history_days indien nodig"
+  }
  ]
 }
