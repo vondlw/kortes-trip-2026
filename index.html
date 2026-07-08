@@ -359,15 +359,15 @@ html{scroll-behavior:smooth}
       <div class="brand-mark">✈</div>
       <div>
         <div class="brand-txt">Japan · Vietnam 2026</div>
-        <div class="brand-sub">17 Jul – 7 Aug · Family of 4</div>
+        <div class="brand-sub">17 jul – 7 aug · Gezin van 4</div>
       </div>
     </div>
     <div class="topnav-tabs">
-      <button data-view="today" class="active">Today</button>
-      <button data-view="trip">Trip</button>
-      <button data-view="decisions">Decisions</button>
-      <button data-view="food">Food</button>
-      <button data-view="more">More</button>
+      <button data-view="today" class="active">Vandaag</button>
+      <button data-view="trip">Reis</button>
+      <button data-view="decisions">Besluiten</button>
+      <button data-view="food">Eten</button>
+      <button data-view="more">Meer</button>
     </div>
   </div>
 </nav>
@@ -377,8 +377,8 @@ html{scroll-behavior:smooth}
 <!-- TODAY / OVERVIEW VIEW -->
 <div class="view active" id="v-today">
   <div class="hero">
-    <h1 class="hero-title"><span class="accent">Japan &amp; Vietnam</span><br>Summer 2026</h1>
-    <div class="hero-meta">17 July – 7 August · 22 days across 7 cities</div>
+    <h1 class="hero-title"><span class="accent">Japan &amp; Vietnam</span><br>Zomer 2026</h1>
+    <div class="hero-meta">17 juli – 7 augustus · 22 dagen door 7 steden</div>
     <div class="hero-family">
       <span>Henk Jan</span><span>Jersica</span><span>Oscar · 15</span><span>Lucas · 17</span>
     </div>
@@ -388,7 +388,7 @@ html{scroll-behavior:smooth}
 
   <div class="section">
     <div class="section-head">
-      <h2 class="section-title">Book soon</h2>
+      <h2 class="section-title">Binnenkort boeken</h2>
       <div class="section-sub" id="actionsCount"></div>
     </div>
     <div class="actions" id="actions"></div>
@@ -396,16 +396,16 @@ html{scroll-behavior:smooth}
 
   <div class="section">
     <div class="section-head">
-      <h2 class="section-title">Trip timeline</h2>
-      <div class="section-sub">Tap a day to jump</div>
+      <h2 class="section-title">Reisoverzicht</h2>
+      <div class="section-sub">Tik op een dag om te springen</div>
     </div>
     <div class="timeline-wrap"><div class="timeline" id="timeline"></div></div>
   </div>
 
   <div class="section">
     <div class="section-head">
-      <h2 class="section-title">Destinations</h2>
-      <div class="section-sub">7 cities</div>
+      <h2 class="section-title">Bestemmingen</h2>
+      <div class="section-sub">7 steden</div>
     </div>
     <div class="dests" id="destinations"></div>
   </div>
@@ -415,19 +415,19 @@ html{scroll-behavior:smooth}
 <div class="view" id="v-trip">
   <div class="section" style="margin-top:8px">
     <div class="section-head">
-      <h2 class="section-title">Day by day</h2>
-      <div class="section-sub">22 days</div>
+      <h2 class="section-title">Dag voor dag</h2>
+      <div class="section-sub">22 dagen</div>
     </div>
     <div class="timeline-wrap"><div class="timeline" id="timeline2"></div></div>
     <div id="days"></div>
   </div>
 </div>
 
-<!-- DECISIONS VIEW -->
+<!-- BESLUITEN VIEW -->
 <div class="view" id="v-decisions">
   <div class="section" style="margin-top:8px">
     <div class="section-head">
-      <h2 class="section-title">To decide</h2>
+      <h2 class="section-title">Nog beslissen</h2>
       <div class="section-sub" id="decCount"></div>
     </div>
     <div class="decisions-grid" id="decisions"></div>
@@ -438,24 +438,24 @@ html{scroll-behavior:smooth}
 <div class="view" id="v-food">
   <div class="section" style="margin-top:8px">
     <div class="section-head">
-      <h2 class="section-title">Where to eat</h2>
-      <div class="section-sub">Curated by destination</div>
+      <h2 class="section-title">Waar te eten</h2>
+      <div class="section-sub">Per bestemming samengesteld</div>
     </div>
     <div id="food"></div>
   </div>
 </div>
 
-<!-- MORE / LOGISTICS -->
+<!-- MEER / LOGISTIEK -->
 <div class="view" id="v-more">
   <div class="section" style="margin-top:8px">
-    <div class="section-head"><h2 class="section-title">Flights &amp; hotels</h2></div>
+    <div class="section-head"><h2 class="section-title">Vluchten &amp; hotels</h2></div>
     <div class="log-grid">
       <div class="log-list">
-        <div class="log-h">Flights <span style="color:var(--ok);font-size:11px">All confirmed</span></div>
+        <div class="log-h">Vluchten <span style="color:var(--ok);font-size:11px">Alle bevestigd</span></div>
         <div id="flights"></div>
       </div>
       <div class="log-list">
-        <div class="log-h">Hotels <span style="color:var(--ok);font-size:11px">All booked</span></div>
+        <div class="log-h">Hotels <span style="color:var(--ok);font-size:11px">Alle geboekt</span></div>
         <div id="hotels"></div>
       </div>
     </div>
@@ -467,41 +467,41 @@ html{scroll-behavior:smooth}
 <nav class="botnav">
   <button data-view="today" class="active">
     <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7 2 2v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
-    Today
+    Vandaag
   </button>
   <button data-view="trip">
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    Trip
+    Reis
   </button>
   <button data-view="decisions">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-    Decide
+    Besluit
   </button>
   <button data-view="food">
     <svg viewBox="0 0 24 24"><path d="M4 3v18M4 12h6M10 3v18M20 3v18M18 3v9a3 3 0 0 0 3-3V3"/></svg>
-    Food
+    Eten
   </button>
   <button data-view="more">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-    More
+    Meer
   </button>
 </nav>
 
 <script>
 const CITY_KEY={'Tokyo':'tokyo','Hakone':'hakone','Kyoto':'kyoto','Osaka':'osaka','Hanoi':'hanoi','Da Nang':'danang','HCMC':'hcmc','Da Nang/Hoi An':'danang','Kyoto (Nara day)':'kyoto','Hanoi/Da Nang':'hanoi','Hanoi (day trip)':'hanoi','Osaka (day trip)':'osaka','Amsterdam/Air':'air','Air→Amsterdam':'air'};
-const CITY_LABEL={'Tokyo':'Tokyo','Hakone':'Hakone','Kyoto':'Kyoto','Osaka':'Osaka','Hanoi':'Hanoi','Da Nang':'Da Nang','HCMC':'Ho Chi Minh City','Da Nang/Hoi An':'Da Nang & Hoi An','Kyoto (Nara day)':'Nara Day-Trip','Hanoi/Da Nang':'Hanoi → Da Nang','Hanoi (day trip)':'Hanoi Excursion'};
+const CITY_LABEL={'Tokyo':'Tokyo','Hakone':'Hakone','Kyoto':'Kyoto','Osaka':'Osaka','Hanoi':'Hanoi','Da Nang':'Da Nang','HCMC':'Ho Chi Minh City','Da Nang/Hoi An':'Da Nang & Hoi An','Kyoto (Nara day)':'Nara-dagtrip','Hanoi/Da Nang':'Hanoi → Da Nang','Hanoi (day trip)':'Hanoi-excursie'};
 const DEST_META={
-  Tokyo:{color:'--tokyo',dates:'18-23 Jul',hotel:'Nishitetsu Inn Shinjuku',fits:['teamLab Planets ★','Asakusa Sumo Club ★','Shibuya + Harajuku','Odaiba tech + gaming','Akihabara arcades']},
-  Hakone:{color:'--hakone',dates:'23-24 Jul',hotel:'Itsuki private house',fits:['Round Course loop','Private rock-bath (booked)','Lake Ashi + pirate boat','Owakudani black eggs']},
-  Kyoto:{color:'--kyoto',dates:'24-28 Jul',hotel:'Hotel Resol Shijo Muromachi',fits:['Fushimi Inari at dawn','Gion Matsuri arrival day','Nara deer day-trip','Kamo-river yuka dining','Arashiyama bamboo']},
-  Osaka:{color:'--osaka',dates:'28-30 Jul',hotel:'&Here OSAKA NAMBA',fits:['Dotonbori food crawl','Nintendo Osaka + Umeda','Kaiyukan aquarium','Den Den Town']},
-  Hanoi:{color:'--hanoi',dates:'30 Jul-2 Aug',hotel:'The Oriental Jade',fits:['Old Quarter walk','Ninh Binh or Ha Long','Train Street coffee','Water Puppet Show']},
-  'Da Nang / Hoi An':{color:'--danang',dates:'2-5 Aug',hotel:'HAIAN Beach Hotel & Spa',fits:['My Khe Beach','Hoi An lanterns','Marble Mountains + My Son','Dragon Bridge (Sun only)']},
-  'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 Aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
+  Tokyo:{color:'--tokyo',dates:'18-23 jul',hotel:'Nishitetsu Inn Shinjuku',fits:['teamLab Planets ★','Asakusa Sumo Club ★','Shibuya + Harajuku','Odaiba tech + gaming','Akihabara arcades']},
+  Hakone:{color:'--hakone',dates:'23-24 jul',hotel:'Itsuki private house',fits:['Round Course loop','Private rock-bath (booked)','Lake Ashi + pirate boat','Owakudani black eggs']},
+  Kyoto:{color:'--kyoto',dates:'24-28 jul',hotel:'Hotel Resol Shijo Muromachi',fits:['Fushimi Inari at dawn','Gion Matsuri arrival day','Nara deer day-trip','Kamo-river yuka dining','Arashiyama bamboo']},
+  Osaka:{color:'--osaka',dates:'28-30 jul',hotel:'&Here OSAKA NAMBA',fits:['Dotonbori food crawl','Nintendo Osaka + Umeda','Kaiyukan aquarium','Den Den Town']},
+  Hanoi:{color:'--hanoi',dates:'30 jul-2 aug',hotel:'The Oriental Jade',fits:['Old Quarter walk','Ninh Binh or Ha Long','Train Street coffee','Water Puppet Show']},
+  'Da Nang / Hoi An':{color:'--danang',dates:'2-5 aug',hotel:'HAIAN Beach Hotel & Spa',fits:['My Khe Beach','Hoi An lanterns','Marble Mountains + My Son','Dragon Bridge (Sun only)']},
+  'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
 };
 
 fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
-  document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Cannot load data</h1><div class="hero-meta">Open both files from the same folder.</div></div>';
+  document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Kan gegevens niet laden</h1><div class="hero-meta">Zet beide bestanden in dezelfde map.</div></div>';
 });
 
 function render(D){
@@ -515,19 +515,19 @@ function render(D){
   const totalAnchors = D.anchors.length;
   const planned = D.days.filter(d=>d.status==='PLANNED'||(d.anchors||[]).length).length;
   const kpis=[
-    {v:D.trip.days,l:'Days',c:''},
+    {v:D.trip.days,l:'Dagen',c:''},
     {v:D.hotels.length,l:'Hotels',c:'ok'},
-    {v:D.flights.length,l:'Flights',c:'ok'},
-    {v:totalAnchors,l:'Booked',c:'ok'},
-    {v:D.decisions.length,l:'To decide',c:'warn'},
-    {v:D.urgent_actions.length,l:'Book soon',c:'danger'}
+    {v:D.flights.length,l:'Vluchten',c:'ok'},
+    {v:totalAnchors,l:'Geboekt',c:'ok'},
+    {v:D.decisions.length,l:'Beslissen',c:'warn'},
+    {v:D.urgent_actions.length,l:'Boeken',c:'danger'}
   ];
   document.getElementById('kpis').innerHTML=kpis.map(k=>
     `<div class="kpi"><div class="kpi-val ${k.c}">${k.v}</div><div class="kpi-lbl">${k.l}</div></div>`
   ).join('');
 
   // ACTIONS
-  document.getElementById('actionsCount').textContent = D.urgent_actions.length+' actions';
+  document.getElementById('actionsCount').textContent = D.urgent_actions.length+' acties';
   const iconMap={'U-03':'🚄','U-12':'🧳','U-11':'📋','A-06':'👤','U-06':'⛵','U-07':'⛰','U-08':'🎯','U-10':'💺'};
   document.getElementById('actions').innerHTML = D.urgent_actions.map(a=>{
     const hi = a.urgency==='HIGH'||a.urgency==='CRITICAL-ACTION'?'hi':'';
@@ -537,7 +537,7 @@ function render(D){
         <div class="action-title">${a.item}</div>
         <div class="action-meta">${a.urgency} · Deadline: ${a.deadline}${a.note?' · '+a.note:''}</div>
       </div>
-      <button class="action-cta">Do it</button>
+      <button class="action-cta">Regel het</button>
     </div>`;
   }).join('');
 
@@ -570,12 +570,12 @@ function render(D){
     return `<div class="dest-card" style="--dc:var(${m.color})">
       <div class="dest-h">
         <div class="dest-name">${name}</div>
-        <div class="dest-nights">${nights} night${nights===1?'':'s'}</div>
+        <div class="dest-nights">${nights} nacht${nights===1?'':'en'}</div>
       </div>
       <div class="dest-dates">${m.dates}</div>
       ${hotel?`<div class="dest-hotel"><b>${hotel.name}</b>${hotel.in} → ${hotel.out}</div>`:''}
       <div class="dest-section">
-        <div class="dest-section-lbl">Strongest experiences</div>
+        <div class="dest-section-lbl">Sterkste ervaringen</div>
         <div class="dest-list">${m.fits.map(f=>`• ${f}`).join('<br>')}</div>
       </div>
     </div>`;
@@ -593,13 +593,13 @@ function render(D){
       <div class="dec-q">${d.q}</div>
       <div class="dec-meta">
         <span>⏰ ${d.deadline}</span>
-        <span>Confidence: ${d.confidence}</span>
+        <span>Vertrouwen: ${d.confidence}</span>
       </div>
       <div class="dec-opts">${opts}</div>
-      <div class="dec-why"><b style="color:var(--ink);font-weight:700">Recommended:</b> ${d.recommendation}<br>${d.why}</div>
+      <div class="dec-why"><b style="color:var(--ink);font-weight:700">Aanbevolen:</b> ${d.recommendation}<br>${d.why}</div>
       <div class="dec-actions">
-        <button class="dec-btn primary">Compare</button>
-        <button class="dec-btn ghost">Decide later</button>
+        <button class="dec-btn primary">Vergelijk</button>
+        <button class="dec-btn ghost">Later beslissen</button>
       </div>
     </div>`;
   }).join('');
@@ -612,8 +612,8 @@ function render(D){
         <div class="food-city-count">${list.length} places</div>
       </div>
       <div class="rests">${list.map(r=>{
-        const bookTag = (r.reservation||'').includes('yes')?'<span class="rest-tag book">Book</span>':'';
-        const walkTag = (r.reservation==='no'||r.reservation==='queue'||r.reservation==='walk-in')?'<span class="rest-tag walk">Walk in</span>':'';
+        const bookTag = (r.reservation||'').includes('yes')?'<span class="rest-tag book">Reserveren</span>':'';
+        const walkTag = (r.reservation==='no'||r.reservation==='queue'||r.reservation==='walk-in')?'<span class="rest-tag walk">Walk-in</span>':'';
         return `<div class="rest">
           <div class="rest-name">${bookTag}${walkTag}${r.name}</div>
           <div class="rest-meta">
@@ -648,7 +648,7 @@ function render(D){
         <div class="log-secondary">${h.name}</div>
       </div>
       <div class="log-right">
-        <b>${h.nights} night${h.nights===1?'':'s'}</b>
+        <b>${h.nights} nacht${h.nights===1?'':'en'}</b>
         ${h.in} → ${h.out}
       </div>
     </div>
@@ -669,7 +669,7 @@ function render(D){
 function renderDay(day){
   const key = CITY_KEY[day.dest]||'air';
   const cityLabel = CITY_LABEL[day.dest]||day.dest;
-  const holiday = day.weekday.includes('🎌')?'<span class="badge-holiday">Marine Day</span>':'';
+  const holiday = day.weekday.includes('🎌')?'<span class="badge-holiday">Zeedag</span>':'';
   const wdClean = day.weekday.replace(/🎌.*/,'').trim();
   const [y,mo,dn]=day.date.split('-');
   const moLabel={'07':'Jul','08':'Aug'}[mo];
@@ -733,23 +733,23 @@ function renderDay(day){
       <div class="day-h-right">${intensity}</div>
     </div>
     <div class="day-slots">
-      <div class="slot ${mSlotClass}"><div class="slot-lbl">Morning</div><div class="slot-body">${morning}</div></div>
-      <div class="slot ${aSlotClass}"><div class="slot-lbl">Afternoon</div><div class="slot-body">${afternoon}</div></div>
-      <div class="slot ${eSlotClass}"><div class="slot-lbl">Evening</div><div class="slot-body">${evening}</div></div>
+      <div class="slot ${mSlotClass}"><div class="slot-lbl">Ochtend</div><div class="slot-body">${morning}</div></div>
+      <div class="slot ${aSlotClass}"><div class="slot-lbl">Middag</div><div class="slot-body">${afternoon}</div></div>
+      <div class="slot ${eSlotClass}"><div class="slot-lbl">Avond</div><div class="slot-body">${evening}</div></div>
     </div>
     ${hasMore?`
     <div class="day-more-toggle" onclick="this.parentElement.classList.toggle('open')">
-      View details<span class="arr">▾</span>
+      Details tonen<span class="arr">▾</span>
     </div>
     <div class="day-more">
       <div class="detail-row">
         ${planBHtml?`<div class="detail-box"><b>Plan B</b>${planBHtml}</div>`:''}
-        ${swaps?`<div class="detail-box"><b>Optional swaps</b>${swaps}</div>`:''}
-        ${cluster?`<div class="detail-box"><b>Geographic cluster</b>${cluster}</div>`:''}
-        ${warn?`<div class="detail-box warn-box"><b>⚠ Watch out</b>${warn}</div>`:''}
-        ${info?`<div class="detail-box info-box"><b>Weather</b>${info}</div>`:''}
-        ${opp?`<div class="detail-box opp-box"><b>Opportunity</b>${opp}</div>`:''}
-        ${teen?`<div class="detail-box info-box"><b>Teen fit</b>${teen}</div>`:''}
+        ${swaps?`<div class="detail-box"><b>Optionele wissels</b>${swaps}</div>`:''}
+        ${cluster?`<div class="detail-box"><b>Cluster</b>${cluster}</div>`:''}
+        ${warn?`<div class="detail-box warn-box"><b>⚠ Let op</b>${warn}</div>`:''}
+        ${info?`<div class="detail-box info-box"><b>Weer</b>${info}</div>`:''}
+        ${opp?`<div class="detail-box opp-box"><b>Kans</b>${opp}</div>`:''}
+        ${teen?`<div class="detail-box info-box"><b>Voor de jongens</b>${teen}</div>`:''}
       </div>
     </div>`:''}
   </div>`;

@@ -1,121 +1,1211 @@
 {
-  "trip": {"start":"2026-07-17","end":"2026-08-07","days":22,"nights":20,"family":["Henk Jan","Jersica","Oscar (15)","Lucas (17)"]},
-  "route": ["Tokyo","Hakone","Kyoto","Osaka","Hanoi","Da Nang","HCMC"],
-  "hotels": [
-    {"city":"Tokyo","name":"Nishitetsu Inn Shinjuku","in":"2026-07-18","out":"2026-07-23","nights":5,"status":"CONFIRMED"},
-    {"city":"Hakone","name":"Itsuki (rockbath house)","in":"2026-07-23","out":"2026-07-24","nights":1,"status":"CONFIRMED"},
-    {"city":"Kyoto","name":"Hotel Resol Kyoto Shijo Muromachi","in":"2026-07-24","out":"2026-07-28","nights":4,"status":"CONFIRMED"},
-    {"city":"Osaka","name":"&Here OSAKA NAMBA","in":"2026-07-28","out":"2026-07-30","nights":2,"status":"CONFIRMED"},
-    {"city":"Hanoi","name":"The Oriental Jade","in":"2026-07-30","out":"2026-08-02","nights":3,"status":"CONFIRMED"},
-    {"city":"Da Nang","name":"HAIAN Beach Hotel & Spa","in":"2026-08-02","out":"2026-08-05","nights":3,"status":"CONFIRMED"},
-    {"city":"HCMC","name":"Citizen Apartment, Rivergate","in":"2026-08-05","out":"2026-08-07","nights":2,"status":"CONFIRMED"}
-  ],
-  "flights": [
-    {"date":"2026-07-17","flight":"MU772","route":"AMS→PVG","dep":"20:15","arr":"13:15+1","ref":"VW-11380148","status":"CONFIRMED"},
-    {"date":"2026-07-18","flight":"MU271","route":"PVG→NRT","dep":"16:55","arr":"20:55","ref":"VW-11380148","status":"CONFIRMED"},
-    {"date":"2026-07-30","flight":"VJ939","route":"KIX→HAN","dep":"09:20","arr":"12:20","ref":"SS2EP8","status":"CONFIRMED"},
-    {"date":"2026-08-02","flight":"VJ513","route":"HAN→DAD","dep":"16:40","arr":"18:00","ref":"328KJK","status":"CONFIRMED"},
-    {"date":"2026-08-05","flight":"VJ633","route":"DAD→SGN","dep":"12:00","arr":"13:25","ref":"R4BCQJ","status":"CONFIRMED"},
-    {"date":"2026-08-07","flight":"MU282","route":"SGN→PVG","dep":"02:35","arr":"07:55","ref":"VW-11380221","status":"CONFIRMED"},
-    {"date":"2026-08-07","flight":"MU771","route":"PVG→AMS","dep":"12:30","arr":"18:30","ref":"VW-11380221","status":"CONFIRMED"}
-  ],
-  "anchors": [
-    {"date":"2026-07-20","time":"15:00-17:00","item":"Asakusa Sumo Club ANNEX","ref":"ANX-96414364","status":"CONFIRMED+PAID","cost":"¥64,000"},
-    {"date":"2026-07-21","time":"11:30-12:00 entry","item":"teamLab Planets TOKYO","ref":"8deae6a4ab484cff76","status":"CONFIRMED","cost":"~¥15,000"}
-  ],
-  "urgent_actions": [
-    {"id":"U-03","item":"Shinkansen Odawara→Kyoto (Jul 24) + Romancecar (Jul 23) — 4 seats together","urgency":"HIGH","deadline":"this week","note":"SmartEX/EMot; holiday season"},
-    {"id":"U-12","item":"Takkyubin luggage decision Tokyo→Kyoto (Gion parade day)","urgency":"MED-HIGH","deadline":"before Jul 22"},
-    {"id":"U-11","item":"Vietnam Digital Arrival Card","urgency":"MED","deadline":"Jul 23-29"},
-    {"id":"A-06","item":"Complete missing traveler info in Sumo booking portal","urgency":"MED","deadline":"this week"},
-    {"id":"U-06","item":"Ninh Binh or Ha Long day tour (OD3)","urgency":"MED","deadline":"before Jul 28"},
-    {"id":"U-07","item":"Ba Na Hills or Marble+My Son (OD4)","urgency":"MED","deadline":"before Aug 1"},
-    {"id":"U-08","item":"Cu Chi or War Remnants (OD5)","urgency":"MED-LOW","deadline":"before Aug 3"},
-    {"id":"U-10","item":"VJ633 seats assignment","urgency":"LOW","deadline":"before Aug 4"}
-  ],
-  "decisions": [
-    {"id":"OD2","q":"Kamakura vs Nikko vs neither (Jul 22)","recommendation":"NEITHER — keep Tokyo day","confidence":"high","why":"Kyoto covers culture, Hakone covers nature, both trips cost a scarce Tokyo day; Nikko weakest","options":["Neither (recommended)","Kamakura+Enoshima beach","Nikko"],"deadline":"decide by Jul 20"},
-    {"id":"SAMURAI","q":"Samurai/Ninja museum: which location, which day","recommendation":"Asakusa branch, before Sumo on Jul 20 OR late morning on Jul 19","confidence":"medium","why":"combines with Asakusa cluster; Shinjuku branch = convenient hotel-side alternative","options":["Asakusa branch","Shinjuku branch (opened Summer 2025)","Skip"],"deadline":"any Tokyo day"},
-    {"id":"SHIBUYA-SKY","q":"Shibuya Sky slot Jul 19","recommendation":"morning slot (cooler, calmer)","confidence":"medium","why":"sunset slots sell out fastest; morning avoids crowds+heat; wind can close rooftop","options":["Morning","Sunset","Skip"],"deadline":"14-day release window"},
-    {"id":"OD7","q":"Osaka Wed Jul 29 open day","recommendation":"stay in Osaka; light day due to 06:45 KIX departure next morning","confidence":"high","why":"Himeji/Kobe day-trips = high opportunity cost; enough Osaka anchors","options":["In-city Osaka","Kobe half-day","Himeji"],"deadline":"before Jul 28"},
-    {"id":"OD3","q":"Ninh Binh vs Ha Long Bay day tour (Aug 1)","recommendation":"Ninh Binh","confidence":"medium","why":"Ha Long day-trip = long drive + weather-risky (typhoon season starts); Ninh Binh = closer, boat + Mua Cave viewpoint","options":["Ninh Binh","Ha Long Bay day tour"],"deadline":"book by Jul 28"},
-    {"id":"OD4","q":"Da Nang: Ba Na Hills vs Marble Mountains + My Son (Aug 4)","recommendation":"Marble Mountains + My Son (or half-Ba Na)","confidence":"medium","why":"Ba Na = crowded theme-park feel + queues in heat; Marble+My Son = more authentic + varied","options":["Ba Na Hills+Golden Bridge","Marble Mountains + My Son"],"deadline":"before Aug 1"},
-    {"id":"OD5","q":"HCMC: Cu Chi Tunnels vs War Remnants+Reunification Palace (Aug 6)","recommendation":"Cu Chi morning + light museum afternoon","confidence":"medium","why":"teen-fit strong for tunnels; last day, late-night departure","options":["Cu Chi (Ben Duoc)","War Remnants + Reunification Palace","Both split day"],"deadline":"before Aug 3"},
-    {"id":"C6","q":"Dragon Bridge fire show — only feasible window Sun Aug 2 arrival evening","recommendation":"skip or tight go","confidence":"medium","why":"landing 18:00 → hotel 18:45 → show 21:00; strap-tight after travel day; 15-min show","options":["Go tight","Skip"],"deadline":"day-of"}
-  ],
-  "days": [
-    {"d":0,"date":"2026-07-17","weekday":"Fri","dest":"Amsterdam/Air","hotel":"Air","travel":"MU772 AMS→PVG 20:15","concept":"Departure","status":"CONFIRMED","cluster":"Airport"},
-    {"d":1,"date":"2026-07-18","weekday":"Sat","dest":"Tokyo","hotel":"Nishitetsu Inn Shinjuku","travel":"MU271 PVG→NRT arr 20:55; N'EX to Shinjuku","concept":"Arrival — hotel + convenience-store dinner","planA":"Land, hotel, sleep","status":"CONFIRMED logistics","intensity":"low","cluster":"Shinjuku"},
-    {"d":2,"date":"2026-07-19","weekday":"Sun","dest":"Tokyo","hotel":"Shinjuku","concept":"Shibuya + Harajuku (west cluster)","planA":{"morning":"Meiji-jingu (shaded forest 08:30-10:00)","afternoon":"Shibuya Sky morning slot → Nintendo Tokyo Parco → Center-gai","evening":"Shinjuku Omoide Yokocho + Godzilla head + TMG free observatory"},"planB":{"theme":"East cluster","morning":"Asakusa Senso-ji early","afternoon":"Sumida cruise → Odaiba","evening":"Shinjuku"},"swaps":["Samurai/Ninja Museum Shinjuku branch late afternoon","Shimokitazawa thrift"],"teen_fit":"Shibuya Sky = strong for Oscar+Lucas if slot booked","urgency":"Shibuya Sky release 14d ahead","intensity":"medium","cluster":"Shibuya/Harajuku"},
-    {"d":3,"date":"2026-07-20","weekday":"Mon (Marine Day 🎌)","dest":"Tokyo","hotel":"Shinjuku","concept":"Asakusa/east — Sumo anchor","planA":{"morning":"Light: hotel breakfast, uitslapen","afternoon":"Head to Asakusa ~13:00; light lunch; Nakamise/Senso-ji peek","fixed":"15:00-17:00 Sumo Annex CONFIRMED+PAID","evening":"Senso-ji illuminated, Nakamise stroll, Sumida walk"},"planB":{"theme":"Full Asakusa day","addition":"Samurai/Ninja Museum Asakusa 11:30-13:00 before Sumo"},"swaps":["Tokyo Skytree evening","Kappabashi kitchenware street"],"anchors":["Sumo Annex 15:00 CONFIRMED+PAID"],"intensity":"medium","cluster":"Asakusa/East","note":"Marine Day = busy but Sumo indoor"},
-    {"d":4,"date":"2026-07-21","weekday":"Tue","dest":"Tokyo","hotel":"Shinjuku","concept":"Odaiba/Toyosu — teamLab anchor","planA":{"morning":"11:30 teamLab Planets CONFIRMED (2h)","afternoon":"Lunch Toyosu → Unicorn Gundam DiverCity → Miraikan (verify Tue open) OR Round1","evening":"Waterbus Odaiba→Asakusa OR Shinjuku dinner"},"planB":{"theme":"Combine with Akihabara"},"swaps":["Immersive Fort Tokyo","Small Worlds Tokyo"],"anchors":["teamLab Planets 11:30 CONFIRMED"],"intensity":"medium-high","cluster":"Odaiba/Bay","warning":"Miraikan closed Tuesdays — VERIFY 2026-07-21"},
-    {"d":5,"date":"2026-07-22","weekday":"Wed","dest":"Tokyo","hotel":"Shinjuku","concept":"Free / east cluster / rest","planA":{"morning":"Tsukiji Outer Market breakfast 8-10am","afternoon":"Akihabara: Super Potato + GiGO + Taito arcades","evening":"Ueno Park stroll → Ameyoko street food"},"planB":{"theme":"OD2 day-trip Kamakura","note":"only if beach wish — not strongly recommended"},"swaps":["Ghibli Museum ❌ tickets gone","Samurai/Ninja Museum","Ryogoku sumo museum"],"decisions":["OD2"],"intensity":"flexible","cluster":"East"},
-    {"d":6,"date":"2026-07-23","weekday":"Thu","dest":"Hakone","hotel":"Itsuki (private rockbath)","travel":"Romancecar Shinjuku→Hakone ~09:00","concept":"Hakone Round Course","planA":{"morning":"Shinjuku→Odawara Romancecar → Hakone-Yumoto → Tozan train Gora","afternoon":"Cablecar Sōunzan → ropeway Owakudani (black eggs) → Lake Ashi pirate boat → Hakone Shrine floating torii","evening":"Check-in Itsuki, private rockbath, kaiseki dinner"},"planB":{"theme":"Slow: Open-Air Museum + Gora","note":"if weather closes ropeway"},"swaps":["Yunessun waterpark (skip — too long for 1 night)"],"intensity":"medium","cluster":"Hakone loop","weather_risk":"Ropeway wind-sensitive; Fuji view unlikely in July","urgency":"Buy Hakone Freepass at Shinjuku"},
-    {"d":7,"date":"2026-07-24","weekday":"Fri","dest":"Kyoto","hotel":"Hotel Resol Shijo Muromachi","travel":"Hakone→Odawara→Shinkansen Hikari→Kyoto","concept":"Gion Matsuri Ato-parade arrival day 🎌","planA":{"morning":"Very early Hakone (~08:15) → Kyoto by ~11:00","transfer":"Luggage in Kyoto Station lockers OR forwarded via takkyubin (decide Jul 22)","late_morning":"Catch tail of Ato-parade 11:00-11:50 near hotel","afternoon":"Hotel check-in 15:00 (bag drop earlier), rest","evening":"Mikoshi return to Yasaka + Gion stroll ~17:00-20:00"},"planB":{"theme":"Skip parade, arrive relaxed","concept":"Arrive 13:00+, check-in, Nishiki market, Kamo river evening"},"swaps":[],"decisions":["Luggage: takkyubin or lockers (U-12)"],"intensity":"high (travel+festival)","cluster":"Downtown Kyoto","opportunity":"Rare festival on transfer day, hotel IS in festival zone"},
-    {"d":8,"date":"2026-07-25","weekday":"Sat","dest":"Kyoto","hotel":"Kyoto","concept":"East Kyoto highlights (early start!)","planA":{"morning":"Fushimi Inari 06:30-08:30 (torii tunnels)","late_morning":"→ Higashiyama → Kiyomizu-dera (before 10:30 heat)","afternoon":"Nishiki Market lunch + downtown AC","evening":"Kamo river yuka dining (July specialty) + Pontocho"},"planB":{"theme":"Manga Museum + shopping day"},"swaps":["Samurai/Ninja Museum Kyoto","Nintendo Kyoto Takashimaya"],"intensity":"high","cluster":"East + Downtown","heat_warning":"midday brutal — MUST early"},
-    {"d":9,"date":"2026-07-26","weekday":"Sun","dest":"Kyoto","hotel":"Kyoto","concept":"Arashiyama early → downtown AC","planA":{"morning":"Arashiyama bamboo grove 07:00 → Tenryu-ji → river","late_morning":"Skip Monkey Park unless cool (steep climb)","afternoon":"Return downtown; Kyoto Int'l Manga Museum","evening":"Kaiseki or teppanyaki dinner"},"planB":{"theme":"Nintendo Kyoto + downtown","note":"if teens want gaming day"},"swaps":["Kinkaku-ji (isolated)","teamLab Biovortex Kyoto (huge, opened Oct 2025)"],"intensity":"medium","cluster":"West → Downtown"},
-    {"d":10,"date":"2026-07-27","weekday":"Mon","dest":"Kyoto (Nara day)","hotel":"Kyoto","concept":"Nara day-trip","planA":{"morning":"Kyoto→Nara 08:00 → Nara Park deer (universal teen hit) → Todai-ji Daibutsu","afternoon":"Kasuga Taisha → back to Kyoto by 15:00","evening":"Nishiki dinner or rest"},"planB":{"theme":"Deep Kyoto: Nijo Castle + Samurai/Ninja Museum + downtown"},"swaps":["Uji matcha day (weaker teen fit)"],"intensity":"medium","cluster":"Nara excursion"},
-    {"d":11,"date":"2026-07-28","weekday":"Tue","dest":"Osaka","hotel":"&Here OSAKA NAMBA","travel":"Kyoto→Osaka JR ~50min","concept":"Arrive Osaka + Dotonbori","planA":{"afternoon":"Kuromon market → Den Den Town (Osaka's Akihabara)","evening":"Dotonbori food crawl: takoyaki, kushikatsu, okonomiyaki, Glico sign"},"swaps":["Round1 Sennichimae late"],"intensity":"medium","cluster":"Namba"},
-    {"d":12,"date":"2026-07-29","weekday":"Wed","dest":"Osaka","hotel":"Osaka","concept":"Open day — in-city Osaka (recommended)","planA":{"morning":"Osaka Aquarium Kaiyukan opening slot (whale sharks) OR Osaka Castle early","afternoon":"Umeda cluster: Nintendo Osaka + Grand Green AC + Umeda Sky sunset","evening":"Shinsekai + Tsutenkaku kushikatsu OR early rest (KIX 06:45 next day)"},"planB":{"theme":"Kobe half-day","note":"only if strong wish; costs Osaka day"},"swaps":["Spa World recovery","teamLab Botanical Nagai evening"],"decisions":["OD7"],"intensity":"medium","cluster":"Osaka bay/Umeda","warning":"Next day = early KIX 06:45 → wind down by 22:00"},
-    {"d":13,"date":"2026-07-30","weekday":"Thu","dest":"Hanoi","hotel":"Oriental Jade","travel":"Osaka→KIX Nankai 07:00, VJ939 09:20→12:20 HAN","concept":"Arrive Hanoi, Old Quarter walk","planA":{"afternoon":"Hotel, refresh","evening":"Hoan Kiem Lake walk + Old Quarter street food (bun cha)"},"intensity":"low","cluster":"Old Quarter"},
-    {"d":14,"date":"2026-07-31","weekday":"Fri","dest":"Hanoi","hotel":"Hanoi","concept":"Hanoi full day","planA":{"morning":"Train Street coffee → Temple of Literature","afternoon":"Ho Chi Minh Mausoleum area (verify open Fri) OR Vietnam Military History Museum (new, teen-fit)","evening":"Water Puppet Show → dinner cha ca la vong"},"planB":{"theme":"Cyclo Old Quarter tour + shopping"},"swaps":["Note: Mausoleum closed Fridays — verify"],"intensity":"medium","cluster":"Ba Dinh + Old Quarter"},
-    {"d":15,"date":"2026-08-01","weekday":"Sat","dest":"Hanoi (day trip)","hotel":"Hanoi","concept":"Ninh Binh OR Ha Long Bay","planA":{"theme":"Ninh Binh (RECOMMENDED)","morning":"Tam Coc boat","afternoon":"Mua Cave viewpoint 500 steps early","evening":"Back Hanoi ~18:00"},"planB":{"theme":"Ha Long Bay day tour","note":"long drive, weather risk"},"decisions":["OD3"],"intensity":"high","cluster":"Ninh Binh excursion"},
-    {"d":16,"date":"2026-08-02","weekday":"Sun","dest":"Da Nang","hotel":"HAIAN Beach","travel":"VJ513 HAN→DAD 16:40→18:00","concept":"Fly, hotel, decision on Dragon Bridge","planA":{"morning":"Free Hanoi (packing, coffee, Old Quarter last bite)","afternoon":"Flight → Da Nang 18:00 → hotel","evening":"Dragon Bridge fire show 21:00 (tight but doable) OR beach dinner + rest"},"decisions":["C6 Dragon Bridge"],"intensity":"medium","cluster":"Da Nang beach"},
-    {"d":17,"date":"2026-08-03","weekday":"Mon","dest":"Da Nang/Hoi An","hotel":"HAIAN","concept":"Beach morning + Hoi An evening","planA":{"morning":"My Khe Beach","afternoon":"Grab/taxi to Hoi An ~30min","evening":"Hoi An Ancient Town lanterns, tailor shops, riverside dinner"},"intensity":"medium","cluster":"Da Nang→Hoi An"},
-    {"d":18,"date":"2026-08-04","weekday":"Tue","dest":"Da Nang (day trip)","hotel":"HAIAN","concept":"Excursion","planA":{"theme":"Marble Mountains + My Son (RECOMMENDED)","morning":"Marble Mountains 07:00 (caves, view)","afternoon":"My Son ruins 13:00-16:00","evening":"Beach sunset dinner"},"planB":{"theme":"Ba Na Hills full day","note":"queues + heat; teen-mixed"},"decisions":["OD4"],"intensity":"high","cluster":"Central Vietnam"},
-    {"d":19,"date":"2026-08-05","weekday":"Wed","dest":"HCMC","hotel":"Citizen Apartment","travel":"VJ633 DAD→SGN 12:00→13:25","concept":"Fly, hotel, evening D1","planA":{"morning":"HAIAN pool, checkout, lunch DAD","afternoon":"Fly, hotel Rivergate","evening":"Ben Thanh area, Nguyen Hue walking street, rooftop bar"},"intensity":"medium","cluster":"D1"},
-    {"d":20,"date":"2026-08-06","weekday":"Thu","dest":"HCMC","hotel":"HCMC","concept":"Cu Chi + city (last full day)","planA":{"morning":"Cu Chi Tunnels tour (Ben Duoc) 07:30-13:30","afternoon":"Return HCMC, light lunch","late_afternoon":"War Remnants Museum OR Reunification Palace","evening":"Farewell dinner Nguyen Hue","night":"Hotel checkout ~23:00-23:30 → Grab to SGN"},"planB":{"theme":"Slow last day: no Cu Chi","concept":"Sleep in, museums, spa"},"decisions":["OD5"],"intensity":"high","cluster":"HCMC + excursion","warning":"MU282 departs SGN 02:35 next morning → hotel departure ~23:00"},
-    {"d":21,"date":"2026-08-07","weekday":"Fri","dest":"Air→Amsterdam","hotel":"Air","travel":"MU282 SGN→PVG 02:35→07:55, MU771 PVG→AMS 12:30→18:30","concept":"Home","status":"CONFIRMED"}
-  ],
-  "restaurants": {
-    "Tokyo": [
-      {"name":"Tsukiji Outer Market (multiple stalls)","area":"Ginza/East","cuisine":"Sushi, tamagoyaki, seafood","price":"¥","why":"breakfast-to-lunch food crawl; teens can pick per stall","best":"breakfast/lunch","reservation":"no"},
-      {"name":"Ichiran Ramen (Shinjuku Kabukicho)","area":"Shinjuku","cuisine":"Tonkotsu ramen","price":"¥¥","why":"iconic solo-booth ramen; late-night; near hotel","best":"late lunch/dinner","reservation":"no"},
-      {"name":"Uobei Genki Sushi (Shibuya)","area":"Shibuya","cuisine":"Conveyor sushi w/ touch tablets","price":"¥","why":"tech-forward, teen-friendly, no waiting","best":"lunch/dinner","reservation":"no"},
-      {"name":"Sometaro","area":"Asakusa","cuisine":"Okonomiyaki (cook-yourself)","price":"¥¥","why":"1937 house, DIY grill, teen-fun, near Sumo Annex","best":"lunch","reservation":"walk-in ok"},
-      {"name":"Kagari (Ginza)","area":"Ginza","cuisine":"Chicken shoyu ramen","price":"¥¥","why":"one of Tokyo's best ramen (Michelin Bib); tiny queue; adult-fit","best":"lunch","reservation":"queue only"},
-      {"name":"Han no Daidokoro Bettei (Shibuya)","area":"Shibuya","cuisine":"A5 wagyu yakiniku","price":"¥¥¥","why":"memorable teen+adult combo; grill A5 at table","best":"dinner","reservation":"yes (Tabelog)"}
-    ],
-    "Hakone": [
-      {"name":"Kaiseki dinner at Itsuki","area":"stay","cuisine":"Kaiseki","price":"included","why":"already booked with accommodation","best":"dinner","reservation":"included"},
-      {"name":"Hatsuhana Honten","area":"Hakone-Yumoto","cuisine":"Soba","price":"¥¥","why":"legendary handmade soba; light lunch after ropeway","best":"lunch","reservation":"queue"},
-      {"name":"Amazake Chaya","area":"Old Tokaido","cuisine":"Amazake + mochi","price":"¥","why":"350-year-old teahouse; authentic quick stop","best":"snack","reservation":"no"}
-    ],
-    "Kyoto": [
-      {"name":"Nishiki Market food crawl","area":"Downtown (2 min from hotel)","cuisine":"Various small bites","price":"¥","why":"1 block from hotel, dozens of vendors, teen-fit variety","best":"lunch/snack","reservation":"no"},
-      {"name":"Menbaka Fire Ramen","area":"Downtown","cuisine":"Negi ramen with flame show","price":"¥¥","why":"theatrical fire pour = viral teen highlight","best":"lunch","reservation":"queue"},
-      {"name":"Gion Karyo","area":"Gion","cuisine":"Kaiseki (accessible)","price":"¥¥¥","why":"kaiseki experience without formality of top-tier; kids-tolerant","best":"dinner","reservation":"yes"},
-      {"name":"Kamo river yuka (Pontocho terraces)","area":"Pontocho","cuisine":"Multiple restaurants w/ river terrace","price":"¥¥-¥¥¥","why":"July-only riverside dining tradition; magical evening","best":"dinner","reservation":"yes"},
-      {"name":"Omen Nippon","area":"Downtown","cuisine":"Udon","price":"¥¥","why":"dip-udon with seasonal vegetables; good lunch","best":"lunch","reservation":"no"},
-      {"name":"Giro Giro Hitoshina","area":"Kiyamachi","cuisine":"Modern kaiseki counter","price":"¥¥¥","why":"young-chef counter kaiseki; ~¥4,500 pp; fits adults+teens","best":"dinner","reservation":"yes (essential)"}
-    ],
-    "Osaka": [
-      {"name":"Chibo Dotonbori","area":"Dotonbori","cuisine":"Okonomiyaki","price":"¥¥","why":"legit okonomiyaki near hotel; not tourist trap","best":"dinner","reservation":"no"},
-      {"name":"Daruma (Shinsekai)","area":"Shinsekai","cuisine":"Kushikatsu","price":"¥","why":"original kushikatsu house; retro-Osaka vibe","best":"dinner","reservation":"queue"},
-      {"name":"Kuromon Ichiba Market","area":"Namba (5 min from hotel)","cuisine":"Seafood grills, sushi, fruit","price":"¥¥","why":"breakfast-through-lunch grazing; teen-fit","best":"breakfast/lunch","reservation":"no"},
-      {"name":"Matsusakagyu Yakiniku M","area":"Namba","cuisine":"A5 wagyu yakiniku","price":"¥¥¥","why":"memorable Osaka wagyu dinner","best":"dinner","reservation":"yes"},
-      {"name":"Ramen Zundou-ya (Namba)","area":"Namba","cuisine":"Tonkotsu ramen","price":"¥","why":"quick reliable lunch near hotel","best":"lunch","reservation":"no"}
-    ],
-    "Hanoi": [
-      {"name":"Bun Cha Huong Lien (Obama's Bun Cha)","area":"Old Quarter","cuisine":"Bun cha","price":"₫","why":"local + touristic; solid bun cha","best":"lunch","reservation":"no"},
-      {"name":"Cha Ca Thang Long","area":"Old Quarter","cuisine":"Cha ca (turmeric fish)","price":"₫₫","why":"single-dish restaurant, Hanoi speciality","best":"dinner","reservation":"walk-in"},
-      {"name":"Pho Gia Truyen (49 Bat Dan)","area":"Old Quarter","cuisine":"Pho bo","price":"₫","why":"considered Hanoi's best pho; cash only, queue","best":"breakfast","reservation":"no"},
-      {"name":"Banh Mi 25","area":"Old Quarter","cuisine":"Banh mi","price":"₫","why":"consistent quality, air-conditioned upstairs","best":"lunch","reservation":"no"},
-      {"name":"Home Hanoi Restaurant","area":"West Lake","cuisine":"Modern Vietnamese in French villa","price":"₫₫₫","why":"upscale but accessible; strong for family dinner","best":"dinner","reservation":"yes"}
-    ],
-    "Da Nang/Hoi An": [
-      {"name":"Madame Lan (Da Nang)","area":"Da Nang","cuisine":"Central Vietnamese variety","price":"₫₫","why":"riverside, wide menu, family-friendly, English","best":"dinner","reservation":"yes"},
-      {"name":"Mi Quang 1A (Da Nang)","area":"Da Nang","cuisine":"Mi Quang","price":"₫","why":"quintessential Da Nang noodle","best":"lunch","reservation":"no"},
-      {"name":"Morning Glory (Hoi An)","area":"Hoi An","cuisine":"Central Vietnamese","price":"₫₫","why":"reliable Hoi An classics (white rose, cao lau); good for teens","best":"dinner","reservation":"yes"},
-      {"name":"Banh Mi Phuong (Hoi An)","area":"Hoi An","cuisine":"Banh mi","price":"₫","why":"famous but genuinely great; grab for a walk","best":"snack","reservation":"no"},
-      {"name":"Mango Rooms (Hoi An)","area":"Hoi An riverside","cuisine":"Fusion Vietnamese","price":"₫₫₫","why":"memorable riverside dinner during lanterns","best":"dinner","reservation":"yes"}
-    ],
-    "HCMC": [
-      {"name":"Pho Le","area":"D5 or D1 branch","cuisine":"Southern pho","price":"₫","why":"south-style pho contrast to Hanoi","best":"breakfast","reservation":"no"},
-      {"name":"Bun Bo Ganh","area":"D1","cuisine":"Bun bo Hue","price":"₫","why":"spicy Central-style noodle in AC","best":"lunch","reservation":"no"},
-      {"name":"Cuc Gach Quan","area":"D1","cuisine":"Home-style Vietnamese in old villa","price":"₫₫","why":"most memorable HCMC dinner; family-fit","best":"dinner","reservation":"yes (essential)"},
-      {"name":"Nha Hang Ngon (160 Pasteur)","area":"D1","cuisine":"All-Vietnam sampler","price":"₫₫","why":"one-stop taste of Vietnamese street food indoors","best":"dinner","reservation":"walk-in"},
-      {"name":"The Refinery","area":"D1","cuisine":"Modern bistro","price":"₫₫₫","why":"break from Vietnamese; adult-fit lunch","best":"lunch","reservation":"walk-in"}
-    ]
+ "trip": {
+  "start": "2026-07-17",
+  "end": "2026-08-07",
+  "days": 22,
+  "nights": 20,
+  "family": [
+   "Henk Jan",
+   "Jersica",
+   "Oscar (15)",
+   "Lucas (17)"
+  ]
+ },
+ "route": [
+  "Tokyo",
+  "Hakone",
+  "Kyoto",
+  "Osaka",
+  "Hanoi",
+  "Da Nang",
+  "HCMC"
+ ],
+ "hotels": [
+  {
+   "city": "Tokyo",
+   "name": "Nishitetsu Inn Shinjuku",
+   "in": "2026-07-18",
+   "out": "2026-07-23",
+   "nights": 5,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "Hakone",
+   "name": "Itsuki (rockbath house)",
+   "in": "2026-07-23",
+   "out": "2026-07-24",
+   "nights": 1,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "Kyoto",
+   "name": "Hotel Resol Kyoto Shijo Muromachi",
+   "in": "2026-07-24",
+   "out": "2026-07-28",
+   "nights": 4,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "Osaka",
+   "name": "&Here OSAKA NAMBA",
+   "in": "2026-07-28",
+   "out": "2026-07-30",
+   "nights": 2,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "Hanoi",
+   "name": "The Oriental Jade",
+   "in": "2026-07-30",
+   "out": "2026-08-02",
+   "nights": 3,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "Da Nang",
+   "name": "HAIAN Beach Hotel & Spa",
+   "in": "2026-08-02",
+   "out": "2026-08-05",
+   "nights": 3,
+   "status": "CONFIRMED"
+  },
+  {
+   "city": "HCMC",
+   "name": "Citizen Apartment, Rivergate",
+   "in": "2026-08-05",
+   "out": "2026-08-07",
+   "nights": 2,
+   "status": "CONFIRMED"
   }
+ ],
+ "flights": [
+  {
+   "date": "2026-07-17",
+   "flight": "MU772",
+   "route": "AMS→PVG",
+   "dep": "20:15",
+   "arr": "13:15+1",
+   "ref": "VW-11380148",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-07-18",
+   "flight": "MU271",
+   "route": "PVG→NRT",
+   "dep": "16:55",
+   "arr": "20:55",
+   "ref": "VW-11380148",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-07-30",
+   "flight": "VJ939",
+   "route": "KIX→HAN",
+   "dep": "09:20",
+   "arr": "12:20",
+   "ref": "SS2EP8",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-08-02",
+   "flight": "VJ513",
+   "route": "HAN→DAD",
+   "dep": "16:40",
+   "arr": "18:00",
+   "ref": "328KJK",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-08-05",
+   "flight": "VJ633",
+   "route": "DAD→SGN",
+   "dep": "12:00",
+   "arr": "13:25",
+   "ref": "R4BCQJ",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-08-07",
+   "flight": "MU282",
+   "route": "SGN→PVG",
+   "dep": "02:35",
+   "arr": "07:55",
+   "ref": "VW-11380221",
+   "status": "CONFIRMED"
+  },
+  {
+   "date": "2026-08-07",
+   "flight": "MU771",
+   "route": "PVG→AMS",
+   "dep": "12:30",
+   "arr": "18:30",
+   "ref": "VW-11380221",
+   "status": "CONFIRMED"
+  }
+ ],
+ "anchors": [
+  {
+   "date": "2026-07-20",
+   "time": "15:00-17:00",
+   "item": "Asakusa Sumo Club ANNEX",
+   "ref": "ANX-96414364",
+   "status": "CONFIRMED+PAID",
+   "cost": "¥64,000"
+  },
+  {
+   "date": "2026-07-21",
+   "time": "11:30-12:00 entry",
+   "item": "teamLab Planets TOKYO",
+   "ref": "8deae6a4ab484cff76",
+   "status": "CONFIRMED",
+   "cost": "~¥15,000"
+  }
+ ],
+ "urgent_actions": [
+  {
+   "id": "U-03",
+   "item": "Shinkansen Odawara→Kyoto (24 jul) + Romancecar (23 jul) — 4 stoelen naast elkaar",
+   "urgency": "HOOG",
+   "deadline": "deze week",
+   "note": "Boek deze week via SmartEX/EMot; zomervakantie = drukte"
+  },
+  {
+   "id": "U-12",
+   "item": "Bagage Tokyo→Kyoto (Gion Matsuri-dag) — takkyubin of lockers",
+   "urgency": "MEDIUM-HOOG",
+   "deadline": "vóór jul 22",
+   "note": "Kies scenario vóór 22 jul"
+  },
+  {
+   "id": "U-11",
+   "item": "Vietnam Digital Arrival Card invullen",
+   "urgency": "MEDIUM",
+   "deadline": "jul 23-29",
+   "note": "Online, gratis; ~1 week vóór aankomst Hanoi"
+  },
+  {
+   "id": "A-06",
+   "item": "Reizigersinfo aanvullen in Sumo-boekingsportaal",
+   "urgency": "MEDIUM",
+   "deadline": "deze week",
+   "note": "Banner \"Booking information is missing\" in ANX-96414364"
+  },
+  {
+   "id": "U-06",
+   "item": "Ninh Binh-dagtrip ×4 boeken (1 aug) — Trang An + Mua Cave",
+   "urgency": "MEDIUM",
+   "deadline": "vóór jul 28",
+   "note": "BESLIST voor Ninh Binh. Via Klook/GetYourGuide/hotel ~$50-70 pp; vraag EXPLICIET Trang An (Tam Coc wordt anders willekeurig toegewezen)"
+  },
+  {
+   "id": "U-07",
+   "item": "Da Nang-excursie 4 aug — voorbereiden",
+   "urgency": "MEDIUM-LAAG",
+   "deadline": "vóór aug 1",
+   "note": "Aanbevolen Plan A (Marble Mountains + Hoi An) = walk-in ~40k VND; alleen boeken bij Ba Na Hills (~$40-60 pp online = korting)"
+  },
+  {
+   "id": "U-08",
+   "item": "HCMC-excursie 6 aug boeken",
+   "urgency": "MEDIUM-LAAG",
+   "deadline": "vóór aug 3",
+   "note": "Cu Chi Tunnels-tour of War Remnants — zie beslissing OD5"
+  },
+  {
+   "id": "U-10",
+   "item": "VJ633-stoelen toewijzen (5 aug DAD→SGN)",
+   "urgency": "LAAG",
+   "deadline": "vóór aug 4",
+   "note": "Online check-in of \"Manage booking\" op vietjetair.com; ref R4BCQJ"
+  }
+ ],
+ "decisions": [
+  {
+   "id": "OD2",
+   "q": "Kamakura vs Nikko vs geen dagtrip (22 jul)",
+   "recommendation": "Geen dagtrip",
+   "confidence": "hoog",
+   "why": "Kyoto dekt cultuur al royaal, Hakone dekt natuur; beide dagtrips kosten een kostbare Tokyo-dag; Nikko is zwakst (4-5u reistijd, lage teen-fit); Kamakura alleen als jullie expliciet een stranddag willen — die krijg je later in Da Nang ook.",
+   "options": [
+    "Geen dagtrip (aanbevolen)",
+    "Kamakura + Enoshima strand",
+    "Nikko"
+   ],
+   "deadline": "decide by jul 20"
+  },
+  {
+   "id": "SAMURAI",
+   "q": "Samurai/Ninja Museum: locatie en dag",
+   "recommendation": "Asakusa-vestiging, elke Tokyo-dag",
+   "confidence": "gemiddeld",
+   "why": "Asakusa-vestiging combineert met Asakusa-cluster (Sumo/Senso-ji); Shinjuku-vestiging (open sinds zomer 2025) = handig alternatief naast hotel; niet aan een vaste dag gebonden.",
+   "options": [
+    "Asakusa-vestiging",
+    "Shinjuku-vestiging",
+    "Overslaan"
+   ],
+   "deadline": "elke Tokyo-dag"
+  },
+  {
+   "id": "SHIBUYA-SKY",
+   "q": "Shibuya Sky-tijdslot 19 juli",
+   "recommendation": "Ochtendslot (koeler, rustiger)",
+   "confidence": "gemiddeld",
+   "why": "Sunset-slots verkopen razendsnel uit; ochtend vermijdt drukte + hitte; dak sluit bij harde wind.",
+   "options": [
+    "Ochtend",
+    "Zonsondergang",
+    "Overslaan"
+   ],
+   "deadline": "venster van 14 dagen vooruit"
+  },
+  {
+   "id": "OD7",
+   "q": "Osaka open dag woensdag 29 juli",
+   "recommendation": "In Osaka blijven; lichte dag",
+   "confidence": "hoog",
+   "why": "Volgende dag = KIX 06:45 vertrek; Himeji/Kobe-dagtrip = hoge opportunity cost; genoeg Osaka-ankers (Kaiyukan, Umeda, Shinsekai).",
+   "options": [
+    "In Osaka blijven",
+    "Kobe halve dag",
+    "Himeji"
+   ],
+   "deadline": "vóór jul 28"
+  },
+  {
+   "id": "OD4",
+   "q": "Da Nang-excursie dinsdag 4 augustus — welke combinatie?",
+   "recommendation": "Marble Mountains + Hoi An",
+   "confidence": "gemiddeld",
+   "why": "Marble Mountains = 90 min bij zonsopgang: pagode-in-grot + panorama, 15 min van hotel; middag rust; late middag Hoi An voor de lantaarn-avond = één samenhangend verhaal. My Son = culturele diepgang maar 60 km inland in volle zon (Cham-baksteen weerkaatst hitte), botst met tempel-vermoeidheid na Kyoto/Nara. Ba Na Hills = 5-6u themepark-karakter (Frans Dorp + Fantasy Park); Golden Bridge alleen is een foto van 15 min. Gezin sluit USJ uit — zelfde profiel.",
+   "options": [
+    "Marble Mountains + Hoi An",
+    "Ba Na Hills",
+    "Marble Mountains + My Son",
+    "My Son + Hoi An"
+   ],
+   "deadline": "vóór aug 1"
+  },
+  {
+   "id": "OD5",
+   "q": "HCMC donderdag 6 augustus — Cu Chi Tunnels of War Remnants + Reunification Palace?",
+   "recommendation": "Cu Chi ochtend + licht museum middag",
+   "confidence": "gemiddeld",
+   "why": "Cu Chi = interactieve tunnels + geschiedenis, sterke teen-fit; War Remnants = zwaardere emotionele stof; laatste volle dag met late-avondvertrek naar SGN.",
+   "options": [
+    "Cu Chi Tunnels",
+    "War Remnants + Reunification Palace",
+    "Beide (dag splitsen)"
+   ],
+   "deadline": "vóór aug 3"
+  },
+  {
+   "id": "C6",
+   "q": "Dragon Bridge vuurshow — enige haalbare venster: zo 2 aug aankomstavond",
+   "recommendation": "Ga strak of overslaan",
+   "confidence": "gemiddeld",
+   "why": "Landing 18:00 → hotel 18:45 → show 21:00; strak na reisdag; slechts 15 min show.",
+   "options": [
+    "Wel gaan (strak)",
+    "Overslaan"
+   ],
+   "deadline": "ter plekke"
+  }
+ ],
+ "days": [
+  {
+   "d": 0,
+   "date": "2026-07-17",
+   "weekday": "vr",
+   "dest": "Amsterdam/Vliegen",
+   "hotel": "Air",
+   "travel": "MU772 AMS→PVG 20:15",
+   "concept": "Vertrek",
+   "status": "CONFIRMED",
+   "cluster": "Vliegveld"
+  },
+  {
+   "d": 1,
+   "date": "2026-07-18",
+   "weekday": "za",
+   "dest": "Tokyo",
+   "hotel": "Nishitetsu Inn Shinjuku",
+   "travel": "MU271 PVG→NRT arr 20:55; N'EX to Shinjuku",
+   "concept": "Aankomst — hotel + eenvoudig avondeten",
+   "planA": "Landen, hotel, slapen",
+   "status": "CONFIRMED logistics",
+   "intensity": "laag",
+   "cluster": "Shinjuku"
+  },
+  {
+   "d": 2,
+   "date": "2026-07-19",
+   "weekday": "zo",
+   "dest": "Tokyo",
+   "hotel": "Shinjuku",
+   "concept": "Shibuya + Harajuku (west-cluster)",
+   "planA": {
+    "morning": "Meiji-jingu (schaduw + bos 08:30-10:00)",
+    "afternoon": "Shibuya Sky ochtendslot → Nintendo Tokyo Parco → Center-gai",
+    "evening": "Shinjuku: Omoide Yokocho + Godzilla-hoofd + gratis TMG-uitzichtpunt"
+   },
+   "planB": {
+    "theme": "Oost-cluster",
+    "morning": "Asakusa Senso-ji vroeg",
+    "afternoon": "Sumida-cruise → Odaiba",
+    "evening": "Shinjuku"
+   },
+   "swaps": [
+    "Samurai/Ninja Museum Shinjuku-vestiging late middag",
+    "Shimokitazawa tweedehands winkels"
+   ],
+   "teen_fit": "Shibuya Sky = sterk voor Oscar+Lucas als slot geboekt",
+   "urgency": "Shibuya Sky release 14d ahead",
+   "intensity": "gemiddeld",
+   "cluster": "Shibuya/Harajuku"
+  },
+  {
+   "d": 3,
+   "date": "2026-07-20",
+   "weekday": "ma 🎌",
+   "dest": "Tokyo",
+   "hotel": "Shinjuku",
+   "concept": "Asakusa/oost — Sumo-anker",
+   "planA": {
+    "morning": "Rustig: hotelontbijt, uitslapen",
+    "afternoon": "~13:00 naar Asakusa; lichte lunch; Nakamise/Senso-ji korte kennismaking",
+    "fixed": "15:00-17:00 Sumo Annex BEVESTIGD+BETAALD",
+    "evening": "Senso-ji verlicht, Nakamise-straat, Sumida-rivierwandeling"
+   },
+   "planB": {
+    "theme": "Volledige Asakusa-dag",
+    "addition": "Samurai/Ninja Museum Asakusa 11:30-13:00 vóór Sumo"
+   },
+   "swaps": [
+    "Tokyo Skytree avondbezoek",
+    "Kappabashi keukenstraat"
+   ],
+   "anchors": [
+    "Sumo Annex 15:00 CONFIRMED+PAID"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Asakusa/East",
+   "note": "Marine Day = busy but Sumo indoor"
+  },
+  {
+   "d": 4,
+   "date": "2026-07-21",
+   "weekday": "di",
+   "dest": "Tokyo",
+   "hotel": "Shinjuku",
+   "concept": "Odaiba/Toyosu — teamLab-anker",
+   "planA": {
+    "morning": "11:30 teamLab Planets BEVESTIGD (2u)",
+    "afternoon": "Lunch Toyosu → Unicorn Gundam DiverCity → Miraikan (di-sluiting verifiëren!) OF Round1",
+    "evening": "Waterbus Odaiba→Asakusa OF diner Shinjuku"
+   },
+   "planB": {
+    "theme": "Combineren met Akihabara"
+   },
+   "swaps": [
+    "Immersive Fort Tokyo",
+    "Small Worlds Tokyo"
+   ],
+   "anchors": [
+    "teamLab Planets 11:30 CONFIRMED"
+   ],
+   "intensity": "gemiddeld-hoog",
+   "cluster": "Odaiba/Bay",
+   "warning": "Miraikan gesloten op dinsdagen — VERIFIEER voor 21 jul"
+  },
+  {
+   "d": 5,
+   "date": "2026-07-22",
+   "weekday": "wo",
+   "dest": "Tokyo",
+   "hotel": "Shinjuku",
+   "concept": "Vrij / oost-cluster / rustdag",
+   "planA": {
+    "morning": "Tsukiji Outer Market ontbijt 8-10u",
+    "afternoon": "Akihabara: Super Potato + GiGO + Taito arcades",
+    "evening": "Ueno Park + Ameyoko street food"
+   },
+   "planB": {
+    "theme": "Kamakura dagtrip (alleen bij strandwens)"
+   },
+   "swaps": [
+    "Ghibli Museum ❌ tickets uitverkocht",
+    "Samurai/Ninja Museum",
+    "Ryogoku sumomuseum"
+   ],
+   "decisions": [
+    "OD2"
+   ],
+   "intensity": "flexibel",
+   "cluster": "East"
+  },
+  {
+   "d": 6,
+   "date": "2026-07-23",
+   "weekday": "do",
+   "dest": "Hakone",
+   "hotel": "Itsuki (private rockbath)",
+   "travel": "Romancecar Shinjuku→Hakone ~09:00",
+   "concept": "Hakone Round Course",
+   "planA": {
+    "morning": "Shinkuku→Odawara Romancecar → Hakone-Yumoto → Tozan-treintje Gora",
+    "afternoon": "Kabelbaan Sōunzan → kabelbaan Owakudani (zwarte eieren) → piratenboot Ashimeer → Hakone-schrijn drijvende torii",
+    "evening": "Check-in Itsuki, privé-rotsbad, kaiseki-diner"
+   },
+   "planB": {
+    "theme": "Rustig: Open-Air Museum + Gora",
+    "note": "als weer de kabelbaan sluit"
+   },
+   "swaps": [
+    "Yunessun waterpark (overslaan — te veel tijd voor 1 nacht)"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Hakone loop",
+   "weather_risk": "Kabelbaan windgevoelig; Fuji-zicht onwaarschijnlijk in juli",
+   "urgency": "Buy Hakone Freepass at Shinjuku"
+  },
+  {
+   "d": 7,
+   "date": "2026-07-24",
+   "weekday": "vr",
+   "dest": "Kyoto",
+   "hotel": "Hotel Resol Shijo Muromachi",
+   "travel": "Hakone→Odawara→Shinkansen Hikari→Kyoto",
+   "concept": "Gion Matsuri Ato-parade aankomstdag 🎌",
+   "planA": {
+    "morning": "Zeer vroeg Hakone (~08:15) → Kyoto ~11:00",
+    "transfer": "Bagage in Kyoto Station-lockers OF vooraf via takkyubin verstuurd (besluit 22 jul)",
+    "late_morning": "Staart van Ato-parade 11:00-11:50 bij hotel",
+    "afternoon": "Hotel check-in 15:00 (bagage eerder droppen), rust",
+    "evening": "Mikoshi-terugkeer naar Yasaka + Gion-wandeling ~17:00-20:00"
+   },
+   "planB": {
+    "theme": "Parade overslaan, ontspannen aankomen",
+    "concept": "Aankomst 13:00+, check-in, Nishiki-markt, Kamo-rivier-avond"
+   },
+   "swaps": [],
+   "decisions": [
+    "Luggage: takkyubin or lockers (U-12)"
+   ],
+   "intensity": "hoog (reis+festival)",
+   "cluster": "Centrum Kyoto",
+   "opportunity": "Zeldzaam festival op transferdag, hotel LIGT in festivalzone"
+  },
+  {
+   "d": 8,
+   "date": "2026-07-25",
+   "weekday": "za",
+   "dest": "Kyoto",
+   "hotel": "Kyoto",
+   "concept": "Oost-Kyoto hoogtepunten (vroeg beginnen!)",
+   "planA": {
+    "morning": "Fushimi Inari 06:30-08:30 (torii-tunnels)",
+    "late_morning": "→ Higashiyama → Kiyomizu-dera (vóór hitte 10:30)",
+    "afternoon": "Nishiki-markt lunch + AC downtown",
+    "evening": "Kamo-rivier yuka-dining (julispecialiteit) + Pontocho"
+   },
+   "planB": {
+    "theme": "Manga Museum + shopping dag"
+   },
+   "swaps": [
+    "Samurai/Ninja Museum Kyoto",
+    "Nintendo Kyoto Takashimaya"
+   ],
+   "intensity": "hoog",
+   "cluster": "East + Centrum",
+   "heat_warning": "middag brutaal — vroeg beginnen VERPLICHT"
+  },
+  {
+   "d": 9,
+   "date": "2026-07-26",
+   "weekday": "zo",
+   "dest": "Kyoto",
+   "hotel": "Kyoto",
+   "concept": "Arashiyama vroeg → downtown AC",
+   "planA": {
+    "morning": "Arashiyama bamboebos 07:00 → Tenryu-ji → rivier",
+    "late_morning": "Monkey Park overslaan tenzij koel (steile klim)",
+    "afternoon": "Terug downtown; Manga Museum",
+    "evening": "Kaiseki- of teppanyaki-diner"
+   },
+   "planB": {
+    "theme": "Nintendo Kyoto + downtown"
+   },
+   "swaps": [
+    "Kinkaku-ji (geïsoleerd)",
+    "teamLab Biovortex Kyoto (groot, geopend okt 2025)"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "West → Centrum"
+  },
+  {
+   "d": 10,
+   "date": "2026-07-27",
+   "weekday": "ma",
+   "dest": "Kyoto (Nara-dag)",
+   "hotel": "Kyoto",
+   "concept": "Nara-dagtrip",
+   "planA": {
+    "morning": "Kyoto→Nara 08:00 → Nara Park herten (universele teenerhit) → Todai-ji Daibutsu",
+    "afternoon": "Kasuga Taisha → terug Kyoto vóór 15:00",
+    "evening": "Nishiki-diner of rust"
+   },
+   "planB": {
+    "theme": "Diep Kyoto: Nijo Castle + Samurai/Ninja Museum + downtown"
+   },
+   "swaps": [
+    "Uji matcha-dag (zwakkere teen-fit)"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Nara excursie"
+  },
+  {
+   "d": 11,
+   "date": "2026-07-28",
+   "weekday": "di",
+   "dest": "Osaka",
+   "hotel": "&Here OSAKA NAMBA",
+   "travel": "Kyoto→Osaka JR ~50min",
+   "concept": "Aankomst Osaka + Dotonbori",
+   "planA": {
+    "afternoon": "Kuromon-markt → Den Den Town (Osaka's Akihabara)",
+    "evening": "Dotonbori food-crawl: takoyaki, kushikatsu, okonomiyaki, Glico-bord"
+   },
+   "swaps": [
+    "Round1 Sennichimae laat"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Namba"
+  },
+  {
+   "d": 12,
+   "date": "2026-07-29",
+   "weekday": "wo",
+   "dest": "Osaka",
+   "hotel": "Osaka",
+   "concept": "Open dag — in-stad Osaka (aanbevolen)",
+   "planA": {
+    "morning": "Kaiyukan aquarium openingsslot (walvishaaien) OF Osaka Castle vroeg",
+    "afternoon": "Umeda-cluster: Nintendo Osaka + Grand Green AC + Umeda Sky-zonsondergang",
+    "evening": "Shinsekai + Tsutenkaku kushikatsu OF vroeg rusten (KIX 06:45 morgen)"
+   },
+   "planB": {
+    "theme": "Kobe halve dag",
+    "note": "alleen bij sterke wens"
+   },
+   "swaps": [
+    "Spa World herstelbad",
+    "teamLab Botanical Nagai avond"
+   ],
+   "decisions": [
+    "OD7"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Osaka baai/Umeda",
+   "warning": "Morgen = vroeg KIX 06:45 → afronden vóór 22:00"
+  },
+  {
+   "d": 13,
+   "date": "2026-07-30",
+   "weekday": "do",
+   "dest": "Hanoi",
+   "hotel": "Oriental Jade",
+   "travel": "Osaka→KIX Nankai 07:00, VJ939 09:20→12:20 HAN",
+   "concept": "Aankomst Hanoi, Old Quarter wandeling",
+   "planA": {
+    "afternoon": "Hotel, opfrissen",
+    "evening": "Hoan Kiem meer wandeling + Old Quarter street food (bun cha)"
+   },
+   "intensity": "laag",
+   "cluster": "Old Quarter"
+  },
+  {
+   "d": 14,
+   "date": "2026-07-31",
+   "weekday": "vr",
+   "dest": "Hanoi",
+   "hotel": "Hanoi",
+   "concept": "Hanoi volle dag",
+   "planA": {
+    "morning": "Train Street koffie → Tempel van de Literatuur",
+    "afternoon": "Ho Chi Minh Mausoleum-gebied (open vr verifiëren) OF Vietnam Military History Museum (nieuw, teen-fit)",
+    "evening": "Waterpoppenshow → diner cha ca la vong"
+   },
+   "planB": {
+    "theme": "Cyclo Old Quarter tour + shoppen"
+   },
+   "swaps": [
+    "Let op: Mausoleum vrijdags dicht — verifiëren"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Ba Dinh + Old Quarter"
+  },
+  {
+   "d": 15,
+   "date": "2026-08-01",
+   "weekday": "za",
+   "dest": "Hanoi (dagtrip)",
+   "hotel": "Hanoi",
+   "concept": "Ninh Binh dagtrip (BESLIST)",
+   "planA": {
+    "theme": "Ninh Binh — Trang An + Mua Cave (Hoa Lu optioneel)",
+    "morning": "Ophalen 07:30-08:00; ~2u zuidwaarts; indien tijd: korte Hoa Lu ancient-capital stop",
+    "afternoon": "**Trang An sampan-boot 2u** (kern — vraag EXPLICIET Trang An, niet Tam Coc); lunch inbegrepen",
+    "late_afternoon": "Mua Cave 500 treden voor panorama (~40 min) — vóór hittepiek",
+    "evening": "Terug Hanoi ~19:00; lichte buurt-diner of Hoan Kiem-wandeling"
+   },
+   "planB": null,
+   "decisions": [
+    "OD3"
+   ],
+   "intensity": "hoog",
+   "cluster": "Ninh Binh excursie",
+   "swaps": [
+    "Hoa Lu overslaan als ochtend uitloopt",
+    "Fietstocht Trang An ↔ Mua Cave"
+   ],
+   "status": "PLANNED"
+  },
+  {
+   "d": 16,
+   "date": "2026-08-02",
+   "weekday": "zo",
+   "dest": "Da Nang",
+   "hotel": "HAIAN Beach",
+   "travel": "VJ513 HAN→DAD 16:40→18:00",
+   "concept": "Vliegen, hotel, Dragon Bridge-besluit",
+   "planA": {
+    "morning": "Vrij Hanoi (inpakken, koffie, laatste hap Old Quarter)",
+    "afternoon": "HAN-luchthaven vóór 14:00; VJ513 16:40 → DAD 18:00",
+    "evening": "Hotel HAIAN ~18:45; licht diner strand-side; Dragon Bridge vuur+waterspektakel 21:00 ALS energie het toelaat (Grab ~10 min, strak maar haalbaar) OF vroeg naar bed"
+   },
+   "decisions": [
+    "C6 Dragon Bridge"
+   ],
+   "intensity": "gemiddeld",
+   "cluster": "Da Nang beach",
+   "planB": {
+    "theme": "Dragon Bridge overslaan",
+    "note": "15 min show; reisdagmoeheid; kun je ook op andere avonden vanuit rijdende auto zien"
+   }
+  },
+  {
+   "d": 17,
+   "date": "2026-08-03",
+   "weekday": "ma",
+   "dest": "Da Nang/Hoi An",
+   "hotel": "HAIAN",
+   "concept": "Strandochtend + lantaarn-avond Hoi An",
+   "planA": {
+    "morning": "HAIAN zwembad/My Khe strand 07:00-10:30 (vóór hittepiek)",
+    "afternoon": "Rust / lunch / spa-uur hotel",
+    "late_afternoon": "Grab naar Hoi An ~16:00 (~30 min, ~$20)",
+    "evening": "Hoi An Ancient Town: verlichte straten, Japanse Overdekte Brug, kleermakers, riviervaart met kaars (~$5), diner rivier-side — retour Da Nang ~22:30"
+   },
+   "intensity": "gemiddeld",
+   "cluster": "Da Nang→Hoi An",
+   "planB": {
+    "theme": "Volle Hoi An-dag",
+    "concept": "Eerdere aankomst Hoi An 10:00; My Son middag; retour avond"
+   },
+   "swaps": [
+    "Optie: kookles Hoi An middag",
+    "Optie: fietstocht Tra Que-groentedorp"
+   ]
+  },
+  {
+   "d": 18,
+   "date": "2026-08-04",
+   "weekday": "di",
+   "dest": "Da Nang (dagtrip)",
+   "hotel": "HAIAN",
+   "concept": "Marble Mountains + Hoi An (Plan A aanbevolen)",
+   "planA": {
+    "theme": "Marble Mountains + Hoi An verdieping",
+    "morning": "Marble Mountains 07:00-09:30 (Thuy Son-piek: Am Phu-grot, Huyen Khong grotpagode, lift omhoog); ~15 min van hotel",
+    "afternoon": "Rust HAIAN zwembad / late lunch; middagen hitte vermijden",
+    "late_afternoon": "Hoi An 16:00 (indien niet op 3 aug bezocht) OF strandmiddag",
+    "evening": "Afscheidsdiner Centraal Vietnam Hoi An of Da Nang rivier-side"
+   },
+   "planB": {
+    "theme": "Ba Na Hills volle dag",
+    "morning": "Ophalen 07:30",
+    "afternoon": "Kabelbaan + Golden Bridge + Frans Dorp + Fantasy Park",
+    "evening": "Retour ~18:00",
+    "note": "~$60 pp; drukte; themepark-karakter"
+   },
+   "decisions": [
+    "OD4"
+   ],
+   "intensity": "hoog",
+   "cluster": "Centraal Vietnam",
+   "swaps": [
+    "Alternatief: Marble Mountains + My Son (dageraad Marble, middag My Son met lokale gids)",
+    "Han-markt shopping"
+   ]
+  },
+  {
+   "d": 19,
+   "date": "2026-08-05",
+   "weekday": "wo",
+   "dest": "Ho Chi Minh City",
+   "hotel": "Citizen Apartment",
+   "travel": "VJ633 DAD→SGN 12:00→13:25",
+   "concept": "Vliegen, hotel, District 1 avond",
+   "planA": {
+    "morning": "HAIAN zwembad, uitchecken, lunch DAD",
+    "afternoon": "Vlucht, hotel Rivergate",
+    "evening": "Ben Thanh-gebied, Nguyen Hue wandelstraat, rooftop bar"
+   },
+   "intensity": "gemiddeld",
+   "cluster": "D1"
+  },
+  {
+   "d": 20,
+   "date": "2026-08-06",
+   "weekday": "do",
+   "dest": "Ho Chi Minh City",
+   "hotel": "HCMC",
+   "concept": "Cu Chi + stad (laatste volle dag)",
+   "planA": {
+    "morning": "Cu Chi Tunnels tour (Ben Duoc) 07:30-13:30",
+    "afternoon": "Terug HCMC, lichte lunch",
+    "late_afternoon": "War Remnants Museum OF Reunification Palace",
+    "evening": "Afscheidsdiner Nguyen Hue",
+    "night": "Hotel uit ~23:00-23:30 → Grab naar SGN"
+   },
+   "planB": {
+    "theme": "Rustige laatste dag: geen Cu Chi",
+    "concept": "Uitslapen, musea, spa"
+   },
+   "decisions": [
+    "OD5"
+   ],
+   "intensity": "hoog",
+   "cluster": "HCMC + excursie",
+   "warning": "MU282 vertrekt SGN 02:35 volgende ochtend → hotelvertrek ~23:00"
+  },
+  {
+   "d": 21,
+   "date": "2026-08-07",
+   "weekday": "vr",
+   "dest": "Vliegen→Amsterdam",
+   "hotel": "Air",
+   "travel": "MU282 SGN→PVG 02:35→07:55, MU771 PVG→AMS 12:30→18:30",
+   "concept": "Naar huis",
+   "status": "CONFIRMED"
+  }
+ ],
+ "restaurants": {
+  "Tokyo": [
+   {
+    "name": "Tsukiji Outer Market (multiple stalls)",
+    "area": "Ginza/East",
+    "cuisine": "Sushi, tamagoyaki, seafood",
+    "price": "¥",
+    "why": "Ontbijt-tot-lunch food-crawl; tieners kiezen per kraam.",
+    "best": "ontbijt/lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Ichiran Ramen (Shinjuku Kabukicho)",
+    "area": "Shinjuku",
+    "cuisine": "Tonkotsu ramen",
+    "price": "¥¥",
+    "why": "Iconische solo-boothramen; laat open; naast hotel.",
+    "best": "late lunch/diner",
+    "reservation": "nee"
+   },
+   {
+    "name": "Uobei Genki Sushi (Shibuya)",
+    "area": "Shibuya",
+    "cuisine": "Conveyor sushi w/ touch tablets",
+    "price": "¥",
+    "why": "Lopende band met touch-tablets; tech-fun, teen-vriendelijk, geen wachttijd.",
+    "best": "lunch/diner",
+    "reservation": "nee"
+   },
+   {
+    "name": "Sometaro",
+    "area": "Asakusa",
+    "cuisine": "Okonomiyaki (cook-yourself)",
+    "price": "¥¥",
+    "why": "Okonomiyaki-huis uit 1937; zelf grillen aan tafel; teen-plezier; naast Sumo Annex.",
+    "best": "lunch",
+    "reservation": "walk-in ok"
+   },
+   {
+    "name": "Kagari (Ginza)",
+    "area": "Ginza",
+    "cuisine": "Chicken shoyu ramen",
+    "price": "¥¥",
+    "why": "Een van Tokyo's beste ramen (Michelin Bib); korte rij; volwassen-fit.",
+    "best": "lunch",
+    "reservation": "wachtrij"
+   },
+   {
+    "name": "Han no Daidokoro Bettei (Shibuya)",
+    "area": "Shibuya",
+    "cuisine": "A5 wagyu yakiniku",
+    "price": "¥¥¥",
+    "why": "A5-wagyu yakiniku aan tafel; onvergetelijke combo teens + volwassenen.",
+    "best": "diner",
+    "reservation": "ja (Tabelog)"
+   }
+  ],
+  "Hakone": [
+   {
+    "name": "Kaiseki-diner bij Itsuki",
+    "area": "stay",
+    "cuisine": "Kaiseki",
+    "price": "included",
+    "why": "Al geboekt bij accommodatie.",
+    "best": "diner",
+    "reservation": "included"
+   },
+   {
+    "name": "Hatsuhana Honten",
+    "area": "Hakone-Yumoto",
+    "cuisine": "Soba",
+    "price": "¥¥",
+    "why": "Legendarische handgemaakte soba; lichte lunch na kabelbaan.",
+    "best": "lunch",
+    "reservation": "wachtrij"
+   },
+   {
+    "name": "Amazake Chaya",
+    "area": "Old Tokaido",
+    "cuisine": "Amazake + mochi",
+    "price": "¥",
+    "why": "350 jaar oud theehuis; authentieke snelle stop.",
+    "best": "tussendoortje",
+    "reservation": "nee"
+   }
+  ],
+  "Kyoto": [
+   {
+    "name": "Nishiki Market food crawl",
+    "area": "Downtown (2 min from hotel)",
+    "cuisine": "Various small bites",
+    "price": "¥",
+    "why": "1 blok van hotel; tientallen kraampjes; teen-fit variatie.",
+    "best": "lunch/tussendoortje",
+    "reservation": "nee"
+   },
+   {
+    "name": "Menbaka Fire Ramen",
+    "area": "Downtown",
+    "cuisine": "Negi ramen with flame show",
+    "price": "¥¥",
+    "why": "Theatrale vlam-topping = viral teen-hoogtepunt.",
+    "best": "lunch",
+    "reservation": "wachtrij"
+   },
+   {
+    "name": "Gion Karyo",
+    "area": "Gion",
+    "cuisine": "Kaiseki (accessible)",
+    "price": "¥¥¥",
+    "why": "Kaiseki-ervaring zonder toplaag-formaliteit; tieners welkom.",
+    "best": "diner",
+    "reservation": "ja"
+   },
+   {
+    "name": "Kamo river yuka (Pontocho terraces)",
+    "area": "Pontocho",
+    "cuisine": "Multiple restaurants w/ river terrace",
+    "price": "¥¥-¥¥¥",
+    "why": "Alleen in juli: rivierzijterras-diner-traditie; magische avond.",
+    "best": "diner",
+    "reservation": "ja"
+   },
+   {
+    "name": "Omen Nippon",
+    "area": "Downtown",
+    "cuisine": "Udon",
+    "price": "¥¥",
+    "why": "Dip-udon met seizoensgroenten; goede lunch.",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Giro Giro Hitoshina",
+    "area": "Kiyamachi",
+    "cuisine": "Modern kaiseki counter",
+    "price": "¥¥¥",
+    "why": "Jonge-chef counter-kaiseki; ~¥4.500 pp; werkt voor volwassenen + teens.",
+    "best": "diner",
+    "reservation": "ja (verplicht)"
+   }
+  ],
+  "Osaka": [
+   {
+    "name": "Chibo Dotonbori",
+    "area": "Dotonbori",
+    "cuisine": "Okonomiyaki",
+    "price": "¥¥",
+    "why": "Echte okonomiyaki naast hotel; geen toeristenval.",
+    "best": "diner",
+    "reservation": "nee"
+   },
+   {
+    "name": "Daruma (Shinsekai)",
+    "area": "Shinsekai",
+    "cuisine": "Kushikatsu",
+    "price": "¥",
+    "why": "Origineel kushikatsu-huis; retro-Osaka sfeer.",
+    "best": "diner",
+    "reservation": "wachtrij"
+   },
+   {
+    "name": "Kuromon Ichiba Market",
+    "area": "Namba (5 min from hotel)",
+    "cuisine": "Seafood grills, sushi, fruit",
+    "price": "¥¥",
+    "why": "Ontbijt tot lunch grazen; teen-fit; 5 min van hotel.",
+    "best": "ontbijt/lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Matsusakagyu Yakiniku M",
+    "area": "Namba",
+    "cuisine": "A5 wagyu yakiniku",
+    "price": "¥¥¥",
+    "why": "Onvergetelijk Osaka-wagyu-diner.",
+    "best": "diner",
+    "reservation": "ja"
+   },
+   {
+    "name": "Ramen Zundou-ya (Namba)",
+    "area": "Namba",
+    "cuisine": "Tonkotsu ramen",
+    "price": "¥",
+    "why": "Snelle betrouwbare lunch naast hotel.",
+    "best": "lunch",
+    "reservation": "nee"
+   }
+  ],
+  "Hanoi": [
+   {
+    "name": "Pho Gia Truyen (49 Bat Dan)",
+    "area": "Old Quarter",
+    "cuisine": "Pho bo",
+    "price": "₫",
+    "why": "door velen beschouwd als beste pho in Hanoi; cash only, korte rij, snel — perfect ontbijt",
+    "best": "ontbijt",
+    "reservation": "nee",
+    "evidence": "widely cited local favourite, 2026-current"
+   },
+   {
+    "name": "Bún Chả Đắc Kim",
+    "area": "1 Hàng Mành, Old Quarter",
+    "cuisine": "Bun cha",
+    "price": "₫",
+    "why": "solide bun cha in kern Old Quarter, minder overrompeld dan de Obama-versie; teens vinden het smaakprofiel toegankelijk",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Bún Chả Hương Liên (Obama Combo)",
+    "area": "24 Lê Văn Hưu",
+    "cuisine": "Bun cha + nem cua bể",
+    "price": "₫",
+    "why": "iconisch verhaal + goede kwaliteit; combo-menu = leuk voor teens; ~10 min taxi vanaf hotel",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Chả Cá Thăng Long",
+    "area": "19-31 Đường Thành",
+    "cuisine": "Cha ca (turmeric fish)",
+    "price": "₫₫",
+    "why": "hotelversie is toeristischer maar geeft betere kwaliteit dan Cha Ca La Vong; één-gerechtrestaurant is een teen-nieuwe ervaring (koken aan tafel)",
+    "best": "diner",
+    "reservation": "walk-in"
+   },
+   {
+    "name": "Bún Bò Nam Bộ Bách Phương",
+    "area": "67 Hàng Điếu, Old Quarter",
+    "cuisine": "Bún bò nam bộ",
+    "price": "₫",
+    "why": "gemakkelijke droge noedel voor middelmatige eters; snelle lunch in air-con; werkt goed voor teens",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Banh Mi 25",
+    "area": "25 Hàng Cá, Old Quarter",
+    "cuisine": "Banh mi",
+    "price": "₫",
+    "why": "consistente kwaliteit, air-conditioned zaal boven, Engels menu; makkelijke lunch of afhaal",
+    "best": "lunch/tussendoortje",
+    "reservation": "nee"
+   },
+   {
+    "name": "Home Hanoi Restaurant",
+    "area": "34 Châu Long, Ba Đình",
+    "cuisine": "Moderne Vietnamese in Frans koloniale villa",
+    "price": "₫₫₫",
+    "why": "één memorabel diner: kaarslicht + verfijnde traditionele gerechten in een villa uit 1920; gezinsvriendelijk en teens waarderen sfeer",
+    "best": "diner",
+    "reservation": "ja (verplicht)",
+    "evidence": "top-rated fine dining Hanoi 2026"
+   },
+   {
+    "name": "Quán Ăn Ngon",
+    "area": "18 Phan Bội Châu",
+    "cuisine": "Straatvoedsel-sampler indoor",
+    "price": "₫₫",
+    "why": "één-stop proeverij van heel Vietnam onder AC met open keukens; ideaal voor teens die willen kiezen; goed als eerste-avond-dinner na aankomst",
+    "best": "diner",
+    "reservation": "walk-in"
+   }
+  ],
+  "HCMC": [
+   {
+    "name": "Pho Le",
+    "area": "D5 or D1 branch",
+    "cuisine": "Southern pho",
+    "price": "₫",
+    "why": "Zuidelijke pho als contrast met Hanoi.",
+    "best": "ontbijt",
+    "reservation": "nee"
+   },
+   {
+    "name": "Bun Bo Ganh",
+    "area": "D1",
+    "cuisine": "Bun bo Hue",
+    "price": "₫",
+    "why": "Pittige Centraal-stijl noedel in AC.",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Cuc Gach Quan",
+    "area": "D1",
+    "cuisine": "Home-style Vietnamese in old villa",
+    "price": "₫₫",
+    "why": "Meest memorabel HCMC-diner; huis-stijl in oude villa; familie-fit.",
+    "best": "diner",
+    "reservation": "ja (verplicht)"
+   },
+   {
+    "name": "Nha Hang Ngon (160 Pasteur)",
+    "area": "D1",
+    "cuisine": "All-Vietnam sampler",
+    "price": "₫₫",
+    "why": "One-stop proeverij van Vietnamees straatvoedsel indoor.",
+    "best": "diner",
+    "reservation": "walk-in"
+   },
+   {
+    "name": "The Refinery",
+    "area": "D1",
+    "cuisine": "Modern bistro",
+    "price": "₫₫₫",
+    "why": "Pauze van Vietnamees; volwassen-fit lunch.",
+    "best": "lunch",
+    "reservation": "walk-in"
+   }
+  ],
+  "Da Nang / Hoi An": [
+   {
+    "name": "Bánh Xèo Bà Dưỡng",
+    "area": "Da Nang, Hoa Cường Bắc",
+    "cuisine": "Bánh xèo (crispy pancake)",
+    "price": "₫",
+    "why": "local institution, DIY roll-your-own with rice paper + herbs; teen-fun, minimal English but menu-by-pointing works",
+    "best": "lunch/diner",
+    "reservation": "nee",
+    "evidence": "Da Nang classic 2026"
+   },
+   {
+    "name": "Mì Quảng 1A",
+    "area": "Da Nang, 1 Hai Phong",
+    "cuisine": "Mì Quảng",
+    "price": "₫",
+    "why": "quintessential Da Nang turmeric noodle bowl; 5-min from HAIAN Beach; consistent and quick",
+    "best": "lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Bé Mặn Seafood",
+    "area": "Da Nang, My Khe beach strip",
+    "cuisine": "Fresh seafood",
+    "price": "₫₫",
+    "why": "pick from tanks; beach-side; family-scaled portions; boys can choose crab/prawn",
+    "best": "diner",
+    "reservation": "walk-in vroeg of reserveer 19:00+"
+   },
+   {
+    "name": "Madame Lân",
+    "area": "Da Nang, Bach Dang riverside",
+    "cuisine": "Central Vietnamese variety",
+    "price": "₫₫",
+    "why": "colonial villa on the river, English menu, wide selection = easy for varied family appetites; good first-night dinner",
+    "best": "diner",
+    "reservation": "ja"
+   },
+   {
+    "name": "Nén Danang",
+    "area": "Da Nang, An Thuong",
+    "cuisine": "Modern Vietnamese tasting",
+    "price": "₫₫₫",
+    "why": "Michelin Guide 2024 selected; one memorable adult-focused dinner; tasting menu; teens tolerated but adult-leaning",
+    "best": "special diner",
+    "reservation": "ja (essential, boek 1 week vooruit)",
+    "evidence": "Michelin Guide Vietnam 2024/2026"
+   },
+   {
+    "name": "Bánh Mì Phượng",
+    "area": "Hoi An, 2B Phan Chu Trinh",
+    "cuisine": "Bánh mì",
+    "price": "₫",
+    "why": "Anthony Bourdain famous but genuinely excellent; grab-and-walk during lantern evening; queue moves fast",
+    "best": "tussendoortje/snelle lunch",
+    "reservation": "nee"
+   },
+   {
+    "name": "Morning Glory",
+    "area": "Hoi An, 106 Nguyen Thai Hoc",
+    "cuisine": "Central Vietnamese classics",
+    "price": "₫₫",
+    "why": "reliable cao lầu, white rose dumplings, com ga — safe crowd-pleaser for family in Ancient Town; multi-level indoor + terrace",
+    "best": "diner",
+    "reservation": "ja"
+   },
+   {
+    "name": "Bale Well",
+    "area": "Hoi An, 45/51 Trần Hưng Đạo",
+    "cuisine": "Nem lụi + banh xeo set",
+    "price": "₫",
+    "why": "one-set-menu place, off tourist main drag; roll-your-own DIY experience; strong teen fit + authentic",
+    "best": "diner",
+    "reservation": "walk-in"
+   },
+   {
+    "name": "Mango Rooms",
+    "area": "Hoi An, 111 Nguyen Thai Hoc, riverside",
+    "cuisine": "Fusion Vietnamese",
+    "price": "₫₫₫",
+    "why": "memorable riverside dinner during lantern hour; cocktails; adult-fit with teen tolerance",
+    "best": "special diner",
+    "reservation": "ja"
+   }
+  ]
+ },
+ "family_decisions": [
+  {
+   "id": "FD-04",
+   "decision": "OD3 = Ninh Binh day-trip",
+   "rejected": "Ha Long Bay day trip",
+   "status": "DECIDED, tour provider still OPEN",
+   "preferences": "Trang An = core; Mua Cave strong candidate; Hoa Lu optional (skip if rushed)"
+  }
+ ]
 }
