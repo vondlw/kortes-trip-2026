@@ -349,6 +349,95 @@ a{color:inherit;text-decoration:none}
 
 /* SCROLL */
 html{scroll-behavior:smooth}
+
+/* FLIGHTS view */
+.next-flight{background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(139,92,246,.1));border:1px solid rgba(249,115,22,.3);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:16px}
+.next-flight-lbl{font-size:10px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.next-flight-route{font-size:18px;font-weight:800;margin-top:4px;letter-spacing:-.3px}
+.next-flight-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.journey{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:14px;overflow:hidden}
+.journey-head{padding:12px 16px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.journey-title{font-size:14px;font-weight:800;letter-spacing:-.2px}
+.journey-route{font-size:12px;color:var(--muted);margin-top:2px}
+.journey-note{padding:8px 16px;background:rgba(59,130,246,.05);border-bottom:1px solid var(--border);font-size:12px;color:#bfdbfe}
+.flight-card{padding:14px 16px;border-bottom:1px solid var(--border)}
+.flight-card:last-child{border-bottom:none}
+.flight-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.flight-airline{display:flex;align-items:center;gap:10px}
+.flight-airline-badge{width:38px;height:38px;background:var(--panel3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--ink)}
+.flight-airline-badge.mu{background:#dc2626;color:#fff}
+.flight-airline-badge.vj{background:#fbbf24;color:#0f172a}
+.flight-airline-info{flex:1;min-width:0}
+.flight-airline-name{font-size:12px;color:var(--muted);font-weight:600}
+.flight-number-line{font-size:14px;font-weight:700}
+.flight-status{font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:800;color:var(--ok)}
+.flight-route-line{display:flex;align-items:center;gap:8px;margin:14px 0;flex-wrap:wrap}
+.flight-endpoint{flex:1;min-width:120px}
+.flight-iata{font-size:24px;font-weight:900;letter-spacing:-1px;line-height:1}
+.flight-time{font-size:16px;font-weight:700;margin-top:4px}
+.flight-airport-name{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3}
+.flight-terminal{font-size:10px;color:var(--muted);margin-top:2px}
+.flight-arrow{color:var(--muted);font-size:20px;flex-shrink:0}
+.flight-duration{text-align:center;font-size:11px;color:var(--muted);padding:0 8px}
+.flight-details{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));font-size:12px}
+.flight-detail{color:var(--muted)}
+.flight-detail b{color:var(--ink);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:2px}
+.flight-seats{font-size:12px}
+.flight-seats-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.flight-seat-tag{background:var(--panel3);padding:2px 8px;border-radius:6px;font-size:11px}
+.flight-ref-masked{font-family:'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.5px}
+
+/* STAYS view */
+.stay-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.stay-city{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.stay-name{font-size:15px;font-weight:700;margin-top:2px}
+.stay-room{font-size:12px;color:var(--muted);margin-top:2px}
+.stay-nights-badge{background:var(--panel3);padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;color:var(--ink);text-align:center;min-width:80px}
+.stay-nights-badge b{display:block;font-size:16px;color:var(--ink)}
+.stay-dates{font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* ESSENTIALS view */
+.ess-note{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:10px 14px;font-size:12px;color:#bfdbfe;margin-bottom:14px}
+.ess-progress{display:inline-flex;align-items:center;gap:8px}
+.ess-progress-bar{width:60px;height:6px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.ess-progress-fill{height:100%;background:var(--ok);transition:width .3s}
+.ess-cat{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.ess-cat-head{padding:12px 16px;background:var(--panel2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.ess-cat-head:hover{background:var(--panel3)}
+.ess-cat-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px}
+.ess-cat-icon{font-size:18px}
+.ess-cat-count{font-size:12px;color:var(--muted);font-weight:600}
+.ess-cat-toggle{color:var(--muted);transition:transform .2s}
+.ess-cat.open .ess-cat-toggle{transform:rotate(90deg)}
+.ess-items{display:none;padding:6px 0}
+.ess-cat.open .ess-items{display:block}
+.ess-item{display:flex;align-items:center;gap:12px;padding:8px 16px;border-top:1px solid var(--border)}
+.ess-item:hover{background:var(--panel2)}
+.ess-check{
+  width:22px;height:22px;border:2px solid var(--border2);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+  transition:all .15s;background:transparent;
+}
+.ess-check.done{background:var(--ok);border-color:var(--ok)}
+.ess-check.done::after{content:"✓";color:#052e13;font-weight:900;font-size:14px}
+.ess-text{flex:1;font-size:13px;line-height:1.4;color:var(--ink2)}
+.ess-item.done .ess-text{color:var(--muted);text-decoration:line-through}
+.ess-type{
+  font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;background:var(--panel3);color:var(--muted);
+  white-space:nowrap;
+}
+.ess-type.BOOK{background:rgba(239,68,68,.15);color:#fca5a5}
+.ess-type.BUY{background:rgba(245,158,11,.15);color:#fcd34d}
+.ess-type.VERIFY{background:rgba(139,92,246,.15);color:#ddd6fe}
+.ess-type.INSTALL{background:rgba(59,130,246,.15);color:#bfdbfe}
+.ess-type.TO_DO{background:rgba(148,163,184,.15);color:var(--ink2)}
+.ess-type.OPTIONAL{background:transparent;border:1px solid var(--border2);color:var(--muted)}
+.ess-type.DONE{background:rgba(16,185,129,.15);color:#6ee7b7}
+
+.gaps{margin-top:14px;padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;font-size:12px}
+.gaps summary{cursor:pointer;color:var(--muted);font-weight:600}
+.gaps ul{margin:8px 0 0;padding-left:18px;color:var(--ink2)}
 </style>
 </head>
 <body>
@@ -363,11 +452,13 @@ html{scroll-behavior:smooth}
       </div>
     </div>
     <div class="topnav-tabs">
-      <button data-view="today" class="active">Vandaag</button>
-      <button data-view="trip">Reis</button>
-      <button data-view="decisions">Besluiten</button>
-      <button data-view="food">Eten</button>
-      <button data-view="more">Meer</button>
+      <button data-view="today" class="active">Overzicht</button>
+      <button data-view="trip">Dagplanning</button>
+      <button data-view="flights">Vluchten</button>
+      <button data-view="stays">Verblijven</button>
+      <button data-view="decisions">Beslissingen</button>
+      <button data-view="food">Restaurants</button>
+      <button data-view="essentials">Reisbenodigdheden</button>
     </div>
   </div>
 </nav>
@@ -445,20 +536,39 @@ html{scroll-behavior:smooth}
   </div>
 </div>
 
-<!-- MEER / LOGISTIEK -->
-<div class="view" id="v-more">
+<!-- VLUCHTEN -->
+<div class="view" id="v-flights">
   <div class="section" style="margin-top:8px">
-    <div class="section-head"><h2 class="section-title">Vluchten &amp; hotels</h2></div>
-    <div class="log-grid">
-      <div class="log-list">
-        <div class="log-h">Vluchten <span style="color:var(--ok);font-size:11px">Alle bevestigd</span></div>
-        <div id="flights"></div>
-      </div>
-      <div class="log-list">
-        <div class="log-h">Hotels <span style="color:var(--ok);font-size:11px">Alle geboekt</span></div>
-        <div id="hotels"></div>
-      </div>
+    <div class="section-head">
+      <h2 class="section-title">Vluchten</h2>
+      <div class="section-sub" id="flightsSummary"></div>
     </div>
+    <div id="nextFlight"></div>
+    <div id="journeys"></div>
+    <details class="gaps"><summary>Niet-geverifieerde velden</summary><div id="flightGaps"></div></details>
+  </div>
+</div>
+
+<!-- VERBLIJVEN -->
+<div class="view" id="v-stays">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Verblijven</h2>
+      <div class="section-sub">7 hotels · Alle bevestigd</div>
+    </div>
+    <div id="staysList"></div>
+  </div>
+</div>
+
+<!-- REISBENODIGDHEDEN -->
+<div class="view" id="v-essentials">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Reisbenodigdheden</h2>
+      <div class="section-sub" id="essProgress"></div>
+    </div>
+    <div class="ess-note" id="essNote"></div>
+    <div id="essentials"></div>
   </div>
 </div>
 
@@ -467,23 +577,23 @@ html{scroll-behavior:smooth}
 <nav class="botnav">
   <button data-view="today" class="active">
     <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7 2 2v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
-    Vandaag
+    Overzicht
   </button>
   <button data-view="trip">
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    Reis
+    Dagen
+  </button>
+  <button data-view="flights">
+    <svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+    Vluchten
   </button>
   <button data-view="decisions">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
     Besluit
   </button>
-  <button data-view="food">
-    <svg viewBox="0 0 24 24"><path d="M4 3v18M4 12h6M10 3v18M20 3v18M18 3v9a3 3 0 0 0 3-3V3"/></svg>
-    Eten
-  </button>
-  <button data-view="more">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-    Meer
+  <button data-view="essentials">
+    <svg viewBox="0 0 24 24"><path d="M9 11l3 3l8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+    Checklist
   </button>
 </nav>
 
@@ -628,32 +738,12 @@ function render(D){
     </div>
   `).join('');
 
-  // LOGISTICS
-  document.getElementById('flights').innerHTML = D.flights.map(f=>`
-    <div class="log-item">
-      <div class="log-main">
-        <div class="log-primary">${f.route}</div>
-        <div class="log-secondary">${f.flight} · Ref ${f.ref}</div>
-      </div>
-      <div class="log-right">
-        <b>${f.dep} → ${f.arr}</b>
-        ${f.date}
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('hotels').innerHTML = D.hotels.map(h=>`
-    <div class="log-item">
-      <div class="log-main">
-        <div class="log-primary">${h.city}</div>
-        <div class="log-secondary">${h.name}</div>
-      </div>
-      <div class="log-right">
-        <b>${h.nights} nacht${h.nights===1?'':'en'}</b>
-        ${h.in} → ${h.out}
-      </div>
-    </div>
-  `).join('');
-
+  // FLIGHTS view
+  renderFlights(D);
+  // STAYS view
+  renderStays(D);
+  // ESSENTIALS view
+  renderEssentials(D);
   // NAV
   document.querySelectorAll('[data-view]').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -763,6 +853,141 @@ function jumpToDay(d){
     const el = document.getElementById('day-'+d);
     if(el){el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('open');}
   },200);
+}
+
+function renderFlights(D){
+  // Next flight (relative to today's date, but trip is future — pick first upcoming)
+  const today=new Date();
+  const upcoming=D.flights.find(f=>new Date(f.date)>=today) || D.flights[0];
+  if(upcoming){
+    document.getElementById('nextFlight').innerHTML=`<div class="next-flight">
+      <div class="next-flight-lbl">Volgende vlucht</div>
+      <div class="next-flight-route">${upcoming.dep_city} → ${upcoming.arr_city}</div>
+      <div class="next-flight-meta">${upcoming.flight} · ${upcoming.date} · ${upcoming.dep} lokale tijd</div>
+    </div>`;
+  }
+  document.getElementById('flightsSummary').textContent = D.flights.length+' segmenten · alle bevestigd';
+
+  const flightsByCode=Object.fromEntries(D.flights.map(f=>[f.flight,f]));
+  const journeysHtml=D.journeys.map(j=>{
+    const flightsHtml=j.flights.map(code=>{
+      const f=flightsByCode[code];
+      if(!f) return '';
+      const cls=f.airline_code==='MU'?'mu':(f.airline_code==='VJ'?'vj':'');
+      const seatsHtml=Array.isArray(f.seats)?
+        `<div class="flight-detail"><b>Stoelen</b><div class="flight-seats-list">${f.seats.map(s=>`<span class="flight-seat-tag">${s}</span>`).join('')}</div></div>`:
+        (f.seats?`<div class="flight-detail"><b>Stoelen</b>${f.seats}</div>`:'');
+      return `<div class="flight-card">
+        <div class="flight-card-top">
+          <div class="flight-airline">
+            <div class="flight-airline-badge ${cls}">${f.airline_code}</div>
+            <div class="flight-airline-info">
+              <div class="flight-airline-name">${f.airline||''}</div>
+              <div class="flight-number-line">${f.flight} · ${f.date}</div>
+            </div>
+          </div>
+          <div class="flight-status">✓ Bevestigd &amp; betaald</div>
+        </div>
+        <div class="flight-route-line">
+          <div class="flight-endpoint">
+            <div class="flight-iata">${f.dep_iata||''}</div>
+            <div class="flight-time">${f.dep} <span style="font-size:10px;color:var(--muted);font-weight:400">lokaal</span></div>
+            <div class="flight-airport-name">${f.dep_airport||f.dep_city}</div>
+            ${f.dep_terminal?`<div class="flight-terminal">Terminal ${f.dep_terminal}</div>`:''}
+          </div>
+          <div class="flight-arrow">→</div>
+          <div class="flight-duration">${f.duration||''}</div>
+          <div class="flight-arrow">→</div>
+          <div class="flight-endpoint">
+            <div class="flight-iata">${f.arr_iata||''}</div>
+            <div class="flight-time">${f.arr}${f.arr_date&&f.arr_date!==f.date?' <span style="font-size:10px;color:var(--warn);font-weight:400">(+1)</span>':''} <span style="font-size:10px;color:var(--muted);font-weight:400">lokaal</span></div>
+            <div class="flight-airport-name">${f.arr_airport||f.arr_city}</div>
+            ${f.arr_terminal?`<div class="flight-terminal">Terminal ${f.arr_terminal}</div>`:''}
+          </div>
+        </div>
+        <div class="flight-details">
+          <div class="flight-detail"><b>Bagage</b>${f.baggage||'—'}</div>
+          <div class="flight-detail"><b>Check-in</b>${f.checkin||'—'}</div>
+          <div class="flight-detail"><b>Boeking</b><span class="flight-ref-masked">${f.ref_masked||f.ref||'—'}</span></div>
+          <div class="flight-detail"><b>Verificatie</b>${f.verified||'—'}</div>
+          ${seatsHtml}
+        </div>
+      </div>`;
+    }).join('');
+    const noteHtml=j.note?`<div class="journey-note">ℹ ${j.note}</div>`:'';
+    const connHtml=j.connection_time?`<div class="journey-note">🔁 Overstap in ${j.transfer_airport}: ${j.connection_time}${j.overnight?' · via de nacht':''}</div>`:'';
+    return `<div class="journey">
+      <div class="journey-head">
+        <div>
+          <div class="journey-title">${j.label}</div>
+          <div class="journey-route">${j.route}</div>
+        </div>
+      </div>
+      ${connHtml}
+      ${noteHtml}
+      ${flightsHtml}
+    </div>`;
+  }).join('');
+  document.getElementById('journeys').innerHTML=journeysHtml;
+
+  const gaps=D.flight_gaps||[];
+  document.getElementById('flightGaps').innerHTML='<ul>'+gaps.map(g=>`<li>${g}</li>`).join('')+'</ul>';
+}
+
+function renderStays(D){
+  document.getElementById('staysList').innerHTML=D.hotels.map(h=>`
+    <div class="stay-card">
+      <div style="flex:1;min-width:0">
+        <div class="stay-city">${h.city}</div>
+        <div class="stay-name">${h.name}</div>
+        <div class="stay-room">${h.room||''}${h.breakfast?' · met ontbijt':''}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="stay-nights-badge"><b>${h.nights}</b>${h.nights===1?'nacht':'nachten'}</div>
+        <div class="stay-dates" style="margin-top:6px">${h.in} → ${h.out}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderEssentials(D){
+  const E=D.essentials;
+  document.getElementById('essNote').textContent = E.note_persistence;
+  const state=JSON.parse(localStorage.getItem('essState')||'{}');
+  let total=0,done=0;
+  E.categories.forEach(c=>c.items.forEach(i=>{total++;if(state[i.id]||i.type==='DONE')done++}));
+  const pct=Math.round(done/total*100);
+  document.getElementById('essProgress').innerHTML=`<span class="ess-progress">${done}/${total} <span class="ess-progress-bar"><span class="ess-progress-fill" style="width:${pct}%"></span></span></span>`;
+
+  document.getElementById('essentials').innerHTML=E.categories.map(cat=>{
+    const catDone=cat.items.filter(i=>state[i.id]||i.type==='DONE').length;
+    const itemsHtml=cat.items.map(i=>{
+      const isDone=state[i.id]||i.type==='DONE';
+      return `<div class="ess-item ${isDone?'done':''}" data-id="${i.id}">
+        <button class="ess-check ${isDone?'done':''}" onclick="toggleEssItem('${i.id}')"></button>
+        <div class="ess-text">${i.text}</div>
+        <span class="ess-type ${i.type}">${i.type.replace('_',' ')}</span>
+      </div>`;
+    }).join('');
+    return `<div class="ess-cat" ${catDone<cat.items.length?'':'style="opacity:.65"'}>
+      <div class="ess-cat-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="ess-cat-name"><span class="ess-cat-icon">${cat.icon}</span>${cat.label}</div>
+        <div>
+          <span class="ess-cat-count">${catDone}/${cat.items.length}</span>
+          <span class="ess-cat-toggle">▶</span>
+        </div>
+      </div>
+      <div class="ess-items">${itemsHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggleEssItem(id){
+  const state=JSON.parse(localStorage.getItem('essState')||'{}');
+  state[id]=!state[id];
+  localStorage.setItem('essState',JSON.stringify(state));
+  // Re-render only essentials
+  fetch('dashboard-data.json').then(r=>r.json()).then(D=>renderEssentials(D));
 }
 </script>
 </body>

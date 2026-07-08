@@ -86,7 +86,26 @@
    "dep": "20:15",
    "arr": "13:15+1",
    "ref": "VW-11380148",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "China Eastern Airlines",
+   "airline_code": "MU",
+   "dep_city": "Amsterdam",
+   "dep_airport": "Amsterdam Airport Schiphol",
+   "dep_iata": "AMS",
+   "dep_terminal": null,
+   "arr_city": "Shanghai",
+   "arr_airport": "Shanghai Pudong International Airport",
+   "arr_iata": "PVG",
+   "arr_terminal": null,
+   "arr_date": "2026-07-18",
+   "arr_time": "13:15",
+   "duration": "8u 00m (indicatief)",
+   "baggage": "1× 23 kg pp",
+   "seats": null,
+   "checkin": "Online 24u vooraf",
+   "journey": "OUTBOUND",
+   "verified": "Betaaloverzicht VW-11380148",
+   "ref_masked": "VW-••••148"
   },
   {
    "date": "2026-07-18",
@@ -95,7 +114,26 @@
    "dep": "16:55",
    "arr": "20:55",
    "ref": "VW-11380148",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "China Eastern Airlines",
+   "airline_code": "MU",
+   "dep_city": "Shanghai",
+   "dep_airport": "Shanghai Pudong International Airport",
+   "dep_iata": "PVG",
+   "dep_terminal": null,
+   "arr_city": "Tokyo",
+   "arr_airport": "Narita International Airport",
+   "arr_iata": "NRT",
+   "arr_terminal": null,
+   "arr_date": "2026-07-18",
+   "arr_time": "20:55",
+   "duration": "3u 00m (indicatief)",
+   "baggage": "1× 23 kg pp",
+   "seats": null,
+   "checkin": "Online 24u vooraf",
+   "journey": "OUTBOUND",
+   "verified": "Betaaloverzicht VW-11380148",
+   "ref_masked": "VW-••••148"
   },
   {
    "date": "2026-07-30",
@@ -104,7 +142,31 @@
    "dep": "09:20",
    "arr": "12:20",
    "ref": "SS2EP8",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "VietJet Air",
+   "airline_code": "VJ",
+   "dep_city": "Osaka",
+   "dep_airport": "Kansai International Airport",
+   "dep_iata": "KIX",
+   "dep_terminal": "T1",
+   "arr_city": "Hanoi",
+   "arr_airport": "Noi Bai International Airport",
+   "arr_iata": "HAN",
+   "arr_terminal": null,
+   "arr_date": "2026-07-30",
+   "arr_time": "12:20",
+   "duration": "5u 00m",
+   "baggage": "20 kg pp (Deluxe)",
+   "seats": [
+    "Henk Jan: 11B",
+    "Lucas: 11C",
+    "Oscar: 11D",
+    "Jersica: 11E"
+   ],
+   "checkin": "Online 24u vooraf via vietjetair.com",
+   "journey": "HANOI",
+   "verified": "VietJet-itinerary SS2EP8",
+   "ref_masked": "SS2EP8"
   },
   {
    "date": "2026-08-02",
@@ -113,7 +175,31 @@
    "dep": "16:40",
    "arr": "18:00",
    "ref": "328KJK",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "VietJet Air",
+   "airline_code": "VJ",
+   "dep_city": "Hanoi",
+   "dep_airport": "Noi Bai International Airport",
+   "dep_iata": "HAN",
+   "dep_terminal": null,
+   "arr_city": "Da Nang",
+   "arr_airport": "Da Nang International Airport",
+   "arr_iata": "DAD",
+   "arr_terminal": null,
+   "arr_date": "2026-08-02",
+   "arr_time": "18:00",
+   "duration": "1u 20m",
+   "baggage": "20 kg pp (Deluxe)",
+   "seats": [
+    "Henk Jan: 6B",
+    "Lucas: 6A",
+    "Jersica: 7B",
+    "Oscar: 7A"
+   ],
+   "checkin": "Online 24u vooraf",
+   "journey": "DANANG",
+   "verified": "VietJet-itinerary 328KJK",
+   "ref_masked": "328KJK"
   },
   {
    "date": "2026-08-05",
@@ -122,7 +208,26 @@
    "dep": "12:00",
    "arr": "13:25",
    "ref": "R4BCQJ",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "VietJet Air",
+   "airline_code": "VJ",
+   "dep_city": "Da Nang",
+   "dep_airport": "Da Nang International Airport",
+   "dep_iata": "DAD",
+   "dep_terminal": null,
+   "arr_city": "Ho Chi Minh City",
+   "arr_airport": "Tan Son Nhat International Airport",
+   "arr_iata": "SGN",
+   "arr_terminal": "T1",
+   "arr_date": "2026-08-05",
+   "arr_time": "13:25",
+   "duration": "1u 25m",
+   "baggage": "20 kg pp (Deluxe1)",
+   "seats": "Nog niet toegewezen — via check-in",
+   "checkin": "Online 24u vooraf",
+   "journey": "HCMC",
+   "verified": "VietJet-itinerary R4BCQJ",
+   "ref_masked": "R4BCQJ"
   },
   {
    "date": "2026-08-07",
@@ -131,7 +236,26 @@
    "dep": "02:35",
    "arr": "07:55",
    "ref": "VW-11380221",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "China Eastern Airlines",
+   "airline_code": "MU",
+   "dep_city": "Ho Chi Minh City",
+   "dep_airport": "Tan Son Nhat International Airport",
+   "dep_iata": "SGN",
+   "dep_terminal": null,
+   "arr_city": "Shanghai",
+   "arr_airport": "Shanghai Pudong International Airport",
+   "arr_iata": "PVG",
+   "arr_terminal": null,
+   "arr_date": "2026-08-07",
+   "arr_time": "07:55",
+   "duration": "4u 20m",
+   "baggage": "1× 23 kg pp",
+   "seats": null,
+   "checkin": "MEKJ9T",
+   "journey": "RETURN",
+   "verified": "E-ticket VW-11380221",
+   "ref_masked": "VW-••••221"
   },
   {
    "date": "2026-08-07",
@@ -140,7 +264,26 @@
    "dep": "12:30",
    "arr": "18:30",
    "ref": "VW-11380221",
-   "status": "CONFIRMED"
+   "status": "CONFIRMED",
+   "airline": "China Eastern Airlines",
+   "airline_code": "MU",
+   "dep_city": "Shanghai",
+   "dep_airport": "Shanghai Pudong International Airport",
+   "dep_iata": "PVG",
+   "dep_terminal": null,
+   "arr_city": "Amsterdam",
+   "arr_airport": "Amsterdam Airport Schiphol",
+   "arr_iata": "AMS",
+   "arr_terminal": null,
+   "arr_date": "2026-08-07",
+   "arr_time": "18:30",
+   "duration": "12u 00m",
+   "baggage": "1× 23 kg pp",
+   "seats": null,
+   "checkin": "MEKJ9T",
+   "journey": "RETURN",
+   "verified": "E-ticket VW-11380221",
+   "ref_masked": "VW-••••221"
   }
  ],
  "anchors": [
@@ -1207,5 +1350,589 @@
    "status": "DECIDED, tour provider still OPEN",
    "preferences": "Trang An = core; Mua Cave strong candidate; Hoa Lu optional (skip if rushed)"
   }
+ ],
+ "journeys": [
+  {
+   "id": "OUTBOUND",
+   "label": "Heenreis",
+   "route": "Amsterdam → Shanghai → Tokyo",
+   "flights": [
+    "MU772",
+    "MU271"
+   ],
+   "transfer_airport": "Shanghai Pudong (PVG)",
+   "connection_time": "3u 40m in PVG",
+   "overnight": true,
+   "note": "Overnacht deels aan boord; landing Tokyo Narita zaterdagavond 20:55"
+  },
+  {
+   "id": "HANOI",
+   "label": "Osaka → Hanoi",
+   "route": "KIX → HAN",
+   "flights": [
+    "VJ939"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false
+  },
+  {
+   "id": "DANANG",
+   "label": "Hanoi → Da Nang",
+   "route": "HAN → DAD",
+   "flights": [
+    "VJ513"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false
+  },
+  {
+   "id": "HCMC",
+   "label": "Da Nang → Ho Chi Minh City",
+   "route": "DAD → SGN",
+   "flights": [
+    "VJ633"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false
+  },
+  {
+   "id": "RETURN",
+   "label": "Terugreis",
+   "route": "Ho Chi Minh City → Shanghai → Amsterdam",
+   "flights": [
+    "MU282",
+    "MU771"
+   ],
+   "transfer_airport": "Shanghai Pudong (PVG)",
+   "connection_time": "4u 35m in PVG",
+   "overnight": true,
+   "note": "Nachtvlucht vertrek SGN vr 7 aug 02:35; landing AMS zelfde dag 18:30"
+  }
+ ],
+ "essentials": {
+  "note_persistence": "Vinkjes worden lokaal op dit apparaat opgeslagen. Andere gezinsleden zien hun eigen versie.",
+  "categories": [
+   {
+    "id": "documenten",
+    "label": "Documenten",
+    "icon": "📄",
+    "items": [
+     {
+      "id": "pass-hj",
+      "text": "Paspoort Henk Jan geldig tot ≥ 30 jan 2027 (≥ 6 mnd na Vietnam)",
+      "type": "VERIFY"
+     },
+     {
+      "id": "pass-je",
+      "text": "Paspoort Jersica geldig tot ≥ 30 jan 2027",
+      "type": "VERIFY"
+     },
+     {
+      "id": "pass-os",
+      "text": "Paspoort Oscar geldig tot ≥ 30 jan 2027",
+      "type": "VERIFY"
+     },
+     {
+      "id": "pass-lu",
+      "text": "Paspoort Lucas geldig tot ≥ 30 jan 2027",
+      "type": "VERIFY"
+     },
+     {
+      "id": "insurance",
+      "text": "Reisverzekering (annulering + medisch) afsluiten/checken",
+      "type": "TO_DO"
+     },
+     {
+      "id": "flights-copy",
+      "text": "Vluchtbevestigingen opslaan (offline + papier back-up)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "hotels-copy",
+      "text": "Hotelbevestigingen offline opslaan",
+      "type": "TO_DO"
+     },
+     {
+      "id": "activity-copy",
+      "text": "Sumo (ANX-96414364) + teamLab Planets tickets in Wallet zetten",
+      "type": "TO_DO"
+     },
+     {
+      "id": "emergency",
+      "text": "Kopie paspoorten + verzekering in Google Drive/iCloud",
+      "type": "TO_DO"
+     },
+     {
+      "id": "vn-visa",
+      "text": "Vietnam: NL 45 dagen visumvrij — geen visum nodig ✓",
+      "type": "DONE"
+     },
+     {
+      "id": "vn-dac",
+      "text": "Vietnam Digital Arrival Card invullen (~1 week vooraf)",
+      "type": "VERIFY"
+     },
+     {
+      "id": "ice",
+      "text": "ICE-contacten (In Case of Emergency) in telefoons",
+      "type": "TO_DO"
+     }
+    ]
+   },
+   {
+    "id": "esim",
+    "label": "Internet & eSIM",
+    "icon": "📶",
+    "items": [
+     {
+      "id": "esim-decide",
+      "text": "eSIM-provider kiezen (MobiMatter genoemd als kandidaat)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "esim-jp",
+      "text": "Japan-dekking: ~20 GB voor 12 dagen (4 telefoons = ~5 GB pp) inschatten",
+      "type": "VERIFY"
+     },
+     {
+      "id": "esim-vn",
+      "text": "Vietnam-dekking: ~15 GB voor 9 dagen inschatten",
+      "type": "VERIFY"
+     },
+     {
+      "id": "esim-regio",
+      "text": "Overwegen: Japan+Vietnam-combi-eSIM vs 2 losse eSIMs",
+      "type": "VERIFY"
+     },
+     {
+      "id": "esim-install",
+      "text": "eSIM installeren vóór vertrek maar pas activeren bij landing",
+      "type": "INSTALL"
+     },
+     {
+      "id": "esim-qr",
+      "text": "QR-code eSIM veilig opslaan (screenshot + offline)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "roaming-off",
+      "text": "Roaming NL-abonnement uitzetten om dubbele kosten te vermijden",
+      "type": "VERIFY"
+     },
+     {
+      "id": "hotspot",
+      "text": "Hotspot aanzetten op één telefoon voor gezin als reserve",
+      "type": "OPTIONAL"
+     }
+    ]
+   },
+   {
+    "id": "jp-transport",
+    "label": "Japan openbaar vervoer",
+    "icon": "🚄",
+    "items": [
+     {
+      "id": "suica-hj",
+      "text": "Suica in Apple Wallet Henk Jan (iPhone: gratis toevoegen)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "suica-je",
+      "text": "Suica in Apple Wallet Jersica",
+      "type": "INSTALL"
+     },
+     {
+      "id": "suica-os",
+      "text": "Suica Oscar (Android: alleen op Sony Xperia in JP kopen; anders fysieke kaart)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "suica-lu",
+      "text": "Suica Lucas (idem)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "suica-topup",
+      "text": "Elke Suica opladen met ~¥3.000 bij start (bij te vullen)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "romancecar",
+      "text": "Romancecar-stoelen Shinjuku→Hakone 23 jul (via EMot-app)",
+      "type": "BOOK"
+     },
+     {
+      "id": "shinkansen",
+      "text": "Shinkansen Odawara→Kyoto 24 jul (4 stoelen naast elkaar, via SmartEX)",
+      "type": "BOOK"
+     },
+     {
+      "id": "freepass",
+      "text": "Hakone Freepass 2 dagen kopen bij Shinjuku Odakyu-loket",
+      "type": "BUY"
+     },
+     {
+      "id": "nankai",
+      "text": "Nankai Namba→KIX 30 jul 06:45 (ter plekke of vooraf via Klook)",
+      "type": "BUY"
+     },
+     {
+      "id": "nex",
+      "text": "Narita Express (N'EX) 18 jul avond: laatste rond 21:44 (backup: Airport Limousine bus)",
+      "type": "VERIFY"
+     }
+    ]
+   },
+   {
+    "id": "apps",
+    "label": "Apps installeren",
+    "icon": "📱",
+    "items": [
+     {
+      "id": "app-gmaps",
+      "text": "Google Maps + Japan-kaarten offline downloaden",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-translate",
+      "text": "Google Translate + JP + VN offline packs",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-grab",
+      "text": "Grab (Vietnam taxi/eten)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-vietjet",
+      "text": "VietJet Air (voor check-in + stoel VJ633)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-smartex",
+      "text": "SmartEX (Shinkansen-reserveringen)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-emot",
+      "text": "EMot (Odakyu/Romancecar)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-suica",
+      "text": "Apple Wallet Suica (iPhone) — via Wallet-app",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-weather",
+      "text": "Windy of standaard-weer-app",
+      "type": "OPTIONAL"
+     },
+     {
+      "id": "app-klook",
+      "text": "Klook of GetYourGuide (Ninh Binh-tour, Ba Na, etc.)",
+      "type": "INSTALL"
+     },
+     {
+      "id": "app-tabelog",
+      "text": "Tabelog (Japanse restaurant-reviews)",
+      "type": "OPTIONAL"
+     }
+    ]
+   },
+   {
+    "id": "money",
+    "label": "Geld & betalingen",
+    "icon": "💳",
+    "items": [
+     {
+      "id": "cc-primary",
+      "text": "Hoofd-creditcard voor reisuitgaven (Visa/Mastercard)",
+      "type": "VERIFY"
+     },
+     {
+      "id": "cc-backup",
+      "text": "Backup-creditcard apart bewaren (bijv. bij partner)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "debit-atm",
+      "text": "Bankpas met wereldwijde ATM-toegang",
+      "type": "VERIFY"
+     },
+     {
+      "id": "cash-jpy",
+      "text": "Japan: ~¥20.000-30.000 cash bij aankomst (7-Eleven ATM werkt met NL-passen)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "cash-vnd",
+      "text": "Vietnam: geen cash vooraf nodig — Grab/pinnen ter plekke; ATM: BIDV/Vietcombank betrouwbaar",
+      "type": "VERIFY"
+     },
+     {
+      "id": "bank-notify",
+      "text": "Bank informeren over reis (fraudedetectie)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "card-limit",
+      "text": "Dagelijkse pinlimieten checken/verhogen",
+      "type": "VERIFY"
+     },
+     {
+      "id": "wise",
+      "text": "Overwegen: Wise/Revolut voor gunstige koersen",
+      "type": "OPTIONAL"
+     }
+    ]
+   },
+   {
+    "id": "power",
+    "label": "Stroom & apparaten",
+    "icon": "🔌",
+    "items": [
+     {
+      "id": "adapter-jp",
+      "text": "Japan-stekker: type A (2 platte pinnen) — NL-adapter nodig",
+      "type": "BUY"
+     },
+     {
+      "id": "adapter-vn",
+      "text": "Vietnam: type A/C — dezelfde adapter werkt in beide landen",
+      "type": "BUY"
+     },
+     {
+      "id": "multi-plug",
+      "text": "Stekkerdoos met 3-5 uitgangen (bespaart adapters)",
+      "type": "BUY"
+     },
+     {
+      "id": "powerbank",
+      "text": "2× powerbank ≥10.000 mAh (voor lange dagen)",
+      "type": "BUY"
+     },
+     {
+      "id": "cables",
+      "text": "Extra Lightning + USB-C-kabels (4 telefoons)",
+      "type": "VERIFY"
+     },
+     {
+      "id": "headphones",
+      "text": "Koptelefoons + adapters voor lange vlucht",
+      "type": "VERIFY"
+     },
+     {
+      "id": "camera",
+      "text": "Camera/GoPro-strategie beslissen (of alleen telefoons)",
+      "type": "OPTIONAL"
+     }
+    ]
+   },
+   {
+    "id": "health",
+    "label": "Gezondheid & zomer",
+    "icon": "🌡️",
+    "items": [
+     {
+      "id": "sunscreen",
+      "text": "Zonnebrand SPF 50+ (JP/VN zomer is intens)",
+      "type": "BUY"
+     },
+     {
+      "id": "hats",
+      "text": "Petten/hoeden voor iedereen",
+      "type": "VERIFY"
+     },
+     {
+      "id": "water-bottles",
+      "text": "Herbruikbare waterflessen (JP kraanwater = veilig)",
+      "type": "BUY"
+     },
+     {
+      "id": "electrolytes",
+      "text": "Electrolyt-tabletten (ORS/Dioralyte)",
+      "type": "BUY"
+     },
+     {
+      "id": "mosquito",
+      "text": "Muggenspray met DEET voor Vietnam (Hanoi/Ninh Binh)",
+      "type": "BUY"
+     },
+     {
+      "id": "pharmacy",
+      "text": "Reisapotheek: paracetamol, ibuprofen, diarreeremmers, pleisters",
+      "type": "BUY"
+     },
+     {
+      "id": "prescription",
+      "text": "Voorschriften/medicatie meenemen incl. dokterverklaring",
+      "type": "VERIFY"
+     },
+     {
+      "id": "vax",
+      "text": "Vaccinaties checken bij GGD/huisarts (Hep A, DTP up to date)",
+      "type": "VERIFY"
+     }
+    ]
+   },
+   {
+    "id": "packing",
+    "label": "Inpakken",
+    "icon": "🎒",
+    "items": [
+     {
+      "id": "clothing",
+      "text": "Lichtgewicht ademende zomerkleding (JP/VN = warm + vochtig)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "rain",
+      "text": "Compacte regenjas/paraplu (VN augustus = regenseizoen)",
+      "type": "BUY"
+     },
+     {
+      "id": "shoes",
+      "text": "Comfortabele wandelschoenen (veel lopen)",
+      "type": "VERIFY"
+     },
+     {
+      "id": "sandals",
+      "text": "Sandalen/slippers voor strand + hotel",
+      "type": "VERIFY"
+     },
+     {
+      "id": "temple",
+      "text": "Bedekte schouders/knieën voor tempels/schrijnen",
+      "type": "VERIFY"
+     },
+     {
+      "id": "swim",
+      "text": "Zwemkleding voor My Khe strand + hotels",
+      "type": "VERIFY"
+     },
+     {
+      "id": "daybag",
+      "text": "Compacte rugzak voor dagtochten",
+      "type": "VERIFY"
+     },
+     {
+      "id": "laundry",
+      "text": "Was-strategie: hotels Kyoto/HAIAN hebben wasserij",
+      "type": "VERIFY"
+     },
+     {
+      "id": "baggage-vj",
+      "text": "Bagage-check VietJet: 20 kg pp ruimbagage — niet overschrijden!",
+      "type": "VERIFY"
+     }
+    ]
+   },
+   {
+    "id": "before",
+    "label": "Vóór vertrek",
+    "icon": "⏰",
+    "items": [
+     {
+      "id": "d30",
+      "text": "30 dagen: reisverzekering, vaccinaties, paspoorten checken",
+      "type": "TO_DO"
+     },
+     {
+      "id": "d14",
+      "text": "14 dagen: eSIM bestellen, apps installeren, Shinkansen boeken",
+      "type": "TO_DO"
+     },
+     {
+      "id": "d7",
+      "text": "7 dagen: inpakken, boarding passes klaar, Vietnam DAC verifiëren",
+      "type": "TO_DO"
+     },
+     {
+      "id": "d2",
+      "text": "48u: online check-in MU772, koffers wegen (VJ: 20 kg pp)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "d0",
+      "text": "Vertrekdag: paspoorten + tickets + Wallet-passen, ATM voor JPY-cash bij NRT",
+      "type": "TO_DO"
+     }
+    ]
+   },
+   {
+    "id": "arr-jp",
+    "label": "Aankomst Japan (18 jul)",
+    "icon": "🇯🇵",
+    "items": [
+     {
+      "id": "aj-1",
+      "text": "Immigratie: Visit Japan Web QR-code vooraf invullen (~1 week vooraf)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "aj-2",
+      "text": "eSIM Japan activeren bij landing Narita",
+      "type": "TO_DO"
+     },
+     {
+      "id": "aj-3",
+      "text": "ATM 7-Eleven Narita: ¥20.000-30.000 pinnen",
+      "type": "TO_DO"
+     },
+     {
+      "id": "aj-4",
+      "text": "N'EX naar Shinjuku (~85 min) of Airport Limousine bus",
+      "type": "TO_DO"
+     },
+     {
+      "id": "aj-5",
+      "text": "Suica-kaarten laden bij aankomst",
+      "type": "TO_DO"
+     }
+    ]
+   },
+   {
+    "id": "arr-vn",
+    "label": "Aankomst Vietnam (30 jul)",
+    "icon": "🇻🇳",
+    "items": [
+     {
+      "id": "av-1",
+      "text": "Digital Arrival Card ingevuld tonen bij immigratie",
+      "type": "VERIFY"
+     },
+     {
+      "id": "av-2",
+      "text": "eSIM Vietnam activeren (of extra pack toevoegen aan bestaande)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "av-3",
+      "text": "Grab-app openen voor taxi Noi Bai → Oriental Jade (~$15, 40 min)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "av-4",
+      "text": "Cash pinnen bij ATM luchthaven (BIDV/Vietcombank)",
+      "type": "TO_DO"
+     },
+     {
+      "id": "av-5",
+      "text": "Muggenspray gebruiken vanaf eerste avond",
+      "type": "TO_DO"
+     }
+    ]
+   }
+  ]
+ },
+ "flight_gaps": [
+  "Terminal-nummers meeste vluchten niet bevestigd",
+  "Outbound-vluchttijden AMS→PVG en PVG→NRT komen uit workbook (niet uit primair betalingsdocument)",
+  "MU282/MU771 vluchtduur = indicatief",
+  "MU282/MU771 stoelen nog niet toegewezen"
  ]
 }
