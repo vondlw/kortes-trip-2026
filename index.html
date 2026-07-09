@@ -485,6 +485,67 @@ html{scroll-behavior:smooth}
 .coord-badge.VERIFIED{background:rgba(16,185,129,.15);color:#6ee7b7}
 .coord-badge.APPROXIMATE{background:rgba(245,158,11,.15);color:#fcd34d}
 .coord-badge.MISSING{background:rgba(239,68,68,.15);color:#fca5a5}
+
+/* CHECKLIST V2 — Interactive */
+
+.ess-check{appearance:none;-webkit-appearance:none;background:transparent;border:2px solid var(--border2);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;position:relative;transition:all .15s}
+.ess-check:checked{background:var(--ok);border-color:var(--ok)}
+.ess-check:checked::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #052e13;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.ess-check:disabled{opacity:.4;cursor:not-allowed}
+.ess-item label,label.ess-item{display:flex;align-items:center;gap:12px;width:100%}
+
+.ess-header{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(59,130,246,.05));border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:14px}
+.ess-header-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.ess-header-num{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.ess-header-num b{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.ess-header-num span{font-size:13px;color:var(--muted)}
+.ess-header-pct{margin-left:auto;font-size:20px;font-weight:800;color:var(--ok)}
+.ess-header-bar{height:6px;background:var(--panel3);border-radius:3px;margin-top:10px;overflow:hidden}
+.ess-header-bar-fill{height:100%;background:linear-gradient(90deg,var(--ok),#34d399);transition:width .3s ease}
+.ess-header-counts{display:flex;gap:12px;font-size:12px;margin-top:8px;color:var(--muted)}
+.ess-header-counts b{color:var(--ink);font-weight:700}
+.ess-filters{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.ess-filter{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s}
+.ess-filter:hover{color:var(--ink);border-color:var(--border2)}
+.ess-filter.active{background:var(--planned);border-color:var(--planned);color:#fff}
+.ess-reset-wrap{margin-top:16px;text-align:center}
+.ess-reset-btn{background:transparent;color:var(--muted);border:1px solid var(--border);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer}
+.ess-reset-btn:hover{color:var(--danger);border-color:var(--danger)}
+/* Bigger tap target */
+.ess-item{padding:12px 16px;min-height:52px;cursor:pointer;transition:background .1s}
+.ess-item:hover{background:var(--panel2)}
+.ess-item:focus-within{outline:2px solid var(--accent);outline-offset:-2px}
+.ess-check{width:26px;height:26px}
+.ess-check:focus{outline:2px solid var(--accent);outline-offset:2px}
+.ess-status-badge{
+  font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 7px;border-radius:4px;white-space:nowrap;margin-left:auto;
+}
+.ess-status-badge.todo{background:rgba(148,163,184,.15);color:var(--ink2)}
+.ess-status-badge.done{background:var(--ok);color:#052e13}
+.ess-item.done .ess-text{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(148,163,184,.5)}
+/* Modal */
+.ess-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.ess-modal-backdrop.open{display:flex}
+.ess-modal{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;max-width:400px;width:100%}
+.ess-modal h3{margin:0 0 8px;font-size:16px;font-weight:800}
+.ess-modal p{margin:0 0 16px;font-size:13px;color:var(--ink2)}
+.ess-modal-actions{display:flex;gap:8px;justify-content:flex-end}
+.ess-modal-btn{padding:10px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid var(--border2)}
+.ess-modal-btn.cancel{background:var(--panel2);color:var(--ink)}
+.ess-modal-btn.confirm{background:var(--danger);color:#fff;border-color:var(--danger)}
+
+.ess-sync-badge{display:inline-block;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.ess-sync-badge.local{background:var(--panel3);color:var(--muted)}
+.ess-sync-badge.signed-out{background:rgba(245,158,11,.15);color:#fcd34d;cursor:pointer}
+.ess-sync-badge.syncing{background:rgba(59,130,246,.15);color:#93c5fd}
+.ess-sync-badge.synced{background:rgba(16,185,129,.15);color:#6ee7b7}
+.ess-sync-badge.offline{background:rgba(239,68,68,.15);color:#fca5a5}
+.ess-login-box{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px;display:none}
+.ess-login-box.show{display:block}
+.ess-login-box input{width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-size:14px;margin:8px 0}
+.ess-login-box button{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer}
+.ess-attribution{font-size:10px;color:var(--muted);margin-left:8px;font-style:italic}
 </style>
 </head>
 <body>
@@ -612,10 +673,36 @@ html{scroll-behavior:smooth}
   <div class="section" style="margin-top:8px">
     <div class="section-head">
       <h2 class="section-title">Reisbenodigdheden</h2>
-      <div class="section-sub" id="essProgress"></div>
+    </div>
+    <div class="ess-header" id="essHeader"></div>
+    <div id="essSyncBadge" class="ess-sync-badge local" onclick="handleSyncBadgeClick()"></div>
+    <div class="ess-login-box" id="essLoginBox">
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Inloggen om te synchroniseren met je gezin</div>
+      <div style="font-size:12px;color:var(--muted)">Je krijgt een magic link per e-mail — geen wachtwoord nodig.</div>
+      <input type="email" id="essLoginEmail" placeholder="jouw@email.com" autocomplete="email">
+      <button onclick="submitMagicLink()">Stuur magic link</button>
+      <div id="essLoginMsg" style="font-size:12px;margin-top:8px;color:var(--muted)"></div>
     </div>
     <div class="ess-note" id="essNote"></div>
+    <div class="ess-filters" id="essFilters" role="tablist">
+      <button class="ess-filter active" data-filter="all" role="tab">Alles</button>
+      <button class="ess-filter" data-filter="todo" role="tab">Nog doen</button>
+      <button class="ess-filter" data-filter="done" role="tab">Gereed</button>
+    </div>
     <div id="essentials"></div>
+    <div class="ess-reset-wrap">
+      <button class="ess-reset-btn" onclick="confirmResetChecklist()">Checklist resetten</button>
+    </div>
+  </div>
+  <div class="ess-modal-backdrop" id="essModal" role="dialog" aria-modal="true" aria-labelledby="essModalTitle">
+    <div class="ess-modal">
+      <h3 id="essModalTitle">Checklist resetten?</h3>
+      <p>Weet je zeker dat je alle afgevinkte items wilt resetten? Dit kan niet ongedaan gemaakt worden.</p>
+      <div class="ess-modal-actions">
+        <button class="ess-modal-btn cancel" onclick="closeResetModal()">Annuleren</button>
+        <button class="ess-modal-btn confirm" onclick="doResetChecklist()">Resetten</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -657,6 +744,7 @@ const DEST_META={
   'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
 };
 
+if(window.KortesSync) window.KortesSync.init();
 fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
   document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Kan gegevens niet laden</h1><div class="hero-meta">Zet beide bestanden in dezelfde map.</div></div>';
 });
@@ -1091,45 +1179,181 @@ function renderStays(D){
   }).join('');
 }
 
-function renderEssentials(D){
-  const E=D.essentials;
-  document.getElementById('essNote').textContent = E.note_persistence;
-  const state=JSON.parse(localStorage.getItem('essState')||'{}');
-  let total=0,done=0;
-  E.categories.forEach(c=>c.items.forEach(i=>{total++;if(state[i.id]||i.type==='DONE')done++}));
-  const pct=Math.round(done/total*100);
-  document.getElementById('essProgress').innerHTML=`<span class="ess-progress">${done}/${total} <span class="ess-progress-bar"><span class="ess-progress-fill" style="width:${pct}%"></span></span></span>`;
+const CHECKLIST_KEY = 'kortes-trip-2026-checklist-v1';
+let ESS_FILTER = 'all';
+let ESS_DATA = null;
 
-  document.getElementById('essentials').innerHTML=E.categories.map(cat=>{
-    const catDone=cat.items.filter(i=>state[i.id]||i.type==='DONE').length;
-    const itemsHtml=cat.items.map(i=>{
-      const isDone=state[i.id]||i.type==='DONE';
-      return `<div class="ess-item ${isDone?'done':''}" data-id="${i.id}">
-        <button class="ess-check ${isDone?'done':''}" onclick="toggleEssItem('${i.id}')"></button>
-        <div class="ess-text">${i.text}</div>
+function loadChecklistState(){
+  // Try new format first
+  try{
+    const raw = localStorage.getItem(CHECKLIST_KEY);
+    if(raw){ return JSON.parse(raw); }
+  }catch(e){}
+  // Migrate from legacy 'essState' (boolean map)
+  try{
+    const oldRaw = localStorage.getItem('essState');
+    if(oldRaw){
+      const oldState = JSON.parse(oldRaw);
+      const migrated = {};
+      Object.keys(oldState).forEach(k=>{
+        if(oldState[k]){ migrated[k] = { status:'DONE', completedAt: new Date().toISOString() }; }
+      });
+      localStorage.setItem(CHECKLIST_KEY, JSON.stringify(migrated));
+      return migrated;
+    }
+  }catch(e){}
+  return {};
+}
+
+function saveChecklistState(state){
+  try{ localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+function isItemDone(item, state){
+  if(item.type === 'DONE') return true; // source-declared DONE always counts
+  if(window.KortesSync && window.KortesSync.isEnabled() && window.KortesSync.isSignedIn()){
+    const shared = window.KortesSync.getSharedState()[item.id];
+    if(shared) return shared.status === 'DONE';
+  }
+  const s = state[item.id];
+  return s && s.status === 'DONE';
+}
+
+function isItemNA(item, state){
+  const s = state[item.id];
+  return s && s.status === 'NOT_APPLICABLE';
+}
+
+function getCompletedByLabel(item){
+  if(!(window.KortesSync && window.KortesSync.isEnabled() && window.KortesSync.isSignedIn())) return '';
+  const shared = window.KortesSync.getSharedState()[item.id];
+  if(shared && shared.status === 'DONE' && shared.completed_by_name){
+    return `<span class="ess-attribution">Afgevinkt door ${shared.completed_by_name}</span>`;
+  }
+  return '';
+}
+
+function renderEssentials(D){
+  const E = D.essentials;
+  ESS_DATA = D;
+  document.getElementById('essNote').textContent = 'Je voortgang wordt op dit apparaat en in deze browser bewaard.';
+  const state = loadChecklistState();
+
+  // Totals (exclude NOT_APPLICABLE from denominator)
+  let total=0, done=0, todo=0;
+  E.categories.forEach(c => c.items.forEach(i => {
+    if(isItemNA(i, state)) return;
+    total++;
+    if(isItemDone(i, state)) done++; else todo++;
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+
+  document.getElementById('essHeader').innerHTML = `
+    <div class="ess-header-title">Reisvoorbereiding</div>
+    <div class="ess-header-num">
+      <b>${done}</b><span>van ${total} gereed</span>
+      <div class="ess-header-pct">${pct}%</div>
+    </div>
+    <div class="ess-header-bar"><div class="ess-header-bar-fill" style="width:${pct}%"></div></div>
+    <div class="ess-header-counts">
+      <span>Nog doen: <b>${todo}</b></span>
+      <span>Gereed: <b>${done}</b></span>
+    </div>
+  `;
+
+  // Filter categories/items
+  document.getElementById('essentials').innerHTML = E.categories.map(cat => {
+    const filteredItems = cat.items.filter(i => {
+      if(ESS_FILTER === 'todo') return !isItemDone(i, state);
+      if(ESS_FILTER === 'done') return isItemDone(i, state);
+      return true;
+    });
+    if(filteredItems.length === 0) return '';
+
+    const catTotal = cat.items.filter(i => !isItemNA(i, state)).length;
+    const catDone = cat.items.filter(i => isItemDone(i, state)).length;
+    const isFullyDone = catDone === catTotal && catTotal > 0;
+
+    const itemsHtml = filteredItems.map(i => {
+      const done = isItemDone(i, state);
+      const na = isItemNA(i, state);
+      const statusBadge = done ? '<span class="ess-status-badge done">Gereed</span>' : '<span class="ess-status-badge todo">Nog doen</span>';
+      const attribution = getCompletedByLabel(i);
+      return `<label class="ess-item ${done?'done':''}" data-id="${i.id}" for="chk-${i.id}">
+        <input type="checkbox" id="chk-${i.id}" class="ess-check ${done?'done':''}" ${done?'checked':''} ${na?'disabled':''} aria-label="${i.text.replace(/"/g,'&quot;')}" onchange="toggleEssItem('${i.id}')">
+        <div class="ess-text">${i.text}${attribution}</div>
         <span class="ess-type ${i.type}">${i.type.replace('_',' ')}</span>
-      </div>`;
+        ${statusBadge}
+      </label>`;
     }).join('');
-    return `<div class="ess-cat" ${catDone<cat.items.length?'':'style="opacity:.65"'}>
-      <div class="ess-cat-head" onclick="this.parentElement.classList.toggle('open')">
+
+    return `<div class="ess-cat ${isFullyDone?'style="opacity:.7"':''}" ${isFullyDone?'style="opacity:.7"':''}>
+      <div class="ess-cat-head" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0" aria-expanded="false">
         <div class="ess-cat-name"><span class="ess-cat-icon">${cat.icon}</span>${cat.label}</div>
         <div>
-          <span class="ess-cat-count">${catDone}/${cat.items.length}</span>
+          <span class="ess-cat-count">${catDone} / ${catTotal} gereed</span>
           <span class="ess-cat-toggle">▶</span>
         </div>
       </div>
       <div class="ess-items">${itemsHtml}</div>
     </div>`;
-  }).join('');
+  }).filter(Boolean).join('');
 }
 
 function toggleEssItem(id){
-  const state=JSON.parse(localStorage.getItem('essState')||'{}');
-  state[id]=!state[id];
-  localStorage.setItem('essState',JSON.stringify(state));
-  // Re-render only essentials
-  fetch('dashboard-data.json').then(r=>r.json()).then(D=>renderEssentials(D));
+  const state = loadChecklistState();
+  const wasDone = state[id] && state[id].status === 'DONE';
+  const nowDone = !wasDone;
+
+  if(nowDone){ state[id] = { status: 'DONE', completedAt: new Date().toISOString() }; }
+  else { delete state[id]; }
+  saveChecklistState(state);
+
+  if(window.KortesSync && window.KortesSync.isEnabled() && window.KortesSync.isSignedIn()){
+    window.KortesSync.setItem(id, nowDone);
+  }
+
+  if(ESS_DATA) renderEssentials(ESS_DATA);
+}
+
+window.onSharedChecklistUpdated = function(){ if(ESS_DATA) renderEssentials(ESS_DATA); };
+
+function handleSyncBadgeClick(){
+  if(!window.KortesSync || !window.KortesSync.isEnabled()) return;
+  if(!window.KortesSync.isSignedIn()){
+    document.getElementById('essLoginBox').classList.toggle('show');
+  }
+}
+
+async function submitMagicLink(){
+  const email = document.getElementById('essLoginEmail').value.trim();
+  const msg = document.getElementById('essLoginMsg');
+  if(!email){ msg.textContent = 'Vul een e-mailadres in.'; return; }
+  msg.textContent = 'Bezig met versturen...';
+  const { error } = await window.KortesSync.requestMagicLink(email);
+  msg.textContent = error ? ('Fout: ' + error.message || error) : 'Check je mailbox voor de magic link.';
+}
+
+// Restyle: hide native checkbox visually but keep it interactive
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.ess-filter').forEach(f => {
+    f.addEventListener('click', () => {
+      document.querySelectorAll('.ess-filter').forEach(x => x.classList.remove('active'));
+      f.classList.add('active');
+      ESS_FILTER = f.dataset.filter;
+      if(ESS_DATA) renderEssentials(ESS_DATA);
+    });
+  });
+});
+
+function confirmResetChecklist(){ document.getElementById('essModal').classList.add('open'); }
+function closeResetModal(){ document.getElementById('essModal').classList.remove('open'); }
+function doResetChecklist(){
+  try{ localStorage.removeItem(CHECKLIST_KEY); localStorage.removeItem('essState'); }catch(e){}
+  closeResetModal();
+  if(ESS_DATA) renderEssentials(ESS_DATA);
 }
 </script>
+<script src="sync.js"></script>
 </body>
 </html>
