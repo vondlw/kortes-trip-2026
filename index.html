@@ -867,7 +867,7 @@ input, select, textarea{ font-size: 16px !important; }
   </div>
 </div>
 
-<nav class="botnav">
+<nav class="botnav" id="botnavScroll">
   <button data-view="today" class="active">
     <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7 2 2v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
     Overzicht
@@ -880,15 +880,32 @@ input, select, textarea{ font-size: 16px !important; }
     <svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
     Transfers
   </button>
+  <button data-view="stays">
+    <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1"/></svg>
+    Hotels
+  </button>
   <button data-view="decisions">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
     Besluit
+  </button>
+  <button data-view="food">
+    <svg viewBox="0 0 24 24"><path d="M4 3v18M4 12h6M10 3v18M20 3v18M18 3v9a3 3 0 0 0 3-3V3"/></svg>
+    Restaurants
+  </button>
+  <button data-view="shopping">
+    <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+    Shopping
+  </button>
+  <button data-view="events">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="2"/></svg>
+    Events
   </button>
   <button data-view="essentials">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3l8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
     Checklist
   </button>
 </nav>
+<div class="botnav-fade"></div>
 
 <script src="sync.js"></script>
 <script>
