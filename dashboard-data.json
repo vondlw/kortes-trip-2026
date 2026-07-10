@@ -2729,5 +2729,187 @@
    "impact": "23 juli aankomst-anker = 12:25 Hakone-Yumoto (later dan eerder aanname); dagplan herzien: alleen Ropeway+Ōwakudani haalbaar vóór diner-anker; Lake Ashi vervalt; bagage-forwarding same-day niet betrouwbaar (cutoff ~12:00-12:30)",
    "preserved": "Alle eerdere planningsvarianten in _history_days indien nodig"
   }
+ ],
+ "shopping": {
+  "Tokyo": [
+   {
+    "name": "Nintendo TOKYO + Pokémon Center (Shibuya Parco 6F)",
+    "area": "Shibuya",
+    "type": "Gaming/officieel",
+    "why": "Officiële Nintendo-retail zonder USJ nodig; zelfde verdieping als Capcom/Jump-winkels"
+   },
+   {
+    "name": "Akihabara (Super Potato, GiGO, Taito)",
+    "area": "Akihabara",
+    "type": "Gaming/retro/elektronica",
+    "why": "Retrogames, arcades, elektronica; hitteproof indoor"
+   },
+   {
+    "name": "Don Quijote Shinjuku",
+    "area": "Shinjuku",
+    "type": "Alles-in-één/souvenirs",
+    "why": "24u open, chaotisch-leuk, snacks/cosmetica/gadgets; vlak bij hotel"
+   },
+   {
+    "name": "Isetan Shinjuku",
+    "area": "Shinjuku",
+    "type": "Department store",
+    "why": "Kwaliteitsvol, food hall in kelder de moeite waard"
+   },
+   {
+    "name": "Takeshita-dori",
+    "area": "Harajuku",
+    "type": "Teen streetwear/fashion",
+    "why": "Jongerenmode, crepes, betaalbaar; sterke teen-fit"
+   },
+   {
+    "name": "Kappabashi keukenstraat",
+    "area": "Asakusa",
+    "type": "Keukenspullen/plastic food",
+    "why": "Unieke souvenirs (plastic sushi-magneten etc.), vlak bij Sumo-anker"
+   }
+  ],
+  "Kyoto": [
+   {
+    "name": "Nintendo KYOTO (Takashimaya)",
+    "area": "Downtown",
+    "type": "Gaming/officieel",
+    "why": "10 min van hotel; regenvangnet"
+   },
+   {
+    "name": "Nishiki Market",
+    "area": "Downtown",
+    "type": "Food/souvenirs",
+    "why": "1 blok van hotel; lokale specialiteiten, messenwinkels, thee"
+   },
+   {
+    "name": "Kyoto Int. Manga Museum shop",
+    "area": "Downtown",
+    "type": "Pop-culture",
+    "why": "Manga/merchandise, gecombineerd met museumbezoek"
+   }
+  ],
+  "Osaka": [
+   {
+    "name": "Den Den Town",
+    "area": "Namba",
+    "type": "Gaming/anime/retro",
+    "why": "Osaka's Akihabara, 10 min van hotel"
+   },
+   {
+    "name": "Nintendo OSAKA + Pokémon Center (Daimaru Umeda)",
+    "area": "Umeda",
+    "type": "Gaming/officieel",
+    "why": "Legitieme Nintendo-fix zonder USJ"
+   },
+   {
+    "name": "Kuromon Ichiba Market",
+    "area": "Namba",
+    "type": "Food",
+    "why": "5 min van hotel; verse zeevruchten, streetfood-shopping"
+   },
+   {
+    "name": "Shinsaibashi-suji",
+    "area": "Shinsaibashi",
+    "type": "Mode/winkelstraat",
+    "why": "Overdekte winkelstraat, alle grote merken"
+   }
+  ],
+  "Hanoi": [
+   {
+    "name": "Old Quarter 36 Streets",
+    "area": "Hoan Kiem",
+    "type": "Ambacht/souvenirs",
+    "why": "Elke straat = eigen ambacht (zilver, zijde, etc.); 5 min van hotel"
+   },
+   {
+    "name": "Dong Xuan Market",
+    "area": "Old Quarter",
+    "type": "Lokale markt",
+    "why": "Grootste overdekte markt Hanoi, authentiek"
+   },
+   {
+    "name": "Old Town Night Market",
+    "area": "Old Quarter",
+    "type": "Avondmarkt (vr-zo)",
+    "why": "7 min van hotel; kleding, souvenirs, streetfood"
+   }
+  ],
+  "Da Nang / Hoi An": [
+   {
+    "name": "Hoi An kleermakers",
+    "area": "Hoi An Ancient Town",
+    "type": "Maatkleding",
+    "why": "Beroemd om 24u maatpakken/jurken; unieke reisherinnering"
+   },
+   {
+    "name": "Han Market",
+    "area": "Da Nang",
+    "type": "Lokale markt",
+    "why": "Verse producten + souvenirs, centraal Da Nang"
+   },
+   {
+    "name": "Hoi An Night Market",
+    "area": "Hoi An riverside",
+    "type": "Avondmarkt/lantaarns",
+    "why": "Gecombineerd met lantaarn-avond (3+4 aug plan)"
+   }
+  ],
+  "HCMC": [
+   {
+    "name": "Ben Thanh Market",
+    "area": "District 1",
+    "type": "Souvenirs/lokale markt",
+    "why": "Iconische markt, onderhandelen verwacht"
+   },
+   {
+    "name": "Saigon Square",
+    "area": "District 1",
+    "type": "Mode/namaakmerken",
+    "why": "Budget-shopping, populair bij toeristen"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-07-20",
+   "name": "Marine Day (海の日)",
+   "city": "Tokyo",
+   "type": "Nationale feestdag",
+   "impact": "Lang weekend start; drukker bij attracties; Sumo Club-anker is indoor dus prima gepland op deze dag",
+   "status": "FACT"
+  },
+  {
+   "date": "2026-07-18 t/m 2026-08",
+   "name": "Japanse schoolzomervakantie start",
+   "city": "Heel Japan",
+   "type": "Seizoenseffect",
+   "impact": "Attracties structureel drukker vanaf 18 jul t/m eind augustus (teamLab, Shibuya, arcades)",
+   "status": "FACT"
+  },
+  {
+   "date": "2026-07-24",
+   "name": "Gion Matsuri — Ato Matsuri parade",
+   "city": "Kyoto",
+   "type": "Festival (Ato-parade 9:30-11:50)",
+   "impact": "Valt op jullie Kyoto-aankomstdag; hotel Resol ligt in het festivalgebied; zie master-itinerary voor scenario A/B/C (bagage/timing)",
+   "status": "FACT"
+  },
+  {
+   "date": "2026-07-24",
+   "name": "Gion Matsuri — Mikoshi-terugkeer naar Yasaka",
+   "city": "Kyoto",
+   "type": "Festival (avond ~17:00-20:00)",
+   "impact": "Valt samen met de al geplande Gion-avond",
+   "status": "FACT"
+  },
+  {
+   "date": "2026-07-31 t/m 2026-08-02",
+   "name": "Weekend (vr-zo) — Dragon Bridge fire+water show mogelijk",
+   "city": "Da Nang",
+   "type": "Terugkerend weekend-spektakel (vr/za/zo 21:00)",
+   "impact": "Enige haalbare venster binnen jullie verblijf: zo 2 aug aankomstavond (strak, zie C6-beslissing)",
+   "status": "FACT"
+  }
  ]
 }
