@@ -1183,6 +1183,7 @@ function renderStays(D){
 const CHECKLIST_KEY = 'kortes-trip-2026-checklist-v1';
 let ESS_FILTER = 'all';
 let ESS_DATA = null;
+let ESS_OPEN_CATS = new Set();
 
 function loadChecklistState(){
   // Try new format first
@@ -1281,15 +1282,16 @@ function renderEssentials(D){
       const statusBadge = done ? '<span class="ess-status-badge done">Gereed</span>' : '<span class="ess-status-badge todo">Nog doen</span>';
       const attribution = getCompletedByLabel(i);
       return `<label class="ess-item ${done?'done':''}" data-id="${i.id}" for="chk-${i.id}">
-        <input type="checkbox" id="chk-${i.id}" class="ess-check ${done?'done':''}" ${done?'checked':''} ${na?'disabled':''} aria-label="${i.text.replace(/"/g,'&quot;')}" onchange="toggleEssItem('${i.id}')">
+        <input type="checkbox" id="chk-${i.id}" class="ess-check ${done?'done':''}" ${done?'checked':''} ${na?'disabled':''} aria-label="${i.text.replace(/"/g,'&quot;')}" onchange="toggleEssItem('${i.id}')" onclick="event.stopPropagation()">
         <div class="ess-text">${i.text}${attribution}</div>
         <span class="ess-type ${i.type}">${i.type.replace('_',' ')}</span>
         ${statusBadge}
       </label>`;
     }).join('');
 
-    return `<div class="ess-cat ${isFullyDone?'style="opacity:.7"':''}" ${isFullyDone?'style="opacity:.7"':''}>
-      <div class="ess-cat-head" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0" aria-expanded="false">
+    const isOpen = ESS_OPEN_CATS.has(cat.id);
+    return `<div class="ess-cat ${isOpen?'open':''}" ${isFullyDone?'style="opacity:.7"':''}>
+      <div class="ess-cat-head" onclick="toggleEssCategory('${cat.id}')" role="button" tabindex="0" aria-expanded="${isOpen}">
         <div class="ess-cat-name"><span class="ess-cat-icon">${cat.icon}</span>${cat.label}</div>
         <div>
           <span class="ess-cat-count">${catDone} / ${catTotal} gereed</span>
@@ -1299,6 +1301,12 @@ function renderEssentials(D){
       <div class="ess-items">${itemsHtml}</div>
     </div>`;
   }).filter(Boolean).join('');
+}
+
+function toggleEssCategory(catId){
+  if(ESS_OPEN_CATS.has(catId)) ESS_OPEN_CATS.delete(catId);
+  else ESS_OPEN_CATS.add(catId);
+  if(ESS_DATA) renderEssentials(ESS_DATA);
 }
 
 function toggleEssItem(id){
