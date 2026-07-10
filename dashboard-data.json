@@ -905,6 +905,35 @@
    "route": "NGO-KYO",
    "journey": "HAKONE_SHINKANSEN",
    "type": "shinkansen"
+  },
+  {
+   "seg": 103,
+   "flight": "PRIVATE TRANSFER",
+   "airline": "Chinichi (via Booking.com Transfers)",
+   "airline_code": "TRF",
+   "type": "transfer",
+   "dep": "~70 min na landing",
+   "arr": "—",
+   "date": "2026-07-18",
+   "arr_date": "2026-07-18",
+   "dep_iata": "NRT",
+   "arr_iata": "SJK",
+   "dep_city": "Narita Airport",
+   "arr_city": "Shinjuku",
+   "dep_airport": "Narita International Airport (NRT), 1-1 Furugome, Narita, Chiba 282-0004",
+   "arr_airport": "Nishitetsu Inn Shinjuku, 7-chōme-23-4 Nishishinjuku, Shinjuku City, Tokyo 160-0023",
+   "duration": "~70 min (rit); chauffeur wacht tot 45 min bij vertraging",
+   "baggage": "Max 4 passagiers + bagage (privé-voertuig)",
+   "checkin": "Chauffeur bij Aankomsthal na paspoortcontrole/bagagehal, bordje met naam",
+   "seats": "Privé-transfer, max 4 pax",
+   "ref": "56•••••39",
+   "ref_masked": "56•••••39",
+   "status": "CONFIRMED",
+   "verified": "Booking.com Transfers bevestiging",
+   "route": "NRT-SJK",
+   "journey": "ARRIVAL_TRANSFER",
+   "note": "Flight-tracking gekoppeld aan MU271 — ophaaltijd past zich automatisch aan bij vertraging. Gratis annuleren tot 24u vóór de rit. Totaalprijs €84,85 (incl. 10% Genius-korting).",
+   "cost_eur": 84.85
   }
  ],
  "anchors": [
@@ -926,20 +955,6 @@
   }
  ],
  "urgent_actions": [
-  {
-   "id": "U-03",
-   "item": "Romancecar Shinjuku→Hakone GEBOEKT ✓ + Shinkansen Odawara→Kyoto GEBOEKT ✓",
-   "urgency": "GESLOTEN",
-   "deadline": "deze week",
-   "note": "Beide 23-24 juli rail-transfers zijn nu CONFIRMED+PAID. Alleen basistarief Odakyu-lijn (~¥5.080) nog open — via IC-kaart of Hakone Freepass."
-  },
-  {
-   "id": "U-12",
-   "item": "Bagage Tokyo→Kyoto (Gion Matsuri-dag) — takkyubin of lockers",
-   "urgency": "MEDIUM-HOOG",
-   "deadline": "vóór jul 22",
-   "note": "Kies scenario vóór 22 jul"
-  },
   {
    "id": "U-11",
    "item": "Vietnam Digital Arrival Card invullen",
@@ -1053,13 +1068,13 @@
   {
    "id": "OD5",
    "q": "HCMC donderdag 6 augustus — Cu Chi Tunnels of War Remnants + Reunification Palace?",
-   "recommendation": "Cu Chi ochtend + licht museum middag",
+   "recommendation": "Relaxte dag: shopping + lichte opties; Cu Chi alleen als er nog energie is",
    "confidence": "gemiddeld",
-   "why": "Cu Chi = interactieve tunnels + geschiedenis, sterke teen-fit; War Remnants = zwaardere emotionele stof; laatste volle dag met late-avondvertrek naar SGN.",
+   "why": "Gezinswens: na 3 weken reizen is er in HCMC niet veel puf meer voor een volledige excursie. Cu Chi Ben Duoc blijft een sterke optie qua inhoud (authentieker dan Ben Dinh), maar vereist een vroege vertrektijd (7:30) en een volledige ochtend — dat botst met de wens voor een rustige afsluiting. Shopping (Ben Thanh, Saigon Square) heeft van nature een laag tempo en past beter bij het einde van een lange reis. Cu Chi blijft als Plan B staan voor als het gezin ter plekke toch energie heeft.",
    "options": [
-    "Cu Chi Tunnels",
-    "War Remnants + Reunification Palace",
-    "Beide (dag splitsen)"
+    "Relaxte dag: shopping + lichte opties (aanbevolen)",
+    "Cu Chi Ben Duoc (Plan B)",
+    "War Remnants + Reunification Palace (lichter alternatief)"
    ],
    "deadline": "vóór aug 3"
   },
@@ -1095,12 +1110,15 @@
    "dest": "Tokyo",
    "hotel": "Nishitetsu Inn Shinjuku",
    "travel": "MU271 PVG→NRT arr 20:55; N'EX to Shinjuku",
-   "concept": "Aankomst — hotel + eenvoudig avondeten",
-   "planA": "Landen, hotel, slapen",
+   "concept": "Aankomst — privé-transfer naar hotel",
+   "planA": "Land NRT, paspoortcontrole + bagage, chauffeur met naambordje in Aankomsthal (privé-transfer CONFIRMED, ref 56••39) → ~70 min naar Nishitetsu Inn Shinjuku → inchecken → slapen",
    "status": "CONFIRMED logistics",
    "intensity": "laag",
    "cluster": "Shinjuku",
-   "hotel_ref": "Nishitetsu Inn Shinjuku"
+   "hotel_ref": "Nishitetsu Inn Shinjuku",
+   "anchors": [
+    "Privé-transfer NRT→Shinjuku CONFIRMED"
+   ]
   },
   {
    "d": 2,
@@ -1413,7 +1431,7 @@
    "concept": "Hanoi volle dag",
    "planA": {
     "morning": "Train Street koffie → Tempel van de Literatuur",
-    "afternoon": "Ho Chi Minh Mausoleum-gebied (open vr verifiëren) OF Vietnam Military History Museum (nieuw, teen-fit)",
+    "afternoon": "Ho Chi Minh Mausoleum-gebied (open vr verifiëren) OF Vietnam Military History Museum (nieuw, teen-fit) → Shopping-stop: North Face Factory Outlet (105 Hang Gai, 5 min van hotel) of Hang Dao-cluster voor Arc'teryx/outdoor-jassen",
     "evening": "Waterpoppenshow → diner cha ca la vong"
    },
    "planB": {
@@ -1423,7 +1441,8 @@
     "Let op: Mausoleum vrijdags dicht — verifiëren"
    ],
    "intensity": "gemiddeld",
-   "cluster": "Ba Dinh + Old Quarter"
+   "cluster": "Ba Dinh + Old Quarter",
+   "tips": "Old Quarter shopping combineert makkelijk met de middag: outdoor-outlets zitten letterlijk op loopafstand van het hotel (zie Shopping-tab voor adressen)."
   },
   {
    "d": 15,
@@ -1497,7 +1516,8 @@
    "swaps": [
     "Optie: kookles Hoi An middag",
     "Optie: fietstocht Tra Que-groentedorp"
-   ]
+   ],
+   "tips": "Bonus: Hoi An Old Town heeft ook goedkope Arc'teryx/outdoor-winkels (vaak goedkoper dan Hanoi) — combineer met de lantaarn-avond."
   },
   {
    "d": 18,
@@ -1541,11 +1561,13 @@
    "planA": {
     "morning": "HAIAN zwembad, uitchecken, lunch DAD",
     "afternoon": "Vlucht, hotel Rivergate",
-    "evening": "Ben Thanh-gebied, Nguyen Hue wandelstraat, rooftop bar"
+    "evening": "Ben Thanh-gebied, Nguyen Hue wandelstraat, rooftop bar",
+    "tips": "Grab vanaf DAD-luchthaven is betrouwbaarder dan een taxi van de standplaats; bestel de app al bij het ophalen van bagage."
    },
    "intensity": "gemiddeld",
    "cluster": "D1",
-   "hotel_ref": "Citizen Apartment, Rivergate"
+   "hotel_ref": "Citizen Apartment, Rivergate",
+   "tips": "Laatste Vietnam-stad — geen jetlag-zorgen meer nodig. District 1 is compact: veel loopbaar tussen Ben Thanh, Nguyen Hue en de rivier."
   },
   {
    "d": 20,
@@ -1553,24 +1575,33 @@
    "weekday": "do",
    "dest": "Ho Chi Minh City",
    "hotel": "HCMC",
-   "concept": "Cu Chi + stad (laatste volle dag)",
+   "concept": "Relaxte laatste dag: shopping + lichte museum-optie (Cu Chi optioneel)",
    "planA": {
-    "morning": "Cu Chi Tunnels tour (Ben Duoc) 07:30-13:30",
-    "afternoon": "Terug HCMC, lichte lunch",
-    "late_afternoon": "War Remnants Museum OF Reunification Palace",
-    "evening": "Afscheidsdiner Nguyen Hue",
-    "night": "Hotel uit ~23:00-23:30 → Grab naar SGN"
+    "theme": "Rustig tempo — laatste dag van 3 weken reizen",
+    "morning": "Uitslapen; ontbijt in appartement/rustig hotelontbijt",
+    "late_morning": "Ben Thanh Market + Saigon Square shopping (outdoor-merken, souvenirs) — rustig tempo, geen haast",
+    "afternoon": "Terug naar hotel, zwembad/rust Rivergate-complex; koffers alvast deels inpakken",
+    "late_afternoon": "Bitexco Skydeck (indoor, koel, 45-60 min) — optioneel, alleen als er nog puf is",
+    "evening": "Afscheidsdiner Nguyen Hue-gebied, vroeg beginnen",
+    "night": "Terug hotel ruim vóór 23:00 i.v.m. nachtvlucht"
    },
    "planB": {
-    "theme": "Rustige laatste dag: geen Cu Chi",
-    "concept": "Uitslapen, musea, spa"
+    "theme": "Cu Chi Ben Duoc (alleen als het gezin nog energie heeft)",
+    "morning": "07:30 ophalen → 2u rit → tunnels + Herdenkingstempel",
+    "afternoon": "~13:30 terug, rust",
+    "note": "Vroeg vertrek en een volledige ochtend excursie — overweeg dit alleen als iedereen nog fit is na 3 weken reizen"
    },
    "decisions": [
     "OD5"
    ],
    "intensity": "hoog",
    "cluster": "HCMC + excursie",
-   "warning": "MU282 vertrekt SGN 02:35 volgende ochtend → hotelvertrek ~23:00"
+   "swaps": [
+    "War Remnants Museum (lichter dan Cu Chi, 90 min, indoor)",
+    "Cu Chi Ben Dinh (korter dan Ben Duoc, dichterbij)"
+   ],
+   "tips": "Na 3 weken op reis is een rustige laatste dag vaak waardevoller dan nog een excursie erbij proppen. Shopping heeft een natuurlijk laag tempo — geen strak schema nodig.",
+   "warning": "Laatste avond: koffers uiterlijk 23:00 klaar i.v.m. nachtvlucht MU282 (SGN vertrek 02:35) — plan het diner niet te laat, maar de rest van de dag mag rustig."
   },
   {
    "d": 21,
@@ -2003,6 +2034,18 @@
    "connection_time": "3u 40m in PVG",
    "overnight": true,
    "note": "Overnacht deels aan boord; landing Tokyo Narita zaterdagavond 20:55"
+  },
+  {
+   "id": "ARRIVAL_TRANSFER",
+   "label": "Narita → Nishitetsu Inn Shinjuku (privé-transfer)",
+   "route": "NRT → Shinjuku hotel",
+   "flights": [
+    "PRIVATE TRANSFER"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false,
+   "note": "Aansluitend op MU271 (aankomst 20:55); chauffeur volgt vlucht real-time, wacht max 45 min."
   },
   {
    "id": "HAKONE_ARRIVAL",
@@ -2736,37 +2779,67 @@
     "name": "Nintendo TOKYO + Pokémon Center (Shibuya Parco 6F)",
     "area": "Shibuya",
     "type": "Gaming/officieel",
-    "why": "Officiële Nintendo-retail zonder USJ nodig; zelfde verdieping als Capcom/Jump-winkels"
+    "why": "Officiële Nintendo-retail zonder USJ nodig; zelfde verdieping als Capcom/Jump-winkels",
+    "address": "Shibuya PARCO 6F, 15-1 Udagawacho, Shibuya-ku, Tokyo 150-8377",
+    "hours": "10:00–21:00 (6e verdieping; rest van Parco 11:00–21:00)",
+    "description": "De eerste officiële, door Nintendo zelf beheerde winkel in Japan. Naast consoles en games vind je hier Tokyo-exclusieve merchandise, thematische zones voor Mario/Zelda/Splatoon/Animal Crossing/Kirby, en interactieve foto-opstellingen. Pokémon Center Shibuya zit in hetzelfde gebouw op dezelfde verdieping — twee winkels in één bezoek.",
+    "review_summary": "Bezoekers noemen vooral de exclusieve Tokyo-only items en de foto-mogelijkheden met personages als hoogtepunt; sommigen wijzen op beperkt-per-klant bij populaire artikelen om doorverkoop te voorkomen.",
+    "tips": "Ga vroeg (winkel opent 10:00) om de drukste uren te vermijden. Geen flash bij de displays."
    },
    {
     "name": "Akihabara (Super Potato, GiGO, Taito)",
     "area": "Akihabara",
     "type": "Gaming/retro/elektronica",
-    "why": "Retrogames, arcades, elektronica; hitteproof indoor"
+    "why": "Retrogames, arcades, elektronica; hitteproof indoor",
+    "address": "Akihabara Electric Town, Chiyoda-ku, Tokyo (rond Chuo-dori)",
+    "hours": "Meeste winkels 10:00–20:00/22:00; arcades vaak tot laat",
+    "description": "Tokyo's elektronica- en gamingwijk, ontstaan uit naoorlogse radioverkoop en uitgegroeid tot het epicentrum van gaming, anime en manga. Super Potato (retrogames, iconische 5e verdieping-ingang) en meerdere GiGO/Taito-arcadehallen liggen binnen loopafstand van elkaar.",
+    "review_summary": "Fans prijzen de dichtheid aan retro-vondsten en de sfeer van meerdere verdiepingen vol arcadekasten; drukte in het weekend wordt vaak genoemd.",
+    "tips": "Super Potato zit op de 5e verdieping — volg de gele trap met retro-personages."
    },
    {
     "name": "Don Quijote Shinjuku",
     "area": "Shinjuku",
     "type": "Alles-in-één/souvenirs",
-    "why": "24u open, chaotisch-leuk, snacks/cosmetica/gadgets; vlak bij hotel"
+    "why": "24u open, chaotisch-leuk, snacks/cosmetica/gadgets; vlak bij hotel",
+    "address": "Meerdere vestigingen in Shinjuku, o.a. Kabukicho 1-16-5",
+    "hours": "24 uur per dag",
+    "description": "Discount-warenhuisketen bekend om de volgestouwde gangpaden met alles van snacks, cosmetica en huishoudspullen tot kostuums en elektronica. De Shinjuku-vestiging is een van de grootste en drukste in de stad.",
+    "review_summary": "Reizigers noemen het overweldigend maar verslavend — ideaal voor laatste-avond-souvenirs en Japanse snacks die je nergens anders vindt.",
+    "tips": "24 uur open — handig na een late avond in Kabukicho."
    },
    {
     "name": "Isetan Shinjuku",
     "area": "Shinjuku",
     "type": "Department store",
-    "why": "Kwaliteitsvol, food hall in kelder de moeite waard"
+    "why": "Kwaliteitsvol, food hall in kelder de moeite waard",
+    "address": "3-14-1 Shinjuku, Shinjuku-ku, Tokyo",
+    "hours": "10:00–20:00 (varieert per afdeling)",
+    "description": "Een van Tokyo's meest gerenommeerde warenhuizen, bekend om de foodhall in de kelder (depachika) met tientallen premium bento- en dessertkraampjes, en hoogwaardige mode-afdelingen op de bovenverdiepingen.",
+    "review_summary": "De kelder-foodhall wordt breed geprezen als een van de beste van Tokyo — proeverij-achtige ervaring zonder dat je iets hoeft te kopen.",
+    "tips": "Ga na 19:00 voor afprijzingen op verse bento in de kelder."
    },
    {
     "name": "Takeshita-dori",
     "area": "Harajuku",
     "type": "Teen streetwear/fashion",
-    "why": "Jongerenmode, crepes, betaalbaar; sterke teen-fit"
+    "why": "Jongerenmode, crepes, betaalbaar; sterke teen-fit",
+    "address": "Takeshita-dori, Jingumae, Shibuya-ku, Tokyo (vanaf Harajuku Station)",
+    "hours": "Winkels doorgaans 10:00/11:00–20:00",
+    "description": "Een levendige, smalle winkelstraat vol betaalbare streetwear, kawaii-mode, crêpe-kraampjes en pop-up souvenirwinkels. Het epicentrum van Tokyo's jongerencultuur sinds de jaren 80.",
+    "review_summary": "Bezoekers noemen de energieke sfeer en de crêpes als hoogtepunt; drukte in het weekend kan overweldigend zijn.",
+    "tips": "Ga voor 11:00 als je de ergste drukte wilt vermijden."
    },
    {
     "name": "Kappabashi keukenstraat",
     "area": "Asakusa",
     "type": "Keukenspullen/plastic food",
-    "why": "Unieke souvenirs (plastic sushi-magneten etc.), vlak bij Sumo-anker"
+    "why": "Unieke souvenirs (plastic sushi-magneten etc.), vlak bij Sumo-anker",
+    "address": "Kappabashi-dori, Taito-ku, Tokyo (tussen Ueno en Asakusa)",
+    "hours": "Meeste winkels 9:00–17:00, gesloten op zondag (varieert)",
+    "description": "Een straat van ~170 winkels gespecialiseerd in professioneel keukengerei — messen, servies, en de beroemde hyperrealistische plastic-food-modellen (sampuru) die je in restaurantetalages ziet. Bevoorraadt zowel chefs als souvenirjagers.",
+    "review_summary": "Bezoekers noemen het een verrassend leuke, minder-toeristische stop; het messenaanbod wordt internationaal geroemd.",
+    "tips": "Sommige winkels sluiten op zondag — check vooraf als dat je enige kans is."
    }
   ],
   "Kyoto": [
@@ -2774,19 +2847,34 @@
     "name": "Nintendo KYOTO (Takashimaya)",
     "area": "Downtown",
     "type": "Gaming/officieel",
-    "why": "10 min van hotel; regenvangnet"
+    "why": "10 min van hotel; regenvangnet",
+    "address": "Kyoto Takashimaya, 5F, Shincho-dori Shijo-sagaru, Shimogyo-ku, Kyoto",
+    "hours": "10:00–20:00",
+    "description": "Tweede officiële Nintendo-winkel van Japan (na Tokyo), geopend in Takashimaya Kyoto. Kleiner dan de Shibuya-vestiging maar met vergelijkbare merchandise en foto-zones.",
+    "review_summary": "Fans waarderen dat dit een rustiger alternatief is voor de drukke Tokyo-winkel, met hetzelfde assortiment.",
+    "tips": "Combineer met de rest van Takashimaya's foodhall in de kelder."
    },
    {
     "name": "Nishiki Market",
     "area": "Downtown",
     "type": "Food/souvenirs",
-    "why": "1 blok van hotel; lokale specialiteiten, messenwinkels, thee"
+    "why": "1 blok van hotel; lokale specialiteiten, messenwinkels, thee",
+    "address": "Nishikikoji-dori, Nakagyo-ku, Kyoto (5 blokken tussen Teramachi en Takakura)",
+    "hours": "Meeste kraampjes 9:00/10:00–18:00; sommige gesloten op woensdag/zondag",
+    "description": "Bekend als \"Kyoto's Keuken\", een 400 jaar oude overdekte markt met ruim 100 winkels gespecialiseerd in verse zeevruchten, Kyoto-groenten, messen (waaronder het beroemde Aritsugu) en gedroogde specialiteiten. Ooit een vismarkt, nu een levendige mix van lokale leveranciers en toeristische kraampjes.",
+    "review_summary": "Reviewers prijzen de sfeer en variatie, maar waarschuwen voor extreme drukte rond lunchtijd — vroege ochtend (rond opening) wordt breed aangeraden voor een rustigere ervaring.",
+    "tips": "Eten-tijdens-het-lopen is niet toegestaan; eet bij de kraam zelf op. Cash aanbevolen, niet elke kraam accepteert kaart."
    },
    {
     "name": "Kyoto Int. Manga Museum shop",
     "area": "Downtown",
     "type": "Pop-culture",
-    "why": "Manga/merchandise, gecombineerd met museumbezoek"
+    "why": "Manga/merchandise, gecombineerd met museumbezoek",
+    "address": "Karasuma-Oike, Nakagyo-ku, Kyoto",
+    "hours": "10:00–18:00 (museum), gesloten op woensdag",
+    "description": "Museumwinkel bij het Kyoto International Manga Museum, met manga-gerelateerde items en publicaties naast de museumcollectie van 300.000+ exemplaren.",
+    "review_summary": "Vooral interessant in combinatie met het museumbezoek zelf, niet als losse shopping-stop.",
+    "tips": "Check de woensdag-sluiting vooraf."
    }
   ],
   "Osaka": [
@@ -2794,25 +2882,45 @@
     "name": "Den Den Town",
     "area": "Namba",
     "type": "Gaming/anime/retro",
-    "why": "Osaka's Akihabara, 10 min van hotel"
+    "why": "Osaka's Akihabara, 10 min van hotel",
+    "address": "Nipponbashi, Naniwa-ku, Osaka (rond Sakaisuji-dori)",
+    "hours": "Meeste winkels 10:00/11:00–20:00",
+    "description": "Osaka's antwoord op Akihabara: een wijk vol elektronica-, anime-, manga- en retrogame-winkels rond Nipponbashi. Kleiner en minder toeristisch dan Akihabara, met een eigen underground-sfeer.",
+    "review_summary": "Bezoekers noemen het een authentiekere, rustigere ervaring dan Akihabara met vergelijkbaar aanbod.",
+    "tips": "Combineer met Kuromon Market, beide liggen op loopafstand van elkaar."
    },
    {
     "name": "Nintendo OSAKA + Pokémon Center (Daimaru Umeda)",
     "area": "Umeda",
     "type": "Gaming/officieel",
-    "why": "Legitieme Nintendo-fix zonder USJ"
+    "why": "Legitieme Nintendo-fix zonder USJ",
+    "address": "Daimaru Umeda, 13F, 1-1 Umeda 3-chome, Kita-ku, Osaka",
+    "hours": "10:00–20:00",
+    "description": "Derde officiële Nintendo-winkel van Japan, op de 13e verdieping van Daimaru Umeda naast een Pokémon Center. Vergelijkbaar assortiment als Tokyo/Kyoto, met regionale exclusives.",
+    "review_summary": "Fans waarderen de combinatie met Pokémon Center op dezelfde verdieping — twee stops in één.",
+    "tips": "Umeda Sky Building ligt in de buurt voor een gecombineerde middag."
    },
    {
     "name": "Kuromon Ichiba Market",
     "area": "Namba",
     "type": "Food",
-    "why": "5 min van hotel; verse zeevruchten, streetfood-shopping"
+    "why": "5 min van hotel; verse zeevruchten, streetfood-shopping",
+    "address": "Nipponbashi 2-4-1, Chuo-ku, Osaka",
+    "hours": "9:00–18:00 (varieert per kraam)",
+    "description": "190 jaar oude overdekte markt, bekend als \"Osaka's Keuken\". Gespecialiseerd in vers zeevoedsel (waaronder verse oesters en King crab) dat je ter plekke kunt laten grillen, plus lokale groenten en streetfood.",
+    "review_summary": "Reviewers prijzen de kwaliteit van de zeevruchten en de mogelijkheid om ter plekke te proeven; drukte rond lunchtijd wordt vaak genoemd.",
+    "tips": "Ga voor 10:00 voor de rustigste ervaring en de meeste keuze."
    },
    {
     "name": "Shinsaibashi-suji",
     "area": "Shinsaibashi",
     "type": "Mode/winkelstraat",
-    "why": "Overdekte winkelstraat, alle grote merken"
+    "why": "Overdekte winkelstraat, alle grote merken",
+    "address": "Shinsaibashi-suji, Chuo-ku, Osaka",
+    "hours": "Meeste winkels 10:00/11:00–20:00/21:00",
+    "description": "600 meter lange overdekte winkelstraat met internationale en Japanse modeketens, direct verbonden met Dotonbori.",
+    "review_summary": "Bezoekers noemen het praktisch voor regenachtige dagen dankzij het overdekte dak.",
+    "tips": "Combineer met een avondwandeling door Dotonbori, direct ernaast."
    }
   ],
   "Hanoi": [
@@ -2820,19 +2928,56 @@
     "name": "Old Quarter 36 Streets",
     "area": "Hoan Kiem",
     "type": "Ambacht/souvenirs",
-    "why": "Elke straat = eigen ambacht (zilver, zijde, etc.); 5 min van hotel"
+    "why": "Elke straat = eigen ambacht (zilver, zijde, etc.); 5 min van hotel",
+    "address": "Hoan Kiem District, Hanoi (rond Hang Bac, Hang Gai, Hang Dao)",
+    "hours": "Winkels doorgaans 8:00–20:00/21:00",
+    "description": "Historische wijk waar straten historisch vernoemd zijn naar het ambacht dat er gevestigd was (Hang Bac = zilver, Hang Gai = zijde/textiel). Nu een mix van authentieke ambachtswinkels en toeristische souvenirs, met de karakteristieke smalle \"tube houses\".",
+    "review_summary": "Reizigers noemen de chaos en energie als onderdeel van de charme; onderhandelen wordt algemeen aangeraden.",
+    "tips": "Onderhandel — vraagprijzen liggen vaak 30-50% boven de uiteindelijke verkoopprijs."
    },
    {
     "name": "Dong Xuan Market",
     "area": "Old Quarter",
     "type": "Lokale markt",
-    "why": "Grootste overdekte markt Hanoi, authentiek"
+    "why": "Grootste overdekte markt Hanoi, authentiek",
+    "address": "Dong Xuan, Hoan Kiem District, Hanoi",
+    "hours": "6:00–19:00 (grootmarkt), avondmarkt eromheen tot later",
+    "description": "De grootste overdekte markt van Hanoi, drie verdiepingen vol kleding, stoffen, huishoudspullen en food. Minder toeristisch dan het Old Quarter zelf, meer een markt voor lokale groothandel.",
+    "review_summary": "Bezoekers noemen het authentieker en minder toeristisch dan de rest van het Old Quarter.",
+    "tips": "Combineer met de avondmarktkraampjes eromheen in het weekend."
    },
    {
     "name": "Old Town Night Market",
     "area": "Old Quarter",
     "type": "Avondmarkt (vr-zo)",
-    "why": "7 min van hotel; kleding, souvenirs, streetfood"
+    "why": "7 min van hotel; kleding, souvenirs, streetfood",
+    "address": "Hang Dao – Hang Duong straat, Old Quarter, Hanoi",
+    "hours": "Vrijdag t/m zondag, 18:00–23:00 (straat autovrij)",
+    "description": "In het weekend wordt een lange straat door het Old Quarter afgesloten voor verkeer en gevuld met kraampjes: kleding, souvenirs, speelgoed en streetfood, met levendige sfeer.",
+    "review_summary": "Bezoekers noemen de sfeer levendiger dan overdag; kwaliteit van koopwaar wisselend.",
+    "tips": "Alleen vrijdag t/m zondag — plan dit bewust in."
+   },
+   {
+    "name": "North Face Factory Outlet Original",
+    "area": "105 Hang Gai, Hoan Kiem",
+    "type": "Outdoor-merken outlet",
+    "why": "~5 min van hotel. Ruime Arc'teryx-selectie naast North Face; personeel spreekt Engels en onderhandelt.",
+    "address": "105 Hang Gai Street, Hoan Kiem, Hanoi",
+    "hours": "Doorgaans 9:00–21:00",
+    "description": "Eén van de bekendste \"outdoor-outlets\" in het Old Quarter, met een brede selectie jassen van bekende merken tegen Vietnamese prijzen. Vietnam is daadwerkelijk een productieland voor merken als Arc'teryx (fabrieken van toeleverancier Spectre) en North Face — vandaar dit soort winkels.",
+    "review_summary": "Reizigers noemen vriendelijke, Engelssprekende staff en een goede Arc'teryx-selectie; prijzen zijn onderhandelbaar en dalen bij meerdere stuks.",
+    "tips": "⚠️ Belangrijk: kwaliteit en echtheid lopen sterk uiteen tussen winkels — sommige verkopen fabrieksoverschot/tweede keus (legitiem maar niet officieel \"authentiek\"), andere verkopen bewust hoogwaardige replica's. Vraag expliciet of het \"fabrieks-overschot\" of \"gemaakt naar het patroon\" is; verwacht geen garantiebonnetje. Kijk naar stiksel en ritsen (YKK/Aquaguard) voor kwaliteit."
+   },
+   {
+    "name": "Outdoor-winkels Hang Dao / Hang Gai straat",
+    "area": "Old Quarter (Hang Dao 42, 86, 91 + omgeving)",
+    "type": "Outdoor-merken cluster",
+    "why": "Cluster van meerdere concurrerende winkels binnen 5-10 min van elkaar — goed vergelijken mogelijk.",
+    "address": "Hang Dao & Hang Gai straten, Hoan Kiem, Hanoi",
+    "hours": "Doorgaans 9:00–21:00",
+    "description": "Een cluster van kleine outdoor-winkels die naast North Face en Arc'teryx ook Patagonia, Columbia en Osprey-achtige items voeren. Onderdeel van dezelfde \"Old Quarter outdoor-strip\" als bovenstaande.",
+    "review_summary": "Reizigers vergelijken vaak meerdere winkels vlak bij elkaar voordat ze kopen; prijsverschillen tussen winkels voor hetzelfde stuk kunnen groot zijn.",
+    "tips": "Loop eerst de hele straat door zonder te kopen, dan pas terug naar de beste deal — venters verwachten dit."
    }
   ],
   "Da Nang / Hoi An": [
@@ -2840,19 +2985,45 @@
     "name": "Hoi An kleermakers",
     "area": "Hoi An Ancient Town",
     "type": "Maatkleding",
-    "why": "Beroemd om 24u maatpakken/jurken; unieke reisherinnering"
+    "why": "Beroemd om 24u maatpakken/jurken; unieke reisherinnering",
+    "address": "Verspreid door Ancient Town, veel aan Le Loi en Tran Hung Dao straat",
+    "hours": "Winkels doorgaans 8:00–21:00",
+    "description": "Hoi An staat wereldwijd bekend om zijn kleermakers die binnen 24-48 uur maatkleding leveren — pakken, jurken, jassen — vaak tegen een fractie van de westerse prijs. Honderden ateliers concurreren om toeristen.",
+    "review_summary": "Ervaringen wisselen sterk per kleermaker: sommigen prijzen uitstekende pasvorm, anderen waarschuwen voor kwaliteitsverschil — vooraf reviews van specifieke ateliers checken wordt aangeraden.",
+    "tips": "Reken op minimaal 2 pasbeurten; kom niet op je laatste avond voor het eerste bezoek."
    },
    {
     "name": "Han Market",
     "area": "Da Nang",
     "type": "Lokale markt",
-    "why": "Verse producten + souvenirs, centraal Da Nang"
+    "why": "Verse producten + souvenirs, centraal Da Nang",
+    "address": "119 Tran Phu, Hai Chau District, Da Nang",
+    "hours": "6:00–19:00",
+    "description": "Centrale markt van Da Nang met verse producten op de begane grond en souvenirs/textiel op de bovenverdieping. Minder toeristisch dan Hoi An's markten.",
+    "review_summary": "Bezoekers noemen het een goede plek om lokaal leven te zien naast souvenirs kopen.",
+    "tips": "Onderhandelen is gebruikelijk op de souvenir-verdieping."
    },
    {
     "name": "Hoi An Night Market",
     "area": "Hoi An riverside",
     "type": "Avondmarkt/lantaarns",
-    "why": "Gecombineerd met lantaarn-avond (3+4 aug plan)"
+    "why": "Gecombineerd met lantaarn-avond (3+4 aug plan)",
+    "address": "Nguyen Hoang straat, langs de Thu Bon rivier, Hoi An",
+    "hours": "17:00–22:00/23:00, dagelijks",
+    "description": "Kraampjes met lantaarns, souvenirs en streetfood langs de rivieroever, onderdeel van Hoi An's beroemde avondsfeer met duizenden gekleurde lantaarns.",
+    "review_summary": "Algemeen als hoogtepunt van een Hoi An-bezoek genoemd, vooral bij zonsondergang en net na donker.",
+    "tips": "Combineer met een lantaarn-bootje op de rivier (~$5) voor de volledige ervaring."
+   },
+   {
+    "name": "Outdoor-merken winkels Hoi An Old Town",
+    "area": "Hoi An Ancient Town",
+    "type": "Outdoor-merken outlet",
+    "why": "Zelfde fenomeen als Hanoi — vaak zelfs goedkoper; makkelijk te combineren met kleermaker-bezoek en lantaarn-avond",
+    "address": "Verspreid door Ancient Town, met name rond Tran Phu en Nguyen Thai Hoc straat",
+    "hours": "Winkels doorgaans 8:00–21:00",
+    "description": "Net als Hanoi kent Hoi An een cluster kleine winkels met Arc'teryx/North Face-achtige outdoor-jassen, vaak tegen nog scherpere prijzen dan in Hanoi.",
+    "review_summary": "Reizigers die de Ha Giang Loop combineren met Hoi An noemen dit vaak als goedkoopste stop voor outdoor-jassen.",
+    "tips": "⚠️ Zelfde kanttekening als Hanoi: fabrieksoverschot/replica-kwaliteit, geen garantiebon. Combineer met je kleermaker-bezoek in dezelfde straten."
    }
   ],
   "HCMC": [
@@ -2860,13 +3031,45 @@
     "name": "Ben Thanh Market",
     "area": "District 1",
     "type": "Souvenirs/lokale markt",
-    "why": "Iconische markt, onderhandelen verwacht"
+    "why": "Iconische markt, onderhandelen verwacht",
+    "address": "Le Loi, Ben Thanh Ward, District 1, Ho Chi Minh City",
+    "hours": "6:00–18:00 (dagmarkt); avondstraatkraampjes eromheen tot later",
+    "description": "Een van de oudste en meest iconische markten van Saigon, met honderden kraampjes voor kleding, souvenirs, koffie en streetfood onder één dak. Symbool van de stad sinds de Franse koloniale tijd.",
+    "review_summary": "Reizigers noemen het een verplichte stop maar waarschuwen voor opdringerige verkooptactieken en hogere prijzen dan elders — onderhandelen is essentieel.",
+    "tips": "Vergelijk prijzen bij meerdere kraampjes voor je koopt; begin met tegenbieden op 40-50% van de vraagprijs."
    },
    {
     "name": "Saigon Square",
     "area": "District 1",
     "type": "Mode/namaakmerken",
-    "why": "Budget-shopping, populair bij toeristen"
+    "why": "Budget-shopping, populair bij toeristen",
+    "address": "Nam Ky Khoi Nghia / Le Thanh Ton, District 1, Ho Chi Minh City",
+    "hours": "9:00–21:00",
+    "description": "Overdekte markt met honderden kleine stalletjes gericht op mode, tassen en accessoires tegen budget-prijzen, populair bij zowel lokale jongeren als toeristen.",
+    "review_summary": "Bezoekers noemen het een goede plek voor betaalbare mode; kwaliteit wisselend, onderhandelen gebruikelijk.",
+    "tips": "Check kwaliteit ter plekke — geen garantie of retour."
+   },
+   {
+    "name": "Saigon Square (outdoor/merkkleding-hoek)",
+    "area": "District 1",
+    "type": "Outdoor-merken markt",
+    "why": "Al genoemd voor algemene mode; specifiek hoekje met North Face/Arc'teryx-achtige jassen en tassen",
+    "address": "Nam Ky Khoi Nghia / Le Thanh Ton, District 1, Ho Chi Minh City",
+    "hours": "9:00–21:00",
+    "description": "Binnen Saigon Square bevindt zich een cluster kraampjes gespecialiseerd in outdoor-merkkleding — jassen vanaf ~$20-58, rugzakken $11-26, afhankelijk van dikte/model.",
+    "review_summary": "Bezoekers noemen prijzen die sterk uiteenlopen per kraam voor vergelijkbare stukken — vergelijken loont.",
+    "tips": "Ga tot achterin de markt en linksaf voor de outdoor-kraampjes; onderhandel altijd."
+   },
+   {
+    "name": "Armyhaus",
+    "area": "District 1",
+    "type": "Outdoor/camping-winkel",
+    "why": "Vaste winkel (geen kraam) met outdoor-kleding en -uitrusting",
+    "address": "2D Truong Son Street, Ward 2, Tan Binh District, Ho Chi Minh City",
+    "hours": "Doorgaans 9:00–21:00",
+    "description": "Reguliere outdoor/camping-winkel met jassen, schoenen, tenten en klim-uitrusting. Voorraad is op Vietnamese maten afgestemd (gemiddeld 1m70/70kg) — grotere maten kunnen beperkt zijn.",
+    "review_summary": "Genoemd als betrouwbaarder vaste winkel dan marktkraampjes, met vaste prijzen.",
+    "tips": "Check maten vooraf als je (Lucas is 17, mogelijk groter) een grote maat nodig hebt — voorraad kan beperkt zijn."
    }
   ]
  },
@@ -2893,7 +3096,9 @@
    "city": "Kyoto",
    "type": "Festival (Ato-parade 9:30-11:50)",
    "impact": "Valt op jullie Kyoto-aankomstdag; hotel Resol ligt in het festivalgebied; zie master-itinerary voor scenario A/B/C (bagage/timing)",
-   "status": "FACT"
+   "status": "FACT",
+   "location": "Start Karasuma-Oike, route via Kawaramachi naar Shijo (omgekeerde route van de Saki-parade op 17 jul)",
+   "address": "Karasuma Oike, Nakagyo-ku, Kyoto"
   },
   {
    "date": "2026-07-24",
@@ -2901,7 +3106,9 @@
    "city": "Kyoto",
    "type": "Festival (avond ~17:00-20:00)",
    "impact": "Valt samen met de al geplande Gion-avond",
-   "status": "FACT"
+   "status": "FACT",
+   "location": "Yasaka-schrijn en omgeving, Gion-district",
+   "address": "Yasaka Shrine, Gion, Higashiyama-ku, Kyoto"
   },
   {
    "date": "2026-07-31 t/m 2026-08-02",
@@ -2909,7 +3116,68 @@
    "city": "Da Nang",
    "type": "Terugkerend weekend-spektakel (vr/za/zo 21:00)",
    "impact": "Enige haalbare venster binnen jullie verblijf: zo 2 aug aankomstavond (strak, zie C6-beslissing)",
-   "status": "FACT"
+   "status": "FACT",
+   "location": "Dragon Bridge (Cầu Rồng) over de Han-rivier, verbindt centrum Da Nang met My Khe Beach-zijde",
+   "address": "Dragon Bridge, Nguyen Van Linh, Da Nang"
   }
- ]
+ ],
+ "hcmc_candidates": [
+  {
+   "name": "Cu Chi Tunnels — Ben Duoc",
+   "type": "Excursie",
+   "why": "Authentieker, rustiger, originele tunnelafmetingen; Herdenkingstempel",
+   "duration": "volledige ochtend (7:30-13:30)",
+   "heat": "grotendeels beschaduwd bos",
+   "crowd": "laag-gemiddeld"
+  },
+  {
+   "name": "Cu Chi Tunnels — Ben Dinh",
+   "type": "Excursie (alternatief)",
+   "why": "Dichterbij (90 min), bredere tunnels, schietbaan aanwezig",
+   "duration": "halve dag (4-5u)",
+   "heat": "gedeeltelijk beschaduwd",
+   "crowd": "hoog (tourbussen na 10:00)"
+  },
+  {
+   "name": "War Remnants Museum",
+   "type": "Museum",
+   "why": "Aangrijpend maar zwaar; sterke historische waarde",
+   "duration": "90-120 min",
+   "heat": "indoor",
+   "crowd": "gemiddeld"
+  },
+  {
+   "name": "Reunification Palace",
+   "type": "Historisch gebouw",
+   "why": "1975-tijdscapsule, minder zwaar dan War Remnants",
+   "duration": "60-90 min",
+   "heat": "grotendeels indoor",
+   "crowd": "laag-gemiddeld"
+  },
+  {
+   "name": "Ben Thanh Market",
+   "type": "Markt/shopping",
+   "why": "Iconisch, al in Shopping-tab",
+   "duration": "60-90 min",
+   "heat": "overdekt",
+   "crowd": "hoog"
+  },
+  {
+   "name": "Nguyen Hue Walking Street",
+   "type": "Avond/wandelstraat",
+   "why": "Moderne Saigon-sfeer, rooftop bars in de buurt",
+   "duration": "avond, open einde",
+   "heat": "buiten maar avond",
+   "crowd": "gemiddeld-hoog"
+  },
+  {
+   "name": "Bitexco Financial Tower Skydeck",
+   "type": "Uitzichtpunt",
+   "why": "Panorama over Saigon, indoor/koel",
+   "duration": "45-60 min",
+   "heat": "indoor",
+   "crowd": "laag-gemiddeld"
+  }
+ ],
+ "shopping_note": "💡 Wist je dat? Vietnam is een echt productieland voor bekende outdoor-merken (Arc'teryx laat via toeleverancier Spectre in Vietnamese fabrieken produceren). Daardoor vind je in Hanoi en HCMC winkels met opvallend goedkope jassen van merken als Arc'teryx en The North Face. Let op: dit zijn vaak fabrieksoverschotten, tweede keus, of hoogwaardige replica's — niet gegarandeerd 'origineel via officieel kanaal'. Kwaliteit is vaak prima, verwacht alleen geen bonnetje of garantie."
 }
