@@ -598,6 +598,53 @@ input, select, textarea{ font-size: 16px !important; }
 .event-name{font-size:15px;font-weight:800;margin-top:4px}
 .event-city-type{font-size:12px;color:var(--muted);margin-top:2px}
 .event-impact{font-size:13px;color:var(--ink2);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* SHOP DETAIL MODAL */
+.shop-card{cursor:pointer;transition:border-color .15s,transform .1s}
+.shop-card:hover{border-color:var(--border2)}
+.shop-card:active{transform:scale(.98)}
+.shop-card-arrow{float:right;color:var(--muted);font-size:14px}
+.detail-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:180;display:none;align-items:flex-end;justify-content:center}
+.detail-modal-backdrop.open{display:flex}
+@media(min-width:640px){.detail-modal-backdrop{align-items:center}}
+.detail-modal{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:20px 20px 0 0;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;
+  animation:sheetUp .25s ease;
+}
+@media(min-width:640px){.detail-modal{border-radius:20px;max-height:80vh}}
+.detail-modal-header{
+  position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--border);
+  padding:14px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;z-index:2;
+}
+.detail-modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 10px;display:block}
+@media(min-width:640px){.detail-modal-handle{display:none}}
+.detail-modal-title{font-size:18px;font-weight:800;letter-spacing:-.3px;line-height:1.25}
+.detail-modal-area{font-size:12px;color:var(--muted);margin-top:4px}
+.detail-modal-close{background:var(--panel2);border:none;color:var(--muted);width:32px;height:32px;border-radius:50%;font-size:16px;flex-shrink:0;cursor:pointer}
+.detail-modal-close:hover{color:var(--ink);background:var(--panel3)}
+.detail-modal-body{padding:16px 18px 24px}
+.detail-modal-section{margin-bottom:16px}
+.detail-modal-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.detail-modal-text{font-size:14px;line-height:1.6;color:var(--ink2)}
+.detail-modal-review{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;color:#ddd6fe;font-style:italic}
+.detail-modal-tips{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.5;color:#6ee7b7}
+.detail-modal-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.detail-modal-fact{background:var(--panel2);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink2)}
+.detail-modal-fact b{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:2px}
+.detail-modal-map-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--accent);color:#fff;padding:12px 16px;border-radius:10px;
+  font-weight:700;font-size:14px;margin-top:4px;
+}
+.detail-modal-map-btn:hover{background:var(--accent2)}
+
+.rest{cursor:pointer;transition:border-color .15s,transform .1s}
+.rest:hover{border-color:var(--border2)}
+.rest:active{transform:scale(.98)}
+.event-card{cursor:pointer;transition:border-color .15s,transform .1s}
+.event-card:hover{border-color:var(--border2)}
+.event-card:active{transform:scale(.98)}
 </style>
 </head>
 <body>
@@ -753,10 +800,19 @@ input, select, textarea{ font-size: 16px !important; }
     <div class="ess-header" id="essHeader"></div>
     <div id="essSyncBadge" class="ess-sync-badge local" onclick="handleSyncBadgeClick()"></div>
     <div class="ess-login-box" id="essLoginBox">
-      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Inloggen om te synchroniseren met je gezin</div>
-      <div style="font-size:12px;color:var(--muted)">Je krijgt een magic link per e-mail — geen wachtwoord nodig.</div>
-      <input type="email" id="essLoginEmail" placeholder="jouw@email.com" autocomplete="email">
-      <button onclick="submitMagicLink()">Stuur magic link</button>
+      <div id="essLoginStep1">
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Inloggen om te synchroniseren met je gezin</div>
+        <div style="font-size:12px;color:var(--muted)">Je krijgt een 6-cijferige code per e-mail. Typ die hier in — zo blijft dit tabblad ingelogd (geen aparte link die in Mail zelf opent).</div>
+        <input type="email" id="essLoginEmail" placeholder="jouw@email.com" autocomplete="email" inputmode="email">
+        <button onclick="submitLoginCode()">Stuur code</button>
+      </div>
+      <div id="essLoginStep2" style="display:none">
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Voer de 6-cijferige code in</div>
+        <div style="font-size:12px;color:var(--muted)">Gestuurd naar <span id="essLoginEmailEcho"></span>. Check ook je spam-map.</div>
+        <input type="text" id="essLoginCodeInput" placeholder="123456" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" style="letter-spacing:4px;font-size:20px;text-align:center">
+        <button onclick="submitVerifyCode()">Inloggen</button>
+        <div style="margin-top:6px"><button style="background:transparent;color:var(--muted);font-size:11px;padding:4px 0" onclick="backToEmailStep()">← Ander e-mailadres</button></div>
+      </div>
       <div id="essLoginMsg" style="font-size:12px;margin-top:8px;color:var(--muted)"></div>
     </div>
     <div class="ess-note" id="essNote"></div>
@@ -782,6 +838,20 @@ input, select, textarea{ font-size: 16px !important; }
   </div>
 </div>
 
+</div>
+
+<div class="detail-modal-backdrop" id="detailModalBackdrop" onclick="closeDetailModal()">
+  <div class="detail-modal" onclick="event.stopPropagation()">
+    <div class="detail-modal-header">
+      <div style="flex:1">
+        <span class="detail-modal-handle"></span>
+        <div class="detail-modal-title" id="detailModalTitle"></div>
+        <div class="detail-modal-area" id="detailModalArea"></div>
+      </div>
+      <button class="detail-modal-close" onclick="closeDetailModal()">✕</button>
+    </div>
+    <div class="detail-modal-body" id="detailModalBody"></div>
+  </div>
 </div>
 
 <nav class="botnav">
@@ -927,6 +997,8 @@ function render(D){
   }).join('');
 
   // FOOD
+  REST_INDEX = {};
+  let restIdCounter = 0;
   document.getElementById('food').innerHTML = Object.entries(D.restaurants).map(([city,list])=>`
     <div class="food-city">
       <div class="food-city-h">
@@ -936,8 +1008,10 @@ function render(D){
       <div class="rests">${list.map(r=>{
         const bookTag = (r.reservation||'').includes('yes')?'<span class="rest-tag book">Reserveren</span>':'';
         const walkTag = (r.reservation==='no'||r.reservation==='queue'||r.reservation==='walk-in')?'<span class="rest-tag walk">Walk-in</span>':'';
-        return `<div class="rest">
-          <div class="rest-name">${bookTag}${walkTag}${r.name}</div>
+        const rkey = 'rest'+(restIdCounter++);
+        REST_INDEX[rkey] = Object.assign({}, r, {city});
+        return `<div class="rest" onclick="openRestDetail('${rkey}')">
+          <div class="rest-name">${bookTag}${walkTag}${r.name}<span class="shop-card-arrow">›</span></div>
           <div class="rest-meta">
             <span>${r.cuisine}</span>
             <span>·</span><span>${r.area}</span>
@@ -1318,32 +1392,162 @@ function getCompletedByLabel(item){
   return '';
 }
 
+let SHOP_INDEX = {};
+let REST_INDEX = {};
+let EVENT_INDEX = {};
+
 function renderShopping(D){
   const S = D.shopping || {};
+  SHOP_INDEX = {};
+  let idCounter = 0;
   document.getElementById('shopping').innerHTML = Object.entries(S).map(([city,items]) => `
     <div class="shop-city">
       <div class="shop-city-h">${city}</div>
-      <div class="shop-grid">${items.map(i => `
-        <div class="shop-card">
-          <div class="shop-card-name">${i.name}</div>
+      <div class="shop-grid">${items.map(i => {
+        const key = 'shop'+(idCounter++);
+        SHOP_INDEX[key] = i;
+        return `
+        <div class="shop-card" onclick="openShopDetail('${key}')">
+          <div class="shop-card-name">${i.name}<span class="shop-card-arrow">›</span></div>
           <div class="shop-card-meta">${i.area}</div>
           <div class="shop-card-why">${i.why}</div>
           <span class="shop-type-badge">${i.type}</span>
-        </div>
-      `).join('')}</div>
+        </div>`;
+      }).join('')}</div>
     </div>
   `).join('');
+}
+
+function openShopDetail(key){
+  const i = SHOP_INDEX[key];
+  if(!i) return;
+  document.getElementById('detailModalTitle').textContent = i.name;
+  document.getElementById('detailModalArea').textContent = i.area + (i.type ? ' · ' + i.type : '');
+
+  const mapQuery = encodeURIComponent(i.address || (i.name + ' ' + i.area));
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+  const parts = [];
+  if(i.description){
+    parts.push(`<div class="detail-modal-section">
+      <div class="detail-modal-lbl">📖 Beschrijving</div>
+      <div class="detail-modal-text">${i.description}</div>
+    </div>`);
+  }
+  parts.push(`<div class="detail-modal-section">
+    <div class="detail-modal-lbl">ℹ️ Praktisch</div>
+    <div class="detail-modal-facts">
+      ${i.address?`<div class="detail-modal-fact"><b>Adres</b>${i.address}</div>`:''}
+      ${i.hours?`<div class="detail-modal-fact"><b>Openingstijden</b>${i.hours}</div>`:''}
+    </div>
+  </div>`);
+  if(i.review_summary){
+    parts.push(`<div class="detail-modal-section">
+      <div class="detail-modal-lbl">💬 Wat bezoekers zeggen</div>
+      <div class="detail-modal-review">${i.review_summary}</div>
+    </div>`);
+  }
+  if(i.tips){
+    parts.push(`<div class="detail-modal-section">
+      <div class="detail-modal-lbl">💡 Tip</div>
+      <div class="detail-modal-tips">${i.tips}</div>
+    </div>`);
+  }
+  parts.push(`<a class="detail-modal-map-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 Open in Google Maps</a>`);
+
+  document.getElementById('detailModalBody').innerHTML = parts.join('');
+  document.getElementById('detailModalBackdrop').classList.add('open');
+}
+
+function closeDetailModal(){
+  document.getElementById('detailModalBackdrop').classList.remove('open');
+}
+
+function openRestDetail(key){
+  const r = REST_INDEX[key];
+  if(!r) return;
+  document.getElementById('detailModalTitle').textContent = r.name;
+  document.getElementById('detailModalArea').textContent = r.area + ' · ' + r.cuisine;
+
+  const mapQuery = encodeURIComponent(r.name + ' ' + r.area + ' ' + (r.city||''));
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+  const resMap = {'yes':'Ja, aanbevolen','yes (essential)':'Ja, verplicht','no':'Nee, walk-in','queue':'Nee, wachtrij ter plekke','walk-in':'Nee, walk-in','walk-in ok':'Nee, walk-in prima'};
+  const resLabel = resMap[r.reservation] || r.reservation || '—';
+
+  const parts = [];
+  parts.push(`<div class="detail-modal-section">
+    <div class="detail-modal-lbl">📖 Waarom dit past bij jullie</div>
+    <div class="detail-modal-text">${r.why}</div>
+  </div>`);
+  parts.push(`<div class="detail-modal-section">
+    <div class="detail-modal-lbl">ℹ️ Praktisch</div>
+    <div class="detail-modal-facts">
+      <div class="detail-modal-fact"><b>Keuken</b>${r.cuisine}</div>
+      <div class="detail-modal-fact"><b>Prijsklasse</b>${r.price}</div>
+      <div class="detail-modal-fact"><b>Beste voor</b>${r.best}</div>
+      <div class="detail-modal-fact"><b>Reservering</b>${resLabel}</div>
+    </div>
+  </div>`);
+  if(r.evidence){
+    parts.push(`<div class="detail-modal-section">
+      <div class="detail-modal-lbl">💬 Bron</div>
+      <div class="detail-modal-review">${r.evidence}</div>
+    </div>`);
+  }
+  parts.push(`<a class="detail-modal-map-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 Open in Google Maps</a>`);
+
+  document.getElementById('detailModalBody').innerHTML = parts.join('');
+  document.getElementById('detailModalBackdrop').classList.add('open');
+}
+
+function openEventDetail(key){
+  const e = EVENT_INDEX[key];
+  if(!e) return;
+  const d = new Date(e.date);
+  const dateLabel = isNaN(d) ? e.date : d.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+
+  document.getElementById('detailModalTitle').textContent = e.name;
+  document.getElementById('detailModalArea').textContent = e.city + ' · ' + e.type;
+
+  const parts = [];
+  parts.push(`<div class="detail-modal-section">
+    <div class="detail-modal-lbl">📅 Wanneer</div>
+    <div class="detail-modal-text">${dateLabel}</div>
+  </div>`);
+  parts.push(`<div class="detail-modal-section">
+    <div class="detail-modal-lbl">📖 Wat betekent dit voor jullie</div>
+    <div class="detail-modal-text">${e.impact}</div>
+  </div>`);
+  if(e.location){
+    parts.push(`<div class="detail-modal-section">
+      <div class="detail-modal-lbl">ℹ️ Locatie</div>
+      <div class="detail-modal-text">${e.location}</div>
+    </div>`);
+  }
+  if(e.address){
+    const mapQuery = encodeURIComponent(e.address);
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+    parts.push(`<a class="detail-modal-map-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 Open in Google Maps</a>`);
+  }
+
+  document.getElementById('detailModalBody').innerHTML = parts.join('');
+  document.getElementById('detailModalBackdrop').classList.add('open');
 }
 
 function renderEvents(D){
   const E = D.events || [];
   const sorted = [...E].sort((a,b) => a.date.localeCompare(b.date));
+  EVENT_INDEX = {};
+  let evIdCounter = 0;
   document.getElementById('events').innerHTML = sorted.map(e => {
     const d = new Date(e.date);
     const dateLabel = isNaN(d) ? e.date : d.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long'});
-    return `<div class="event-card">
+    const ekey = 'event'+(evIdCounter++);
+    EVENT_INDEX[ekey] = e;
+    return `<div class="event-card" onclick="openEventDetail('${ekey}')">
       <div class="event-date">${dateLabel}</div>
-      <div class="event-name">${e.name}</div>
+      <div class="event-name">${e.name}<span class="shop-card-arrow">›</span></div>
       <div class="event-city-type">${e.city} · ${e.type}</div>
       <div class="event-impact">${e.impact}</div>
     </div>`;
@@ -1464,13 +1668,45 @@ function handleSyncBadgeClick(){
   }
 }
 
-async function submitMagicLink(){
+let ESS_LOGIN_EMAIL = '';
+
+async function submitLoginCode(){
   const email = document.getElementById('essLoginEmail').value.trim();
   const msg = document.getElementById('essLoginMsg');
   if(!email){ msg.textContent = 'Vul een e-mailadres in.'; return; }
   msg.textContent = 'Bezig met versturen...';
-  const { error } = await window.KortesSync.requestMagicLink(email);
-  msg.textContent = error ? ('Fout: ' + error.message || error) : 'Check je mailbox voor de magic link.';
+  const { error } = await window.KortesSync.requestLoginCode(email);
+  if(error){
+    msg.textContent = 'Fout: ' + (error.message || error);
+    return;
+  }
+  ESS_LOGIN_EMAIL = email;
+  document.getElementById('essLoginEmailEcho').textContent = email;
+  document.getElementById('essLoginStep1').style.display = 'none';
+  document.getElementById('essLoginStep2').style.display = 'block';
+  msg.textContent = 'Code verstuurd. Kijk in je mailbox.';
+  document.getElementById('essLoginCodeInput').focus();
+}
+
+async function submitVerifyCode(){
+  const code = document.getElementById('essLoginCodeInput').value.trim();
+  const msg = document.getElementById('essLoginMsg');
+  if(!code || code.length < 6){ msg.textContent = 'Vul de volledige 6-cijferige code in.'; return; }
+  msg.textContent = 'Bezig met inloggen...';
+  const { error } = await window.KortesSync.verifyLoginCode(ESS_LOGIN_EMAIL, code);
+  if(error){
+    msg.textContent = 'Fout: ' + (error.message || error) + ' — probeer opnieuw of vraag nieuwe code aan.';
+    return;
+  }
+  msg.textContent = '';
+  document.getElementById('essLoginBox').classList.remove('show');
+  if(ESS_DATA) renderEssentials(ESS_DATA);
+}
+
+function backToEmailStep(){
+  document.getElementById('essLoginStep1').style.display = 'block';
+  document.getElementById('essLoginStep2').style.display = 'none';
+  document.getElementById('essLoginMsg').textContent = '';
 }
 
 // Restyle: hide native checkbox visually but keep it interactive
