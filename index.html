@@ -546,6 +546,58 @@ html{scroll-behavior:smooth}
 .ess-login-box input{width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-size:14px;margin:8px 0}
 .ess-login-box button{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer}
 .ess-attribution{font-size:10px;color:var(--muted);margin-left:8px;font-style:italic}
+
+/* MORE SHEET (mobile) */
+.more-sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:150;display:none;align-items:flex-end}
+.more-sheet-backdrop.open{display:flex}
+.more-sheet{background:var(--panel);border-radius:20px 20px 0 0;padding:8px 16px calc(20px + env(safe-area-inset-bottom));width:100%;border:1px solid var(--border);border-bottom:none;animation:sheetUp .25s ease}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.more-sheet-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:8px auto 14px}
+.more-sheet-title{font-size:16px;font-weight:800;margin-bottom:14px}
+.more-sheet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.more-sheet-item{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  background:var(--panel2);border:1px solid var(--border);border-radius:14px;
+  padding:16px 8px;color:var(--ink2);font-size:12px;font-weight:600;
+  min-height:76px;justify-content:center;
+}
+.more-sheet-item:active{background:var(--panel3);transform:scale(.97)}
+.more-sheet-item svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8}
+.botnav button#botnavMore.active-child{color:var(--accent)}
+
+/* iPhone Safari specific refinements */
+@supports (-webkit-touch-callout: none){
+  body{ padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .botnav{ padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+}
+/* Prevent iOS zoom-on-input (font-size must be >=16px) */
+input, select, textarea{ font-size: 16px !important; }
+/* Larger tap targets globally on touch */
+@media (hover: none) and (pointer: coarse){
+  .filter, .ess-filter, .dec-opt, .day-more-toggle{ min-height:40px; display:inline-flex; align-items:center; }
+  .action-cta, .dec-btn{ min-height:40px; }
+}
+/* Avoid horizontal scroll anywhere */
+.container, .hero, .day-card, .dest-card, .dec-card{ max-width:100%; }
+
+/* SHOPPING view */
+.shop-city{margin-bottom:20px}
+.shop-city-h{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.shop-grid{display:grid;gap:10px}
+@media(min-width:600px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.shop-grid{grid-template-columns:repeat(3,1fr)}}
+.shop-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px}
+.shop-card-name{font-weight:700;font-size:13px}
+.shop-card-meta{font-size:11px;color:var(--muted);margin:4px 0}
+.shop-card-why{font-size:12px;color:var(--ink2);line-height:1.4;margin-top:4px}
+.shop-type-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;background:var(--panel3);color:var(--ink2);margin-top:6px}
+
+/* EVENTS view */
+.event-card{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px}
+.event-date{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.event-name{font-size:15px;font-weight:800;margin-top:4px}
+.event-city-type{font-size:12px;color:var(--muted);margin-top:2px}
+.event-impact{font-size:13px;color:var(--ink2);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -562,10 +614,12 @@ html{scroll-behavior:smooth}
     <div class="topnav-tabs">
       <button data-view="today" class="active">Overzicht</button>
       <button data-view="trip">Dagplanning</button>
-      <button data-view="flights">Vluchten</button>
+      <button data-view="flights">Transfers</button>
       <button data-view="stays">Hotels</button>
       <button data-view="decisions">Beslissingen</button>
       <button data-view="food">Restaurants</button>
+      <button data-view="shopping">Shopping</button>
+      <button data-view="events">Events</button>
       <button data-view="essentials">Reisbenodigdheden</button>
     </div>
   </div>
@@ -648,7 +702,7 @@ html{scroll-behavior:smooth}
 <div class="view" id="v-flights">
   <div class="section" style="margin-top:8px">
     <div class="section-head">
-      <h2 class="section-title">Vluchten</h2>
+      <h2 class="section-title">Transfers</h2>
       <div class="section-sub" id="flightsSummary"></div>
     </div>
     <div id="nextFlight"></div>
@@ -665,6 +719,28 @@ html{scroll-behavior:smooth}
       <div class="section-sub">7 hotels · Alle bevestigd</div>
     </div>
     <div id="staysList"></div>
+  </div>
+</div>
+
+<!-- SHOPPING -->
+<div class="view" id="v-shopping">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Shopping</h2>
+      <div class="section-sub">Per bestemming</div>
+    </div>
+    <div id="shopping"></div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="view" id="v-events">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Events</h2>
+      <div class="section-sub">Datumspecifiek tijdens jullie reis</div>
+    </div>
+    <div id="events"></div>
   </div>
 </div>
 
@@ -719,7 +795,7 @@ html{scroll-behavior:smooth}
   </button>
   <button data-view="flights">
     <svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-    Vluchten
+    Transfers
   </button>
   <button data-view="decisions">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -880,6 +956,10 @@ function render(D){
   renderStays(D);
   // ESSENTIALS view
   renderEssentials(D);
+  // SHOPPING view
+  renderShopping(D);
+  // EVENTS view
+  renderEvents(D);
   // NAV
   document.querySelectorAll('[data-view]').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -887,6 +967,9 @@ function render(D){
       document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
       document.getElementById('v-'+v).classList.add('active');
       document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+      const fixed = ['today','trip','flights','decisions'];
+      const moreBtn = document.getElementById('botnavMore');
+      if(moreBtn) moreBtn.classList.toggle('active-child', !fixed.includes(v));
       window.scrollTo({top:0,behavior:'smooth'});
     });
   });
@@ -1235,6 +1318,38 @@ function getCompletedByLabel(item){
   return '';
 }
 
+function renderShopping(D){
+  const S = D.shopping || {};
+  document.getElementById('shopping').innerHTML = Object.entries(S).map(([city,items]) => `
+    <div class="shop-city">
+      <div class="shop-city-h">${city}</div>
+      <div class="shop-grid">${items.map(i => `
+        <div class="shop-card">
+          <div class="shop-card-name">${i.name}</div>
+          <div class="shop-card-meta">${i.area}</div>
+          <div class="shop-card-why">${i.why}</div>
+          <span class="shop-type-badge">${i.type}</span>
+        </div>
+      `).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function renderEvents(D){
+  const E = D.events || [];
+  const sorted = [...E].sort((a,b) => a.date.localeCompare(b.date));
+  document.getElementById('events').innerHTML = sorted.map(e => {
+    const d = new Date(e.date);
+    const dateLabel = isNaN(d) ? e.date : d.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long'});
+    return `<div class="event-card">
+      <div class="event-date">${dateLabel}</div>
+      <div class="event-name">${e.name}</div>
+      <div class="event-city-type">${e.city} · ${e.type}</div>
+      <div class="event-impact">${e.impact}</div>
+    </div>`;
+  }).join('');
+}
+
 function renderEssentials(D){
   const E = D.essentials;
   ESS_DATA = D;
@@ -1301,6 +1416,21 @@ function renderEssentials(D){
       <div class="ess-items">${itemsHtml}</div>
     </div>`;
   }).filter(Boolean).join('');
+}
+
+function toggleMoreSheet(){
+  document.getElementById('moreSheetBackdrop').classList.toggle('open');
+}
+function closeMoreSheet(){
+  document.getElementById('moreSheetBackdrop').classList.remove('open');
+}
+function selectMoreView(view){
+  closeMoreSheet();
+  const btn = document.querySelector(`[data-view="${view}"]`);
+  if(btn) btn.click();
+  // Highlight "Meer" icon if the selected view isn't one of the 4 fixed bottom icons
+  const fixed = ['today','trip','flights','decisions'];
+  document.getElementById('botnavMore').classList.toggle('active-child', !fixed.includes(view));
 }
 
 function toggleEssCategory(catId){
