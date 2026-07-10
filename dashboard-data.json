@@ -905,6 +905,35 @@
    "route": "NGO-KYO",
    "journey": "HAKONE_SHINKANSEN",
    "type": "shinkansen"
+  },
+  {
+   "seg": 103,
+   "flight": "PRIVATE TRANSFER",
+   "airline": "Chinichi (via Booking.com Transfers)",
+   "airline_code": "TRF",
+   "type": "transfer",
+   "dep": "~70 min na landing",
+   "arr": "—",
+   "date": "2026-07-18",
+   "arr_date": "2026-07-18",
+   "dep_iata": "NRT",
+   "arr_iata": "SJK",
+   "dep_city": "Narita Airport",
+   "arr_city": "Shinjuku",
+   "dep_airport": "Narita International Airport (NRT), 1-1 Furugome, Narita, Chiba 282-0004",
+   "arr_airport": "Nishitetsu Inn Shinjuku, 7-chōme-23-4 Nishishinjuku, Shinjuku City, Tokyo 160-0023",
+   "duration": "~70 min (rit); chauffeur wacht tot 45 min bij vertraging",
+   "baggage": "Max 4 passagiers + bagage (privé-voertuig)",
+   "checkin": "Chauffeur bij Aankomsthal na paspoortcontrole/bagagehal, bordje met naam",
+   "seats": "Privé-transfer, max 4 pax",
+   "ref": "56•••••39",
+   "ref_masked": "56•••••39",
+   "status": "CONFIRMED",
+   "verified": "Booking.com Transfers bevestiging",
+   "route": "NRT-SJK",
+   "journey": "ARRIVAL_TRANSFER",
+   "note": "Flight-tracking gekoppeld aan MU271 — ophaaltijd past zich automatisch aan bij vertraging. Gratis annuleren tot 24u vóór de rit. Totaalprijs €84,85 (incl. 10% Genius-korting).",
+   "cost_eur": 84.85
   }
  ],
  "anchors": [
@@ -1095,12 +1124,15 @@
    "dest": "Tokyo",
    "hotel": "Nishitetsu Inn Shinjuku",
    "travel": "MU271 PVG→NRT arr 20:55; N'EX to Shinjuku",
-   "concept": "Aankomst — hotel + eenvoudig avondeten",
-   "planA": "Landen, hotel, slapen",
+   "concept": "Aankomst — privé-transfer naar hotel",
+   "planA": "Land NRT, paspoortcontrole + bagage, chauffeur met naambordje in Aankomsthal (privé-transfer CONFIRMED, ref 56••39) → ~70 min naar Nishitetsu Inn Shinjuku → inchecken → slapen",
    "status": "CONFIRMED logistics",
    "intensity": "laag",
    "cluster": "Shinjuku",
-   "hotel_ref": "Nishitetsu Inn Shinjuku"
+   "hotel_ref": "Nishitetsu Inn Shinjuku",
+   "anchors": [
+    "Privé-transfer NRT→Shinjuku CONFIRMED"
+   ]
   },
   {
    "d": 2,
@@ -2003,6 +2035,18 @@
    "connection_time": "3u 40m in PVG",
    "overnight": true,
    "note": "Overnacht deels aan boord; landing Tokyo Narita zaterdagavond 20:55"
+  },
+  {
+   "id": "ARRIVAL_TRANSFER",
+   "label": "Narita → Nishitetsu Inn Shinjuku (privé-transfer)",
+   "route": "NRT → Shinjuku hotel",
+   "flights": [
+    "PRIVATE TRANSFER"
+   ],
+   "transfer_airport": null,
+   "connection_time": null,
+   "overnight": false,
+   "note": "Aansluitend op MU271 (aankomst 20:55); chauffeur volgt vlucht real-time, wacht max 45 min."
   },
   {
    "id": "HAKONE_ARRIVAL",
