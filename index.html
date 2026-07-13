@@ -743,6 +743,11 @@ input, select, textarea{ font-size: 16px !important; }
 .dec-compare-actions{display:flex;flex-direction:column;gap:8px}
 .dec-compare-actions button{width:100%;padding:12px;border-radius:10px;font-weight:700;font-size:14px;border:1px solid var(--border2);background:var(--panel2);color:var(--ink)}
 .dec-compare-actions button.rec{background:var(--planned);border-color:var(--planned);color:#fff}
+
+.ess-name-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ess-name-btn{padding:14px 10px;background:var(--panel2);border:1px solid var(--border2);border-radius:10px;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;text-align:center}
+.ess-name-btn:hover{background:var(--panel3);border-color:var(--accent)}
+.ess-forget-name{font-size:11px;color:var(--muted);margin-top:8px;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0}
 </style>
 </head>
 <body>
@@ -924,20 +929,10 @@ input, select, textarea{ font-size: 16px !important; }
     <div class="ess-header" id="essHeader"></div>
     <div id="essSyncBadge" class="ess-sync-badge local" onclick="handleSyncBadgeClick()"></div>
     <div class="ess-login-box" id="essLoginBox">
-      <div id="essLoginStep1">
-        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Inloggen om te synchroniseren met je gezin</div>
-        <div style="font-size:12px;color:var(--muted)">Je krijgt een 6-cijferige code per e-mail. Typ die hier in — zo blijft dit tabblad ingelogd (geen aparte link die in Mail zelf opent).</div>
-        <input type="email" id="essLoginEmail" placeholder="jouw@email.com" autocomplete="email" inputmode="email">
-        <button onclick="submitLoginCode()">Stuur code</button>
-      </div>
-      <div id="essLoginStep2" style="display:none">
-        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Voer de 6-cijferige code in</div>
-        <div style="font-size:12px;color:var(--muted)">Gestuurd naar <span id="essLoginEmailEcho"></span>. Check ook je spam-map.</div>
-        <input type="text" id="essLoginCodeInput" placeholder="123456" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" style="letter-spacing:4px;font-size:20px;text-align:center">
-        <button onclick="submitVerifyCode()">Inloggen</button>
-        <div style="margin-top:6px"><button style="background:transparent;color:var(--muted);font-size:11px;padding:4px 0" onclick="backToEmailStep()">← Ander e-mailadres</button></div>
-      </div>
-      <div id="essLoginMsg" style="font-size:12px;margin-top:8px;color:var(--muted)"></div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px">Wie ben jij?</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Kies je naam om je vinkjes te delen met de rest van het gezin.</div>
+      <div class="ess-name-grid" id="essNameGrid"></div>
+    </div>
     </div>
     <div class="ess-note" id="essNote"></div>
     <div class="ess-filters" id="essFilters" role="tablist">
@@ -1574,12 +1569,10 @@ let DEC_COMPARE_TARGET = null;
 let DEC_CONFIRM_ACTION = null;
 
 function loadLocalDecState(){
-  if(window.KortesSync) return window.KortesSync.decisions.getLocalState();
   try{ return JSON.parse(localStorage.getItem('kortes-trip-2026-decisions-v1')||'{}'); }catch(e){ return {}; }
 }
 function saveLocalDecState(state){
-  if(window.KortesSync) window.KortesSync.decisions.setLocalState(state);
-  else try{ localStorage.setItem('kortes-trip-2026-decisions-v1', JSON.stringify(state)); }catch(e){}
+  try{ localStorage.setItem('kortes-trip-2026-decisions-v1', JSON.stringify(state)); }catch(e){}
 }
 
 function getDecState(decisionId){
@@ -2154,49 +2147,34 @@ window.onSharedChecklistUpdated = function(){ if(ESS_DATA) renderEssentials(ESS_
 function handleSyncBadgeClick(){
   if(!window.KortesSync || !window.KortesSync.isEnabled()) return;
   if(!window.KortesSync.isSignedIn()){
+    renderNamePicker();
     document.getElementById('essLoginBox').classList.toggle('show');
+  } else {
+    if(confirm('Naam wijzigen? Je gaat dan uit als ' + window.KortesSync.currentUserName())){
+      forgetFamilyNameUI();
+    }
   }
 }
 
-let ESS_LOGIN_EMAIL = '';
-
-async function submitLoginCode(){
-  const email = document.getElementById('essLoginEmail').value.trim();
-  const msg = document.getElementById('essLoginMsg');
-  if(!email){ msg.textContent = 'Vul een e-mailadres in.'; return; }
-  msg.textContent = 'Bezig met versturen...';
-  const { error } = await window.KortesSync.requestLoginCode(email);
-  if(error){
-    msg.textContent = 'Fout: ' + (error.message || error);
-    return;
-  }
-  ESS_LOGIN_EMAIL = email;
-  document.getElementById('essLoginEmailEcho').textContent = email;
-  document.getElementById('essLoginStep1').style.display = 'none';
-  document.getElementById('essLoginStep2').style.display = 'block';
-  msg.textContent = 'Code verstuurd. Kijk in je mailbox.';
-  document.getElementById('essLoginCodeInput').focus();
+function renderNamePicker(){
+  const grid = document.getElementById('essNameGrid');
+  if(!grid || !window.KortesSync) return;
+  grid.innerHTML = window.KortesSync.familyNames.map(n =>
+    `<button class="ess-name-btn" onclick="chooseFamilyName('${n}')">${n}</button>`
+  ).join('');
 }
 
-async function submitVerifyCode(){
-  const code = document.getElementById('essLoginCodeInput').value.trim();
-  const msg = document.getElementById('essLoginMsg');
-  if(!code || code.length < 6){ msg.textContent = 'Vul de volledige 6-cijferige code in.'; return; }
-  msg.textContent = 'Bezig met inloggen...';
-  const { error } = await window.KortesSync.verifyLoginCode(ESS_LOGIN_EMAIL, code);
-  if(error){
-    msg.textContent = 'Fout: ' + (error.message || error) + ' — probeer opnieuw of vraag nieuwe code aan.';
-    return;
-  }
-  msg.textContent = '';
+async function chooseFamilyName(name){
+  await window.KortesSync.pickName(name);
   document.getElementById('essLoginBox').classList.remove('show');
   if(ESS_DATA) renderEssentials(ESS_DATA);
+  if(ACTIONS_DATA) renderActions(ACTIONS_DATA);
+  if(DECISIONS_DATA) renderDecisionsV2();
 }
 
-function backToEmailStep(){
-  document.getElementById('essLoginStep1').style.display = 'block';
-  document.getElementById('essLoginStep2').style.display = 'none';
-  document.getElementById('essLoginMsg').textContent = '';
+function forgetFamilyNameUI(){
+  if(window.KortesSync) window.KortesSync.forgetName();
+  if(ESS_DATA) renderEssentials(ESS_DATA);
 }
 
 // Restyle: hide native checkbox visually but keep it interactive
