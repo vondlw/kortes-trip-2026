@@ -40,7 +40,14 @@ async function initSync(){
     await loadSupabaseLib();
   }
 
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      storageKey: 'kortes-trip-2026-auth'
+    }
+  });
 
   // Restore session if present
   const { data: { session } } = await supabaseClient.auth.getSession();
@@ -62,6 +69,7 @@ async function initSync(){
   });
 
   window.addEventListener('online', flushPendingQueue);
+  window.addEventListener('online', flushDecisionPendingQueue);
   window.addEventListener('offline', () => setSyncBadge('offline'));
 }
 
@@ -91,18 +99,36 @@ async function afterLogin(){
   await pullSharedState();
   subscribeRealtime();
   flushPendingQueue();
+  await migrateDecisionStateIfNeeded();
+  await pullDecisionState();
+  subscribeDecisionRealtime();
+  flushDecisionPendingQueue();
   setSyncBadge('synced');
 }
 
 // ============================================================
 // MAGIC LINK LOGIN
 // ============================================================
-async function requestMagicLink(email){
+async function requestLoginCode(email){
   if(!SYNC_ENABLED || !supabaseClient) return { error: 'Sync niet geconfigureerd' };
+  // shouldCreateUser:false zou nieuwe emails weigeren; we laten Supabase de bestaande
+  // gezinsleden (al aangemaakt in Users) gewoon een code sturen.
   const { error } = await supabaseClient.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: window.location.href }
+    options: { shouldCreateUser: true }
   });
+  return { error };
+}
+
+async function verifyLoginCode(email, code){
+  if(!SYNC_ENABLED || !supabaseClient) return { error: 'Sync niet geconfigureerd' };
+  const { data, error } = await supabaseClient.auth.verifyOtp({
+    email, token: code, type: 'email'
+  });
+  if(!error && data.session){
+    currentUser = data.session.user;
+    await afterLogin();
+  }
   return { error };
 }
 
@@ -246,6 +272,117 @@ async function flushPendingQueue(){
 }
 
 // ============================================================
+// DECISION STATE — parallel sync system (same pattern as checklist)
+// ============================================================
+let SHARED_DECISION_STATE = {};
+let decisionRealtimeChannel = null;
+const DECISION_PENDING_KEY = 'kortes-trip-2026-pending-decision-sync';
+const DECISION_LEGACY_KEY = 'kortes-trip-2026-decisions-v1';
+
+function loadLocalDecisionState(){
+  try{ return JSON.parse(localStorage.getItem(DECISION_LEGACY_KEY) || '{}'); }catch(e){ return {}; }
+}
+function saveLocalDecisionState(state){
+  try{ localStorage.setItem(DECISION_LEGACY_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+async function pullDecisionState(){
+  if(!currentWorkspaceId) return;
+  const { data, error } = await supabaseClient
+    .from('decision_state').select('*').eq('workspace_id', currentWorkspaceId);
+  if(error){ console.warn('[sync] decision pull failed', error); return; }
+  SHARED_DECISION_STATE = {};
+  (data||[]).forEach(row => { SHARED_DECISION_STATE[row.decision_id] = row; });
+  if(typeof window.onSharedDecisionsUpdated === 'function') window.onSharedDecisionsUpdated();
+}
+
+function subscribeDecisionRealtime(){
+  if(!supabaseClient || !currentWorkspaceId) return;
+  if(decisionRealtimeChannel) supabaseClient.removeChannel(decisionRealtimeChannel);
+  decisionRealtimeChannel = supabaseClient.channel('decision-sync')
+    .on('postgres_changes',
+      { event: '*', schema: 'public', table: 'decision_state', filter: `workspace_id=eq.${currentWorkspaceId}` },
+      payload => {
+        const row = payload.new || payload.old;
+        if(!row) return;
+        if(payload.eventType === 'DELETE'){ delete SHARED_DECISION_STATE[row.decision_id]; }
+        else { SHARED_DECISION_STATE[row.decision_id] = row; }
+        if(typeof window.onSharedDecisionsUpdated === 'function') window.onSharedDecisionsUpdated();
+      }
+    ).subscribe();
+}
+
+async function setDecisionStateShared(decisionId, fields){
+  const row = Object.assign({
+    workspace_id: currentWorkspaceId,
+    decision_id: decisionId,
+    updated_at: new Date().toISOString()
+  }, fields);
+
+  SHARED_DECISION_STATE[decisionId] = Object.assign({}, SHARED_DECISION_STATE[decisionId], row);
+  if(typeof window.onSharedDecisionsUpdated === 'function') window.onSharedDecisionsUpdated();
+
+  if(!navigator.onLine){
+    queueDecisionPending(decisionId, fields);
+    setSyncBadge('offline');
+    return;
+  }
+  setSyncBadge('syncing');
+  const { error } = await supabaseClient.from('decision_state')
+    .upsert(row, { onConflict: 'workspace_id,decision_id' });
+  if(error){
+    console.warn('[sync] decision push failed, queueing', error);
+    queueDecisionPending(decisionId, fields);
+    setSyncBadge('offline');
+  } else {
+    setSyncBadge('synced');
+  }
+}
+
+function queueDecisionPending(decisionId, fields){
+  try{
+    const q = JSON.parse(localStorage.getItem(DECISION_PENDING_KEY) || '[]');
+    const filtered = q.filter(p => p.decision_id !== decisionId);
+    filtered.push({ decision_id: decisionId, fields, ts: Date.now() });
+    localStorage.setItem(DECISION_PENDING_KEY, JSON.stringify(filtered));
+  }catch(e){}
+}
+
+async function flushDecisionPendingQueue(){
+  if(!SYNC_ENABLED || !supabaseClient || !currentWorkspaceId) return;
+  let q = [];
+  try{ q = JSON.parse(localStorage.getItem(DECISION_PENDING_KEY) || '[]'); }catch(e){}
+  if(q.length === 0) return;
+  setSyncBadge('syncing');
+  const latest = {};
+  q.forEach(p => { if(!latest[p.decision_id] || p.ts > latest[p.decision_id].ts) latest[p.decision_id] = p; });
+  const rows = Object.values(latest).map(p => Object.assign({
+    workspace_id: currentWorkspaceId, decision_id: p.decision_id, updated_at: new Date(p.ts).toISOString()
+  }, p.fields));
+  const { error } = await supabaseClient.from('decision_state').upsert(rows, { onConflict: 'workspace_id,decision_id' });
+  if(!error){
+    localStorage.removeItem(DECISION_PENDING_KEY);
+    await pullDecisionState();
+    setSyncBadge('synced');
+  } else {
+    setSyncBadge('offline');
+  }
+}
+
+async function migrateDecisionStateIfNeeded(){
+  const flag = localStorage.getItem('kortes-trip-2026-decisions-migrated');
+  if(flag) return;
+  const local = loadLocalDecisionState();
+  const ids = Object.keys(local);
+  if(ids.length === 0){ localStorage.setItem('kortes-trip-2026-decisions-migrated','true'); return; }
+  const rows = ids.map(id => Object.assign({
+    workspace_id: currentWorkspaceId, decision_id: id, updated_at: new Date().toISOString()
+  }, local[id]));
+  const { error } = await supabaseClient.from('decision_state').upsert(rows, { onConflict: 'workspace_id,decision_id' });
+  if(!error) localStorage.setItem('kortes-trip-2026-decisions-migrated','true');
+}
+
+// ============================================================
 // UI STATUS BADGE
 // ============================================================
 function setSyncBadge(state){
@@ -268,9 +405,17 @@ window.KortesSync = {
   init: initSync,
   isEnabled: () => SYNC_ENABLED,
   isSignedIn: () => !!currentUser,
-  requestMagicLink,
+  requestLoginCode,
+  verifyLoginCode,
   signOut: signOutFamily,
   getSharedState: () => SHARED_STATE,
   setItem: setChecklistItemShared,
-  currentUserName: () => currentUser ? (currentUser.user_metadata?.display_name || currentUser.email) : null
+  currentUserName: () => currentUser ? (currentUser.user_metadata?.display_name || currentUser.email) : null,
+  currentUserId: () => currentUser ? currentUser.id : null,
+  decisions: {
+    getSharedState: () => SHARED_DECISION_STATE,
+    setState: setDecisionStateShared,
+    getLocalState: loadLocalDecisionState,
+    setLocalState: saveLocalDecisionState
+  }
 };

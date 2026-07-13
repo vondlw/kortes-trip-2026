@@ -670,6 +670,79 @@ input, select, textarea{ font-size: 16px !important; }
 .action-check:checked{background:var(--ok);border-color:var(--ok)}
 .action-check:checked::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #052e13;border-width:0 3px 3px 0;transform:rotate(45deg)}
 .action-cta.done-label{background:var(--ok);color:#052e13;border-color:var(--ok)}
+
+/* DECISIONS WORKFLOW V2 */
+.dec-progress-header{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(59,130,246,.05));border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:14px}
+.dec-progress-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.dec-progress-num{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.dec-progress-num b{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.dec-progress-num span{font-size:13px;color:var(--muted)}
+.dec-progress-pct{margin-left:auto;font-size:20px;font-weight:800;color:var(--ok)}
+.dec-progress-bar{height:6px;background:var(--panel3);border-radius:3px;margin-top:10px;overflow:hidden}
+.dec-progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--ok),#34d399);transition:width .3s ease}
+.dec-progress-counts{display:flex;gap:12px;font-size:12px;margin-top:8px;color:var(--muted);flex-wrap:wrap}
+.dec-progress-counts b{color:var(--ink)}
+.dec-progress-counts .urgent-count{color:var(--danger);font-weight:700}
+
+.dec-search-row{margin-bottom:10px}
+.dec-search-row input{width:100%;padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--ink);font-size:14px}
+.dec-search-row input:focus{outline:none;border-color:var(--border2)}
+
+.dec-filter-chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.dec-filter-chip{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:6px 13px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s}
+.dec-filter-chip:hover{color:var(--ink)}
+.dec-filter-chip.active{background:var(--planned);border-color:var(--planned);color:#fff}
+
+.dec-group{margin-bottom:22px}
+.dec-group-header{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;margin-bottom:10px;cursor:pointer;user-select:none}
+.dec-group-header .grp-toggle{margin-left:auto;color:var(--muted);transition:transform .2s;font-size:12px}
+.dec-group-header.collapsed .grp-toggle{transform:rotate(-90deg)}
+.dec-group-header.urgent{color:var(--danger)}
+.dec-group-header.week{color:var(--warn)}
+.dec-group-header.later{color:var(--muted)}
+.dec-group-header.done{color:var(--ok)}
+.dec-group-header.archived{color:var(--muted)}
+.dec-group-count{background:var(--panel3);color:var(--ink2);font-size:11px;font-weight:700;padding:1px 8px;border-radius:10px}
+.dec-group-body{display:block}
+.dec-group-body.collapsed{display:none}
+
+.dec-card-v2{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:0.85rem 1rem;margin-bottom:10px;transition:border-color .15s}
+.dec-card-v2.urgent{border-color:var(--danger)}
+.dec-card-v2.week{border-color:rgba(245,158,11,.4)}
+.dec-card-v2.done{opacity:.75}
+.dec-card-v2.archived{opacity:.55}
+.dec-card-v2-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px}
+.dec-card-v2-title{font-weight:700;font-size:14px;letter-spacing:-.1px;line-height:1.3}
+.dec-card-v2-chip{font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:2px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.dec-card-v2-chip.urgent{background:var(--danger);color:#fff}
+.dec-card-v2-chip.week{background:var(--warn);color:#3d1c00}
+.dec-card-v2-chip.done{background:var(--ok);color:#052e13}
+.dec-card-v2-chip.archived{background:var(--panel3);color:var(--muted)}
+.dec-card-v2-rec{font-size:12px;color:#c4b5fd;font-weight:600;margin:4px 0}
+.dec-card-v2-bullets{font-size:12px;color:var(--ink2);line-height:1.5;margin:4px 0 10px}
+.dec-card-v2-bullets div{padding-left:12px;position:relative}
+.dec-card-v2-bullets div::before{content:"•";position:absolute;left:0;color:var(--muted)}
+.dec-card-v2-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.dec-card-v2-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.dec-btn-v2{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);cursor:pointer;background:var(--panel2);color:var(--ink)}
+.dec-btn-v2.primary{background:var(--planned);border-color:var(--planned);color:#fff}
+.dec-btn-v2.primary.book{background:var(--danger);border-color:var(--danger)}
+.dec-btn-v2.ghost{background:transparent;color:var(--muted);border-color:transparent}
+.dec-btn-v2-overflow{margin-left:auto;position:relative}
+.dec-overflow-menu{position:absolute;right:0;top:32px;background:var(--panel2);border:1px solid var(--border2);border-radius:10px;padding:4px;z-index:10;display:none;min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dec-overflow-menu.open{display:block}
+.dec-overflow-menu button{display:block;width:100%;text-align:left;padding:8px 10px;font-size:12px;color:var(--ink2);background:none;border:none;border-radius:6px;cursor:pointer}
+.dec-overflow-menu button:hover{background:var(--panel3);color:var(--ink)}
+.dec-card-v2-result{font-size:12px;color:var(--ink2);display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border);margin-top:6px}
+.dec-card-v2-result .ts{color:var(--muted);font-size:11px}
+
+.dec-compare-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:14px}
+.dec-compare-table td{padding:9px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.dec-compare-table td:first-child{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.3px;width:90px}
+.dec-compare-table tr:last-child td{border-bottom:none}
+.dec-compare-actions{display:flex;flex-direction:column;gap:8px}
+.dec-compare-actions button{width:100%;padding:12px;border-radius:10px;font-weight:700;font-size:14px;border:1px solid var(--border2);background:var(--panel2);color:var(--ink)}
+.dec-compare-actions button.rec{background:var(--planned);border-color:var(--planned);color:#fff}
 </style>
 </head>
 <body>
@@ -751,11 +824,36 @@ input, select, textarea{ font-size: 16px !important; }
 <!-- BESLUITEN VIEW -->
 <div class="view" id="v-decisions">
   <div class="section" style="margin-top:8px">
-    <div class="section-head">
-      <h2 class="section-title">Nog beslissen</h2>
-      <div class="section-sub" id="decCount"></div>
+    <div class="dec-progress-header" id="decProgressHeader"></div>
+    <div class="dec-search-row">
+      <input type="text" id="decSearchInput" placeholder="Zoek beslissingen..." oninput="filterDecisions()">
     </div>
-    <div class="decisions-grid" id="decisions"></div>
+    <div class="dec-filter-chips" id="decFilterChips"></div>
+    <div id="decGroups"></div>
+  </div>
+</div>
+
+<div class="detail-modal-backdrop" id="compareModalBackdrop" onclick="closeCompareSheet()">
+  <div class="detail-modal" onclick="event.stopPropagation()">
+    <div class="detail-modal-header">
+      <div style="flex:1">
+        <span class="detail-modal-handle"></span>
+        <div class="detail-modal-title" id="compareModalTitle"></div>
+      </div>
+      <button class="detail-modal-close" onclick="closeCompareSheet()">✕</button>
+    </div>
+    <div class="detail-modal-body" id="compareModalBody"></div>
+  </div>
+</div>
+
+<div class="ess-modal-backdrop" id="decConfirmModal">
+  <div class="ess-modal">
+    <h3 id="decConfirmTitle">Bevestigen?</h3>
+    <p id="decConfirmText"></p>
+    <div class="ess-modal-actions">
+      <button class="ess-modal-btn cancel" onclick="closeDecConfirm()">Annuleren</button>
+      <button class="ess-modal-btn confirm" id="decConfirmBtn" style="background:var(--planned);border-color:var(--planned)">Bevestigen</button>
+    </div>
   </div>
 </div>
 
@@ -1016,28 +1114,9 @@ function render(D){
     </div>`;
   }).join('');
 
-  // DECISIONS
-  document.getElementById('decCount').textContent = D.decisions.length+' open';
-  document.getElementById('decisions').innerHTML = D.decisions.map(d=>{
-    const opts = (d.options||[]).map(o=>{
-      const isRec = o===d.recommendation||(d.recommendation.startsWith(o.split(' ')[0])&&o!==d.recommendation);
-      const exactRec = o===d.recommendation||d.recommendation.includes(o);
-      return `<button class="dec-opt ${exactRec?'rec':''}">${o}</button>`;
-    }).join('');
-    return `<div class="dec-card">
-      <div class="dec-q">${d.q}</div>
-      <div class="dec-meta">
-        <span>⏰ ${d.deadline}</span>
-        <span>Vertrouwen: ${d.confidence}</span>
-      </div>
-      <div class="dec-opts">${opts}</div>
-      <div class="dec-why"><b style="color:var(--ink);font-weight:700">Aanbevolen:</b> ${d.recommendation}<br>${d.why}</div>
-      <div class="dec-actions">
-        <button class="dec-btn primary">Vergelijk</button>
-        <button class="dec-btn ghost">Later beslissen</button>
-      </div>
-    </div>`;
-  }).join('');
+  // DECISIONS V2
+  DECISIONS_DATA = D;
+  renderDecisionsV2();
 
   // FOOD
   REST_INDEX = {};
@@ -1485,6 +1564,339 @@ function toggleActionDone(id){
     window.KortesSync.setItem(id, nowDone);
   }
   if(ACTIONS_DATA) renderActions(ACTIONS_DATA);
+}
+
+let DECISIONS_DATA = null;
+let DEC_FILTER = 'all';
+let DEC_SEARCH = '';
+let DEC_COLLAPSED = new Set(['later','done','archived']);
+let DEC_COMPARE_TARGET = null;
+let DEC_CONFIRM_ACTION = null;
+
+function loadLocalDecState(){
+  if(window.KortesSync) return window.KortesSync.decisions.getLocalState();
+  try{ return JSON.parse(localStorage.getItem('kortes-trip-2026-decisions-v1')||'{}'); }catch(e){ return {}; }
+}
+function saveLocalDecState(state){
+  if(window.KortesSync) window.KortesSync.decisions.setLocalState(state);
+  else try{ localStorage.setItem('kortes-trip-2026-decisions-v1', JSON.stringify(state)); }catch(e){}
+}
+
+function getDecState(decisionId){
+  if(window.KortesSync && window.KortesSync.isEnabled() && window.KortesSync.isSignedIn()){
+    const shared = window.KortesSync.decisions.getSharedState()[decisionId];
+    if(shared) return shared;
+  }
+  const local = loadLocalDecState();
+  return local[decisionId] || { status: 'READY_TO_DECIDE' };
+}
+
+function setDecState(decisionId, fields){
+  const local = loadLocalDecState();
+  local[decisionId] = Object.assign({}, local[decisionId], fields, { updated_at: new Date().toISOString() });
+  saveLocalDecState(local);
+  if(window.KortesSync && window.KortesSync.isEnabled() && window.KortesSync.isSignedIn()){
+    window.KortesSync.decisions.setState(decisionId, fields);
+  }
+  renderDecisionsV2();
+}
+
+window.onSharedDecisionsUpdated = function(){ renderDecisionsV2(); };
+
+function decisionRequiresBooking(d, option){
+  return !!(d.requires_booking && d.requires_booking[option]);
+}
+
+function isUrgent(d){
+  if(!d.deadline) return false;
+  const dl = d.deadline.toLowerCase();
+  return dl.includes('vandaag') || dl.includes('kritiek') || dl.includes('urgent');
+}
+
+function isThisWeek(d){
+  // Heuristic: deadline mentions a date within the coming ~7 days is out of scope for pure client logic
+  // without real date parsing of Dutch free text; treat non-urgent open items with a concrete-looking
+  // deadline as "this week" by default, everything else as "later".
+  return !isUrgent(d);
+}
+
+function groupDecisions(decisions){
+  const groups = { urgent: [], week: [], later: [], done: [], archived: [] };
+  const today = new Date();
+  decisions.forEach(d => {
+    const state = getDecState(d.id);
+    const status = state.status || 'READY_TO_DECIDE';
+
+    if(status === 'ARCHIVED'){ groups.archived.push({d, state}); return; }
+    if(status === 'COMPLETED' || status === 'BOOKED'){ groups.done.push({d, state}); return; }
+
+    // Snoozed: hide from urgent/week until deadline passes
+    if(state.snoozed_until){
+      const snoozeDate = new Date(state.snoozed_until);
+      if(!isNaN(snoozeDate) && snoozeDate > today){ groups.later.push({d, state}); return; }
+    }
+
+    if(status === 'DECIDED' || status === 'BOOKING_REQUIRED'){
+      groups.urgent.push({d, state}); return; // decided-but-not-booked always needs action
+    }
+
+    if(isUrgent(d)) groups.urgent.push({d, state});
+    else groups.week.push({d, state});
+  });
+  return groups;
+}
+
+function decisionMatchesFilter(d, state){
+  if(DEC_FILTER === 'urgent') return isUrgent(d) || state.status === 'BOOKING_REQUIRED';
+  if(DEC_FILTER === 'booking') return Object.values(d.requires_booking||{}).some(Boolean);
+  if(DEC_FILTER === 'research') return state.status === 'READY_TO_DECIDE' || state.status === 'RESEARCHING' || state.status === 'NEW' || !state.status;
+  if(DEC_FILTER === 'japan') return ['OD2','SAMURAI','SHIBUYA-SKY','OD7'].includes(d.id);
+  if(DEC_FILTER === 'vietnam') return ['OD4','OD5','C6'].includes(d.id);
+  return true;
+}
+
+function decisionMatchesSearch(d){
+  if(!DEC_SEARCH) return true;
+  const hay = (d.q + ' ' + (d.options||[]).join(' ') + ' ' + (d.recommendation||'')).toLowerCase();
+  return hay.includes(DEC_SEARCH.toLowerCase());
+}
+
+function filterDecisions(){
+  DEC_SEARCH = document.getElementById('decSearchInput').value;
+  renderDecisionsV2();
+}
+
+function setDecFilter(f){
+  DEC_FILTER = f;
+  renderDecisionsV2();
+}
+
+function toggleDecGroup(key){
+  if(DEC_COLLAPSED.has(key)) DEC_COLLAPSED.delete(key);
+  else DEC_COLLAPSED.add(key);
+  renderDecisionsV2();
+}
+
+function renderDecisionsV2(){
+  const D = DECISIONS_DATA;
+  if(!D) return;
+  const all = D.decisions;
+
+  // Progress header (counts across ALL decisions, unaffected by filter/search)
+  let total = all.length, done = 0, urgentCount = 0;
+  all.forEach(d => {
+    const s = getDecState(d.id);
+    if(s.status === 'COMPLETED' || s.status === 'BOOKED' || s.status === 'ARCHIVED') done++;
+    if(isUrgent(d) || s.status === 'BOOKING_REQUIRED') urgentCount++;
+  });
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('decProgressHeader').innerHTML = `
+    <div class="dec-progress-title">Planning progress</div>
+    <div class="dec-progress-num">
+      <b>${done}</b><span>van ${total} gereed</span>
+      <div class="dec-progress-pct">${pct}%</div>
+    </div>
+    <div class="dec-progress-bar"><div class="dec-progress-bar-fill" style="width:${pct}%"></div></div>
+    <div class="dec-progress-counts">
+      <span class="urgent-count">${urgentCount} urgent</span>
+      <span>${total-done} open</span>
+    </div>
+  `;
+
+  // Filter chips
+  const filters = [['all','Alles'],['urgent','Urgent'],['booking','Boeken'],['research','Onderzoek'],['japan','Japan'],['vietnam','Vietnam']];
+  document.getElementById('decFilterChips').innerHTML = filters.map(([k,l]) =>
+    `<button class="dec-filter-chip ${DEC_FILTER===k?'active':''}" onclick="setDecFilter('${k}')">${l}</button>`
+  ).join('');
+
+  // Filter + search, then group
+  const filtered = all.filter(d => decisionMatchesFilter(d, getDecState(d.id)) && decisionMatchesSearch(d));
+  const groups = groupDecisions(filtered);
+
+  const groupMeta = [
+    ['urgent','urgent','🔥 Actie vereist'],
+    ['week','week','⏳ Deze week'],
+    ['later','later','📅 Later'],
+    ['done','done','✅ Gereed'],
+    ['archived','archived','🗄 Gearchiveerd']
+  ];
+
+  document.getElementById('decGroups').innerHTML = groupMeta.map(([key,cls,label]) => {
+    const items = groups[key];
+    if(items.length === 0) return '';
+    const collapsed = DEC_COLLAPSED.has(key);
+    return `<div class="dec-group">
+      <div class="dec-group-header ${cls} ${collapsed?'collapsed':''}" onclick="toggleDecGroup('${key}')">
+        ${label} <span class="dec-group-count">${items.length}</span>
+        <span class="grp-toggle">▾</span>
+      </div>
+      <div class="dec-group-body ${collapsed?'collapsed':''}">
+        ${items.map(({d,state}) => renderDecCardV2(d, state, key)).join('')}
+      </div>
+    </div>`;
+  }).join('') || `<div style="text-align:center;padding:40px 0;color:var(--muted);font-size:13px">Geen beslissingen gevonden.</div>`;
+}
+
+function renderDecCardV2(d, state, groupKey){
+  const status = state.status || 'READY_TO_DECIDE';
+  const chipCls = groupKey === 'urgent' ? 'urgent' : groupKey === 'week' ? 'week' : groupKey === 'done' ? 'done' : groupKey === 'archived' ? 'archived' : '';
+  let chipLabel = d.deadline || '';
+  if(status === 'BOOKING_REQUIRED') chipLabel = 'Boeken';
+  if(status === 'DECIDED') chipLabel = 'Gekozen';
+  if(status === 'COMPLETED' || status === 'BOOKED') chipLabel = state.decided_at ? new Date(state.decided_at).toLocaleDateString('nl-NL',{day:'numeric',month:'short'}) : 'Gereed';
+  if(status === 'ARCHIVED') chipLabel = 'Gearchiveerd';
+
+  let body = '';
+  if(status === 'COMPLETED' || status === 'BOOKED'){
+    body = `<div class="dec-card-v2-result"><span>${state.chosen_option || d.recommendation}</span><span class="ts">${status==='BOOKED'?'Geboekt':'Gekozen'}</span></div>`;
+  } else if(status === 'ARCHIVED'){
+    body = `<div class="dec-card-v2-result"><span>${state.rejection_reason || 'Afgewezen'}</span><span class="ts">Gearchiveerd</span></div>
+      <div class="dec-card-v2-actions"><button class="dec-btn-v2 ghost" onclick="reopenDecision('${d.id}')">↩ Heropen</button></div>`;
+  } else {
+    const bullets = (d.why||'').split(/[.;]\s+/).filter(s=>s.trim().length>3).slice(0,3);
+    body = `
+      ${d.recommendation ? `<div class="dec-card-v2-rec">★ ${d.recommendation}</div>` : ''}
+      <div class="dec-card-v2-bullets">${bullets.map(b=>`<div>${b.trim().replace(/\.$/,'')}</div>`).join('')}</div>
+      <div class="dec-card-v2-actions">
+        ${renderDecActions(d, state, status)}
+        <div class="dec-btn-v2-overflow">
+          <button class="dec-btn-v2 ghost" onclick="toggleDecOverflow(event,'${d.id}')">···</button>
+          <div class="dec-overflow-menu" id="overflow-${d.id}">
+            <button onclick="snoozeDecision('${d.id}')">⏰ Later beslissen</button>
+            <button onclick="rejectDecision('${d.id}')">❌ Afwijzen</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  return `<div class="dec-card-v2 ${groupKey}">
+    <div class="dec-card-v2-top">
+      <div class="dec-card-v2-title">${d.q}</div>
+      ${chipLabel ? `<span class="dec-card-v2-chip ${chipCls}">${chipLabel}</span>` : ''}
+    </div>
+    ${body}
+  </div>`;
+}
+
+function renderDecActions(d, state, status){
+  if(status === 'BOOKING_REQUIRED'){
+    return `<button class="dec-btn-v2 primary book" onclick="confirmBooked('${d.id}')">Boek nu</button>
+            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+  }
+  // READY_TO_DECIDE / RESEARCHING / NEW default
+  const recOption = d.recommendation;
+  const matchedOpt = (d.options||[]).find(o => recOption && (o === recOption || recOption.includes(o) || o.includes(recOption.split(' ').slice(0,2).join(' '))));
+  return `<button class="dec-btn-v2 primary" onclick="chooseOption('${d.id}', ${matchedOpt ? `'${matchedOpt.replace(/'/g,"\\'")}'` : 'null'})">Kies${matchedOpt?' aanbevolen':''}</button>
+          <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+}
+
+function toggleDecOverflow(ev, decisionId){
+  ev.stopPropagation();
+  document.querySelectorAll('.dec-overflow-menu.open').forEach(m => { if(m.id !== 'overflow-'+decisionId) m.classList.remove('open'); });
+  document.getElementById('overflow-'+decisionId).classList.toggle('open');
+}
+document.addEventListener('click', () => document.querySelectorAll('.dec-overflow-menu.open').forEach(m=>m.classList.remove('open')));
+
+function chooseOption(decisionId, option){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  const chosen = option || d.recommendation;
+  const needsBooking = decisionRequiresBooking(d, chosen);
+  setDecState(decisionId, {
+    status: needsBooking ? 'BOOKING_REQUIRED' : 'COMPLETED',
+    chosen_option: chosen,
+    decided_by: window.KortesSync ? window.KortesSync.currentUserId() : null,
+    decided_at: new Date().toISOString()
+  });
+}
+
+function confirmBooked(decisionId){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  showDecConfirm('Markeer als geboekt?', `"${d.q}" wordt gemarkeerd als geboekt.`, () => {
+    setDecState(decisionId, { status: 'BOOKED' });
+  });
+}
+
+function snoozeDecision(decisionId){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  const snoozeUntil = parseDutchDeadlineToISO(d.deadline) || null;
+  setDecState(decisionId, { snoozed_until: snoozeUntil });
+  document.getElementById('overflow-'+decisionId)?.classList.remove('open');
+}
+
+function parseDutchDeadlineToISO(text){
+  if(!text) return null;
+  const months = {jan:0,feb:1,mrt:2,apr:3,mei:4,jun:5,jul:6,aug:7,sep:8,okt:9,nov:10,dec:11};
+  const m = text.toLowerCase().match(/(\d{1,2})\s*(jan|feb|mrt|apr|mei|jun|jul|aug|sep|okt|nov|dec)/);
+  if(!m) return null;
+  const day = parseInt(m[1]);
+  const month = months[m[2]];
+  const year = 2026;
+  const d = new Date(year, month, day);
+  return isNaN(d) ? null : d.toISOString().slice(0,10);
+}
+
+function rejectDecision(decisionId){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  showDecConfirm('Beslissing afwijzen?', `"${d.q}" wordt gearchiveerd als afgewezen.`, () => {
+    setDecState(decisionId, { status: 'ARCHIVED', rejection_reason: 'Afgewezen door gezin' });
+  });
+  document.getElementById('overflow-'+decisionId)?.classList.remove('open');
+}
+
+function reopenDecision(decisionId){
+  setDecState(decisionId, { status: 'READY_TO_DECIDE', chosen_option: null, rejection_reason: null, snoozed_until: null });
+}
+
+function showDecConfirm(title, text, onConfirm){
+  document.getElementById('decConfirmTitle').textContent = title;
+  document.getElementById('decConfirmText').textContent = text;
+  DEC_CONFIRM_ACTION = onConfirm;
+  document.getElementById('decConfirmModal').classList.add('open');
+}
+function closeDecConfirm(){
+  document.getElementById('decConfirmModal').classList.remove('open');
+  DEC_CONFIRM_ACTION = null;
+}
+document.getElementById && document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('decConfirmBtn');
+  if(btn) btn.addEventListener('click', () => { if(DEC_CONFIRM_ACTION) DEC_CONFIRM_ACTION(); closeDecConfirm(); });
+});
+
+function openCompareSheet(decisionId){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  DEC_COMPARE_TARGET = decisionId;
+  document.getElementById('compareModalTitle').textContent = d.q;
+
+  const opts = d.options || [];
+  const rows = [
+    ['Aanbevolen', opts.map(o => o === d.recommendation || d.recommendation.includes(o) ? '★' : '').join(' / ')],
+    ['Vertrouwen', d.confidence || '—'],
+    ['Deadline', d.deadline || '—']
+  ];
+
+  const tableRows = rows.map(([label,val]) => `<tr><td>${label}</td><td colspan="${opts.length}">${val}</td></tr>`).join('');
+  const optHeader = `<tr><td></td>${opts.map(o=>`<td style="font-weight:700;color:var(--ink)">${o}</td>`).join('')}</tr>`;
+
+  const body = `
+    <table class="dec-compare-table">
+      ${optHeader}
+      ${tableRows}
+    </table>
+    <div class="detail-modal-section">
+      <div class="detail-modal-lbl">💬 Waarom</div>
+      <div class="detail-modal-text">${d.why}</div>
+    </div>
+    <div class="dec-compare-actions">
+      ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
+    </div>
+  `;
+  document.getElementById('compareModalBody').innerHTML = body;
+  document.getElementById('compareModalBackdrop').classList.add('open');
+}
+function closeCompareSheet(){
+  document.getElementById('compareModalBackdrop').classList.remove('open');
 }
 
 function renderShopping(D){
