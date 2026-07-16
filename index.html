@@ -2724,19 +2724,28 @@ function loadJsPDF(){
   });
 }
 
-function renderSyncLog(){
-  const D = DASHBOARD_D;
+async function renderSyncLog(){
   const enabled = window.KortesSync && window.KortesSync.isEnabled();
   const signedIn = enabled && window.KortesSync.isSignedIn();
 
   document.getElementById('synclogSub').textContent = enabled
-    ? (signedIn ? 'Live gesynchroniseerd' : 'Nog niet ingelogd')
+    ? (signedIn ? 'Laden...' : 'Nog niet ingelogd')
     : 'Sync niet actief (lokale modus)';
 
   if(!enabled){
     document.getElementById('synclogContent').innerHTML = `<div class="synclog-empty">Sync is niet geconfigureerd — er is niets om te loggen.</div>`;
     return;
   }
+
+  // Altijd vers ophalen bij het openen van deze pagina — niet vertrouwen
+  // op wat toevallig al in het geheugen zit van eerder in deze sessie.
+  document.getElementById('synclogContent').innerHTML = `<div class="synclog-empty">Laden...</div>`;
+  if(signedIn && window.KortesSync.journal.refreshAll){
+    await window.KortesSync.journal.refreshAll();
+  }
+
+  const D = DASHBOARD_D;
+  document.getElementById('synclogSub').textContent = signedIn ? 'Live gesynchroniseerd' : 'Nog niet ingelogd';
 
   const items = [];
   if(D){

@@ -18,6 +18,7 @@ const SYNC_ENABLED = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
 
 let supabaseClient = null;
 let currentWorkspaceId = null;
+let LAST_WORKSPACE_ERROR = null;
 let checklistRealtimeChannel = null;
 let decisionRealtimeChannel = null;
 
@@ -40,14 +41,23 @@ async function initSync(){
   }
   supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const { data: ws, error } = await supabaseClient
-    .from('trip_workspaces').select('id').eq('slug', WORKSPACE_SLUG).single();
+  let ws, error;
+  try{
+    const res = await supabaseClient
+      .from('trip_workspaces').select('id').eq('slug', WORKSPACE_SLUG).single();
+    ws = res.data; error = res.error;
+  }catch(networkErr){
+    error = networkErr;
+  }
   if(error || !ws){
-    console.warn('[sync] workspace niet gevonden', error);
+    const detail = error ? (error.message || JSON.stringify(error)) : 'workspace-rij niet gevonden';
+    console.error('[sync] workspace resolutie mislukt:', detail, error);
+    LAST_WORKSPACE_ERROR = detail;
     setSyncBadge('local');
     return;
   }
   currentWorkspaceId = ws.id;
+  LAST_WORKSPACE_ERROR = null;
 
   if(typeof window.onWorkspaceResolved === 'function') window.onWorkspaceResolved();
 
@@ -360,27 +370,31 @@ let photoRealtimeChannel = null;
 const STORAGE_BUCKET = 'journal-photos';
 
 async function pullJournal(){
-  if(!currentWorkspaceId) return;
+  if(!currentWorkspaceId) return { error: null };
   const { data, error } = await supabaseClient
     .from('journal_entries').select('*').eq('workspace_id', currentWorkspaceId);
-  if(error){ console.warn('[sync] journal pull failed', error); return; }
+  if(error){ console.warn('[sync] journal pull failed', error); return { error }; }
   SHARED_JOURNAL = {}; // trip_day -> { authorName: row }
   (data||[]).forEach(row => {
     if(!SHARED_JOURNAL[row.trip_day]) SHARED_JOURNAL[row.trip_day] = {};
     SHARED_JOURNAL[row.trip_day][row.author_name] = row;
   });
+  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+  return { error: null };
 }
 
 async function pullPhotos(){
-  if(!currentWorkspaceId) return;
+  if(!currentWorkspaceId) return { error: null };
   const { data, error } = await supabaseClient
     .from('journal_photos').select('*').eq('workspace_id', currentWorkspaceId).order('created_at');
-  if(error){ console.warn('[sync] photos pull failed', error); return; }
+  if(error){ console.warn('[sync] photos pull failed', error); return { error }; }
   SHARED_PHOTOS = {};
   (data||[]).forEach(row => {
     if(!SHARED_PHOTOS[row.trip_day]) SHARED_PHOTOS[row.trip_day] = [];
     SHARED_PHOTOS[row.trip_day].push(row);
   });
+  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+  return { error: null };
 }
 
 function subscribeJournalRealtime(){
@@ -411,7 +425,7 @@ async function saveJournalEntry(tripDay, fields){
   if(!name) return { error: { message: 'Kies eerst je naam' } };
   if(!currentWorkspaceId){
     const ready = await waitForWorkspace();
-    if(!ready) return { error: { message: 'Kan geen verbinding maken met de database — check je internetverbinding en probeer opnieuw.' } };
+    if(!ready) return { error: { message: ('Kan geen verbinding maken met de database' + (LAST_WORKSPACE_ERROR ? (': ' + LAST_WORKSPACE_ERROR) : ' — check je internetverbinding en probeer opnieuw.')) } };
   }
   const row = Object.assign({
     workspace_id: currentWorkspaceId,
@@ -446,7 +460,7 @@ async function uploadJournalPhoto(tripDay, file, caption){
   if(!supabaseClient) return { error: { message: 'Sync niet geladen' } };
   if(!currentWorkspaceId){
     const ready = await waitForWorkspace();
-    if(!ready) return { error: { message: 'Kan geen verbinding maken met de database — check je internetverbinding en probeer opnieuw.' } };
+    if(!ready) return { error: { message: ('Kan geen verbinding maken met de database' + (LAST_WORKSPACE_ERROR ? (': ' + LAST_WORKSPACE_ERROR) : ' — check je internetverbinding en probeer opnieuw.')) } };
   }
   const name = getFamilyName();
   const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
@@ -491,7 +505,7 @@ function setSyncBadge(state){
   const el = document.getElementById('essSyncBadge');
   if(!el) return;
   const map = {
-    'local': { text: 'Apparaat-lokaal (geen gezinssync geconfigureerd)', cls: 'local' },
+    'local': { text: LAST_WORKSPACE_ERROR ? ('Verbindingsfout: ' + LAST_WORKSPACE_ERROR) : 'Apparaat-lokaal (geen gezinssync geconfigureerd)', cls: 'local' },
     'signed-out': { text: 'Kies je naam om te synchroniseren met je gezin', cls: 'signed-out' },
     'syncing': { text: 'Synchroniseren...', cls: 'syncing' },
     'synced': { text: (isViewer() ? '👀 Meekijken als ' : 'Gesynchroniseerd als ') + (getFamilyName()||''), cls: 'synced' },
@@ -515,6 +529,7 @@ window.KortesSync = {
   getRole: getRole,
   getClaimedNames: getClaimedNames,
   claimName: claimName,
+  getLastError: () => LAST_WORKSPACE_ERROR,
   getSharedState: () => SHARED_STATE,
   setItem: setChecklistItemShared,
   decisions: {
@@ -532,6 +547,7 @@ window.KortesSync = {
     saveEntry: saveJournalEntry,
     uploadPhoto: uploadJournalPhoto,
     deletePhoto: deleteJournalPhoto,
-    photoUrl: getPhotoUrl
+    photoUrl: getPhotoUrl,
+    refreshAll: async () => { await waitForWorkspace(); await pullJournal(); await pullPhotos(); }
   }
 };
