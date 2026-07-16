@@ -61,6 +61,21 @@ async function initSync(){
   window.addEventListener('offline', () => setSyncBadge('offline'));
 }
 
+// Wacht tot de workspace-ID bekend is (voorkomt "geen workspace"-fout als
+// iemand heel snel klikt vlak na het openen van de app, terwijl de eerste
+// verbinding met Supabase nog bezig is). Wacht max ~4 seconden.
+function waitForWorkspace(timeoutMs){
+  timeoutMs = timeoutMs || 4000;
+  return new Promise((resolve) => {
+    if(currentWorkspaceId){ resolve(true); return; }
+    const start = Date.now();
+    const check = setInterval(() => {
+      if(currentWorkspaceId){ clearInterval(check); resolve(true); }
+      else if(Date.now() - start > timeoutMs){ clearInterval(check); resolve(false); }
+    }, 150);
+  });
+}
+
 function loadSupabaseLib(){
   return new Promise((resolve,reject)=>{
     const s = document.createElement('script');
@@ -81,6 +96,7 @@ function getFamilyName(){
 async function pickFamilyName(name){
   try{ localStorage.setItem(NAME_KEY, name); }catch(e){}
   try{ localStorage.setItem(ROLE_KEY, 'family'); }catch(e){}
+  await waitForWorkspace();
   if(currentWorkspaceId && FAMILY_NAMES.includes(name)){
     await claimName(name); // conflict = al geclaimd door iemand anders; negeren, deze persoon gebruikt 'm nu zelf
   }
@@ -117,6 +133,7 @@ async function claimName(name){
 async function pickFamilyNameWithRole(name, role){
   try{ localStorage.setItem(ROLE_KEY, role); }catch(e){}
   try{ localStorage.setItem(NAME_KEY, name); }catch(e){}
+  await waitForWorkspace();
   await afterNamePicked();
 }
 
@@ -391,7 +408,11 @@ function subscribeJournalRealtime(){
 
 async function saveJournalEntry(tripDay, fields){
   const name = getFamilyName();
-  if(!name) return { error: 'Kies eerst je naam' };
+  if(!name) return { error: { message: 'Kies eerst je naam' } };
+  if(!currentWorkspaceId){
+    const ready = await waitForWorkspace();
+    if(!ready) return { error: { message: 'Kan geen verbinding maken met de database — check je internetverbinding en probeer opnieuw.' } };
+  }
   const row = Object.assign({
     workspace_id: currentWorkspaceId,
     trip_day: tripDay,
@@ -401,7 +422,6 @@ async function saveJournalEntry(tripDay, fields){
   if(!SHARED_JOURNAL[tripDay]) SHARED_JOURNAL[tripDay] = {};
   SHARED_JOURNAL[tripDay][name] = Object.assign({}, SHARED_JOURNAL[tripDay][name], row);
   if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
-  if(!currentWorkspaceId) return { error: 'geen workspace' };
   const { error } = await supabaseClient.from('journal_entries')
     .upsert(row, { onConflict: 'workspace_id,trip_day,author_name' });
   return { error };
@@ -423,7 +443,11 @@ function getPhotosFor(tripDay){
 }
 
 async function uploadJournalPhoto(tripDay, file, caption){
-  if(!currentWorkspaceId || !supabaseClient) return { error: 'geen workspace' };
+  if(!supabaseClient) return { error: { message: 'Sync niet geladen' } };
+  if(!currentWorkspaceId){
+    const ready = await waitForWorkspace();
+    if(!ready) return { error: { message: 'Kan geen verbinding maken met de database — check je internetverbinding en probeer opnieuw.' } };
+  }
   const name = getFamilyName();
   const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
   const path = `${currentWorkspaceId}/${tripDay}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;

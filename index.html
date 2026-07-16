@@ -908,6 +908,20 @@ body.viewer-mode .action{
 body.viewer-mode .journal-note-input{
   pointer-events:none;background:var(--panel3);opacity:.8;
 }
+
+.synclog-item{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:8px}
+.synclog-icon{font-size:18px;flex-shrink:0}
+.synclog-body{flex:1;min-width:0}
+.synclog-head{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.synclog-author{font-weight:700;font-size:13px}
+.synclog-type{font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:1px 7px;border-radius:5px;background:var(--panel3);color:var(--muted)}
+.synclog-day{font-size:11px;color:var(--muted)}
+.synclog-time{margin-left:auto;font-size:10px;color:var(--muted)}
+.synclog-text{font-size:12px;color:var(--ink2);margin-top:4px}
+.synclog-thumb{width:40px;height:40px;border-radius:6px;object-fit:cover;margin-top:6px}
+.synclog-empty{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+.synclog-status-row{display:flex;gap:16px;margin-bottom:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.synclog-status-row b{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -945,6 +959,7 @@ body.viewer-mode .journal-note-input{
       <button data-view="shopping">Shopping</button>
       <button data-view="events">Events</button>
       <button data-view="essentials">Reisbenodigdheden</button>
+      <button data-view="synclog">Log</button>
     </div>
   </div>
 </nav>
@@ -1155,6 +1170,18 @@ body.viewer-mode .journal-note-input{
   </div>
 </div>
 
+<!-- LOG -->
+<div class="view" id="v-synclog">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Log</h2>
+      <div class="section-sub" id="synclogSub"></div>
+    </div>
+    <div class="opt-workspace-goal"><b>Waarvoor dit is</b>Hier zie je precies wat er is opgeslagen, door wie, en wanneer — handig om te checken of alles goed synchroniseert.</div>
+    <div id="synclogContent"></div>
+  </div>
+</div>
+
 </div>
 
 <div class="detail-modal-backdrop" id="detailModalBackdrop" onclick="closeDetailModal()">
@@ -1219,6 +1246,10 @@ body.viewer-mode .journal-note-input{
   <button data-view="essentials">
     <svg viewBox="0 0 24 24"><path d="M9 11l3 3l8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
     Checklist
+  </button>
+  <button data-view="synclog">
+    <svg viewBox="0 0 24 24"><path d="M9 12h6M9 16h6M9 8h1"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    Log
   </button>
 </nav>
 <div class="botnav-fade"></div>
@@ -1374,6 +1405,7 @@ function render(D){
       if(v === 'livetoday') renderLiveToday();
       if(v === 'journal') renderJournalTimeline();
       if(v === 'tripmap') renderTripMap();
+      if(v === 'synclog') renderSyncLog();
       window.scrollTo({top:0,behavior:'smooth'});
       // Scroll the tapped tab into view within the horizontal botnav
       if(btn.closest('#botnavScroll')){
@@ -2450,6 +2482,7 @@ function refreshJournalUI(){
   if(activeView.id === 'v-livetoday') renderLiveToday();
   if(activeView.id === 'v-journal') renderJournalTimeline();
   if(activeView.id === 'v-trip' && DASHBOARD_D) refreshOpenDayJournals();
+  if(activeView.id === 'v-synclog') renderSyncLog();
 }
 
 // ============================================================
@@ -2689,6 +2722,78 @@ function loadJsPDF(){
     script.onload = resolve;
     document.head.appendChild(script);
   });
+}
+
+function renderSyncLog(){
+  const D = DASHBOARD_D;
+  const enabled = window.KortesSync && window.KortesSync.isEnabled();
+  const signedIn = enabled && window.KortesSync.isSignedIn();
+
+  document.getElementById('synclogSub').textContent = enabled
+    ? (signedIn ? 'Live gesynchroniseerd' : 'Nog niet ingelogd')
+    : 'Sync niet actief (lokale modus)';
+
+  if(!enabled){
+    document.getElementById('synclogContent').innerHTML = `<div class="synclog-empty">Sync is niet geconfigureerd — er is niets om te loggen.</div>`;
+    return;
+  }
+
+  const items = [];
+  if(D){
+    D.days.forEach(day => {
+      const entries = window.KortesSync.journal.getEntries(day.date) || [];
+      entries.forEach(e => {
+        items.push({
+          type: 'note', icon: e.rating ? '⭐' : '📝', day: day.date,
+          author: e.author_name, when: e.updated_at,
+          text: (e.rating ? '★'.repeat(e.rating)+' ' : '') + (e.note ? e.note.slice(0,80) : '(alleen beoordeling, geen tekst)')
+        });
+      });
+      const photos = window.KortesSync.journal.getPhotos(day.date) || [];
+      photos.forEach(p => {
+        items.push({
+          type: 'photo', icon: '📷', day: day.date,
+          author: p.uploaded_by_name, when: p.created_at,
+          text: p.caption || '(foto zonder bijschrift)',
+          thumb: window.KortesSync.journal.photoUrl(p.storage_path)
+        });
+      });
+    });
+  }
+
+  items.sort((a,b) => new Date(b.when||0) - new Date(a.when||0));
+
+  const counts = { notes: items.filter(i=>i.type==='note').length, photos: items.filter(i=>i.type==='photo').length };
+  const statusRow = `<div class="synclog-status-row">
+    <span><b>${counts.notes}</b> notities/beoordelingen</span>
+    <span><b>${counts.photos}</b> foto's</span>
+    <span>Ingelogd als <b>${signedIn ? window.KortesSync.currentUserName() : '—'}</b></span>
+  </div>`;
+
+  if(items.length === 0){
+    document.getElementById('synclogContent').innerHTML = statusRow + `<div class="synclog-empty">Nog niets opgeslagen. Voeg een notitie of foto toe via de Dagen-tab of "Vandaag" — die verschijnt hier direct.</div>`;
+    return;
+  }
+
+  const html = items.map(i => {
+    const dayLabel = i.day ? new Date(i.day).toLocaleDateString('nl-NL',{day:'numeric',month:'short'}) : '';
+    const timeLabel = i.when ? new Date(i.when).toLocaleString('nl-NL',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+    return `<div class="synclog-item">
+      <div class="synclog-icon">${i.icon}</div>
+      <div class="synclog-body">
+        <div class="synclog-head">
+          <span class="synclog-author">${i.author||'Onbekend'}</span>
+          <span class="synclog-type">${i.type==='photo'?'Foto':'Notitie'}</span>
+          <span class="synclog-day">${dayLabel}</span>
+          <span class="synclog-time">${timeLabel}</span>
+        </div>
+        <div class="synclog-text">${i.text}</div>
+        ${i.thumb ? `<img class="synclog-thumb" src="${i.thumb}" loading="lazy">` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('synclogContent').innerHTML = statusRow + html;
 }
 
 function renderShopping(D){
