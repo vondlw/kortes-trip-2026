@@ -312,8 +312,11 @@ async function pullJournal(){
   const { data, error } = await supabaseClient
     .from('journal_entries').select('*').eq('workspace_id', currentWorkspaceId);
   if(error){ console.warn('[sync] journal pull failed', error); return; }
-  SHARED_JOURNAL = {};
-  (data||[]).forEach(row => { SHARED_JOURNAL[row.trip_day] = row; });
+  SHARED_JOURNAL = {}; // trip_day -> { authorName: row }
+  (data||[]).forEach(row => {
+    if(!SHARED_JOURNAL[row.trip_day]) SHARED_JOURNAL[row.trip_day] = {};
+    SHARED_JOURNAL[row.trip_day][row.author_name] = row;
+  });
 }
 
 async function pullPhotos(){
@@ -337,8 +340,9 @@ function subscribeJournalRealtime(){
       payload => {
         const row = payload.new || payload.old;
         if(!row) return;
-        if(payload.eventType === 'DELETE'){ delete SHARED_JOURNAL[row.trip_day]; }
-        else { SHARED_JOURNAL[row.trip_day] = row; }
+        if(!SHARED_JOURNAL[row.trip_day]) SHARED_JOURNAL[row.trip_day] = {};
+        if(payload.eventType === 'DELETE'){ delete SHARED_JOURNAL[row.trip_day][row.author_name]; }
+        else { SHARED_JOURNAL[row.trip_day][row.author_name] = row; }
         if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
       }).subscribe();
   if(photoRealtimeChannel) supabaseClient.removeChannel(photoRealtimeChannel);
@@ -352,22 +356,32 @@ function subscribeJournalRealtime(){
 
 async function saveJournalEntry(tripDay, fields){
   const name = getFamilyName();
+  if(!name) return { error: 'Kies eerst je naam' };
   const row = Object.assign({
     workspace_id: currentWorkspaceId,
     trip_day: tripDay,
-    created_by_name: name,
+    author_name: name,
     updated_at: new Date().toISOString()
   }, fields);
-  SHARED_JOURNAL[tripDay] = Object.assign({}, SHARED_JOURNAL[tripDay], row);
+  if(!SHARED_JOURNAL[tripDay]) SHARED_JOURNAL[tripDay] = {};
+  SHARED_JOURNAL[tripDay][name] = Object.assign({}, SHARED_JOURNAL[tripDay][name], row);
   if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
   if(!currentWorkspaceId) return { error: 'geen workspace' };
   const { error } = await supabaseClient.from('journal_entries')
-    .upsert(row, { onConflict: 'workspace_id,trip_day' });
+    .upsert(row, { onConflict: 'workspace_id,trip_day,author_name' });
   return { error };
 }
 
-function getJournalFor(tripDay){
-  return SHARED_JOURNAL[tripDay] || null;
+function getJournalEntriesFor(tripDay){
+  // alle notities/beoordelingen van iedereen voor deze dag, als array
+  const byAuthor = SHARED_JOURNAL[tripDay] || {};
+  return Object.values(byAuthor);
+}
+function getMyJournalEntry(tripDay){
+  const name = getFamilyName();
+  if(!name) return null;
+  const byAuthor = SHARED_JOURNAL[tripDay] || {};
+  return byAuthor[name] || null;
 }
 function getPhotosFor(tripDay){
   return SHARED_PHOTOS[tripDay] || [];
@@ -448,7 +462,8 @@ window.KortesSync = {
     cast: castVote
   },
   journal: {
-    getEntry: getJournalFor,
+    getEntries: getJournalEntriesFor,
+    getMyEntry: getMyJournalEntry,
     getPhotos: getPhotosFor,
     saveEntry: saveJournalEntry,
     uploadPhoto: uploadJournalPhoto,
