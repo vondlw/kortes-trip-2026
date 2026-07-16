@@ -12,6 +12,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const WORKSPACE_SLUG = 'kortes-2026';
 const FAMILY_NAMES = ['Henk Jan', 'Jersica', 'Oscar', 'Lucas'];
 const NAME_KEY = 'kortes-trip-2026-family-name';
+const ROLE_KEY = 'kortes-trip-2026-role'; // 'family' | 'viewer'
 
 const SYNC_ENABLED = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
 
@@ -48,6 +49,8 @@ async function initSync(){
   }
   currentWorkspaceId = ws.id;
 
+  if(typeof window.onWorkspaceResolved === 'function') window.onWorkspaceResolved();
+
   if(getFamilyName()){
     await afterNamePicked();
   } else {
@@ -77,12 +80,44 @@ function getFamilyName(){
 
 async function pickFamilyName(name){
   try{ localStorage.setItem(NAME_KEY, name); }catch(e){}
+  try{ localStorage.setItem(ROLE_KEY, 'family'); }catch(e){}
+  if(currentWorkspaceId && FAMILY_NAMES.includes(name)){
+    await claimName(name); // conflict = al geclaimd door iemand anders; negeren, deze persoon gebruikt 'm nu zelf
+  }
   await afterNamePicked();
 }
 
 function forgetFamilyName(){
-  try{ localStorage.removeItem(NAME_KEY); }catch(e){}
+  try{ localStorage.removeItem(NAME_KEY); localStorage.removeItem(ROLE_KEY); }catch(e){}
   setSyncBadge('signed-out');
+}
+
+function getRole(){
+  try{ return localStorage.getItem(ROLE_KEY) || 'family'; }catch(e){ return 'family'; }
+}
+function isViewer(){
+  return getRole() === 'viewer';
+}
+
+async function getClaimedNames(){
+  if(!supabaseClient || !currentWorkspaceId) return [];
+  const { data, error } = await supabaseClient.from('claimed_names').select('name').eq('workspace_id', currentWorkspaceId);
+  if(error){ console.warn('[sync] claimed names fetch failed', error); return []; }
+  return (data||[]).map(r => r.name);
+}
+
+async function claimName(name){
+  if(!supabaseClient || !currentWorkspaceId) return { error: null };
+  const { error } = await supabaseClient.from('claimed_names')
+    .insert({ workspace_id: currentWorkspaceId, name })
+    .select();
+  return { error };
+}
+
+async function pickFamilyNameWithRole(name, role){
+  try{ localStorage.setItem(ROLE_KEY, role); }catch(e){}
+  try{ localStorage.setItem(NAME_KEY, name); }catch(e){}
+  await afterNamePicked();
 }
 
 async function afterNamePicked(){
@@ -435,7 +470,7 @@ function setSyncBadge(state){
     'local': { text: 'Apparaat-lokaal (geen gezinssync geconfigureerd)', cls: 'local' },
     'signed-out': { text: 'Kies je naam om te synchroniseren met je gezin', cls: 'signed-out' },
     'syncing': { text: 'Synchroniseren...', cls: 'syncing' },
-    'synced': { text: 'Gesynchroniseerd als ' + (getFamilyName()||''), cls: 'synced' },
+    'synced': { text: (isViewer() ? '👀 Meekijken als ' : 'Gesynchroniseerd als ') + (getFamilyName()||''), cls: 'synced' },
     'offline': { text: 'Offline — wijzigingen worden later gesynchroniseerd', cls: 'offline' }
   };
   const m = map[state] || map['local'];
@@ -449,8 +484,13 @@ window.KortesSync = {
   isSignedIn: () => !!getFamilyName(),
   familyNames: FAMILY_NAMES,
   pickName: pickFamilyName,
+  pickNameWithRole: pickFamilyNameWithRole,
   forgetName: forgetFamilyName,
   currentUserName: () => getFamilyName(),
+  isViewer: isViewer,
+  getRole: getRole,
+  getClaimedNames: getClaimedNames,
+  claimName: claimName,
   getSharedState: () => SHARED_STATE,
   setItem: setChecklistItemShared,
   decisions: {

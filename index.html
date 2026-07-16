@@ -870,6 +870,44 @@ input, select, textarea{ font-size: 16px !important; }
 .name-gate-icon{font-size:48px;margin-bottom:12px}
 .name-gate-box h2{font-size:22px;margin:0 0 10px}
 .name-gate-box p{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 20px}
+
+.journal-save-row{display:flex;align-items:center;gap:10px;margin-top:4px}
+.journal-save-status{font-size:12px;font-weight:600;opacity:0;transition:opacity .2s}
+.journal-save-status.show{opacity:1}
+.journal-save-status.ok{color:#6ee7b7}
+.journal-save-status.err{color:#fca5a5}
+.journal-save-status.busy{color:var(--muted)}
+
+.name-gate-viewer-toggle{margin-top:18px;font-size:12px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.name-gate-viewer-input{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.name-gate-viewer-input input{padding:10px 12px;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-size:14px}
+.name-gate-viewer-input button{padding:10px;background:var(--panel3);color:var(--ink);border:1px solid var(--border2);border-radius:8px;font-weight:700;cursor:pointer}
+.ess-name-btn.claimed{opacity:.4;cursor:not-allowed;position:relative}
+.ess-name-btn.claimed::after{content:" ✓ bezet";font-size:10px;font-weight:400;display:block;color:var(--muted)}
+.viewer-badge{display:inline-block;background:var(--panel3);color:var(--muted);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px}
+
+/* VIEWER MODE — verberg alle bewerk-acties, alleen lezen */
+body.viewer-mode .ess-check,
+body.viewer-mode .action-check,
+body.viewer-mode .journal-star,
+body.viewer-mode .journal-save-row,
+body.viewer-mode .journal-upload-row,
+body.viewer-mode .dec-btn-v2.primary,
+body.viewer-mode .opt-card-btn.primary,
+body.viewer-mode .opt-card-btn.chosen,
+body.viewer-mode .dec-vote-btn,
+body.viewer-mode .dec-overflow-menu,
+body.viewer-mode .dec-btn-v2-overflow,
+body.viewer-mode .ess-reset-wrap{
+  display:none !important;
+}
+body.viewer-mode .ess-item,
+body.viewer-mode .action{
+  opacity:.85;
+}
+body.viewer-mode .journal-note-input{
+  pointer-events:none;background:var(--panel3);opacity:.8;
+}
 </style>
 </head>
 <body>
@@ -879,6 +917,8 @@ input, select, textarea{ font-size: 16px !important; }
     <h2>Wie ben jij?</h2>
     <p>Kies je naam zodat je notities, foto's en vinkjes gedeeld worden met de rest van het gezin. Dit hoef je maar één keer te doen.</p>
     <div class="ess-name-grid" id="nameGateGrid"></div>
+    <div id="nameGateClaimedNote" style="font-size:11px;color:var(--muted);margin-top:10px"></div>
+    <div class="name-gate-viewer-toggle" onclick="enterAsGuest()">👀 Alleen meekijken (bijv. opa of oma)</div>
   </div>
 </div>
 
@@ -1198,7 +1238,7 @@ const DEST_META={
   'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
 };
 
-if(window.KortesSync){ window.KortesSync.init().then(()=>{ showNameGateIfNeeded(); }); showNameGateIfNeeded(); }
+if(window.KortesSync){ window.KortesSync.init().then(()=>{ showNameGateIfNeeded(); applyViewerModeUI(); }); showNameGateIfNeeded(); applyViewerModeUI(); }
 fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
   document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Kan gegevens niet laden</h1><div class="hero-meta">Zet beide bestanden in dezelfde map.</div></div>';
 });
@@ -2326,33 +2366,72 @@ function renderJournalBlock(tripDay, compact){
       <label class="journal-upload-btn">📸 Camera<input type="file" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoUpload('${tripDay}', this.files)"></label>
     </div>
     ${photosHtml}
-    <button class="journal-save-btn" onclick="saveJournalNote('${tripDay}')">Opslaan</button>
+    <div class="journal-save-row">
+      <button class="journal-save-btn" onclick="saveJournalNote('${tripDay}', this)">Opslaan</button>
+      <span class="journal-save-status" id="save-status-${tripDay}"></span>
+    </div>
   </div>`;
 }
 
 async function setJournalRating(tripDay, rating){
   if(!checkNamePicked()) return;
+  showSaveStatus(tripDay, 'busy', 'Opslaan...');
   const noteEl = document.getElementById('note-'+tripDay);
-  await window.KortesSync.journal.saveEntry(tripDay, { rating, note: noteEl ? noteEl.value : undefined });
+  const result = await window.KortesSync.journal.saveEntry(tripDay, { rating, note: noteEl ? noteEl.value : undefined });
   refreshJournalUI();
+  if(result && result.error){
+    showSaveStatus(tripDay, 'err', 'Fout: ' + (result.error.message || JSON.stringify(result.error)));
+    console.error('[journal] rating save failed', result.error);
+  } else {
+    showSaveStatus(tripDay, 'ok', '✓ Beoordeling opgeslagen');
+  }
 }
-async function saveJournalNote(tripDay){
+async function saveJournalNote(tripDay, btn){
   if(!checkNamePicked()) return;
+  if(btn) btn.disabled = true;
+  showSaveStatus(tripDay, 'busy', 'Opslaan...');
   const noteEl = document.getElementById('note-'+tripDay);
-  await window.KortesSync.journal.saveEntry(tripDay, {
-    note: noteEl ? noteEl.value : ''
+  const ratingStars = document.querySelectorAll(`#journal-${tripDay} .journal-star.filled`);
+  const currentRating = ratingStars.length;
+  const result = await window.KortesSync.journal.saveEntry(tripDay, {
+    note: noteEl ? noteEl.value : '',
+    rating: currentRating || null
   });
+  if(btn) btn.disabled = false;
   refreshJournalUI();
+  if(result && result.error){
+    showSaveStatus(tripDay, 'err', 'Fout: ' + (result.error.message || JSON.stringify(result.error)));
+    console.error('[journal] note save failed', result.error);
+  } else {
+    showSaveStatus(tripDay, 'ok', '✓ Opgeslagen');
+  }
 }
 async function handlePhotoUpload(tripDay, files){
   if(!checkNamePicked()) return;
-  if(!window.KortesSync || !window.KortesSync.isEnabled()){ alert('Foto-sync is niet actief.'); return; }
+  if(!window.KortesSync || !window.KortesSync.isEnabled()){ showSaveStatus(tripDay, 'err', 'Foto-sync niet actief'); return; }
+  showSaveStatus(tripDay, 'busy', `${files.length} foto('s) uploaden...`);
+  let failCount = 0, lastError = null;
   for(const file of files){
     const { error } = await window.KortesSync.journal.uploadPhoto(tripDay, file);
-    if(error) console.warn('upload failed', error);
+    if(error){ failCount++; lastError = error; console.error('[journal] photo upload failed', error); }
   }
   refreshJournalUI();
+  if(failCount > 0){
+    showSaveStatus(tripDay, 'err', `Fout bij ${failCount} foto('s): ` + (lastError ? (lastError.message||JSON.stringify(lastError)) : ''));
+  } else {
+    showSaveStatus(tripDay, 'ok', `✓ ${files.length} foto('s) opgeslagen`);
+  }
 }
+function showSaveStatus(tripDay, type, text){
+  const el = document.getElementById('save-status-'+tripDay);
+  if(!el) return;
+  el.textContent = text;
+  el.className = 'journal-save-status show ' + type;
+  if(type === 'ok'){
+    setTimeout(() => { el.classList.remove('show'); }, 2500);
+  }
+}
+
 function checkNamePicked(){
   if(!window.KortesSync || !window.KortesSync.isEnabled()) return true; // local-only mode, allowed
   if(!window.KortesSync.isSignedIn()){
@@ -2876,18 +2955,24 @@ function handleSyncBadgeClick(){
   }
 }
 
-function renderNamePicker(){
+async function renderNamePicker(){
   const grid = document.getElementById('essNameGrid');
   if(!grid || !window.KortesSync) return;
-  grid.innerHTML = window.KortesSync.familyNames.map(n =>
-    `<button class="ess-name-btn" onclick="chooseFamilyName('${n}')">${n}</button>`
-  ).join('');
+  let claimed = [];
+  if(window.KortesSync.getClaimedNames){
+    try{ claimed = await window.KortesSync.getClaimedNames(); }catch(e){}
+  }
+  grid.innerHTML = window.KortesSync.familyNames.map(n => {
+    const isClaimed = claimed.includes(n);
+    return `<button class="ess-name-btn ${isClaimed?'claimed':''}" ${isClaimed?'disabled':''} onclick="${isClaimed?'':`chooseFamilyName('${n}')`}">${n}</button>`;
+  }).join('');
 }
 
 async function chooseFamilyName(name){
   await window.KortesSync.pickName(name);
   document.getElementById('essLoginBox').classList.remove('show');
   hideNameGate();
+  applyViewerModeUI();
   if(ESS_DATA) renderEssentials(ESS_DATA);
   if(ACTIONS_DATA) renderActions(ACTIONS_DATA);
   if(DECISIONS_DATA) renderDecisionsV2();
@@ -2898,17 +2983,45 @@ function hideNameGate(){
   document.getElementById('nameGateBackdrop').classList.add('hidden');
 }
 
-function showNameGateIfNeeded(){
+async function showNameGateIfNeeded(){
   const alreadyPicked = window.KortesSync ? window.KortesSync.currentUserName() : (localStorage.getItem('kortes-trip-2026-family-name'));
   const backdrop = document.getElementById('nameGateBackdrop');
   if(alreadyPicked){
     backdrop.classList.add('hidden');
     return;
   }
-  const grid = document.getElementById('nameGateGrid');
-  const names = (window.KortesSync && window.KortesSync.familyNames) ? window.KortesSync.familyNames : ['Henk Jan','Jersica','Oscar','Lucas'];
-  grid.innerHTML = names.map(n => `<button class="ess-name-btn" onclick="chooseFamilyName('${n}')">${n}</button>`).join('');
+  await renderNameGateGrid();
   backdrop.classList.remove('hidden');
+}
+
+async function renderNameGateGrid(){
+  const grid = document.getElementById('nameGateGrid');
+  const note = document.getElementById('nameGateClaimedNote');
+  const names = (window.KortesSync && window.KortesSync.familyNames) ? window.KortesSync.familyNames : ['Henk Jan','Jersica','Oscar','Lucas'];
+  let claimed = [];
+  if(window.KortesSync && window.KortesSync.getClaimedNames){
+    try{ claimed = await window.KortesSync.getClaimedNames(); }catch(e){}
+  }
+  grid.innerHTML = names.map(n => {
+    const isClaimed = claimed.includes(n);
+    return `<button class="ess-name-btn ${isClaimed?'claimed':''}" ${isClaimed?'disabled':''} onclick="${isClaimed?'':`chooseFamilyName('${n}')`}">${n}</button>`;
+  }).join('');
+  if(note) note.textContent = claimed.length ? 'Grijze namen zijn al op een ander toestel gekozen.' : '';
+}
+
+async function enterAsGuest(){
+  await window.KortesSync.pickNameWithRole('Gast', 'viewer');
+  hideNameGate();
+  applyViewerModeUI();
+  if(ESS_DATA) renderEssentials(ESS_DATA);
+  if(ACTIONS_DATA) renderActions(ACTIONS_DATA);
+  if(DECISIONS_DATA) renderDecisionsV2();
+  refreshJournalUI();
+}
+
+function applyViewerModeUI(){
+  const isViewer = window.KortesSync && window.KortesSync.isViewer && window.KortesSync.isViewer();
+  document.body.classList.toggle('viewer-mode', !!isViewer);
 }
 
 function forgetFamilyNameUI(){
