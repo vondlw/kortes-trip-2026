@@ -748,6 +748,55 @@ input, select, textarea{ font-size: 16px !important; }
 .ess-name-btn{padding:14px 10px;background:var(--panel2);border:1px solid var(--border2);border-radius:10px;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;text-align:center}
 .ess-name-btn:hover{background:var(--panel3);border-color:var(--accent)}
 .ess-forget-name{font-size:11px;color:var(--muted);margin-top:8px;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0}
+
+.dec-proscons{display:grid;gap:10px;margin-bottom:14px}
+@media(min-width:500px){.dec-proscons{grid-template-columns:1fr 1fr}}
+.dec-proscons-box{background:var(--panel2);border-radius:10px;padding:10px 12px;font-size:12px}
+.dec-proscons-box.pros{border-left:3px solid var(--ok)}
+.dec-proscons-box.cons{border-left:3px solid var(--danger)}
+.dec-proscons-lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.dec-proscons-box.pros .dec-proscons-lbl{color:#6ee7b7}
+.dec-proscons-box.cons .dec-proscons-lbl{color:#fca5a5}
+.dec-proscons-box ul{margin:0;padding-left:16px;line-height:1.5;color:var(--ink2)}
+.dec-proscons-box li{margin-bottom:3px}
+
+.dec-vote-section{background:var(--panel2);border-radius:10px;padding:12px 14px;margin-top:8px}
+.dec-vote-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.dec-vote-option{margin-bottom:8px}
+.dec-vote-option-row{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.dec-vote-btn{
+  flex-shrink:0;padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;
+  border:1px solid var(--border2);background:var(--panel3);color:var(--ink2);cursor:pointer;
+}
+.dec-vote-btn.voted{background:var(--planned);border-color:var(--planned);color:#fff}
+.dec-vote-label{flex:1;font-size:12px;color:var(--ink2)}
+.dec-vote-bar-wrap{height:6px;background:var(--panel3);border-radius:3px;overflow:hidden;margin-left:82px}
+.dec-vote-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.dec-vote-count{font-size:10px;color:var(--muted);margin-left:82px;margin-top:2px}
+.dec-vote-voters{font-size:10px;color:var(--muted);font-style:italic}
+
+.opt-workspace-goal{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:10px 12px;font-size:13px;color:#ddd6fe;margin-bottom:16px}
+.opt-workspace-goal b{color:#fff;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.opt-card{background:var(--panel2);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.opt-card.chosen{border-color:var(--ok);background:linear-gradient(135deg,rgba(16,185,129,.08),var(--panel2))}
+.opt-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.opt-card-title{font-weight:800;font-size:15px;letter-spacing:-.2px}
+.opt-card-rec-badge{font-size:10px;font-weight:800;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(59,130,246,.15));color:#c4b5fd;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.opt-card-day{font-size:11px;color:var(--muted);margin-bottom:10px}
+.opt-card-proscons{display:grid;gap:8px;margin-bottom:10px}
+@media(min-width:480px){.opt-card-proscons{grid-template-columns:1fr 1fr}}
+.opt-card-booking{background:var(--panel3);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink2);margin-bottom:10px}
+.opt-card-booking b{color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+.opt-card-booking a{color:var(--accent);word-break:break-all}
+.opt-card-vote-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.opt-card-vote-bar-wrap{flex:1;height:6px;background:var(--panel3);border-radius:3px;overflow:hidden}
+.opt-card-vote-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.opt-card-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.opt-card-btn{padding:8px 13px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--panel3);color:var(--ink2);cursor:pointer}
+.opt-card-btn.primary{background:var(--ok);border-color:var(--ok);color:#052e13}
+.opt-card-btn.chosen{background:var(--ok);border-color:var(--ok);color:#052e13}
+.opt-card-btn.map{color:var(--accent);border-color:transparent;background:transparent;padding:8px 6px}
+.opt-card-voters{font-size:10px;color:var(--muted);font-style:italic;margin-top:3px}
 </style>
 </head>
 <body>
@@ -1774,13 +1823,9 @@ function renderDecCardV2(d, state, groupKey){
 function renderDecActions(d, state, status){
   if(status === 'BOOKING_REQUIRED'){
     return `<button class="dec-btn-v2 primary book" onclick="confirmBooked('${d.id}')">Boek nu</button>
-            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Bekijk opties</button>`;
   }
-  // READY_TO_DECIDE / RESEARCHING / NEW default
-  const recOption = d.recommendation;
-  const matchedOpt = (d.options||[]).find(o => recOption && (o === recOption || recOption.includes(o) || o.includes(recOption.split(' ').slice(0,2).join(' '))));
-  return `<button class="dec-btn-v2 primary" onclick="chooseOption('${d.id}', ${matchedOpt ? `'${matchedOpt.replace(/'/g,"\\'")}'` : 'null'})">Kies${matchedOpt?' aanbevolen':''}</button>
-          <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+  return `<button class="dec-btn-v2 primary" onclick="openCompareSheet('${d.id}')">Bekijk opties</button>`;
 }
 
 function toggleDecOverflow(ev, decisionId){
@@ -1798,7 +1843,7 @@ function chooseOption(decisionId, option){
   setDecState(decisionId, {
     status: needsBooking ? 'BOOKING_REQUIRED' : 'COMPLETED',
     chosen_option: chosen,
-    decided_by: window.KortesSync ? window.KortesSync.currentUserId() : null,
+    decided_by_name: window.KortesSync ? window.KortesSync.currentUserName() : null,
     decided_at: new Date().toISOString()
   });
 }
@@ -1856,38 +1901,193 @@ document.getElementById && document.addEventListener('DOMContentLoaded', () => {
   if(btn) btn.addEventListener('click', () => { if(DEC_CONFIRM_ACTION) DEC_CONFIRM_ACTION(); closeDecConfirm(); });
 });
 
+function getMultiChosen(d){
+  const state = getDecState(d.id);
+  if(!state.chosen_option) return [];
+  try{ const arr = JSON.parse(state.chosen_option); return Array.isArray(arr) ? arr : []; }catch(e){ return []; }
+}
+
+function dayConflict(d, targetOption){
+  const details = d.option_details || {};
+  const targetDay = details[targetOption] ? details[targetOption].day : null;
+  if(!targetDay) return null; // no day set, no conflict possible
+  const chosen = getMultiChosen(d);
+  for(const o of chosen){
+    if(o === targetOption) continue;
+    const od = details[o] ? details[o].day : null;
+    if(od && od === targetDay) return o;
+  }
+  return null;
+}
+
+function toggleMultiOption(decisionId, option){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  let chosen = getMultiChosen(d);
+  const isIn = chosen.includes(option);
+  if(isIn){
+    chosen = chosen.filter(o => o !== option);
+  } else {
+    const conflict = dayConflict(d, option);
+    if(conflict){
+      alert(`Kan niet combineren: "${option}" en "${conflict}" vallen op dezelfde dag. Kies er één, of verwijder eerst de ander.`);
+      return;
+    }
+    chosen.push(option);
+  }
+  setDecState(decisionId, { chosen_option: JSON.stringify(chosen) });
+  openCompareSheet(decisionId);
+}
+
 function openCompareSheet(decisionId){
   const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
   if(!d) return;
   DEC_COMPARE_TARGET = decisionId;
   document.getElementById('compareModalTitle').textContent = d.q;
 
-  const opts = d.options || [];
-  const rows = [
-    ['Aanbevolen', opts.map(o => o === d.recommendation || d.recommendation.includes(o) ? '★' : '').join(' / ')],
-    ['Vertrouwen', d.confidence || '—'],
-    ['Deadline', d.deadline || '—']
-  ];
+  const opts = (d.options || []).filter(o => o !== 'Geen fietsactiviteit' && o !== 'Overslaan');
+  const skipOpts = (d.options || []).filter(o => o === 'Geen fietsactiviteit' || o === 'Overslaan');
+  const votes = getVotesFor(decisionId);
+  const myName = window.KortesSync ? window.KortesSync.currentUserName() : null;
+  const voteCounts = {};
+  (d.options||[]).forEach(o => voteCounts[o] = 0);
+  Object.values(votes).forEach(v => { if(voteCounts[v] !== undefined) voteCounts[v]++; });
+  const maxVotes = Math.max(1, ...Object.values(voteCounts));
 
-  const tableRows = rows.map(([label,val]) => `<tr><td>${label}</td><td colspan="${opts.length}">${val}</td></tr>`).join('');
-  const optHeader = `<tr><td></td>${opts.map(o=>`<td style="font-weight:700;color:var(--ink)">${o}</td>`).join('')}</tr>`;
+  const chosenSingle = getDecState(d.id).chosen_option;
+  const chosenMulti = d.multi_select ? getMultiChosen(d) : [];
+
+  const goalHtml = `<div class="opt-workspace-goal"><b>Doel</b>${d.why ? d.why.split(/[.;]\\s/)[0] : d.q}</div>`;
+
+  const optionCards = opts.map(o => {
+    const pc = (d.pros_cons || {})[o];
+    const details = (d.option_details || {})[o];
+    const isRec = o === d.recommendation || d.recommendation.includes(o);
+    const isChosen = d.multi_select ? chosenMulti.includes(o) : chosenSingle === o;
+    const count = voteCounts[o];
+    const pct = count > 0 ? Math.round((count/maxVotes)*100) : 0;
+    const iVoted = myName && votes[myName] === o;
+    const voters = Object.entries(votes).filter(([n,v])=>v===o).map(([n])=>n);
+
+    const dayLine = details && details.day_label ? `<div class="opt-card-day">📅 ${details.day_label}</div>` : '';
+    const bookingHtml = details && details.booking ? `
+      <div class="opt-card-booking">
+        <b>🚲 Boeken / huren</b>
+        ${details.booking.tips}
+        ${details.booking.url ? `<br><a href="${details.booking.url}" target="_blank" rel="noopener">${details.booking.url}</a>` : ''}
+      </div>` : '';
+    const prosConsHtml = pc ? `<div class="opt-card-proscons">
+        <div class="dec-proscons-box pros"><div class="dec-proscons-lbl">✓ Voordelen</div><ul>${(pc.pros||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
+        <div class="dec-proscons-box cons"><div class="dec-proscons-lbl">✕ Nadelen</div><ul>${(pc.cons||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
+      </div>` : '';
+
+    const mapQuery = encodeURIComponent(o + ' ' + (details && details.day_label ? details.day_label.replace(/\\(.*\\)/,'') : ''));
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+    const chooseBtnLabel = isChosen ? '✓ Gekozen' : '✅ Kies deze optie';
+    const chooseAction = d.multi_select
+      ? `toggleMultiOption('${decisionId}','${o.replace(/'/g,"\\\\'")}')`
+      : `chooseOption('${decisionId}','${o.replace(/'/g,"\\\\'")}')`;
+
+    return `<div class="opt-card ${isChosen?'chosen':''}">
+      <div class="opt-card-head">
+        <div class="opt-card-title">${o}</div>
+        ${isRec ? '<span class="opt-card-rec-badge">★ Aanbevolen</span>' : ''}
+      </div>
+      ${dayLine}
+      ${prosConsHtml}
+      ${bookingHtml}
+      <div class="opt-card-vote-row">
+        <button class="dec-vote-btn ${iVoted?'voted':''}" onclick="voteOnDecision('${decisionId}','${o.replace(/'/g,"\\\\'")}')">${iVoted?'✓ Jouw stem':'🗳️ Stem'}</button>
+        <div class="opt-card-vote-bar-wrap"><div class="opt-card-vote-bar" style="width:${pct}%"></div></div>
+        <span style="font-size:11px;color:var(--muted)">${count}</span>
+      </div>
+      ${voters.length ? `<div class="opt-card-voters">${voters.join(', ')}</div>` : ''}
+      <div class="opt-card-actions" style="margin-top:10px">
+        <button class="opt-card-btn ${isChosen?'chosen':'primary'}" onclick="${chooseAction}">${chooseBtnLabel}</button>
+        <button class="opt-card-btn map" onclick="window.open('${mapUrl}','_blank')">📍 Kaart</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const skipHtml = skipOpts.length ? `<div class="opt-card">
+    <div class="opt-card-head"><div class="opt-card-title">${skipOpts[0]}</div></div>
+    <div class="opt-card-actions">
+      <button class="opt-card-btn" onclick="${d.multi_select?`toggleMultiOption`:`chooseOption`}('${decisionId}','${skipOpts[0].replace(/'/g,"\\\\'")}');${d.multi_select?'':'closeCompareSheet()'}">Kies deze optie</button>
+    </div>
+  </div>` : '';
+
+  const multiNote = d.multi_select ? `<div style="font-size:11px;color:var(--muted);margin:4px 0 14px">Meerdere opties mogelijk — ze vallen op verschillende dagen. Bij dezelfde dag moet je kiezen.</div>` : '';
 
   const body = `
-    <table class="dec-compare-table">
-      ${optHeader}
-      ${tableRows}
-    </table>
-    <div class="detail-modal-section">
-      <div class="detail-modal-lbl">💬 Waarom</div>
-      <div class="detail-modal-text">${d.why}</div>
-    </div>
-    <div class="dec-compare-actions">
-      ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
-    </div>
+    ${goalHtml}
+    ${optionCards}
+    ${skipHtml}
+    ${multiNote}
   `;
   document.getElementById('compareModalBody').innerHTML = body;
   document.getElementById('compareModalBackdrop').classList.add('open');
 }
+
+function getVotesFor(decisionId){
+  if(window.KortesSync && window.KortesSync.isEnabled()){
+    return window.KortesSync.votes.getSharedVotes()[decisionId] || {};
+  }
+  return {};
+}
+
+function getMultiChosen(d){
+  const state = getDecState(d.id);
+  if(!state.chosen_option) return [];
+  try{ const arr = JSON.parse(state.chosen_option); return Array.isArray(arr) ? arr : []; }catch(e){ return []; }
+}
+
+function dayConflict(d, targetOption){
+  const details = d.option_details || {};
+  const targetDay = details[targetOption] ? details[targetOption].day : null;
+  if(!targetDay) return null;
+  const chosen = getMultiChosen(d);
+  for(const o of chosen){
+    if(o === targetOption) continue;
+    const od = details[o] ? details[o].day : null;
+    if(od && od === targetDay) return o;
+  }
+  return null;
+}
+
+function toggleMultiOption(decisionId, option){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  let chosen = getMultiChosen(d);
+  const isIn = chosen.includes(option);
+  if(isIn){
+    chosen = chosen.filter(o => o !== option);
+  } else {
+    const conflict = dayConflict(d, option);
+    if(conflict){
+      alert(`Kan niet combineren: "${option}" en "${conflict}" vallen op dezelfde dag. Kies er één, of verwijder eerst de ander.`);
+      return;
+    }
+    chosen.push(option);
+  }
+  setDecState(decisionId, { chosen_option: JSON.stringify(chosen) });
+  openCompareSheet(decisionId);
+}
+
+async function voteOnDecision(decisionId, option){
+  if(!window.KortesSync || !window.KortesSync.currentUserName()){
+    alert('Kies eerst je naam bij Reisbenodigdheden om te kunnen stemmen.');
+    return;
+  }
+  await window.KortesSync.votes.cast(decisionId, option);
+  if(DEC_COMPARE_TARGET) openCompareSheet(DEC_COMPARE_TARGET);
+}
+
+window.onSharedVotesUpdated = function(){
+  if(DEC_COMPARE_TARGET && document.getElementById('compareModalBackdrop').classList.contains('open')){
+    openCompareSheet(DEC_COMPARE_TARGET);
+  }
+};
 function closeCompareSheet(){
   document.getElementById('compareModalBackdrop').classList.remove('open');
 }

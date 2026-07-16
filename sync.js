@@ -244,6 +244,61 @@ async function flushDecisionPending(){
 }
 
 // ============================================================
+// VOTING — familie stemmen op activiteiten
+// ============================================================
+let SHARED_VOTES = {}; // decision_id -> { voterName: option }
+let voteRealtimeChannel = null;
+
+async function pullVotes(){
+  if(!currentWorkspaceId) return;
+  const { data, error } = await supabaseClient
+    .from('decision_votes').select('*').eq('workspace_id', currentWorkspaceId);
+  if(error){ console.warn('[sync] votes pull failed', error); return; }
+  SHARED_VOTES = {};
+  (data||[]).forEach(row => {
+    if(!SHARED_VOTES[row.decision_id]) SHARED_VOTES[row.decision_id] = {};
+    SHARED_VOTES[row.decision_id][row.voter_name] = row.option_voted;
+  });
+}
+
+function subscribeVoteRealtime(){
+  if(!supabaseClient || !currentWorkspaceId) return;
+  if(voteRealtimeChannel) supabaseClient.removeChannel(voteRealtimeChannel);
+  voteRealtimeChannel = supabaseClient.channel('vote-sync')
+    .on('postgres_changes',
+      { event: '*', schema: 'public', table: 'decision_votes', filter: `workspace_id=eq.${currentWorkspaceId}` },
+      payload => {
+        const row = payload.new || payload.old;
+        if(!row) return;
+        if(!SHARED_VOTES[row.decision_id]) SHARED_VOTES[row.decision_id] = {};
+        if(payload.eventType === 'DELETE'){ delete SHARED_VOTES[row.decision_id][row.voter_name]; }
+        else { SHARED_VOTES[row.decision_id][row.voter_name] = row.option_voted; }
+        if(typeof window.onSharedVotesUpdated === 'function') window.onSharedVotesUpdated();
+      }
+    ).subscribe();
+}
+
+async function castVote(decisionId, option){
+  const name = getFamilyName();
+  if(!name) return { error: 'Kies eerst je naam' };
+  if(!SHARED_VOTES[decisionId]) SHARED_VOTES[decisionId] = {};
+  SHARED_VOTES[decisionId][name] = option;
+  if(typeof window.onSharedVotesUpdated === 'function') window.onSharedVotesUpdated();
+
+  const row = {
+    workspace_id: currentWorkspaceId,
+    decision_id: decisionId,
+    voter_name: name,
+    option_voted: option,
+    voted_at: new Date().toISOString()
+  };
+  if(!navigator.onLine){ return { error: null, offline: true }; }
+  const { error } = await supabaseClient.from('decision_votes')
+    .upsert(row, { onConflict: 'workspace_id,decision_id,voter_name' });
+  return { error };
+}
+
+// ============================================================
 // UI STATUS BADGE
 // ============================================================
 function setSyncBadge(state){
@@ -274,5 +329,9 @@ window.KortesSync = {
   decisions: {
     getSharedState: () => SHARED_DECISION_STATE,
     setState: setDecisionStateShared
+  },
+  votes: {
+    getSharedVotes: () => SHARED_VOTES,
+    cast: castVote
   }
 };
