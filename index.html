@@ -748,6 +748,32 @@ input, select, textarea{ font-size: 16px !important; }
 .ess-name-btn{padding:14px 10px;background:var(--panel2);border:1px solid var(--border2);border-radius:10px;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;text-align:center}
 .ess-name-btn:hover{background:var(--panel3);border-color:var(--accent)}
 .ess-forget-name{font-size:11px;color:var(--muted);margin-top:8px;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0}
+
+.dec-proscons{display:grid;gap:10px;margin-bottom:14px}
+@media(min-width:500px){.dec-proscons{grid-template-columns:1fr 1fr}}
+.dec-proscons-box{background:var(--panel2);border-radius:10px;padding:10px 12px;font-size:12px}
+.dec-proscons-box.pros{border-left:3px solid var(--ok)}
+.dec-proscons-box.cons{border-left:3px solid var(--danger)}
+.dec-proscons-lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.dec-proscons-box.pros .dec-proscons-lbl{color:#6ee7b7}
+.dec-proscons-box.cons .dec-proscons-lbl{color:#fca5a5}
+.dec-proscons-box ul{margin:0;padding-left:16px;line-height:1.5;color:var(--ink2)}
+.dec-proscons-box li{margin-bottom:3px}
+
+.dec-vote-section{background:var(--panel2);border-radius:10px;padding:12px 14px;margin-top:8px}
+.dec-vote-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.dec-vote-option{margin-bottom:8px}
+.dec-vote-option-row{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.dec-vote-btn{
+  flex-shrink:0;padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;
+  border:1px solid var(--border2);background:var(--panel3);color:var(--ink2);cursor:pointer;
+}
+.dec-vote-btn.voted{background:var(--planned);border-color:var(--planned);color:#fff}
+.dec-vote-label{flex:1;font-size:12px;color:var(--ink2)}
+.dec-vote-bar-wrap{height:6px;background:var(--panel3);border-radius:3px;overflow:hidden;margin-left:82px}
+.dec-vote-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.dec-vote-count{font-size:10px;color:var(--muted);margin-left:82px;margin-top:2px}
+.dec-vote-voters{font-size:10px;color:var(--muted);font-style:italic}
 </style>
 </head>
 <body>
@@ -1872,22 +1898,99 @@ function openCompareSheet(decisionId){
   const tableRows = rows.map(([label,val]) => `<tr><td>${label}</td><td colspan="${opts.length}">${val}</td></tr>`).join('');
   const optHeader = `<tr><td></td>${opts.map(o=>`<td style="font-weight:700;color:var(--ink)">${o}</td>`).join('')}</tr>`;
 
+  // Pros/cons per option, if present in data
+  let prosConsHtml = '';
+  if(d.pros_cons){
+    prosConsHtml = opts.map(o => {
+      const pc = d.pros_cons[o];
+      if(!pc) return '';
+      return `<div class="detail-modal-section">
+        <div class="detail-modal-lbl" style="color:var(--ink)">📌 ${o}</div>
+        <div class="dec-proscons">
+          <div class="dec-proscons-box pros"><div class="dec-proscons-lbl">✓ Voordelen</div><ul>${(pc.pros||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
+          <div class="dec-proscons-box cons"><div class="dec-proscons-lbl">✕ Nadelen</div><ul>${(pc.cons||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  const voteHtml = renderVoteSection(decisionId, opts);
+
   const body = `
     <table class="dec-compare-table">
       ${optHeader}
       ${tableRows}
     </table>
+    ${prosConsHtml}
     <div class="detail-modal-section">
       <div class="detail-modal-lbl">💬 Waarom</div>
       <div class="detail-modal-text">${d.why}</div>
     </div>
-    <div class="dec-compare-actions">
+    ${voteHtml}
+    <div class="dec-compare-actions" style="margin-top:14px">
       ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
     </div>
   `;
   document.getElementById('compareModalBody').innerHTML = body;
   document.getElementById('compareModalBackdrop').classList.add('open');
 }
+
+function getVotesFor(decisionId){
+  if(window.KortesSync && window.KortesSync.isEnabled()){
+    return window.KortesSync.votes.getSharedVotes()[decisionId] || {};
+  }
+  return {};
+}
+
+function renderVoteSection(decisionId, opts){
+  const votes = getVotesFor(decisionId); // { voterName: option }
+  const myName = window.KortesSync ? window.KortesSync.currentUserName() : null;
+  const counts = {};
+  opts.forEach(o => counts[o] = 0);
+  Object.values(votes).forEach(v => { if(counts[v] !== undefined) counts[v]++; });
+  const totalVotes = Object.keys(votes).length;
+  const maxCount = Math.max(1, ...Object.values(counts));
+
+  const rows = opts.map(o => {
+    const count = counts[o];
+    const pct = Math.round((count / maxCount) * 100);
+    const iVoted = myName && votes[myName] === o;
+    const voters = Object.entries(votes).filter(([n,v]) => v === o).map(([n]) => n);
+    return `<div class="dec-vote-option">
+      <div class="dec-vote-option-row">
+        <button class="dec-vote-btn ${iVoted?'voted':''}" onclick="voteOnDecision('${decisionId}','${o.replace(/'/g,"\\'")}')">${iVoted?'✓ Jouw stem':'Stem'}</button>
+        <div class="dec-vote-label">${o}</div>
+        <div style="font-size:11px;color:var(--muted)">${count}</div>
+      </div>
+      <div class="dec-vote-bar-wrap"><div class="dec-vote-bar" style="width:${count>0?pct:0}%"></div></div>
+      ${voters.length ? `<div class="dec-vote-count dec-vote-voters">${voters.join(', ')}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const nameNote = myName ? '' : '<div style="font-size:11px;color:var(--warn);margin-top:6px">Kies eerst je naam bij Reisbenodigdheden om te kunnen stemmen.</div>';
+
+  return `<div class="dec-vote-section">
+    <div class="dec-vote-title">🗳️ Familiestemmen <span>${totalVotes}/4 gestemd</span></div>
+    ${rows}
+    ${nameNote}
+  </div>`;
+}
+
+async function voteOnDecision(decisionId, option){
+  if(!window.KortesSync || !window.KortesSync.currentUserName()){
+    alert('Kies eerst je naam bij Reisbenodigdheden om te kunnen stemmen.');
+    return;
+  }
+  await window.KortesSync.votes.cast(decisionId, option);
+  // Re-render the compare sheet with updated votes
+  if(DEC_COMPARE_TARGET) openCompareSheet(DEC_COMPARE_TARGET);
+}
+
+window.onSharedVotesUpdated = function(){
+  if(DEC_COMPARE_TARGET && document.getElementById('compareModalBackdrop').classList.contains('open')){
+    openCompareSheet(DEC_COMPARE_TARGET);
+  }
+};
 function closeCompareSheet(){
   document.getElementById('compareModalBackdrop').classList.remove('open');
 }

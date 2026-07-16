@@ -1108,6 +1108,80 @@
    ],
    "deadline": "ter plekke",
    "requires_booking": {}
+  },
+  {
+   "id": "CYCLING",
+   "q": "Fietservaring — welke bestemming(en) nemen we mee?",
+   "recommendation": "Kyoto (Arashiyama) + Ninh Binh (Trang An-Mua Cave)",
+   "confidence": "hoog",
+   "why": "Beide vervangen bestaand vervoer/programma zonder extra dag te kosten. Kyoto scoort hoogst op gezinsgeschiktheid en fotowaarde. Ninh Binh is vrijwel gratis en het meest authentiek. Hoi An overlapt conceptueel met Ninh Binh; Tokyo vereist een nieuw dagdeel dat nog niet in het schema past.",
+   "deadline": "vóór vertrek (planning), definitief boeken per bestemming",
+   "options": [
+    "Kyoto — Arashiyama Family Bike Tour",
+    "Ninh Binh — Trang An/Mua Cave fietsverbinding",
+    "Hoi An — Tra Que + waterbuffel + mandboot",
+    "Tokyo — Edo Hidden Gem Tour",
+    "Geen fietsactiviteit"
+   ],
+   "pros_cons": {
+    "Kyoto — Arashiyama Family Bike Tour": {
+     "pros": [
+      "Vlak en veilig, uitgebreid fietspadennetwerk",
+      "Tour specifiek ontworpen voor gezinnen (peuters t/m tieners)",
+      "Vervangt de al geplande Arashiyama-ochtend — geen extra dag nodig",
+      "Hoogste fotowaarde: bamboebos + rijstvelden + apen"
+     ],
+     "cons": [
+      "Kyoto is de heetste van de 4 bestemmingen in juli (kombekken-ligging)",
+      "Tour kost extra (naast al geboekte activiteiten)"
+     ]
+    },
+    "Ninh Binh — Trang An/Mua Cave fietsverbinding": {
+     "pros": [
+      "Vaak gratis fiets bij hotel/homestay",
+      "Past al in het bestaande dagschema (1 aug)",
+      "Hoogste authenticiteitsscore van alle 4 bestemmingen",
+      "Kost vrijwel niets extra"
+     ],
+     "cons": [
+      "Bronnen noemen juli-augustus expliciet \"extremely hot\" voor dit gebied",
+      "Zelf regelen — geen vaste tour geboekt, dus geen gids"
+     ]
+    },
+    "Hoi An — Tra Que + waterbuffel + mandboot": {
+     "pros": [
+      "Unieke waterbuffelrit — sterke teen-hit",
+      "Ambachtsdorpen (rijstpapier, mandboot) goed uitgewerkt aanbod",
+      "Goedkoopste optie ($1-2/dag zelfstandig, of halve dag begeleid)"
+     ],
+     "cons": [
+      "Concept overlapt met Ninh Binh (beide \"rijstveld op de fiets\")",
+      "April-juli expliciet genoemd als minder ideaal (heet en vochtig)"
+     ]
+    },
+    "Tokyo — Edo Hidden Gem Tour": {
+     "pros": [
+      "Koppelt aan het bestaande Sumo-thema (Ryogoku-wijk)",
+      "Sterkste \"hidden backstreets\"-ervaring van de 4",
+      "Minimumleeftijd 15+ past precies bij Oscar en Lucas"
+     ],
+     "cons": [
+      "Duurste optie van de 4 (¥60.000-100.000 voor private tours)",
+      "Stedelijk verkeer, minder ontspannen dan de andere 3",
+      "Vereist een nieuw dagdeel — past nog niet in huidig schema"
+     ]
+    },
+    "Geen fietsactiviteit": {
+     "pros": [
+      "Geen extra planning of kosten",
+      "Meer ruimte voor rust tussen andere activiteiten"
+     ],
+     "cons": [
+      "Onderzoek wijst uit dat dit een gemiste kans is — met name Kyoto en Ninh Binh scoren zeer hoog"
+     ]
+    }
+   },
+   "research_link": "02-research/cycling/EXECUTIVE-SUMMARY.md"
   }
  ],
  "days": [
