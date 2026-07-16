@@ -2111,7 +2111,13 @@ function parseDutchDeadlineToISO(text){
   const month = months[m[2]];
   const year = 2026;
   const d = new Date(year, month, day);
-  return isNaN(d) ? null : d.toISOString().slice(0,10);
+  if(isNaN(d)) return null;
+  // Lokale datum-onderdelen gebruiken, niet toISOString() (die rekent in UTC
+  // en zou de datum een dag terug kunnen schuiven in Nederlandse zomertijd).
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const dd = String(d.getDate()).padStart(2,'0');
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 function rejectDecision(decisionId){
@@ -2335,8 +2341,12 @@ function closeCompareSheet(){
 // ============================================================
 // TRIP MODE (Planning / Live / Archive)
 // ============================================================
-const TRIP_START = new Date('2026-07-17');
-const TRIP_END = new Date('2026-08-07T23:59:59');
+// Belangrijk: gebruik ALTIJD lokale tijd, niet UTC. new Date('2026-07-17')
+// en toISOString() rekenen in UTC — in Nederlandse zomertijd (UTC+2) klopte
+// de datum daardoor pas na 2:00 's nachts, waardoor "Vandaag" een dag
+// achterliep vlak na middernacht.
+const TRIP_START = new Date(2026, 6, 17, 0, 0, 0);   // 17 juli 2026, lokale tijd (maand is 0-indexed: 6 = juli)
+const TRIP_END = new Date(2026, 7, 7, 23, 59, 59);   // 7 augustus 2026, lokale tijd
 
 function getTripMode(){
   const now = new Date();
@@ -2347,7 +2357,10 @@ function getTripMode(){
 
 function todayISO(){
   const d = new Date();
-  return d.toISOString().slice(0,10);
+  const year = d.getFullYear();
+  const month = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${year}-${month}-${day}`;
 }
 
 function getDayByDate(D, dateStr){
