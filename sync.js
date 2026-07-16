@@ -155,9 +155,16 @@ async function afterNamePicked(){
   subscribeDecisionRealtime();
   flushChecklistPending();
   flushDecisionPending();
+  await pullVotes();
+  subscribeVoteRealtime();
+  await pullJournal();
+  await pullPhotos();
+  subscribeJournalRealtime();
   setSyncBadge('synced');
   if(typeof window.onSharedChecklistUpdated === 'function') window.onSharedChecklistUpdated();
   if(typeof window.onSharedDecisionsUpdated === 'function') window.onSharedDecisionsUpdated();
+  if(typeof window.onSharedVotesUpdated === 'function') window.onSharedVotesUpdated();
+  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
 }
 
 // ============================================================
@@ -379,7 +386,6 @@ async function pullJournal(){
     if(!SHARED_JOURNAL[row.trip_day]) SHARED_JOURNAL[row.trip_day] = {};
     SHARED_JOURNAL[row.trip_day][row.author_name] = row;
   });
-  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
   return { error: null };
 }
 
@@ -393,7 +399,6 @@ async function pullPhotos(){
     if(!SHARED_PHOTOS[row.trip_day]) SHARED_PHOTOS[row.trip_day] = [];
     SHARED_PHOTOS[row.trip_day].push(row);
   });
-  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
   return { error: null };
 }
 
