@@ -863,9 +863,25 @@ input, select, textarea{ font-size: 16px !important; }
 .journal-my-entry-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px}
 .photo-author-badge{position:absolute;bottom:2px;left:2px;font-size:9px;background:rgba(0,0,0,.6);color:#fff;padding:1px 5px;border-radius:4px}
 .journal-photo-thumb{position:relative}
+
+.name-gate-backdrop{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px}
+.name-gate-backdrop.hidden{display:none}
+.name-gate-box{max-width:360px;width:100%;text-align:center}
+.name-gate-icon{font-size:48px;margin-bottom:12px}
+.name-gate-box h2{font-size:22px;margin:0 0 10px}
+.name-gate-box p{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 20px}
 </style>
 </head>
 <body>
+<div class="name-gate-backdrop" id="nameGateBackdrop">
+  <div class="name-gate-box">
+    <div class="name-gate-icon">👋</div>
+    <h2>Wie ben jij?</h2>
+    <p>Kies je naam zodat je notities, foto's en vinkjes gedeeld worden met de rest van het gezin. Dit hoef je maar één keer te doen.</p>
+    <div class="ess-name-grid" id="nameGateGrid"></div>
+  </div>
+</div>
+
 
 <nav class="topnav">
   <div class="topnav-inner">
@@ -1182,7 +1198,7 @@ const DEST_META={
   'Ho Chi Minh City':{color:'--hcmc',dates:'5-7 aug',hotel:'Citizen Apartment, Rivergate',fits:['Cu Chi Tunnels','War Remnants Museum','District 1 rooftop','Ben Thanh market']}
 };
 
-if(window.KortesSync) window.KortesSync.init();
+if(window.KortesSync){ window.KortesSync.init().then(()=>{ showNameGateIfNeeded(); }); showNameGateIfNeeded(); }
 fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
   document.querySelector('#v-today').innerHTML='<div class="hero"><h1 class="hero-title">Kan gegevens niet laden</h1><div class="hero-meta">Zet beide bestanden in dezelfde map.</div></div>';
 });
@@ -1426,6 +1442,18 @@ function renderDay(day){
     </div>
     <div class="journal-day-body" id="daycard-journal-${day.date}"></div>
   </div>`;
+}
+
+function refreshOpenDayJournals(){
+  document.querySelectorAll('.day-card.journal-open').forEach(card => {
+    const dayObj = DASHBOARD_D ? DASHBOARD_D.days.find(d => 'day-'+d.d === card.id) : null;
+    if(!dayObj) return;
+    const container = document.getElementById('daycard-journal-'+dayObj.date);
+    if(container){
+      container.innerHTML = renderJournalBlock(dayObj.date);
+      container.dataset.rendered = '1';
+    }
+  });
 }
 
 function toggleDayJournal(toggleEl){
@@ -2342,7 +2370,7 @@ function refreshJournalUI(){
   if(!activeView) return;
   if(activeView.id === 'v-livetoday') renderLiveToday();
   if(activeView.id === 'v-journal') renderJournalTimeline();
-  if(activeView.id === 'v-trip' && DASHBOARD_D) renderDaysWithJournal(DASHBOARD_D);
+  if(activeView.id === 'v-trip' && DASHBOARD_D) refreshOpenDayJournals();
 }
 
 // ============================================================
@@ -2859,9 +2887,28 @@ function renderNamePicker(){
 async function chooseFamilyName(name){
   await window.KortesSync.pickName(name);
   document.getElementById('essLoginBox').classList.remove('show');
+  hideNameGate();
   if(ESS_DATA) renderEssentials(ESS_DATA);
   if(ACTIONS_DATA) renderActions(ACTIONS_DATA);
   if(DECISIONS_DATA) renderDecisionsV2();
+  refreshJournalUI();
+}
+
+function hideNameGate(){
+  document.getElementById('nameGateBackdrop').classList.add('hidden');
+}
+
+function showNameGateIfNeeded(){
+  const alreadyPicked = window.KortesSync ? window.KortesSync.currentUserName() : (localStorage.getItem('kortes-trip-2026-family-name'));
+  const backdrop = document.getElementById('nameGateBackdrop');
+  if(alreadyPicked){
+    backdrop.classList.add('hidden');
+    return;
+  }
+  const grid = document.getElementById('nameGateGrid');
+  const names = (window.KortesSync && window.KortesSync.familyNames) ? window.KortesSync.familyNames : ['Henk Jan','Jersica','Oscar','Lucas'];
+  grid.innerHTML = names.map(n => `<button class="ess-name-btn" onclick="chooseFamilyName('${n}')">${n}</button>`).join('');
+  backdrop.classList.remove('hidden');
 }
 
 function forgetFamilyNameUI(){
