@@ -299,6 +299,119 @@ async function castVote(decisionId, option){
 }
 
 // ============================================================
+// JOURNAAL — dagnotities, beoordelingen, bezocht-status, foto's
+// ============================================================
+let SHARED_JOURNAL = {};   // trip_day -> row
+let SHARED_PHOTOS = {};    // trip_day -> [rows]
+let journalRealtimeChannel = null;
+let photoRealtimeChannel = null;
+const STORAGE_BUCKET = 'journal-photos';
+
+async function pullJournal(){
+  if(!currentWorkspaceId) return;
+  const { data, error } = await supabaseClient
+    .from('journal_entries').select('*').eq('workspace_id', currentWorkspaceId);
+  if(error){ console.warn('[sync] journal pull failed', error); return; }
+  SHARED_JOURNAL = {};
+  (data||[]).forEach(row => { SHARED_JOURNAL[row.trip_day] = row; });
+}
+
+async function pullPhotos(){
+  if(!currentWorkspaceId) return;
+  const { data, error } = await supabaseClient
+    .from('journal_photos').select('*').eq('workspace_id', currentWorkspaceId).order('created_at');
+  if(error){ console.warn('[sync] photos pull failed', error); return; }
+  SHARED_PHOTOS = {};
+  (data||[]).forEach(row => {
+    if(!SHARED_PHOTOS[row.trip_day]) SHARED_PHOTOS[row.trip_day] = [];
+    SHARED_PHOTOS[row.trip_day].push(row);
+  });
+}
+
+function subscribeJournalRealtime(){
+  if(!supabaseClient || !currentWorkspaceId) return;
+  if(journalRealtimeChannel) supabaseClient.removeChannel(journalRealtimeChannel);
+  journalRealtimeChannel = supabaseClient.channel('journal-sync')
+    .on('postgres_changes',
+      { event: '*', schema: 'public', table: 'journal_entries', filter: `workspace_id=eq.${currentWorkspaceId}` },
+      payload => {
+        const row = payload.new || payload.old;
+        if(!row) return;
+        if(payload.eventType === 'DELETE'){ delete SHARED_JOURNAL[row.trip_day]; }
+        else { SHARED_JOURNAL[row.trip_day] = row; }
+        if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+      }).subscribe();
+  if(photoRealtimeChannel) supabaseClient.removeChannel(photoRealtimeChannel);
+  photoRealtimeChannel = supabaseClient.channel('photo-sync')
+    .on('postgres_changes',
+      { event: '*', schema: 'public', table: 'journal_photos', filter: `workspace_id=eq.${currentWorkspaceId}` },
+      payload => {
+        pullPhotos().then(() => { if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated(); });
+      }).subscribe();
+}
+
+async function saveJournalEntry(tripDay, fields){
+  const name = getFamilyName();
+  const row = Object.assign({
+    workspace_id: currentWorkspaceId,
+    trip_day: tripDay,
+    created_by_name: name,
+    updated_at: new Date().toISOString()
+  }, fields);
+  SHARED_JOURNAL[tripDay] = Object.assign({}, SHARED_JOURNAL[tripDay], row);
+  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+  if(!currentWorkspaceId) return { error: 'geen workspace' };
+  const { error } = await supabaseClient.from('journal_entries')
+    .upsert(row, { onConflict: 'workspace_id,trip_day' });
+  return { error };
+}
+
+function getJournalFor(tripDay){
+  return SHARED_JOURNAL[tripDay] || null;
+}
+function getPhotosFor(tripDay){
+  return SHARED_PHOTOS[tripDay] || [];
+}
+
+async function uploadJournalPhoto(tripDay, file, caption){
+  if(!currentWorkspaceId || !supabaseClient) return { error: 'geen workspace' };
+  const name = getFamilyName();
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `${currentWorkspaceId}/${tripDay}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+
+  const { error: uploadError } = await supabaseClient.storage.from(STORAGE_BUCKET).upload(path, file, {
+    cacheControl: '3600', upsert: false
+  });
+  if(uploadError) return { error: uploadError };
+
+  const row = {
+    workspace_id: currentWorkspaceId, trip_day: tripDay, storage_path: path,
+    caption: caption || null, uploaded_by_name: name
+  };
+  const { data, error } = await supabaseClient.from('journal_photos').insert(row).select().single();
+  if(!error && data){
+    if(!SHARED_PHOTOS[tripDay]) SHARED_PHOTOS[tripDay] = [];
+    SHARED_PHOTOS[tripDay].push(data);
+    if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+  }
+  return { error, photo: data };
+}
+
+function getPhotoUrl(storagePath){
+  if(!supabaseClient) return '';
+  const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(storagePath);
+  return data ? data.publicUrl : '';
+}
+
+async function deleteJournalPhoto(photoId, tripDay, storagePath){
+  if(!supabaseClient) return;
+  await supabaseClient.storage.from(STORAGE_BUCKET).remove([storagePath]);
+  await supabaseClient.from('journal_photos').delete().eq('id', photoId);
+  if(SHARED_PHOTOS[tripDay]) SHARED_PHOTOS[tripDay] = SHARED_PHOTOS[tripDay].filter(p => p.id !== photoId);
+  if(typeof window.onJournalUpdated === 'function') window.onJournalUpdated();
+}
+
+// ============================================================
 // UI STATUS BADGE
 // ============================================================
 function setSyncBadge(state){
@@ -333,5 +446,13 @@ window.KortesSync = {
   votes: {
     getSharedVotes: () => SHARED_VOTES,
     cast: castVote
+  },
+  journal: {
+    getEntry: getJournalFor,
+    getPhotos: getPhotosFor,
+    saveEntry: saveJournalEntry,
+    uploadPhoto: uploadJournalPhoto,
+    deletePhoto: deleteJournalPhoto,
+    photoUrl: getPhotoUrl
   }
 };

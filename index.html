@@ -797,6 +797,62 @@ input, select, textarea{ font-size: 16px !important; }
 .opt-card-btn.chosen{background:var(--ok);border-color:var(--ok);color:#052e13}
 .opt-card-btn.map{color:var(--accent);border-color:transparent;background:transparent;padding:8px 6px}
 .opt-card-voters{font-size:10px;color:var(--muted);font-style:italic;margin-top:3px}
+
+/* JOURNAAL / LIVE TRIP / MAP */
+.journal-day{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:14px;overflow:hidden}
+.journal-day-head{padding:12px 16px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.journal-day-title{font-weight:700;font-size:14px}
+.journal-day-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.journal-day-body{padding:12px 16px}
+.journal-stars{display:flex;gap:3px;margin:6px 0}
+.journal-star{font-size:18px;cursor:pointer;color:var(--border2)}
+.journal-star.filled{color:#fbbf24}
+.journal-note-text{font-size:13px;color:var(--ink2);line-height:1.5;margin:8px 0;white-space:pre-wrap}
+.journal-photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin:10px 0}
+.journal-photo-thumb{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--panel2)}
+.journal-photo-thumb img{width:100%;height:100%;object-fit:cover}
+.journal-photo-thumb .fav-badge{position:absolute;top:3px;right:3px;font-size:12px}
+.journal-visited-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.journal-visited-btn{padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;border:1px solid var(--border2);background:var(--panel2);color:var(--ink2);cursor:pointer}
+.journal-visited-btn.active.VISITED{background:var(--ok);border-color:var(--ok);color:#052e13}
+.journal-visited-btn.active.SKIPPED{background:var(--muted);border-color:var(--muted);color:#fff}
+.journal-visited-btn.active.MOVED{background:var(--warn);border-color:var(--warn);color:#3d1c00}
+.journal-visited-btn.active.CANCELLED{background:var(--danger);border-color:var(--danger);color:#fff}
+.journal-present-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.journal-present-chip{padding:4px 10px;border-radius:16px;font-size:11px;font-weight:600;border:1px solid var(--border2);background:var(--panel2);color:var(--muted);cursor:pointer}
+.journal-present-chip.active{background:var(--planned);border-color:var(--planned);color:#fff}
+.journal-note-input{width:100%;padding:8px 10px;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-size:13px;font-family:inherit;resize:vertical;min-height:60px;margin-bottom:8px}
+.journal-expense-row{display:flex;gap:8px;align-items:center;margin:8px 0}
+.journal-expense-row input{width:100px;padding:6px 10px;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-size:13px}
+.journal-upload-row{display:flex;gap:8px;margin:10px 0}
+.journal-upload-btn{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--panel2);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.journal-save-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;background:var(--accent);color:#fff;border:none;cursor:pointer}
+.journal-toggle{padding:10px 16px;cursor:pointer;color:var(--muted);font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.journal-toggle .arr{transition:transform .2s}
+.journal-day.open .journal-toggle .arr{transform:rotate(180deg)}
+.journal-day.open .journal-day-body{display:block}
+.journal-day-body{display:none}
+
+/* LIVE TODAY */
+.live-hero{background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(139,92,246,.1));border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;margin-bottom:16px}
+.live-hero-date{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.live-hero-title{font-size:22px;font-weight:900;margin-top:4px}
+.live-weather{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 14px;background:rgba(255,255,255,.05);border-radius:10px}
+.live-weather-temp{font-size:24px;font-weight:800}
+.live-weather-desc{font-size:12px;color:var(--muted)}
+.live-block{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:10px}
+.live-block-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.live-block-content{font-size:14px;color:var(--ink2);line-height:1.5}
+
+/* ARCHIVE MODE banner */
+.archive-banner{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(59,130,246,.08));border:1px solid rgba(139,92,246,.3);border-radius:var(--radius-lg);padding:16px;margin-bottom:16px;text-align:center}
+.archive-banner h3{margin:0 0 6px;font-size:16px}
+.archive-export-buttons{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.archive-export-btn{padding:10px 18px;border-radius:10px;font-weight:700;font-size:13px;border:1px solid var(--border2);background:var(--panel2);color:var(--ink);cursor:pointer}
+
+.day-card .journal-day-body{display:none;padding:0 16px 16px}
+.day-card.journal-open .journal-day-body{display:block}
+.day-card .journal-toggle{margin:0}
 </style>
 </head>
 <body>
@@ -812,7 +868,10 @@ input, select, textarea{ font-size: 16px !important; }
     </div>
     <div class="topnav-tabs">
       <button data-view="today" class="active">Overzicht</button>
+      <button data-view="livetoday">Vandaag</button>
       <button data-view="trip">Dagplanning</button>
+      <button data-view="journal">Journaal</button>
+      <button data-view="tripmap">Kaart</button>
       <button data-view="flights">Transfers</button>
       <button data-view="stays">Hotels</button>
       <button data-view="decisions">Beslissingen</button>
@@ -946,6 +1005,30 @@ input, select, textarea{ font-size: 16px !important; }
   </div>
 </div>
 
+<!-- VANDAAG (Live Trip) -->
+<div class="view" id="v-livetoday">
+  <div class="section" style="margin-top:8px" id="livetodayContent"></div>
+</div>
+
+<!-- JOURNAAL -->
+<div class="view" id="v-journal">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head">
+      <h2 class="section-title">Journaal</h2>
+      <div class="section-sub" id="journalSub"></div>
+    </div>
+    <div id="journalTimeline"></div>
+  </div>
+</div>
+
+<!-- KAART -->
+<div class="view" id="v-tripmap">
+  <div class="section" style="margin-top:8px">
+    <div class="section-head"><h2 class="section-title">Kaart</h2></div>
+    <div id="tripmapContainer" style="height:70vh;border-radius:14px;overflow:hidden;border:1px solid var(--border)"></div>
+  </div>
+</div>
+
 <!-- SHOPPING -->
 <div class="view" id="v-shopping">
   <div class="section" style="margin-top:8px">
@@ -1027,6 +1110,18 @@ input, select, textarea{ font-size: 16px !important; }
     <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7 2 2v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
     Overzicht
   </button>
+  <button data-view="livetoday">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Vandaag
+  </button>
+  <button data-view="journal">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Journaal
+  </button>
+  <button data-view="tripmap">
+    <svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4z"/><path d="M8 2v16M16 6v16"/></svg>
+    Kaart
+  </button>
   <button data-view="trip">
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
     Dagen
@@ -1064,6 +1159,7 @@ input, select, textarea{ font-size: 16px !important; }
 
 <script src="sync.js"></script>
 <script>
+let DASHBOARD_D = null;
 const CITY_KEY={'Tokyo':'tokyo','Hakone':'hakone','Kyoto':'kyoto','Osaka':'osaka','Hanoi':'hanoi','Da Nang':'danang','HCMC':'hcmc','Da Nang/Hoi An':'danang','Kyoto (Nara day)':'kyoto','Hanoi/Da Nang':'hanoi','Hanoi (day trip)':'hanoi','Osaka (day trip)':'osaka','Amsterdam/Air':'air','Air→Amsterdam':'air'};
 const CITY_LABEL={'Tokyo':'Tokyo','Hakone':'Hakone','Kyoto':'Kyoto','Osaka':'Osaka','Hanoi':'Hanoi','Da Nang':'Da Nang','HCMC':'Ho Chi Minh City','Da Nang/Hoi An':'Da Nang & Hoi An','Kyoto (Nara day)':'Nara-dagtrip','Hanoi/Da Nang':'Hanoi → Da Nang','Hanoi (day trip)':'Hanoi-excursie'};
 const DEST_META={
@@ -1082,6 +1178,8 @@ fetch('dashboard-data.json').then(r=>r.json()).then(render).catch(e=>{
 });
 
 function render(D){
+  DASHBOARD_D = D;
+  (D.hotels||[]).forEach(h => { if(h.coordinates) CITY_COORDS[h.city] = h.coordinates; });
   // ROUTE
   const routeStops=[{n:'Amsterdam',cls:'ams'},{n:'Tokyo',cls:'jp'},{n:'Hakone',cls:'jp'},{n:'Kyoto',cls:'jp'},{n:'Osaka',cls:'jp'},{n:'Hanoi',cls:'vn'},{n:'Da Nang',cls:'vn'},{n:'HCMC',cls:'vn'},{n:'Amsterdam',cls:'ams'}];
   document.getElementById('route').innerHTML=routeStops.map((s,i)=>
@@ -1207,6 +1305,9 @@ function render(D){
       document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
       document.getElementById('v-'+v).classList.add('active');
       document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+      if(v === 'livetoday') renderLiveToday();
+      if(v === 'journal') renderJournalTimeline();
+      if(v === 'tripmap') renderTripMap();
       window.scrollTo({top:0,behavior:'smooth'});
       // Scroll the tapped tab into view within the horizontal botnav
       if(btn.closest('#botnavScroll')){
@@ -1214,6 +1315,14 @@ function render(D){
       }
     });
   });
+
+  // Automatisch juiste standaardweergave op basis van reisfase
+  const mode = getTripMode();
+  if(mode === 'live'){
+    document.querySelector('[data-view="livetoday"]')?.click();
+  } else if(mode === 'archive'){
+    document.querySelector('[data-view="journal"]')?.click();
+  }
 }
 
 function renderDay(day){
@@ -1302,7 +1411,28 @@ function renderDay(day){
         ${teen?`<div class="detail-box info-box"><b>Voor de jongens</b>${teen}</div>`:''}
       </div>
     </div>`:''}
+    <div class="journal-toggle" onclick="this.closest('.day-card').classList.toggle('journal-open');toggleDayJournal(this)">
+      📸 Herinneringen<span class="arr">▾</span>
+    </div>
+    <div class="journal-day-body" id="daycard-journal-${day.date}"></div>
   </div>`;
+}
+
+function toggleDayJournal(toggleEl){
+  const card = toggleEl.closest('.day-card');
+  const isOpen = card.classList.contains('journal-open');
+  if(isOpen){
+    const dateMatch = card.id.match(/day-(\d+)/);
+    // find date from DASHBOARD_D by day index
+    const dayObj = DASHBOARD_D ? DASHBOARD_D.days.find(d => 'day-'+d.d === card.id) : null;
+    if(dayObj){
+      const container = document.getElementById('daycard-journal-'+dayObj.date);
+      if(container && !container.dataset.rendered){
+        container.innerHTML = renderJournalBlock(dayObj.date);
+        container.dataset.rendered = '1';
+      }
+    }
+  }
 }
 
 function jumpToDay(d){
@@ -2090,6 +2220,366 @@ window.onSharedVotesUpdated = function(){
 };
 function closeCompareSheet(){
   document.getElementById('compareModalBackdrop').classList.remove('open');
+}
+
+// ============================================================
+// TRIP MODE (Planning / Live / Archive)
+// ============================================================
+const TRIP_START = new Date('2026-07-17');
+const TRIP_END = new Date('2026-08-07T23:59:59');
+
+function getTripMode(){
+  const now = new Date();
+  if(now < TRIP_START) return 'planning';
+  if(now > TRIP_END) return 'archive';
+  return 'live';
+}
+
+function todayISO(){
+  const d = new Date();
+  return d.toISOString().slice(0,10);
+}
+
+function getDayByDate(D, dateStr){
+  return D.days.find(d => d.date === dateStr);
+}
+
+const CITY_COORDS = {}; // filled in render(D) from D.hotels
+
+// ============================================================
+// JOURNAL — per-day block (embedded in day cards + Vandaag + Journaal)
+// ============================================================
+function renderJournalBlock(tripDay, compact){
+  const entry = (window.KortesSync && window.KortesSync.isEnabled()) ? window.KortesSync.journal.getEntry(tripDay) : null;
+  const photos = (window.KortesSync && window.KortesSync.isEnabled()) ? window.KortesSync.journal.getPhotos(tripDay) : [];
+  const rating = entry ? (entry.rating || 0) : 0;
+  const visited = entry ? (entry.visited_status || 'PLANNED') : 'PLANNED';
+  const present = entry ? (entry.present_names || []) : [];
+  const note = entry ? (entry.note || '') : '';
+  const expense = entry ? (entry.expense_amount || '') : '';
+
+  const starsHtml = [1,2,3,4,5].map(n => `<span class="journal-star ${n<=rating?'filled':''}" onclick="setJournalRating('${tripDay}',${n})">★</span>`).join('');
+  const visitedBtns = ['VISITED','SKIPPED','MOVED','CANCELLED'].map(s => {
+    const labels = {VISITED:'✓ Bezocht',SKIPPED:'Overgeslagen',MOVED:'Verplaatst',CANCELLED:'Geannuleerd'};
+    return `<button class="journal-visited-btn ${visited===s?'active '+s:''}" onclick="setJournalVisited('${tripDay}','${s}')">${labels[s]}</button>`;
+  }).join('');
+  const presentChips = (window.KortesSync ? window.KortesSync.familyNames : ['Henk Jan','Jersica','Oscar','Lucas']).map(n =>
+    `<span class="journal-present-chip ${present.includes(n)?'active':''}" onclick="toggleJournalPresent('${tripDay}','${n}')">${n}</span>`
+  ).join('');
+
+  const photosHtml = photos.length ? `<div class="journal-photos-grid">${photos.map(p => {
+    const url = window.KortesSync ? window.KortesSync.journal.photoUrl(p.storage_path) : '';
+    return `<div class="journal-photo-thumb"><img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')">${p.favorite?'<span class="fav-badge">⭐</span>':''}</div>`;
+  }).join('')}</div>` : '';
+
+  return `<div class="journal-day-body-inner" id="journal-${tripDay}">
+    <div class="journal-stars">${starsHtml}</div>
+    <div class="journal-visited-row">${visitedBtns}</div>
+    <div class="journal-present-row">${presentChips}</div>
+    <textarea class="journal-note-input" placeholder="Notitie voor deze dag..." id="note-${tripDay}">${note}</textarea>
+    <div class="journal-expense-row">
+      <span style="font-size:12px;color:var(--muted)">💰 Uitgaven</span>
+      <input type="number" placeholder="0" value="${expense}" id="expense-${tripDay}"> <span style="font-size:12px;color:var(--muted)">EUR</span>
+    </div>
+    <div class="journal-upload-row">
+      <label class="journal-upload-btn">📷 Foto toevoegen<input type="file" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload('${tripDay}', this.files)"></label>
+      <label class="journal-upload-btn">📸 Camera<input type="file" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoUpload('${tripDay}', this.files)"></label>
+    </div>
+    ${photosHtml}
+    <button class="journal-save-btn" onclick="saveJournalNote('${tripDay}')">Notitie opslaan</button>
+  </div>`;
+}
+
+async function setJournalRating(tripDay, rating){
+  if(!checkNamePicked()) return;
+  await window.KortesSync.journal.saveEntry(tripDay, { rating });
+  refreshJournalUI();
+}
+async function setJournalVisited(tripDay, status){
+  if(!checkNamePicked()) return;
+  const entry = window.KortesSync.journal.getEntry(tripDay);
+  const current = entry ? entry.visited_status : null;
+  await window.KortesSync.journal.saveEntry(tripDay, { visited_status: current === status ? 'PLANNED' : status });
+  refreshJournalUI();
+}
+async function toggleJournalPresent(tripDay, name){
+  if(!checkNamePicked()) return;
+  const entry = window.KortesSync.journal.getEntry(tripDay);
+  let present = entry && entry.present_names ? [...entry.present_names] : [];
+  if(present.includes(name)) present = present.filter(n => n !== name);
+  else present.push(name);
+  await window.KortesSync.journal.saveEntry(tripDay, { present_names: present });
+  refreshJournalUI();
+}
+async function saveJournalNote(tripDay){
+  if(!checkNamePicked()) return;
+  const noteEl = document.getElementById('note-'+tripDay);
+  const expenseEl = document.getElementById('expense-'+tripDay);
+  await window.KortesSync.journal.saveEntry(tripDay, {
+    note: noteEl ? noteEl.value : '',
+    expense_amount: expenseEl && expenseEl.value ? parseFloat(expenseEl.value) : null
+  });
+  refreshJournalUI();
+}
+async function handlePhotoUpload(tripDay, files){
+  if(!checkNamePicked()) return;
+  if(!window.KortesSync || !window.KortesSync.isEnabled()){ alert('Foto-sync is niet actief.'); return; }
+  for(const file of files){
+    const { error } = await window.KortesSync.journal.uploadPhoto(tripDay, file);
+    if(error) console.warn('upload failed', error);
+  }
+  refreshJournalUI();
+}
+function checkNamePicked(){
+  if(!window.KortesSync || !window.KortesSync.isEnabled()) return true; // local-only mode, allowed
+  if(!window.KortesSync.isSignedIn()){
+    alert('Kies eerst je naam bij Reisbenodigdheden.');
+    return false;
+  }
+  return true;
+}
+
+window.onJournalUpdated = function(){ refreshJournalUI(); };
+
+function refreshJournalUI(){
+  const mode = getTripMode();
+  const activeView = document.querySelector('.view.active');
+  if(!activeView) return;
+  if(activeView.id === 'v-livetoday') renderLiveToday();
+  if(activeView.id === 'v-journal') renderJournalTimeline();
+  if(activeView.id === 'v-trip' && DASHBOARD_D) renderDaysWithJournal(DASHBOARD_D);
+}
+
+// ============================================================
+// VANDAAG (Live Trip view)
+// ============================================================
+async function renderLiveToday(){
+  const D = DASHBOARD_D;
+  if(!D) return;
+  const mode = getTripMode();
+  const iso = todayISO();
+  const day = getDayByDate(D, iso) || D.days[0];
+  const container = document.getElementById('livetodayContent');
+
+  let modeNote = '';
+  if(mode === 'planning'){
+    const daysUntil = Math.ceil((TRIP_START - new Date())/86400000);
+    modeNote = `<div class="opt-workspace-goal"><b>Nog ${daysUntil} dagen te gaan</b>De reis begint nog niet — dit scherm toont hoe "Vandaag" er tijdens de reis uit gaat zien, met de eerste reisdag als voorbeeld.</div>`;
+  } else if(mode === 'archive'){
+    modeNote = `<div class="opt-workspace-goal"><b>Reis afgelopen</b>Bekijk het volledige verslag onder Journaal, of ga naar Archief voor de export.</div>`;
+  }
+
+  const cityKey = CITY_KEY[day.dest] || null;
+  const coords = CITY_COORDS[day.dest] || null;
+  let weatherHtml = '';
+  if(coords){
+    weatherHtml = `<div class="live-weather" id="liveWeatherBox">Weer laden...</div>`;
+  }
+
+  container.innerHTML = `
+    ${modeNote}
+    <div class="live-hero">
+      <div class="live-hero-date">${day.weekday} ${day.date}</div>
+      <div class="live-hero-title">${day.concept || day.dest}</div>
+      ${weatherHtml}
+    </div>
+    <div class="live-block"><div class="live-block-lbl">🏨 Hotel</div><div class="live-block-content">${day.hotel || '—'}</div></div>
+    ${(day.anchors||[]).length ? `<div class="live-block"><div class="live-block-lbl">📌 Vast onderdeel vandaag</div><div class="live-block-content">${day.anchors.join(', ')}</div></div>` : ''}
+    <div class="live-block"><div class="live-block-lbl">📖 Programma</div><div class="live-block-content">${renderPlanSummary(day.planA)}</div></div>
+    <div class="live-block">
+      <div class="live-block-lbl">📸 Herinneringen van vandaag</div>
+      ${renderJournalBlock(day.date)}
+    </div>
+  `;
+
+  if(coords) fetchWeather(coords.lat, coords.lng, 'liveWeatherBox');
+}
+
+function renderPlanSummary(planA){
+  if(!planA) return 'Vrij';
+  if(typeof planA === 'string') return planA;
+  const parts = [];
+  ['morning','afternoon','evening','fixed'].forEach(k => { if(planA[k]) parts.push(planA[k]); });
+  return parts.join('<br>') || 'Vrij';
+}
+
+async function fetchWeather(lat, lng, targetId){
+  try{
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weather_code&timezone=auto`);
+    const data = await res.json();
+    const temp = Math.round(data.current.temperature_2m);
+    const code = data.current.weather_code;
+    const desc = weatherCodeToText(code);
+    const el = document.getElementById(targetId);
+    if(el) el.innerHTML = `<div class="live-weather-temp">${temp}°C</div><div class="live-weather-desc">${desc}</div>`;
+  }catch(e){
+    const el = document.getElementById(targetId);
+    if(el) el.textContent = 'Weer niet beschikbaar';
+  }
+}
+function weatherCodeToText(code){
+  if(code === 0) return 'Helder';
+  if([1,2,3].includes(code)) return 'Bewolkt';
+  if([45,48].includes(code)) return 'Mist';
+  if([51,53,55,56,57].includes(code)) return 'Motregen';
+  if([61,63,65,66,67].includes(code)) return 'Regen';
+  if([80,81,82].includes(code)) return 'Buien';
+  if([95,96,99].includes(code)) return 'Onweer';
+  return 'Wisselend';
+}
+
+// ============================================================
+// JOURNAAL — chronologische tijdlijn
+// ============================================================
+function renderJournalTimeline(){
+  const D = DASHBOARD_D;
+  if(!D) return;
+  const mode = getTripMode();
+  let daysWithContent = D.days;
+  document.getElementById('journalSub').textContent = mode === 'archive' ? 'Compleet reisverslag' : 'Wordt gevuld tijdens de reis';
+
+  const html = daysWithContent.map(day => {
+    const entry = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getEntry(day.date) : null;
+    const photos = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getPhotos(day.date) : [];
+    const hasContent = entry || photos.length;
+    if(mode !== 'archive' && !hasContent) return ''; // during planning/live, only show days with content to avoid huge empty list... except allow expanding all via day-planning tab
+    const ratingStars = entry && entry.rating ? '★'.repeat(entry.rating) : '';
+    return `<div class="journal-day">
+      <div class="journal-day-head" onclick="this.parentElement.classList.toggle('open')" style="cursor:pointer">
+        <div>
+          <div class="journal-day-title">${day.weekday} ${day.date} — ${day.concept||day.dest} ${ratingStars}</div>
+          <div class="journal-day-sub">${day.dest}${photos.length?' · '+photos.length+' foto\u2019s':''}</div>
+        </div>
+        <span class="grp-toggle">▾</span>
+      </div>
+      <div class="journal-day-body">${renderJournalBlock(day.date)}</div>
+    </div>`;
+  }).filter(Boolean).join('');
+
+  document.getElementById('journalTimeline').innerHTML = html || `<div style="text-align:center;padding:40px;color:var(--muted);font-size:13px">Nog geen journaal-items. Voeg foto's/notities toe via de Dagen-tab of "Vandaag".</div>`;
+
+  if(mode === 'archive'){
+    document.getElementById('journalTimeline').innerHTML = renderArchiveBanner() + document.getElementById('journalTimeline').innerHTML;
+  }
+}
+
+function renderArchiveBanner(){
+  return `<div class="archive-banner">
+    <h3>🗄️ Reis afgelopen</h3>
+    <div style="font-size:13px;color:var(--ink2)">Jullie reisverslag staat hierbeneden. Exporteer het als aandenken.</div>
+    <div class="archive-export-buttons">
+      <button class="archive-export-btn" onclick="exportMarkdown()">📄 Markdown</button>
+      <button class="archive-export-btn" onclick="exportPDF()">📕 PDF</button>
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// KAART
+// ============================================================
+let TRIPMAP_LOADED = false;
+async function renderTripMap(){
+  const D = DASHBOARD_D;
+  if(!D) return;
+  if(!TRIPMAP_LOADED){
+    await loadLeaflet();
+    TRIPMAP_LOADED = true;
+  }
+  const container = document.getElementById('tripmapContainer');
+  container.innerHTML = '';
+  const map = L.map(container).setView([25, 120], 3);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  const cityOrder = D.hotels.map(h => h.city);
+  const latlngs = [];
+  D.hotels.forEach(h => {
+    if(!h.coordinates) return;
+    const { lat, lng } = h.coordinates;
+    latlngs.push([lat, lng]);
+    const marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup(`<b>${h.city}</b><br>${h.name}<br>${h.in} → ${h.out}`);
+  });
+  if(latlngs.length > 1){
+    L.polyline(latlngs, { color: '#f97316', weight: 3, opacity: 0.7, dashArray: '6,8' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30,30] });
+  }
+}
+
+function loadLeaflet(){
+  return new Promise((resolve) => {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(css);
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = resolve;
+    document.head.appendChild(script);
+  });
+}
+
+// ============================================================
+// EXPORT (Archive mode)
+// ============================================================
+function exportMarkdown(){
+  const D = DASHBOARD_D;
+  let md = `# Japan & Vietnam 2026 — Reisverslag\\n\\n`;
+  D.days.forEach(day => {
+    const entry = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getEntry(day.date) : null;
+    const photos = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getPhotos(day.date) : [];
+    md += `## ${day.weekday} ${day.date} — ${day.concept||day.dest}\\n\\n`;
+    if(entry && entry.rating) md += `Beoordeling: ${'★'.repeat(entry.rating)}\\n\\n`;
+    if(entry && entry.note) md += `${entry.note}\\n\\n`;
+    if(entry && entry.expense_amount) md += `Uitgaven: €${entry.expense_amount}\\n\\n`;
+    if(photos.length) md += `_${photos.length} foto's toegevoegd_\\n\\n`;
+  });
+  const blob = new Blob([md], {type:'text/markdown'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'reisverslag-japan-vietnam-2026.md';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function exportPDF(){
+  if(typeof window.jspdf === 'undefined'){
+    await loadJsPDF();
+  }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const D = DASHBOARD_D;
+  let y = 20;
+  doc.setFontSize(20); doc.text('Japan & Vietnam 2026 — Reisverslag', 15, y); y += 12;
+  doc.setFontSize(10); doc.setTextColor(120);
+  doc.text('17 juli - 7 augustus 2026', 15, y); y += 12;
+  doc.setTextColor(0);
+
+  D.days.forEach(day => {
+    const entry = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getEntry(day.date) : null;
+    const photos = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getPhotos(day.date) : [];
+    if(y > 270){ doc.addPage(); y = 20; }
+    doc.setFontSize(13); doc.setFont(undefined,'bold');
+    doc.text(`${day.weekday} ${day.date} - ${day.concept||day.dest}`, 15, y); y += 7;
+    doc.setFont(undefined,'normal'); doc.setFontSize(10);
+    if(entry && entry.rating) { doc.text('Beoordeling: ' + '*'.repeat(entry.rating), 15, y); y += 6; }
+    if(entry && entry.note){
+      const lines = doc.splitTextToSize(entry.note, 180);
+      doc.text(lines, 15, y); y += lines.length * 5 + 3;
+    }
+    if(photos.length){ doc.setTextColor(120); doc.text(`${photos.length} foto's toegevoegd`, 15, y); doc.setTextColor(0); y += 6; }
+    y += 5;
+  });
+  doc.save('reisverslag-japan-vietnam-2026.pdf');
+}
+function loadJsPDF(){
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    script.onload = resolve;
+    document.head.appendChild(script);
+  });
 }
 
 function renderShopping(D){
