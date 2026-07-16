@@ -2368,21 +2368,17 @@ function renderJournalBlock(tripDay, compact){
 
   const othersEntries = allEntries.filter(e => e.author_name !== myName);
   const entriesListHtml = othersEntries.length ? `<div class="journal-entries-list">${othersEntries.map(e => {
-    const stars = e.rating ? '★'.repeat(e.rating) + '☆'.repeat(5-e.rating) : '';
     const when = e.updated_at ? new Date(e.updated_at).toLocaleDateString('nl-NL',{day:'numeric',month:'short'}) : '';
     return `<div class="journal-entry-card">
-      <div class="journal-entry-head"><b>${e.author_name}</b>${stars?`<span class="journal-entry-stars">${stars}</span>`:''}<span class="journal-entry-when">${when}</span></div>
+      <div class="journal-entry-head"><b>${e.author_name}</b><span class="journal-entry-when">${when}</span></div>
       ${e.note ? `<div class="journal-note-text">${e.note}</div>` : ''}
     </div>`;
   }).join('')}</div>` : '';
 
-  const myRating = myEntry ? (myEntry.rating || 0) : 0;
   const myNote = myEntry ? (myEntry.note || '') : '';
-  const starsHtml = [1,2,3,4,5].map(n => `<span class="journal-star ${n<=myRating?'filled':''}" onclick="setJournalRating('${tripDay}',${n})">★</span>`).join('');
 
   const photosHtml = photos.length ? `<div class="journal-photos-grid">${photos.map(p => {
     const url = window.KortesSync ? window.KortesSync.journal.photoUrl(p.storage_path) : '';
-    const mine = p.uploaded_by_name === myName;
     return `<div class="journal-photo-thumb"><img src="${url}" loading="lazy" onclick="window.open('${url}','_blank')">
       <span class="photo-author-badge">${p.uploaded_by_name||''}</span>
     </div>`;
@@ -2390,14 +2386,13 @@ function renderJournalBlock(tripDay, compact){
 
   return `<div class="journal-day-body-inner" id="journal-${tripDay}">
     ${entriesListHtml}
-    <div class="journal-my-entry-lbl">${myName ? `Jouw notitie & beoordeling (${myName})` : 'Kies je naam bij Reisbenodigdheden om een notitie toe te voegen'}</div>
-    <div class="journal-stars">${starsHtml}</div>
-    <textarea class="journal-note-input" placeholder="Jouw notitie voor deze dag..." id="note-${tripDay}">${myNote}</textarea>
+    <div class="journal-my-entry-lbl">${myName ? `Toevoegen als ${myName}` : 'Kies je naam bij Reisbenodigdheden om iets toe te voegen'}</div>
     <div class="journal-upload-row">
       <label class="journal-upload-btn">📷 Foto toevoegen<input type="file" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload('${tripDay}', this.files)"></label>
       <label class="journal-upload-btn">📸 Camera<input type="file" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoUpload('${tripDay}', this.files)"></label>
     </div>
     ${photosHtml}
+    <textarea class="journal-note-input" placeholder="Bijschrift bij foto of dagnotitie..." id="note-${tripDay}">${myNote}</textarea>
     <div class="journal-save-row">
       <button class="journal-save-btn" onclick="saveJournalNote('${tripDay}', this)">Opslaan</button>
       <span class="journal-save-status" id="save-status-${tripDay}"></span>
@@ -2405,29 +2400,13 @@ function renderJournalBlock(tripDay, compact){
   </div>`;
 }
 
-async function setJournalRating(tripDay, rating){
-  if(!checkNamePicked()) return;
-  showSaveStatus(tripDay, 'busy', 'Opslaan...');
-  const noteEl = document.getElementById('note-'+tripDay);
-  const result = await window.KortesSync.journal.saveEntry(tripDay, { rating, note: noteEl ? noteEl.value : undefined });
-  refreshJournalUI();
-  if(result && result.error){
-    showSaveStatus(tripDay, 'err', 'Fout: ' + (result.error.message || JSON.stringify(result.error)));
-    console.error('[journal] rating save failed', result.error);
-  } else {
-    showSaveStatus(tripDay, 'ok', '✓ Beoordeling opgeslagen');
-  }
-}
 async function saveJournalNote(tripDay, btn){
   if(!checkNamePicked()) return;
   if(btn) btn.disabled = true;
   showSaveStatus(tripDay, 'busy', 'Opslaan...');
   const noteEl = document.getElementById('note-'+tripDay);
-  const ratingStars = document.querySelectorAll(`#journal-${tripDay} .journal-star.filled`);
-  const currentRating = ratingStars.length;
   const result = await window.KortesSync.journal.saveEntry(tripDay, {
-    note: noteEl ? noteEl.value : '',
-    rating: currentRating || null
+    note: noteEl ? noteEl.value : ''
   });
   if(btn) btn.disabled = false;
   refreshJournalUI();
@@ -2442,9 +2421,11 @@ async function handlePhotoUpload(tripDay, files){
   if(!checkNamePicked()) return;
   if(!window.KortesSync || !window.KortesSync.isEnabled()){ showSaveStatus(tripDay, 'err', 'Foto-sync niet actief'); return; }
   showSaveStatus(tripDay, 'busy', `${files.length} foto('s) uploaden...`);
+  const noteEl = document.getElementById('note-'+tripDay);
+  const caption = noteEl ? noteEl.value : '';
   let failCount = 0, lastError = null;
   for(const file of files){
-    const { error } = await window.KortesSync.journal.uploadPhoto(tripDay, file);
+    const { error } = await window.KortesSync.journal.uploadPhoto(tripDay, file, caption);
     if(error){ failCount++; lastError = error; console.error('[journal] photo upload failed', error); }
   }
   refreshJournalUI();
@@ -2578,9 +2559,7 @@ function renderJournalTimeline(){
     const photos = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getPhotos(day.date) : [];
     const hasContent = entries.length || photos.length;
     if(mode !== 'archive' && !hasContent) return '';
-    const ratedEntries = entries.filter(e => e.rating);
-    const avgRating = ratedEntries.length ? Math.round(ratedEntries.reduce((s,e)=>s+e.rating,0)/ratedEntries.length) : 0;
-    const ratingStars = avgRating ? '★'.repeat(avgRating) : '';
+    const ratingStars = '';
     return `<div class="journal-day">
       <div class="journal-day-head" onclick="this.parentElement.classList.toggle('open')" style="cursor:pointer">
         <div>
@@ -2668,7 +2647,7 @@ function exportMarkdown(){
     const photos = window.KortesSync && window.KortesSync.isEnabled() ? window.KortesSync.journal.getPhotos(day.date) : [];
     md += `## ${day.weekday} ${day.date} — ${day.concept||day.dest}\\n\\n`;
     entries.forEach(e => {
-      md += `**${e.author_name}**${e.rating?' — '+'★'.repeat(e.rating):''}\\n\\n`;
+      md += `**${e.author_name}**\\n\\n`;
       if(e.note) md += `${e.note}\\n\\n`;
     });
     if(photos.length) md += `_${photos.length} foto's toegevoegd_\\n\\n`;
@@ -2703,7 +2682,7 @@ async function exportPDF(){
     doc.setFont(undefined,'normal'); doc.setFontSize(10);
     entries.forEach(e => {
       if(y > 270){ doc.addPage(); y = 20; }
-      doc.setFont(undefined,'bold'); doc.text(e.author_name + (e.rating?' - '+'*'.repeat(e.rating):''), 15, y); y += 5;
+      doc.setFont(undefined,'bold'); doc.text(e.author_name, 15, y); y += 5;
       doc.setFont(undefined,'normal');
       if(e.note){
         const lines = doc.splitTextToSize(e.note, 180);
@@ -2753,9 +2732,9 @@ async function renderSyncLog(){
       const entries = window.KortesSync.journal.getEntries(day.date) || [];
       entries.forEach(e => {
         items.push({
-          type: 'note', icon: e.rating ? '⭐' : '📝', day: day.date,
+          type: 'note', icon: '📝', day: day.date,
           author: e.author_name, when: e.updated_at,
-          text: (e.rating ? '★'.repeat(e.rating)+' ' : '') + (e.note ? e.note.slice(0,80) : '(alleen beoordeling, geen tekst)')
+          text: e.note ? e.note.slice(0,80) : '(lege notitie)'
         });
       });
       const photos = window.KortesSync.journal.getPhotos(day.date) || [];
