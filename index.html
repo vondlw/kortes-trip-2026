@@ -774,6 +774,29 @@ input, select, textarea{ font-size: 16px !important; }
 .dec-vote-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
 .dec-vote-count{font-size:10px;color:var(--muted);margin-left:82px;margin-top:2px}
 .dec-vote-voters{font-size:10px;color:var(--muted);font-style:italic}
+
+.opt-workspace-goal{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:10px 12px;font-size:13px;color:#ddd6fe;margin-bottom:16px}
+.opt-workspace-goal b{color:#fff;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.opt-card{background:var(--panel2);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.opt-card.chosen{border-color:var(--ok);background:linear-gradient(135deg,rgba(16,185,129,.08),var(--panel2))}
+.opt-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.opt-card-title{font-weight:800;font-size:15px;letter-spacing:-.2px}
+.opt-card-rec-badge{font-size:10px;font-weight:800;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(59,130,246,.15));color:#c4b5fd;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.opt-card-day{font-size:11px;color:var(--muted);margin-bottom:10px}
+.opt-card-proscons{display:grid;gap:8px;margin-bottom:10px}
+@media(min-width:480px){.opt-card-proscons{grid-template-columns:1fr 1fr}}
+.opt-card-booking{background:var(--panel3);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink2);margin-bottom:10px}
+.opt-card-booking b{color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+.opt-card-booking a{color:var(--accent);word-break:break-all}
+.opt-card-vote-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.opt-card-vote-bar-wrap{flex:1;height:6px;background:var(--panel3);border-radius:3px;overflow:hidden}
+.opt-card-vote-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.opt-card-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.opt-card-btn{padding:8px 13px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--panel3);color:var(--ink2);cursor:pointer}
+.opt-card-btn.primary{background:var(--ok);border-color:var(--ok);color:#052e13}
+.opt-card-btn.chosen{background:var(--ok);border-color:var(--ok);color:#052e13}
+.opt-card-btn.map{color:var(--accent);border-color:transparent;background:transparent;padding:8px 6px}
+.opt-card-voters{font-size:10px;color:var(--muted);font-style:italic;margin-top:3px}
 </style>
 </head>
 <body>
@@ -1800,9 +1823,9 @@ function renderDecCardV2(d, state, groupKey){
 function renderDecActions(d, state, status){
   if(status === 'BOOKING_REQUIRED'){
     return `<button class="dec-btn-v2 primary book" onclick="confirmBooked('${d.id}')">Boek nu</button>
-            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Stem! - Opties</button>`;
+            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Bekijk opties</button>`;
   }
-  return `<button class="dec-btn-v2 primary" onclick="openCompareSheet('${d.id}')">Stem! - Opties</button>`;
+  return `<button class="dec-btn-v2 primary" onclick="openCompareSheet('${d.id}')">Bekijk opties</button>`;
 }
 
 function toggleDecOverflow(ev, decisionId){
@@ -1820,7 +1843,7 @@ function chooseOption(decisionId, option){
   setDecState(decisionId, {
     status: needsBooking ? 'BOOKING_REQUIRED' : 'COMPLETED',
     chosen_option: chosen,
-    decided_by: window.KortesSync ? window.KortesSync.currentUserId() : null,
+    decided_by_name: window.KortesSync ? window.KortesSync.currentUserName() : null,
     decided_at: new Date().toISOString()
   });
 }
@@ -1922,72 +1945,85 @@ function openCompareSheet(decisionId){
   DEC_COMPARE_TARGET = decisionId;
   document.getElementById('compareModalTitle').textContent = d.q;
 
-  const opts = d.options || [];
-  const rows = [
-    ['Aanbevolen', opts.map(o => o === d.recommendation || d.recommendation.includes(o) ? '★' : '').join(' / ')],
-    ['Vertrouwen', d.confidence || '—'],
-    ['Deadline', d.deadline || '—']
-  ];
+  const opts = (d.options || []).filter(o => o !== 'Geen fietsactiviteit' && o !== 'Overslaan');
+  const skipOpts = (d.options || []).filter(o => o === 'Geen fietsactiviteit' || o === 'Overslaan');
+  const votes = getVotesFor(decisionId);
+  const myName = window.KortesSync ? window.KortesSync.currentUserName() : null;
+  const voteCounts = {};
+  (d.options||[]).forEach(o => voteCounts[o] = 0);
+  Object.values(votes).forEach(v => { if(voteCounts[v] !== undefined) voteCounts[v]++; });
+  const maxVotes = Math.max(1, ...Object.values(voteCounts));
 
-  const tableRows = rows.map(([label,val]) => `<tr><td>${label}</td><td colspan="${opts.length}">${val}</td></tr>`).join('');
-  const optHeader = `<tr><td></td>${opts.map(o=>`<td style="font-weight:700;color:var(--ink)">${o}</td>`).join('')}</tr>`;
+  const chosenSingle = getDecState(d.id).chosen_option;
+  const chosenMulti = d.multi_select ? getMultiChosen(d) : [];
 
-  // Pros/cons + day/booking info per option, if present in data
-  let prosConsHtml = '';
-  if(d.pros_cons){
-    prosConsHtml = opts.map(o => {
-      const pc = d.pros_cons[o];
-      if(!pc) return '';
-      const details = (d.option_details || {})[o];
-      const dayLine = details && details.day_label ? `<div style="font-size:11px;color:var(--muted);margin-top:6px">📅 ${details.day_label}</div>` : '';
-      const bookingHtml = details && details.booking ? `
-        <div class="detail-modal-fact" style="margin-top:8px;grid-column:1/-1">
-          <b>Boeken/huren</b>
-          ${details.booking.tips}
-          ${details.booking.url ? `<br><a href="${details.booking.url}" target="_blank" rel="noopener" style="color:var(--accent);word-break:break-all">${details.booking.url}</a>` : ''}
-        </div>` : '';
-      return `<div class="detail-modal-section">
-        <div class="detail-modal-lbl" style="color:var(--ink)">📌 ${o}</div>
-        ${dayLine}
-        <div class="dec-proscons">
-          <div class="dec-proscons-box pros"><div class="dec-proscons-lbl">✓ Voordelen</div><ul>${(pc.pros||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
-          <div class="dec-proscons-box cons"><div class="dec-proscons-lbl">✕ Nadelen</div><ul>${(pc.cons||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
-        </div>
-        ${bookingHtml}
-      </div>`;
-    }).join('');
-  }
+  const goalHtml = `<div class="opt-workspace-goal"><b>Doel</b>${d.why ? d.why.split(/[.;]\\s/)[0] : d.q}</div>`;
 
-  const voteHtml = renderVoteSection(decisionId, opts);
+  const optionCards = opts.map(o => {
+    const pc = (d.pros_cons || {})[o];
+    const details = (d.option_details || {})[o];
+    const isRec = o === d.recommendation || d.recommendation.includes(o);
+    const isChosen = d.multi_select ? chosenMulti.includes(o) : chosenSingle === o;
+    const count = voteCounts[o];
+    const pct = count > 0 ? Math.round((count/maxVotes)*100) : 0;
+    const iVoted = myName && votes[myName] === o;
+    const voters = Object.entries(votes).filter(([n,v])=>v===o).map(([n])=>n);
 
-  let actionsHtml = '';
-  if(d.multi_select){
-    const chosen = getMultiChosen(d);
-    actionsHtml = `<div class="dec-compare-actions" style="margin-top:14px">
-      ${opts.filter(o=>o!=='Geen fietsactiviteit').map(o => {
-        const isIn = chosen.includes(o);
-        return `<button class="${isIn?'rec':''}" onclick="toggleMultiOption('${decisionId}','${o.replace(/'/g,"\\'")}')">${isIn?'✓ Toegevoegd: ':'+ Toevoegen: '}${o}</button>`;
-      }).join('')}
-    </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:6px">Meerdere opties mogelijk — ze vallen op verschillende dagen. Bij dezelfde dag moet je kiezen.</div>`;
-  } else {
-    actionsHtml = `<div class="dec-compare-actions" style="margin-top:14px">
-      ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
+    const dayLine = details && details.day_label ? `<div class="opt-card-day">📅 ${details.day_label}</div>` : '';
+    const bookingHtml = details && details.booking ? `
+      <div class="opt-card-booking">
+        <b>🚲 Boeken / huren</b>
+        ${details.booking.tips}
+        ${details.booking.url ? `<br><a href="${details.booking.url}" target="_blank" rel="noopener">${details.booking.url}</a>` : ''}
+      </div>` : '';
+    const prosConsHtml = pc ? `<div class="opt-card-proscons">
+        <div class="dec-proscons-box pros"><div class="dec-proscons-lbl">✓ Voordelen</div><ul>${(pc.pros||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
+        <div class="dec-proscons-box cons"><div class="dec-proscons-lbl">✕ Nadelen</div><ul>${(pc.cons||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
+      </div>` : '';
+
+    const mapQuery = encodeURIComponent(o + ' ' + (details && details.day_label ? details.day_label.replace(/\\(.*\\)/,'') : ''));
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+    const chooseBtnLabel = isChosen ? '✓ Gekozen' : '✅ Kies deze optie';
+    const chooseAction = d.multi_select
+      ? `toggleMultiOption('${decisionId}','${o.replace(/'/g,"\\\\'")}')`
+      : `chooseOption('${decisionId}','${o.replace(/'/g,"\\\\'")}')`;
+
+    return `<div class="opt-card ${isChosen?'chosen':''}">
+      <div class="opt-card-head">
+        <div class="opt-card-title">${o}</div>
+        ${isRec ? '<span class="opt-card-rec-badge">★ Aanbevolen</span>' : ''}
+      </div>
+      ${dayLine}
+      ${prosConsHtml}
+      ${bookingHtml}
+      <div class="opt-card-vote-row">
+        <button class="dec-vote-btn ${iVoted?'voted':''}" onclick="voteOnDecision('${decisionId}','${o.replace(/'/g,"\\\\'")}')">${iVoted?'✓ Jouw stem':'🗳️ Stem'}</button>
+        <div class="opt-card-vote-bar-wrap"><div class="opt-card-vote-bar" style="width:${pct}%"></div></div>
+        <span style="font-size:11px;color:var(--muted)">${count}</span>
+      </div>
+      ${voters.length ? `<div class="opt-card-voters">${voters.join(', ')}</div>` : ''}
+      <div class="opt-card-actions" style="margin-top:10px">
+        <button class="opt-card-btn ${isChosen?'chosen':'primary'}" onclick="${chooseAction}">${chooseBtnLabel}</button>
+        <button class="opt-card-btn map" onclick="window.open('${mapUrl}','_blank')">📍 Kaart</button>
+      </div>
     </div>`;
-  }
+  }).join('');
+
+  const skipHtml = skipOpts.length ? `<div class="opt-card">
+    <div class="opt-card-head"><div class="opt-card-title">${skipOpts[0]}</div></div>
+    <div class="opt-card-actions">
+      <button class="opt-card-btn" onclick="${d.multi_select?`toggleMultiOption`:`chooseOption`}('${decisionId}','${skipOpts[0].replace(/'/g,"\\\\'")}');${d.multi_select?'':'closeCompareSheet()'}">Kies deze optie</button>
+    </div>
+  </div>` : '';
+
+  const multiNote = d.multi_select ? `<div style="font-size:11px;color:var(--muted);margin:4px 0 14px">Meerdere opties mogelijk — ze vallen op verschillende dagen. Bij dezelfde dag moet je kiezen.</div>` : '';
 
   const body = `
-    <table class="dec-compare-table">
-      ${optHeader}
-      ${tableRows}
-    </table>
-    ${prosConsHtml}
-    <div class="detail-modal-section">
-      <div class="detail-modal-lbl">💬 Waarom</div>
-      <div class="detail-modal-text">${d.why}</div>
-    </div>
-    ${voteHtml}
-    ${actionsHtml}
+    ${goalHtml}
+    ${optionCards}
+    ${skipHtml}
+    ${multiNote}
   `;
   document.getElementById('compareModalBody').innerHTML = body;
   document.getElementById('compareModalBackdrop').classList.add('open');
@@ -2000,38 +2036,42 @@ function getVotesFor(decisionId){
   return {};
 }
 
-function renderVoteSection(decisionId, opts){
-  const votes = getVotesFor(decisionId); // { voterName: option }
-  const myName = window.KortesSync ? window.KortesSync.currentUserName() : null;
-  const counts = {};
-  opts.forEach(o => counts[o] = 0);
-  Object.values(votes).forEach(v => { if(counts[v] !== undefined) counts[v]++; });
-  const totalVotes = Object.keys(votes).length;
-  const maxCount = Math.max(1, ...Object.values(counts));
+function getMultiChosen(d){
+  const state = getDecState(d.id);
+  if(!state.chosen_option) return [];
+  try{ const arr = JSON.parse(state.chosen_option); return Array.isArray(arr) ? arr : []; }catch(e){ return []; }
+}
 
-  const rows = opts.map(o => {
-    const count = counts[o];
-    const pct = Math.round((count / maxCount) * 100);
-    const iVoted = myName && votes[myName] === o;
-    const voters = Object.entries(votes).filter(([n,v]) => v === o).map(([n]) => n);
-    return `<div class="dec-vote-option">
-      <div class="dec-vote-option-row">
-        <button class="dec-vote-btn ${iVoted?'voted':''}" onclick="voteOnDecision('${decisionId}','${o.replace(/'/g,"\\'")}')">${iVoted?'✓ Jouw stem':'Stem'}</button>
-        <div class="dec-vote-label">${o}</div>
-        <div style="font-size:11px;color:var(--muted)">${count}</div>
-      </div>
-      <div class="dec-vote-bar-wrap"><div class="dec-vote-bar" style="width:${count>0?pct:0}%"></div></div>
-      ${voters.length ? `<div class="dec-vote-count dec-vote-voters">${voters.join(', ')}</div>` : ''}
-    </div>`;
-  }).join('');
+function dayConflict(d, targetOption){
+  const details = d.option_details || {};
+  const targetDay = details[targetOption] ? details[targetOption].day : null;
+  if(!targetDay) return null;
+  const chosen = getMultiChosen(d);
+  for(const o of chosen){
+    if(o === targetOption) continue;
+    const od = details[o] ? details[o].day : null;
+    if(od && od === targetDay) return o;
+  }
+  return null;
+}
 
-  const nameNote = myName ? '' : '<div style="font-size:11px;color:var(--warn);margin-top:6px">Kies eerst je naam bij Reisbenodigdheden om te kunnen stemmen.</div>';
-
-  return `<div class="dec-vote-section">
-    <div class="dec-vote-title">🗳️ Familiestemmen <span>${totalVotes}/4 gestemd</span></div>
-    ${rows}
-    ${nameNote}
-  </div>`;
+function toggleMultiOption(decisionId, option){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  let chosen = getMultiChosen(d);
+  const isIn = chosen.includes(option);
+  if(isIn){
+    chosen = chosen.filter(o => o !== option);
+  } else {
+    const conflict = dayConflict(d, option);
+    if(conflict){
+      alert(`Kan niet combineren: "${option}" en "${conflict}" vallen op dezelfde dag. Kies er één, of verwijder eerst de ander.`);
+      return;
+    }
+    chosen.push(option);
+  }
+  setDecState(decisionId, { chosen_option: JSON.stringify(chosen) });
+  openCompareSheet(decisionId);
 }
 
 async function voteOnDecision(decisionId, option){
@@ -2040,7 +2080,6 @@ async function voteOnDecision(decisionId, option){
     return;
   }
   await window.KortesSync.votes.cast(decisionId, option);
-  // Re-render the compare sheet with updated votes
   if(DEC_COMPARE_TARGET) openCompareSheet(DEC_COMPARE_TARGET);
 }
 
