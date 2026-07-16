@@ -1800,13 +1800,9 @@ function renderDecCardV2(d, state, groupKey){
 function renderDecActions(d, state, status){
   if(status === 'BOOKING_REQUIRED'){
     return `<button class="dec-btn-v2 primary book" onclick="confirmBooked('${d.id}')">Boek nu</button>
-            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+            <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Stem! - Opties</button>`;
   }
-  // READY_TO_DECIDE / RESEARCHING / NEW default
-  const recOption = d.recommendation;
-  const matchedOpt = (d.options||[]).find(o => recOption && (o === recOption || recOption.includes(o) || o.includes(recOption.split(' ').slice(0,2).join(' '))));
-  return `<button class="dec-btn-v2 primary" onclick="chooseOption('${d.id}', ${matchedOpt ? `'${matchedOpt.replace(/'/g,"\\'")}'` : 'null'})">Kies${matchedOpt?' aanbevolen':''}</button>
-          <button class="dec-btn-v2" onclick="openCompareSheet('${d.id}')">Vergelijk</button>`;
+  return `<button class="dec-btn-v2 primary" onclick="openCompareSheet('${d.id}')">Stem! - Opties</button>`;
 }
 
 function toggleDecOverflow(ev, decisionId){
@@ -1882,6 +1878,44 @@ document.getElementById && document.addEventListener('DOMContentLoaded', () => {
   if(btn) btn.addEventListener('click', () => { if(DEC_CONFIRM_ACTION) DEC_CONFIRM_ACTION(); closeDecConfirm(); });
 });
 
+function getMultiChosen(d){
+  const state = getDecState(d.id);
+  if(!state.chosen_option) return [];
+  try{ const arr = JSON.parse(state.chosen_option); return Array.isArray(arr) ? arr : []; }catch(e){ return []; }
+}
+
+function dayConflict(d, targetOption){
+  const details = d.option_details || {};
+  const targetDay = details[targetOption] ? details[targetOption].day : null;
+  if(!targetDay) return null; // no day set, no conflict possible
+  const chosen = getMultiChosen(d);
+  for(const o of chosen){
+    if(o === targetOption) continue;
+    const od = details[o] ? details[o].day : null;
+    if(od && od === targetDay) return o;
+  }
+  return null;
+}
+
+function toggleMultiOption(decisionId, option){
+  const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
+  if(!d) return;
+  let chosen = getMultiChosen(d);
+  const isIn = chosen.includes(option);
+  if(isIn){
+    chosen = chosen.filter(o => o !== option);
+  } else {
+    const conflict = dayConflict(d, option);
+    if(conflict){
+      alert(`Kan niet combineren: "${option}" en "${conflict}" vallen op dezelfde dag. Kies er één, of verwijder eerst de ander.`);
+      return;
+    }
+    chosen.push(option);
+  }
+  setDecState(decisionId, { chosen_option: JSON.stringify(chosen) });
+  openCompareSheet(decisionId);
+}
+
 function openCompareSheet(decisionId){
   const d = DECISIONS_DATA.decisions.find(x=>x.id===decisionId);
   if(!d) return;
@@ -1898,23 +1932,49 @@ function openCompareSheet(decisionId){
   const tableRows = rows.map(([label,val]) => `<tr><td>${label}</td><td colspan="${opts.length}">${val}</td></tr>`).join('');
   const optHeader = `<tr><td></td>${opts.map(o=>`<td style="font-weight:700;color:var(--ink)">${o}</td>`).join('')}</tr>`;
 
-  // Pros/cons per option, if present in data
+  // Pros/cons + day/booking info per option, if present in data
   let prosConsHtml = '';
   if(d.pros_cons){
     prosConsHtml = opts.map(o => {
       const pc = d.pros_cons[o];
       if(!pc) return '';
+      const details = (d.option_details || {})[o];
+      const dayLine = details && details.day_label ? `<div style="font-size:11px;color:var(--muted);margin-top:6px">📅 ${details.day_label}</div>` : '';
+      const bookingHtml = details && details.booking ? `
+        <div class="detail-modal-fact" style="margin-top:8px;grid-column:1/-1">
+          <b>Boeken/huren</b>
+          ${details.booking.tips}
+          ${details.booking.url ? `<br><a href="${details.booking.url}" target="_blank" rel="noopener" style="color:var(--accent);word-break:break-all">${details.booking.url}</a>` : ''}
+        </div>` : '';
       return `<div class="detail-modal-section">
         <div class="detail-modal-lbl" style="color:var(--ink)">📌 ${o}</div>
+        ${dayLine}
         <div class="dec-proscons">
           <div class="dec-proscons-box pros"><div class="dec-proscons-lbl">✓ Voordelen</div><ul>${(pc.pros||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
           <div class="dec-proscons-box cons"><div class="dec-proscons-lbl">✕ Nadelen</div><ul>${(pc.cons||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
         </div>
+        ${bookingHtml}
       </div>`;
     }).join('');
   }
 
   const voteHtml = renderVoteSection(decisionId, opts);
+
+  let actionsHtml = '';
+  if(d.multi_select){
+    const chosen = getMultiChosen(d);
+    actionsHtml = `<div class="dec-compare-actions" style="margin-top:14px">
+      ${opts.filter(o=>o!=='Geen fietsactiviteit').map(o => {
+        const isIn = chosen.includes(o);
+        return `<button class="${isIn?'rec':''}" onclick="toggleMultiOption('${decisionId}','${o.replace(/'/g,"\\'")}')">${isIn?'✓ Toegevoegd: ':'+ Toevoegen: '}${o}</button>`;
+      }).join('')}
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">Meerdere opties mogelijk — ze vallen op verschillende dagen. Bij dezelfde dag moet je kiezen.</div>`;
+  } else {
+    actionsHtml = `<div class="dec-compare-actions" style="margin-top:14px">
+      ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
+    </div>`;
+  }
 
   const body = `
     <table class="dec-compare-table">
@@ -1927,9 +1987,7 @@ function openCompareSheet(decisionId){
       <div class="detail-modal-text">${d.why}</div>
     </div>
     ${voteHtml}
-    <div class="dec-compare-actions" style="margin-top:14px">
-      ${opts.map(o => `<button class="${o===d.recommendation||d.recommendation.includes(o)?'rec':''}" onclick="chooseOption('${decisionId}','${o.replace(/'/g,"\\'")}');closeCompareSheet()">Kies: ${o}</button>`).join('')}
-    </div>
+    ${actionsHtml}
   `;
   document.getElementById('compareModalBody').innerHTML = body;
   document.getElementById('compareModalBackdrop').classList.add('open');

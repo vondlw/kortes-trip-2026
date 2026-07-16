@@ -1031,23 +1031,6 @@
    }
   },
   {
-   "id": "SHIBUYA-SKY",
-   "q": "Shibuya Sky-tijdslot 19 juli",
-   "recommendation": "Ochtendslot (koeler, rustiger)",
-   "confidence": "gemiddeld",
-   "why": "Sunset-slots verkopen razendsnel uit; ochtend vermijdt drukte + hitte; dak sluit bij harde wind.",
-   "options": [
-    "Ochtend",
-    "Zonsondergang",
-    "Overslaan"
-   ],
-   "deadline": "venster van 14 dagen vooruit",
-   "requires_booking": {
-    "Ochtend": true,
-    "Zonsondergang": true
-   }
-  },
-  {
    "id": "OD7",
    "q": "Osaka open dag woensdag 29 juli",
    "recommendation": "In Osaka blijven; lichte dag",
@@ -1111,7 +1094,7 @@
   },
   {
    "id": "CYCLING",
-   "q": "Fietservaring — welke bestemming(en) nemen we mee?",
+   "q": "Fietservaring(en) — welke nemen we mee? (meerdere mogelijk, verschillende dagen)",
    "recommendation": "Kyoto (Arashiyama) + Ninh Binh (Trang An-Mua Cave)",
    "confidence": "hoog",
    "why": "Beide vervangen bestaand vervoer/programma zonder extra dag te kosten. Kyoto scoort hoogst op gezinsgeschiktheid en fotowaarde. Ninh Binh is vrijwel gratis en het meest authentiek. Hoi An overlapt conceptueel met Ninh Binh; Tokyo vereist een nieuw dagdeel dat nog niet in het schema past.",
@@ -1181,7 +1164,47 @@
      ]
     }
    },
-   "research_link": "02-research/cycling/EXECUTIVE-SUMMARY.md"
+   "research_link": "02-research/cycling/EXECUTIVE-SUMMARY.md",
+   "multi_select": true,
+   "option_details": {
+    "Kyoto — Arashiyama Family Bike Tour": {
+     "day": "2026-07-26",
+     "day_label": "zo 26 jul (Arashiyama-ochtend, al gepland)",
+     "booking": {
+      "tips": "Vervangt de al geplande Arashiyama-wandeling. Boek online vooraf, geen wachttijd nodig in laagseizoen juli.",
+      "url": "https://www.kyotobiketour.com/service-page/family-arashiyama-bamboo-bike-tour"
+     }
+    },
+    "Ninh Binh — Trang An/Mua Cave fietsverbinding": {
+     "day": "2026-08-01",
+     "day_label": "za 1 aug (Ninh Binh dagtrip, al gepland)",
+     "booking": {
+      "tips": "Geen vaste boeking nodig — vraag bij aankomst gratis fiets bij hotel/homestay in Tam Coc, of huur ter plekke (~150.000-250.000 VND/dag). Voor een begeleide variant: Vietnam Cycling.",
+      "url": "https://vietnamcycling.com/vietnam-bike-tours/ninh-binh-bike-tours/"
+     }
+    },
+    "Hoi An — Tra Que + waterbuffel + mandboot": {
+     "day": "2026-08-03",
+     "day_label": "ma 3 aug (Hoi An lantaarn-avond, al gepland)",
+     "booking": {
+      "tips": "Combineer als halve-dag-ochtendtour vóór de strandmiddag. Boek online, kies de \"Countryside Bicycle Tour\" met waterbuffelrit + mandboot.",
+      "url": "https://hoiandaytrip.com/hoi-an-countryside-bicycle-tour/"
+     }
+    },
+    "Tokyo — Edo Hidden Gem Tour": {
+     "day": null,
+     "day_label": "nog niet ingepland — vereist nieuw dagdeel (kandidaat: wo 22 jul)",
+     "booking": {
+      "tips": "Minimumleeftijd 15+ (past bij Oscar/Lucas). 5 uur incl. lunch. Boek minstens enkele dagen vooraf, populaire tour.",
+      "url": "https://www.magical-trip.com/product/1e7c17b3-2fcb-4202-a97f-3b48eab4c181"
+     }
+    },
+    "Geen fietsactiviteit": {
+     "day": null,
+     "day_label": "—",
+     "booking": null
+    }
+   }
   }
  ],
  "days": [
